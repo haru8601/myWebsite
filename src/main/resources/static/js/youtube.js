@@ -6,7 +6,7 @@ document.body.appendChild(newTag);
 
 //youtubeの読み込み
 function onYouTubeIframeAPIReady() {
-    let ytPlayer = new YT.Player(
+    new YT.Player(
         'yt-iframe',
         {
             width: 500,
