@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>英単語クイズ - 小中学生の英語暗記 - haroot.net</title>
+	<meta name="description" content="harootが最初にお試しで作成したiosアプリ「英単語クイズ - 小中学生の英語暗記」の概要ページです。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container">
+			<th:block th:include="share/menuBar"></th:block>
+			<main>
+				<h1>英単語クイズ - 小中学生の英語暗記</h1>
+				<h2>リンク</h2>
+				<ul class="link">
+					<li><a href="https://apple.co/3fxIjX7">Apple Store</a></li>
+					<li><a th:href="@{|/ios-app/${appName}/policy|}">プライバシーポリシー</a></li>
+				</ul>
+			</main>
+		</div>
+
+		<footer th:include="share/footer"></footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>
+
+</html>

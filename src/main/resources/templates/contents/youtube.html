@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html la="ja">
+
+<head>
+    <th:block th:include="share/head"></th:block>
+    <title>YouTube - haroot.net</title>
+    <meta name="description" content="harootがyoutubeに投稿した動画一覧です。">
+</head>
+
+<body>
+    <header th:include="share/header"></header>
+    <div class="except-header">
+        <div class="container flex-box">
+            <th:block th:include="share/menuBar"></th:block>
+            <main>
+                <h2 class="title">YouTube</h2>
+                <!-- 内容物リスト -->
+                <div th:each="content: ${youtubeList}" th:object="${content}" class="item">
+                    <a th:href="*{URL}" target="_blank">
+                        <h3 th:text="*{TITLE}"></h3>
+                    </a>
+                </div>
+                <div id="yt-wrapper">
+                    <div id="yt-iframe"></div>
+                </div>
+                <div th:include="share/ads"></div>
+            </main>
+        </div>
+        <footer th:include="share/footer"> </footer>
+    </div>
+    <script th:src="@{/js/menu.js}"></script>
+    <script th:src="@{/js/youtube.js}"></script>
+</body>
+
+</html>

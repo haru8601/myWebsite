@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html la="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>記事作成 - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
+	<!--simpleMDE用-->
+	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+	<!--syntaxHighlight用-->
+	<script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
+	<meta name="description" content="harootが技術記事作成するためのページです。現状他の方はご利用いただけません。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main class="articles">
+				<h2 class="title">記事作成</h2>
+				<form th:object="${articleData}" action="/articles/created" method="post">
+					<p>タイトル
+						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
+					<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>
+					</p>
+					<input th:field="*{title}" class="name" name="title">
+					<p>内容
+						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
+					<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed"></p>
+					</p>
+					<div class="markdown-div">
+						<textarea th:id="mde" th:value="*{content}" th:field="*{content}" name="content" rows="8"
+							cols="40"></textarea>
+						<script>
+							//マークダウンプレビュー用クラス
+							let simplemde = new SimpleMDE({
+								element: document.getElementById("mde"),
+								placeholder: "Please input the content here.",
+								renderingConfig: {
+									codeSyntaxHighlighting: true,
+								}
+							});
+						</script>
+					</div>
+					<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
+					<input class="submit" type="button" value="送信" onclick="submit()">
+				</form>
+			</main>
+		</div>
+		<footer th:include="share/footer"> </footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>

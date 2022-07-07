@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html la="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>記事作成完了 - haroot.net</title>
+	<meta name="description" content="harootが技術記事を作成した時に表示されるページです。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main class="articles">
+				<h2 class="title">記事を作成しました</h2>
+				<a href="/articles">記事一覧に戻る</a>
+			</main>
+		</div>
+		<footer th:include="share/footer"> </footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>

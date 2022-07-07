@@ -1,0 +1,10 @@
+.career table {
+	width: 100%;
+	margin: 0 auto;
+	border-spacing: 5vh;
+	font-size: 18px;
+}
+
+.career th {
+	width: 20%;
+}

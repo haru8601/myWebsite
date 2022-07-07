@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html la="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>harootについて - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/about.css}">
+	<meta name="description" content="harootの経歴のページです。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main>
+				<h2 class="title">経歴</h2>
+				<div class="career">
+					<table>
+						<tbody>
+							<tr>
+								<th>2021/03</th>
+								<td>東京工業大学 地球惑星科学系 卒業</td>
+							</tr>
+							<tr>
+								<th>2021/04</th>
+								<td>ニートになる</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>Qiita記事投稿開始</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>iOSアプリ開発開始</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>Youtube投稿開始</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>haroot.net(このホームページ)作成開始</td>
+							</tr>
+							<tr>
+								<th>2021/06</th>
+								<td>IT企業就職</td>
+							</tr>
+							<tr>
+								<th>2022/05</th>
+								<td>Twitterのbot作成</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div th:include="share/ads"></div>
+			</main>
+		</div>
+		<footer th:include="share/footer"> </footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>

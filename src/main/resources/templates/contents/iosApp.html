@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>iOSアプリ - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/iosApp.css}">
+	<meta name="description" content="harootが作ったiosアプリ一覧です。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main id="ios-app">
+				<h2 class="title">iOSアプリ</h2>
+				<!-- 内容物リスト -->
+				<div class="topic-all">
+					<a class="topic-link" th:each="content: ${iosAppList}" th:object="${content}" th:href="@{*{URL}}">
+						<div class="topic">
+							<div class="topic-text">
+								<h1 th:text="*{TITLE}"></h1>
+								<p th:text="*{SUMMARY}"></p>
+							</div>
+							<div class="topic-img">
+								<div th:if="*{IMG!=null}" class="sample">
+									<img th:if="*{IMG!=null}" class="content-img" th:src="@{|/images/*{IMG}|}">
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div th:include="share/ads"></div>
+			</main>
+		</div>
+		<footer th:include="share/footer"></footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>
+
+</html>

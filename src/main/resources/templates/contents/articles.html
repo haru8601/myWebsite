@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html la="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>技術記事 - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
+	<meta name="description" content="haroot.netの技術記事一覧です。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main class="articles">
+				<h2 class="title">技術記事</h2>
+				<!-- 内容物リスト -->
+				<div th:each="content: ${articlesList}" th:object="${content}" class="item">
+					<a th:href="*{id}">
+						<h3 th:text="*{title}"></h3>
+					</a>
+				</div>
+				<div class="item noflex">
+					<th:block th:if="${errStr!=''}">
+						<p class="errStr" th:text="${errStr}"></p>
+					</th:block>
+					<a class="create-btn" href="/articles/create">新規作成</a>
+				</div>
+				<div th:include="share/ads"></div>
+			</main>
+		</div>
+		<footer th:include="share/footer"> </footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>
+
+</html>

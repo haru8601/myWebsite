@@ -1,0 +1,15 @@
+main>* {
+	margin-left: 10px;
+	margin-bottom: 50px;
+}
+
+
+@media screen and (max-width:670px) {
+	main>* {
+		margin-left: 0;
+	}
+
+	.audio-content p {
+		text-align: left;
+	}
+}

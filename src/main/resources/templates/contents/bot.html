@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>Bot - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bot.css}">
+	<meta name="description" content="harootが作ったtwitterのbotです。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main id="bot">
+				<h2 class="title">Bot</h2>
+				<!-- 内容物リスト -->
+				<div>
+					<p>Twitterのbotを自作してみました。</p>
+					<ul>
+						<li>1日1回、ポケモンの名前をランダムに並び替えてツイートします。</li>
+						<li>ポケモンの名前でリプライするとそのポケモンの種族値を返してくれます。</li>
+						<li>1日1回、自動で特定のツイートを検索していいねします。</li>
+					</ul>
+				</div>
+				<div class="twitter-btn">
+					<a class="twitter-icon" href="https://twitter.com/pokeBot_haroot" target="_blank"><i
+							class="fa-brands fa-twitter"></i>Twitterで見る</a>
+				</div>
+				<div class="twitter-tl">
+					<a class="twitter-timeline" data-tweet-limit="5"
+						href="https://twitter.com/pokeBot_haroot?ref_src=twsrc%5Etfw">Tweets by pokeBot_haroot</a>
+				</div>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				<div>
+					<div class="audio-content">
+						<p>BGM1</p>
+						<audio th:src="@{|/audio/戦闘！チャンピオン_comp.mp3|}" controls preload="auto"
+							controlslist="nodownload">
+							<p>※音声に対応していないブラウザです</p>
+						</audio>
+					</div>
+					<div class="audio-content">
+						<p>BGM2</p>
+						<audio th:src="@{|/audio/戦闘！伝説のポケモン_comp.mp3|}" controls preload="auto"
+							controlslist="nodownload">
+							<p>※音声に対応していないブラウザです</p>
+						</audio>
+					</div>
+					<div class="audio-content">
+						<p>BGM3</p>
+						<audio th:src="@{|/audio/戦闘！ユクシー・エムリット・アグノム_comp.mp3|}" controls preload="auto"
+							controlslist="nodownload">
+							<p>※音声に対応していないブラウザです</p>
+						</audio>
+					</div>
+					<a href="https://soundlibrary.pokemon.co.jp" target="_blank">使用BGM取得先(閉鎖済)</a>
+				</div>
+				<div th:include="share/ads"></div>
+			</main>
+		</div>
+		<footer th:include="share/footer"></footer>
+	</div>
+	<script th:src="@{/js/menu.js}"></script>
+</body>
+
+</html>

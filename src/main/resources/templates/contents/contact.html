@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<th:block th:include="share/head"></th:block>
+	<title>お問い合わせ - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/contact.css}">
+	<meta name="description" content="haroot.netのお問い合わせフォームです。">
+</head>
+
+<body>
+	<header th:include="share/header"></header>
+	<div class="except-header">
+		<div class="container flex-box">
+			<th:block th:include="share/menuBar"></th:block>
+			<main>
+				<!-- コンテンツ2(ヘッダーのリンク先) -->
+				<form th:object="${formData}" action="/sentForm" method="post">
+					<div class="contact-form">
+						<h2 id="con">お問い合わせ</h2>
+						<div class="container">
+							<p>名前
+								<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
+							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="check-failed"></p>
+							</p>
+							<input th:field="*{name}" class="name">
+							<p>メールアドレス
+								<!--checkから戻ってきてアドレスが入力されていなかったら注意書きを追加-->
+							<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="check-failed"></p>
+							</p>
+							<input th:field="*{email}" class="email">
+							<p>お問い合わせ内容
+								<!--checkから戻ってきて問い合わせが入力されていなかったら注意書きを追加-->
+							<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed"></p>
+							<!-- リンクが含まれていればキック-->
+							</p>
+							<textarea th:field="*{content}"></textarea>
+							<div class="policy-area">
+								<p th:if="${#fields.hasErrors('checkbox')}" th:errors="*{checkbox}"
+									class="check-failed"></p>
+								<div class="check-area">
+									<input type="checkbox" th:name="checkbox" th:id="checkbox"
+										th:checked="${formData.checkbox}">
+									<label for="checkbox">はるーとの<a href="/policy">プライバシーポリシー</a>に同意します。</label>
+								</div>
+							</div>
+							<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
+							<input class="submit" type="button" value="送信" onclick="submit()">
+						</div>
+					</div>
+				</form>
+			</main>
+		</div>
+		<footer th:include="share/footer"></footer>
+	</div>
+	<script th:inline="javascript">
+		//textareaのデータ表示
+		const textArea = document.getElementById("content");
+		textArea.innerHTML = /*[[${formData.content}]]*/"";
+	</script>
+	<script th:src="@{/js/youtube.js}"></script>
+	<script th:src="@{/js/menu.js}"></script>
+</body>
+
+</html>
