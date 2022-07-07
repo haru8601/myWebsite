@@ -1,6 +1,7 @@
 function copy() {
 	if (!navigator.clipboard) {
 		//コピー失敗
+		return;
 	}
 
 	//コピー成功
