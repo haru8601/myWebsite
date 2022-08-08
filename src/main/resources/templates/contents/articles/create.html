@@ -21,7 +21,7 @@
 			<th:block th:include="share/menuBar"></th:block>
 			<main class="articles">
 				<h2 class="title">記事作成</h2>
-				<form th:object="${articleData}" action="/articles/created" method="post">
+				<form th:object="${articleData}" th:action="@{|/articles/created/${id}|}" method="post">
 					<p>タイトル
 						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
 					<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>
@@ -46,7 +46,10 @@
 						</script>
 					</div>
 					<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
-					<input class="submit" type="button" value="送信" onclick="submit()">
+						<input class="submit" type="button" value="送信" onclick="submit()">
+					<div class="item noflex">
+						<a class="btn1" th:href="@{|/articles|}">記事一覧へ戻る</a>
+					</div>
 				</form>
 			</main>
 		</div>

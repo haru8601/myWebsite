@@ -53,6 +53,9 @@ p {
     margin: 0 auto;
 }
 
+input.submit{
+	cursor:pointer;
+}
 
 /**********起動画面**********/
 

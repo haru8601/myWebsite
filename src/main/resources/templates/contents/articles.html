@@ -17,7 +17,7 @@
 				<h2 class="title">技術記事</h2>
 				<!-- 内容物リスト -->
 				<div th:each="content: ${articlesList}" th:object="${content}" class="item">
-					<a th:href="*{id}">
+					<a th:href="@{|/articles/*{id}|}">
 						<h3 th:text="*{title}"></h3>
 					</a>
 				</div>
@@ -25,7 +25,7 @@
 					<th:block th:if="${errStr!=''}">
 						<p class="errStr" th:text="${errStr}"></p>
 					</th:block>
-					<a class="create-btn" href="/articles/create">新規作成</a>
+					<a class="btn1" th:href="@{|/articles/create/-1|}">新規作成</a>
 				</div>
 				<div th:include="share/ads"></div>
 			</main>

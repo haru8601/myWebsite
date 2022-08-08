@@ -66,22 +66,23 @@
 	margin: 5vh auto;
 }
 
-.articles .create-btn {
-	width: 50%;
-	margin: 0 auto;
-	background-color: rgb(194, 198, 244);
-}
-
-.articles .create-btn:hover {
-	background-color: rgb(174, 177, 216);
-}
-
 .articles .errStr {
 	color: red;
 }
 
 .articles .noflex {
 	display: block;
+}
+
+.articles .btn1 {
+	width: 50%;
+	margin: 5px auto;
+	text-align: center;
+	background-color: rgb(194, 198, 244);
+}
+
+.articles .btn1:hover {
+	background-color: rgb(174, 177, 216);
 }
 
 /********マークダウン表示用**************/
@@ -148,7 +149,6 @@ pre {
 code {
 	white-space: pre;
 }
-
 
 
 /*******記事はレスポンシブでも中央寄せしない********/

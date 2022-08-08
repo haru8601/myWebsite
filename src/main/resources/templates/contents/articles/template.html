@@ -44,6 +44,13 @@
 					//テキストをマークダウン化して貼り付け
 					document.getElementById("content").innerHTML = marked.parse(text);
 				</script>
+				<div class="item noflex">
+					<th:block th:if="${errStr!=''}">
+						<p class="errStr" th:text="${errStr}"></p>
+					</th:block>
+					<a class="btn1" th:href="@{|/articles/create/${id}|}">編集</a>
+					<a class="btn1" th:href="@{|/articles|}">記事一覧へ戻る</a>
+				</div>
 				<div th:include="share/ads"></div>
 			</main>
 		</div>
