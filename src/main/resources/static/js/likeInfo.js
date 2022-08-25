@@ -1,6 +1,7 @@
 window.onload = function () {
+	const articleId = getArticleId();
 	//セッション取得
-	let likeFlg = sessionStorage.getItem("likeFlg");
+	let likeFlg = sessionStorage.getItem(`likeFlg-${articleId}`);
 	//likeしてれば色変更
 	if (likeFlg == "1") {
 		let icon = document.getElementsByClassName("fa-thumbs-up")[0];
@@ -9,8 +10,9 @@ window.onload = function () {
 }
 
 function countChange() {
+	const articleId = getArticleId();
 	//セッション取得
-	let likeFlg = sessionStorage.getItem("likeFlg");
+	let likeFlg = sessionStorage.getItem(`likeFlg-${articleId}`);
 	let likeCount = document.getElementById("likeCount");
 	let count = 0;
 	if (likeCount != null) {
@@ -33,7 +35,7 @@ function countChange() {
 	}
 
 	//セッションにlikeを記録
-	sessionStorage.setItem("likeFlg", likeFlg);
+	sessionStorage.setItem(`likeFlg-${articleId}`, likeFlg);
 	//アイコンの色変更
 	let icon = document.getElementsByClassName("fa-thumbs-up")[0];
 	icon.style.color = color;
@@ -52,4 +54,10 @@ function countChange() {
 	XHR.send();
 
 	return;
+}
+
+function getArticleId(){
+	const path = location.pathname;
+	const articleId = path.replace(/^.*([0-9]+)$/, "$1");
+	return articleId;
 }
