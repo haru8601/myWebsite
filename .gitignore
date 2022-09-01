@@ -26,5 +26,9 @@ test
 QiitaController.java
 qiita.html
 
+#font
+*.ttf
+*.woff2
+
 #google
 ads.html

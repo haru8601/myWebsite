@@ -12,8 +12,9 @@
     font-family: 'CustomFont';
 
     src: url('../Fonts/Parisienne/Parisienne-Regular.ttf') format('truetype'),
-        url('../Fonts/Parisienne/Parisienne-Regular.eot?') format('oldIE'),
-        url('../Fonts/Parisienne/Parisienne-Regular.woff') format('woff');
+        url('../Fonts/Parisienne/Parisienne-Regular.woff') format('woff'),
+        url('../Fonts/Parisienne/Parisienne-Regular.eot') format('embedded-opentype');
+    font-display:swap;
 }
 
 
@@ -324,11 +325,12 @@ main {
 
 .content-img {
     display: inline-block;
-    height: auto;
     border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
     margin: 2vh 2vw;
+    width:90%;
+    height:90%;
+    /*アスペクト比を保つ*/
+    object-fit:contain;
 }
 
 #yt-wrapper {

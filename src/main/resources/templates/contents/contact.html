@@ -58,8 +58,7 @@
 		const textArea = document.getElementById("content");
 		textArea.innerHTML = /*[[${formData.content}]]*/"";
 	</script>
-	<script th:src="@{/js/youtube.js}"></script>
-	<script th:src="@{/js/menu.js}"></script>
+	<div th:replace="share/lastProcess"></div>
 </body>
 
 </html>

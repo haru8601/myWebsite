@@ -3,7 +3,7 @@
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
 	<th:block th:include="share/head"></th:block>
-	<title th:text="${title}+'haroot.net'">技術記事 - haroot.net</title>
+	<title th:text="${title}+' - haroot.net'">技術記事 - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
 	<meta name="description" th:content="${title}+'についての記事です。'">
 	<!--marked用-->
@@ -69,7 +69,6 @@
 					<i class="fa-brands fa-twitter">
 					</i>
 				</a>
-				<!--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
 			</div>
 			<div>
 				<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
@@ -87,9 +86,9 @@
 		const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}&via=${writer}`;
 		tweetBtn.setAttribute("href", tweetUrl);
 	</script>
-	<script th:src="@{/js/menu.js}"></script>
 	<script th:src="@{/js/likeInfo.js}"></script>
 	<script th:src="@{/js/copy.js}"></script>
+	<div th:replace="share/lastProcess"></div>
 </body>
 
 </html>

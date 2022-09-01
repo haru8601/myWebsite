@@ -46,11 +46,8 @@
 								<p th:text="*{SUMMARY}"></p>
 							</div>
 							<div class="topic-img">
-								<div th:if="*{IMG1!=null}" class="sample">
-									<img class="content-img" th:src="@{|/images/*{IMG1}|}">
-								</div>
-								<div th:if="*{IMG2!=null}" class="sample">
-									<img class="content-img" th:src="@{|/images/*{IMG2}|}">
+								<div th:if="*{IMG!=null}" class="sample">
+									<img class="content-img" th:src="@{|/images/*{IMG}|}">
 								</div>
 							</div>
 						</div>
@@ -63,8 +60,8 @@
 		</div>
 		<footer th:include="share/footer"></footer>
 	</div>
-	<script th:src="@{/js/menu.js}"></script>
 	<script th:src="@{/js/scrollEffect.js}"></script>
+	<div th:replace="share/lastProcess"></div>
 </body>
 
 </html>
