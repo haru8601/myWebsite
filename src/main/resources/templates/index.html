@@ -39,15 +39,15 @@
 			<th:block th:include="share/menuBar"></th:block>
 			<main>
 				<div class="topic-all">
-					<a class="topic-link animation" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{URL}">
+					<a class="topic-link animation" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
 						<div class="topic">
 							<div class="topic-text">
-								<h1 th:text="*{TITLE}"></h1>
-								<p th:text="*{SUMMARY}"></p>
+								<h1 th:text="*{title}"></h1>
+								<p th:text="*{summary}"></p>
 							</div>
 							<div class="topic-img">
-								<div th:if="*{IMG!=null}" class="sample">
-									<img class="content-img" th:src="@{|/images/*{IMG}|}">
+								<div th:if="*{img!=null}" class="sample">
+									<img class="content-img" th:src="@{|/images/*{img}|}">
 								</div>
 							</div>
 						</div>

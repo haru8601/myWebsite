@@ -1,35 +1,31 @@
 package com.haroot.home_page.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.yaml.snakeyaml.Yaml;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haroot.home_page.logic.IpWriter;
 import com.haroot.home_page.model.Constants;
-import com.haroot.home_page.model.PathProperties;
 import com.haroot.home_page.model.SessionData;
+import com.haroot.home_page.model.TopicData;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@EnableConfigurationProperties({ PathProperties.class })
 public class ToTopController {
 
 	@Autowired
 	JdbcTemplate jdbcT;
 	@Autowired
 	SessionData sessionData;
-	@Autowired
-	PathProperties pathProperties;
 
 	@RequestMapping("/")
 	public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
@@ -77,16 +73,17 @@ public class ToTopController {
 		ipWriter.start();
 
 		// トピックリスト取得
-		File topicsFile = new File(pathProperties.getHomepath() + "/static/config/topics.json");
-		List<Map<String, Object>> topicList = new ArrayList<>();
+		List<TopicData> topicDataList = new ArrayList<>();
 		try {
-			// jsonを読み込んでMapのListへキャスト
-			topicList = new ObjectMapper().readValue(topicsFile, new TypeReference<List<Map<String, Object>>>() {
-			});
-		} catch (IOException e) {
+			String topicsFilePath = "static/config/topics.yml";
+			InputStream is = new ClassPathResource(topicsFilePath).getInputStream();
+			topicDataList = new Yaml().load(is);
+			is.close();
+		}catch(IOException e) {
+			System.out.println("topics.yml load error");
 			e.printStackTrace();
 		}
-		mav.addObject("topicList", topicList);
+		mav.addObject("topicList", topicDataList);
 
 		mav.addObject("isTop", true);
 
