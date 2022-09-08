@@ -10,7 +10,6 @@ import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.logic.IpWriter;
 import com.haroot.home_page.model.Constants;
-import com.haroot.home_page.model.SessionData;
 import com.haroot.home_page.model.TopicData;
 
 import java.io.IOException;
@@ -24,49 +23,19 @@ public class ToTopController {
 
 	@Autowired
 	JdbcTemplate jdbcT;
-	@Autowired
-	SessionData sessionData;
 
 	@RequestMapping("/")
 	public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
-		// トップページ訪問済みフラグ
-		boolean visited = sessionData.getVisited();
-		mav.addObject("visited", visited);
-
-		String bingoImg = "";
-		// 初訪問なら(セッションがなければ)
-		if (!visited) {
-			String[] DOTIMGS = Constants.DOTIMGS;
-			// スタート時のアニメーション用
-			Random random = new Random();
-			int slotNum = 3;
-			String[] slotImg = new String[slotNum];
-			int bingoNum = -1;
-			for (int i = 0; i < slotNum; i++) {
-				int num = random.nextInt(slotNum);
-				// ビンゴ数初期化
-				if (i == 0) {
-					bingoNum = num;
-					// 初期値と異なる数値が来たら-1に
-				} else if (bingoNum != num) {
-					bingoNum = -1;
-				}
-				slotImg[i] = DOTIMGS[num];
-			}
-			mav.addObject("slotImg", slotImg);
-			// ビンゴならビンゴ画像セット
-			if (bingoNum != -1) {
-				bingoImg = slotImg[0];
-				sessionData.setBingoImg(bingoImg);
-			}
-			// 訪問情報更新
-			sessionData.setVisited(true);
-
-		}else {
-			// ビンゴ情報取得
-			bingoImg = sessionData.getBingoImg();
+		String[] DOTIMGS = Constants.DOTIMGS;
+		// スタート時のアニメーション用
+		Random random = new Random();
+		int slotNum = 3;
+		String[] slotImg = new String[slotNum];
+		for (int i = 0; i < slotNum; i++) {
+			int num = random.nextInt(slotNum);
+			slotImg[i] = DOTIMGS[num];
 		}
-		mav.addObject("bingoImg", bingoImg);
+		mav.addObject("slotImg", slotImg);
 
 		// クライアントIPアドレス記録(非同期処理)
 		IpWriter ipWriter = new IpWriter(request, jdbcT);
@@ -84,8 +53,6 @@ public class ToTopController {
 			e.printStackTrace();
 		}
 		mav.addObject("topicList", topicDataList);
-
-		mav.addObject("isTop", true);
 
 		mav.setViewName("index");
 		return mav;

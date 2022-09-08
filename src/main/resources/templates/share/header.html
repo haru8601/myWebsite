@@ -1,15 +1,11 @@
 <div class="container">
 	<div class="header-logo">
-		<h1>haroot.net</h1>
+		<a href="/">haroot.net</a>
 	</div>
 	<button id="menu-btn" onclick="menu()">
 		<i class="fa-solid fa-bars"></i>
 	</button>
 	<button class="jump-btn" onclick="jump()">
 		<img th:src="@{/images/チビイヌ.png}">
-	</button>
-	<!--トップページでビンゴがセッションにあれば表示-->
-	<button th:if="${isTop == true && bingoImg != ''}" class="jump-btn bingo-btn" onclick="jump()">
-		<img id="bingo" th:src="@{|/images/${bingoImg}|}">
 	</button>
 </div>

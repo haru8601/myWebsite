@@ -20,17 +20,25 @@
 
 <body>
 	<!--launch画面-->
-	<th:block th:if="${visited==false}">
-		<div id="launch">
-			<div class="slotBoxs">
-				<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[0]}|}"></div>
-				<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[1]}|}"></div>
-				<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[2]}|}"></div>
-			</div>
-			<p class="bingo-text" th:if="${bingoImg!=''}">BINGO!!</p>
+	<div id="launch">
+		<div class="slotBoxs">
+			<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[0]}|}"></div>
+			<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[1]}|}"></div>
+			<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[2]}|}"></div>
 		</div>
-		<script th:src="@{/js/launch.js}"></script>
-	</th:block>
+		<p class="bingo-text" th:if="${slotImg[0]==slotImg[1] && slotImg[0]==slotImg[2]}">BINGO!!!</p>
+	</div>
+	<script>
+		if (window.sessionStorage.getItem("haroot-visited") == "1") {
+			// セッションあるのでlaunch表示しない
+			const launchDiv = document.getElementById("launch");
+			launchDiv.style.display = "none";
+		} else {
+			// セッションに保存(ブラウザ閉じられたら無くなる)
+			window.sessionStorage.setItem("haroot-visited", "1");
+		}
+	</script>
+	<script th:src="@{/js/launch.js}"></script>
 
 	<header th:include="share/header"></header>
 
