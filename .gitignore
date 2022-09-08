@@ -22,10 +22,6 @@ images
 application.yml
 test
 
-#old
-QiitaController.java
-qiita.html
-
 #font
 *.ttf
 *.woff2
