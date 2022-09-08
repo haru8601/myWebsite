@@ -47,7 +47,8 @@ public class MavUtils {
 	}
 	
 	public static ModelAndView getArticleListMav(ModelAndView mav, JdbcTemplate jdbcT) {
-		List<Map<String, Object>> articleList = jdbcT.queryForList("SELECT * FROM articles");
+		// 降順(最新から)で取得
+		List<Map<String, Object>> articleList = jdbcT.queryForList("SELECT * FROM articles ORDER BY id DESC");
 		for (Map<String, Object> content : articleList) {
 			String id = content.get("id").toString();
 			content.put("id", id);
