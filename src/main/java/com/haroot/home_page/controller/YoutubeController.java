@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.haroot.home_page.model.SessionData;
 import com.haroot.home_page.model.YoutubeProperties;
 
 @Controller
@@ -26,8 +25,6 @@ public class YoutubeController {
 	JdbcTemplate jdbcT;
 	@Autowired
 	YoutubeProperties youtubeProperties;
-	@Autowired
-	SessionData sessionData;
 
 	@RequestMapping("youtube")
 	public ModelAndView youtube(ModelAndView mav) {

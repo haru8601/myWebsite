@@ -22,14 +22,11 @@ import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.model.ArticleData;
 import com.haroot.home_page.model.IpProperties;
 import com.haroot.home_page.model.QiitaProperties;
-import com.haroot.home_page.model.SessionData;
 import com.haroot.home_page.logic.MavUtils;
 
 @Controller
 @EnableConfigurationProperties({ IpProperties.class, QiitaProperties.class })
 public class ArticlesController {
-	@Autowired
-	SessionData sessionData;
 	@Autowired
 	IpProperties ipProperties;
 	@Autowired

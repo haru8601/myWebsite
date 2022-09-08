@@ -10,15 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.haroot.home_page.model.SessionData;
-
 @Controller
 public class IOSAppController {
 
 	@Autowired
 	JdbcTemplate jdbcT;
-	@Autowired
-	SessionData sessionData;
 
 	@RequestMapping("ios-app")
 	public ModelAndView iosApp(ModelAndView mav) {

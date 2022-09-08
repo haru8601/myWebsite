@@ -19,13 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.model.FormData;
-import com.haroot.home_page.model.SessionData;
 
 @Controller
 public class ContactController {
 
-	@Autowired
-	SessionData sessionData;
 	@Autowired
 	private MailSender sender;
 	@Autowired
