@@ -1,9 +1,10 @@
 window.onload = async function () {
 	let slotImgs = document.getElementsByClassName("slotImg");
-	const imgNum = 3;
-	for (let i = 0; i < imgNum; i++) {
+	// 画像が落ちてくる時間間隔(ms)
+	const fallDuration = 1000;
+	for (let i = 0; i < slotImgs.length; i++) {
 		await new Promise((resolve) => {
-			//500msおきにanimation実行
+			//一定間隔でanimation実行
 			setTimeout(() => {
 				slotImgs[i].style.transform = "none";
 				slotImgs[i].animate({
@@ -17,30 +18,33 @@ window.onload = async function () {
 					],
 					offset: [0, 0.5, 0.55, 0.7, 0.75],
 				}, {
-					duration: 1000
+					duration: fallDuration
 				});
 				//Promiseに結果(空文字)を渡す
 				resolve("");
-			}, 500);
+			}, fallDuration / 2);
 		});
 	};
 
 	let launchDiv = document.getElementById("launch");
 	let bingoP = document.getElementsByClassName("bingo-text")[0];
-	//cssの画像が落ちるtransition 0.5sに合わせて表示
+	// 最後のanimateが始まった直後にここに来てしまうので
+	// animateが終わるまで待ってから実行
 	await new Promise((resolve) => {
 		setTimeout(() => {
 			if (bingoP) {
 				bingoP.style.display = "block";
 			}
 			resolve("");
-		}, 500);
+		}, fallDuration / 2);
 	})
-	//launch終了
+
+	// 少し時間を置いてlaunch終了
 	setTimeout(() => {
 		if (launchDiv != null) {
 			launchDiv.style.opacity = "0";
 			launchDiv.style.pointerEvents = "none";
 		}
-	}, 1000);
-}
+	}, fallDuration);
+};
+
