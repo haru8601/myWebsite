@@ -33,7 +33,8 @@ let clickCount = 0;
 // SEが流れるがボタンがどっかいく(リスクとリターン)
 function soundPlay() {
 	clickCount++;
-	const fileIndex = Math.round(Math.random() * FILE_COUNT);
+	// 0 <= index < fileCount
+	const fileIndex = Math.floor(Math.random() * FILE_COUNT);
 	music = new Audio(`../audio/${AUDIO_FILES[fileIndex]}.wav`);
 	music.play();
 	const randomIntX = -1 * Math.round(Math.random() * 100);
