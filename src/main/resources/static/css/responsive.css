@@ -53,4 +53,8 @@
     .footer-list>ul>li {
         font-size: 10px;
     }
+
+    [class^="fa-"] {
+        font-size: 30px;
+    }
 }

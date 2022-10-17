@@ -25,30 +25,32 @@ function menu() {
 	}
 }
 
-function goDown() {
-	const downImg = event.target;
-	downImg.animate({
-		transform: ["none", "translateY(100vh)", "translateY(-80px)", "none"],
-		opacity: [1, 0, 0, 1],
-	}, {
-		duration: 800,
-		easing: "ease-in",
-	})
+const AUDIO_FILES = ["アクセサリーゲット", "きのみゲット", "たいせつなどうぐゲット", "どうぐゲット", "バッジゲット", "ポケッチアプリゲット", "わざマシンゲット", "わざ忘れ", "一緒に行こう！", "回復", "進化おめでとう"];
+const FILE_COUNT = AUDIO_FILES.length;
+const soundBtn = document.getElementById("sound-play");
+let music;
+let clickCount = 0;
+// SEが流れるがボタンがどっかいく(リスクとリターン)
+function soundPlay() {
+	clickCount++;
+	const fileIndex = Math.round(Math.random() * FILE_COUNT);
+	music = new Audio(`../audio/${AUDIO_FILES[fileIndex]}.wav`);
+	music.play();
+	const randomIntX = -1 * Math.round(Math.random() * 100);
+	const randomIntY = Math.round(Math.random() * 100);
+	if (soundBtn) {
+		soundBtn.style.transform = `translate(${randomIntX * clickCount}%, ${randomIntY * clickCount}%)`;
+	}
 }
 
-function jump() {
-	const jumpImg = event.target;
-	let changeConf = [
-		"none",
-		"rotate(360deg)",
-	];
-	let offsetConf = [0];
-	jumpImg.animate({
-		transform: changeConf,
-		offset: offsetConf,
-	}, {
-		duration: 300
-	});
+function soundStop() {
+	clickCount = 0;
+	if (music) {
+		music.pause();
+	}
+	if (soundBtn) {
+		soundBtn.style.transform = "none";
+	}
 }
 
 //イベントを無効化

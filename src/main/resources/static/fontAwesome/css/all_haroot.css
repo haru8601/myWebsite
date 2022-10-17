@@ -696,6 +696,14 @@ readers do not read off random characters that represent icons */
   content: "\f0c1";
 }
 
+.fa-play::before {
+  content: "\f04b";
+}
+
+.fa-stop::before {
+  content: "\f04d";
+}
+
 .fa-thumbs-down::before {
   content: "\f165";
 }
