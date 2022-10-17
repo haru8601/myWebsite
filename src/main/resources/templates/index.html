@@ -4,6 +4,7 @@
 <head>
 	<th:block th:include="share/head"></th:block>
 	<title>はるーとのホームページ - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/top.css}">
 	<meta name="description" content="はるーとのホームページです。自作iosアプリの概要ページ、swiftやvscodeについての技術記事、自分のyoutubeの紹介ページ等で構成されています。">
 	<!--Twitterカード用-->
 	<!--twitter以外でも使えるやつ-->
@@ -43,32 +44,23 @@
 	<header th:include="share/header"></header>
 
 	<div class="except-header">
-		<div class="container flex-box">
+		<div class="container">
 			<th:block th:include="share/menuBar"></th:block>
-			<main>
+			<main id="top">
 				<div class="topic-all">
-					<a class="topic-link animation" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
+					<a class="topic-link down-btn" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
 						<div class="topic">
 							<div class="topic-text">
-								<h1 th:text="*{title}"></h1>
-								<p th:text="*{summary}"></p>
-							</div>
-							<div class="topic-img">
-								<div th:if="*{img!=null}" class="sample">
-									<img class="content-img" th:src="@{|/images/*{img}|}">
-								</div>
+								<h2 th:text="*{title}"></h2>
 							</div>
 						</div>
 					</a>
 				</div>
-				<div th:include="share/ads"></div>
-				<p class="right">images: <a class="credit" href="https://storyset.com/online">Online illustrations by
-						Storyset</a></p>
+				<img class="top-img" th:src="@{|images/Programmer-rafiki.svg|}">
 			</main>
 		</div>
 		<footer th:include="share/footer"></footer>
 	</div>
-	<script th:src="@{/js/scrollEffect.js}"></script>
 	<div th:replace="share/lastProcess"></div>
 </body>
 

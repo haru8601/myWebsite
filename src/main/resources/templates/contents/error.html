@@ -11,11 +11,12 @@
 <body>
 	<header th:include="share/header"></header>
 	<div class="except-header">
-		<div class="container flex-box">
+		<div class="container">
 			<th:block th:include="share/menuBar"></th:block>
 			<main>
 				<h2>ページが見つかりませんでした。。。</h2>
 				<img class="error-img" th:src="@{/images/おばけ.png}">
+				<div th:include="share/ads"></div>
 			</main>
 		</div>
 		<footer th:include="share/footer"></footer>

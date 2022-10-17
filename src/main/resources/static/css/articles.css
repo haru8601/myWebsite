@@ -62,27 +62,16 @@
 	padding-left: 0;
 }
 
-.articles .item {
-	margin: 5vh auto;
-}
-
 .articles .errStr {
 	color: red;
-}
-
-.articles .noflex {
-	display: block;
+	text-align: center;
 }
 
 .articles .btn1 {
 	width: 50%;
-	margin: 5px auto;
+	margin: 10px auto;
 	text-align: center;
-	background-color: rgb(194, 198, 244);
-}
-
-.articles .btn1:hover {
-	background-color: rgb(174, 177, 216);
+	color: black;
 }
 
 /********マークダウン表示用**************/
@@ -133,11 +122,12 @@
 .editor-preview-side code,
 .marked code {
 	padding: 20px 10px;
+	background-color: rgb(229, 231, 231);
 }
 
 /*部分的にコードブロックの部分を手動で装飾*/
 .part-code {
-	background-color: rgb(248, 248, 248);
+	background-color: rgb(229, 231, 231);
 	padding: 4px 8px;
 }
 

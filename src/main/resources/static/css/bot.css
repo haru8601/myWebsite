@@ -3,13 +3,13 @@ main>* {
 	margin-bottom: 50px;
 }
 
-main>p{
-	margin-bottom:auto;
+main>p {
+	margin-bottom: auto;
 }
 
 
-#bot img{
-	width:60%;
+#bot img {
+	width: 60%;
 }
 
 
@@ -19,7 +19,8 @@ main>p{
 		margin-left: 0;
 	}
 
-	.audio-content p {
+	p {
 		text-align: left;
 	}
+
 }

@@ -11,7 +11,7 @@
 <body>
 	<header th:include="share/header"></header>
 	<div class="except-header">
-		<div class="container flex-box">
+		<div class="container">
 			<th:block th:include="share/menuBar"></th:block>
 			<main id="bot">
 				<h2 class="title">Bot</h2>
@@ -24,8 +24,7 @@
 					<p>③自動いいね</p>
 				</div>
 				<div class="twitter-btn">
-					<a class="twitter-icon" href="https://twitter.com/pokeBot_haroot" target="_blank"><i
-							class="fa-brands fa-twitter"></i>Twitterで見る</a>
+					<a href="https://twitter.com/pokeBot_haroot" target="_blank">Twitterで見る</a>
 				</div>
 				<p>【①自動ツイート】毎日18時に、ポケモンの名前をランダムに並び替えてツイートします。</p>
 				<img th:src="@{/images/bot/tweet1.png}">
@@ -35,8 +34,7 @@
 				<p>【③自動いいね】1日1回、ポケモン関連のツイートを検索していいねします。</p>
 				<img th:src="@{/images/bot/like1.PNG}">
 				<div class="twitter-btn">
-					<a class="twitter-icon" href="https://twitter.com/pokeBot_haroot" target="_blank"><i
-							class="fa-brands fa-twitter"></i>Twitterで見る</a>
+					<a href="https://twitter.com/pokeBot_haroot" target="_blank">Twitterで見る</a>
 				</div>
 				<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 				<div th:include="share/ads"></div>

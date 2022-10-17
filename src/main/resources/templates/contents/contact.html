@@ -11,7 +11,7 @@
 <body>
 	<header th:include="share/header"></header>
 	<div class="except-header">
-		<div class="container flex-box">
+		<div class="container">
 			<th:block th:include="share/menuBar"></th:block>
 			<main>
 				<!-- コンテンツ2(ヘッダーのリンク先) -->
@@ -38,17 +38,18 @@
 							<div class="policy-area">
 								<p th:if="${#fields.hasErrors('checkbox')}" th:errors="*{checkbox}"
 									class="check-failed"></p>
-								<div class="check-area">
+								<div class="check-area down-btn">
 									<input type="checkbox" th:name="checkbox" th:id="checkbox"
 										th:checked="${formData.checkbox}">
 									<label for="checkbox">はるーとの<a href="/policy">プライバシーポリシー</a>に同意します。</label>
 								</div>
 							</div>
 							<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
-							<input class="submit" type="button" value="送信" onclick="submit()">
+							<input class="submit down-btn" type="button" value="送信" onclick="submit()">
 						</div>
 					</div>
 				</form>
+				<div th:include="share/ads"></div>
 			</main>
 		</div>
 		<footer th:include="share/footer"></footer>

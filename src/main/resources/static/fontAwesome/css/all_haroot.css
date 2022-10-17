@@ -684,6 +684,10 @@ readers do not read off random characters that represent icons */
   content: "\39";
 }
 
+.fa-arrow-down::before {
+  content: "\f063";
+}
+
 .fa-bars::before {
   content: "\f0c9";
 }

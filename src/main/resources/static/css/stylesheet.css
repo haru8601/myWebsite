@@ -7,6 +7,10 @@
     font-family: "Hiragino Mincho ProN";
 }
 
+*:visited {
+    color: inherit;
+}
+
 @font-face {
     /* 使用する際のフォント名指定 */
     font-family: 'CustomFont';
@@ -14,7 +18,7 @@
     src: url('../Fonts/Parisienne/Parisienne-Regular.ttf') format('truetype'),
         url('../Fonts/Parisienne/Parisienne-Regular.woff') format('woff'),
         url('../Fonts/Parisienne/Parisienne-Regular.eot') format('embedded-opentype');
-    font-display:swap;
+    font-display: swap;
 }
 
 
@@ -29,15 +33,16 @@ body {
     height: 100%;
     max-width: 100%;
     width: 100%;
-    background-color: #FFFFEA;
-}
-
-h2 {
-    padding-bottom: 2vmin;
+    background-color: rgb(250, 250, 247);
 }
 
 p {
     line-height: 2;
+}
+
+.down-btn:active {
+    position: relative;
+    top: 2px;
 }
 
 .credit {
@@ -49,13 +54,17 @@ p {
     float: right;
 }
 
+.clear {
+    clear: both;
+}
+
 .ads {
     width: 80%;
     margin: 0 auto;
 }
 
-input.submit{
-	cursor:pointer;
+input.submit {
+    cursor: pointer;
 }
 
 /**********起動画面**********/
@@ -104,10 +113,10 @@ input.submit{
 header {
     height: 80px;
     width: 100%;
-    background-color: aquamarine;
     opacity: 0.9;
     position: fixed;
     z-index: 3;
+    border-bottom: 1px black solid;
 }
 
 header button {
@@ -137,17 +146,6 @@ header button:hover {
     color: black;
 }
 
-
-.jump-btn {
-    float: right;
-    height: 100%;
-    padding: 1vh 1vw;
-}
-
-.jump-btn img {
-    max-height: 60%;
-}
-
 /*******ヘッダーここまで********/
 /*******ヘッダー以外********/
 
@@ -163,35 +161,40 @@ header button:hover {
     margin: 0 auto 20px auto;
 }
 
-.flex-box {
-    display: flex;
-}
-
 /*********メニューバー**********/
 
 #menu-bar {
     position: fixed;
     top: 80px;
     left: 100%;
-    width: 100%;
+    width: 20%;
     height: 100%;
-    background-color: rgb(232, 250, 253);
+    background-color: rgb(248, 252, 255);
     z-index: 2;
     transition: all 0.6s ease;
 }
 
 #menu-bar a {
     padding: 2vh;
-    border-bottom: solid 1px rgb(183, 183, 183);
     font-size: 20px;
     display: block;
     text-decoration: none;
     color: black;
+    position: relative;
 }
 
-#menu-bar a:hover {
-    background-color: rgb(223, 236, 241);
-    transition: all 0.5s;
+#menu-bar a:after {
+    width: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: solid black 1px;
+    transition: 1s;
+}
+
+#menu-bar a:hover:after {
+    width: 100%;
 }
 
 /*********メニューバーここまで**********/
@@ -199,165 +202,81 @@ header button:hover {
 main {
     width: 100%;
     padding-top: 4vmin;
-    min-height: 1000px;
+    min-height: 350px;
 }
 
 .title {
-    padding-left: 2vw;
+    padding: 0 2vw 2vh 2vw;
 }
 
 .topic-all {
     text-align: center;
-}
-
-.topic-link {
-    text-decoration: none;
-    color: black;
-    width: 80%;
-    margin: 0 auto 20vh auto;
-    display: inline-block;
-    background-color: #E6E8E6;
-    border-radius: 10px;
-    box-shadow: 2px 2px;
-}
-
-.topic-link:hover {
-    background-color: #c8c9c8;
-    transition: background-color 0.5s;
-}
-
-.topic-link:active {
-    box-shadow: none;
-    position: relative;
-    top: 2px;
-}
-
-.topic {
-    width: 100%;
-    height: calc(100vh - 80px - 10vh);
-    min-height: 400px;
-}
-
-.animation {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(50px);
-    transition: all 0.5s;
-    pointer-events: none;
-}
-
-.showing {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.topic-text {
-    height: 25%;
-}
-
-.topic-text h1 {
-    text-align: center;
-    font-size: 30px;
-    margin: 2vh 2vw;
-}
-
-.topic-text p {
-    text-align: center;
-    font-size: 20px;
-    margin: 2vh 2vw;
-}
-
-.item-all,
-.topic-img {
-    width: 100%;
-    margin: 0 auto;
     justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .item-all {
-    padding: 5vh 0;
+    width: 100%;
 }
 
-.topic-img {
-    height: 65%;
-    max-height: 80%;
-    margin-top: 5vh;
+.topic-link,
+.item-link {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    margin-bottom: max(2vh, 2vw);
 }
 
-.sample {
-    height: 100%;
+.topic-link {
+    align-self: center;
+    flex: 0 1 15%;
+}
+
+.item-link {
+    display: inline-block;
+    width: 100%;
+    height: 15vh;
+}
+
+/* borderを動かすため(widthを0->100にするため)にtextなしのafterをつける */
+.topic-link:after,
+.item-link:after {
+    width: 0;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: black 1px solid;
+    transition: 1s;
+}
+
+.topic-link:hover:after,
+.item-link:hover:after {
     width: 100%;
 }
 
 .item {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.item-text {
     width: 80%;
-    text-align: center;
-    margin: 5vh auto;
+    text-align: left;
 }
 
-.item a {
-    background-color: #E6E8E6;
-    border-radius: 10px;
-    text-decoration: none;
-    display: block;
-    color: black;
-    /*height:100%;*/
-    width: 100%;
-    padding: 3vmin 3vmin;
-    box-shadow: 1px 1px;
-}
-
-.item a:hover {
-    background-color: #c8c9c8;
-    transition: background-color 0.5s;
-}
-
-.item a:active {
-    box-shadow: none;
-    position: relative;
-    top: 1px;
+.item-img {
+    height: 95%;
+    width: 15%;
+    /*アスペクト比を保つ*/
+    object-fit: cover;
+    border: solid 1px black;
 }
 
 .item p {
     margin-top: 2vh;
-}
-
-.content-img {
-    display: inline-block;
-    border-radius: 10px;
-    margin: 2vh 2vw;
-    width:90%;
-    height:90%;
-    /*アスペクト比を保つ*/
-    object-fit:contain;
-}
-
-#yt-wrapper {
-    position: relative;
-    width: 80%;
-    max-width: 640px;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 4vmin;
-}
-
-#yt-wrapper:before {
-    content: "";
-    display: block;
-    padding-top: 56.25%;
-}
-
-#yt-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    margin-bottom: 4vmin;
 }
 
 input,
@@ -383,51 +302,21 @@ textarea {
     color: red;
 }
 
-.sidebar {
-    float: left;
-    overflow: auto;
-    width: 20%;
-    padding-top: 4vmin;
-    padding-left: 4vmin;
-    border-left: 1px solid black;
-}
-
 /**********フッター**********/
 
 footer {
-    position: relative;
-    clear: both;
-    background-color: bisque;
-    padding-top: 4vh;
-    padding-bottom: 4vh;
-    z-index: 1;
+    margin-bottom: 10vh;
 }
 
-.footer-ul li {
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+.footer-list>ul>li {
+    padding: 1vh 1vw;
     font-size: 18px;
     list-style: none;
+    display: inline-block;
 }
 
-.twitter-icon {
-    text-decoration: none;
+.footer-list>ul>li>a {
     color: black;
-    background-color: rgb(149, 215, 252);
-    padding: 1vh 1vw;
-    border-radius: 10px;
-    box-shadow: 3px 3px;
-}
-
-.twitter-icon:hover {
-    background-color: rgb(153, 202, 237);
-    transition: background-color 0.5s;
-}
-
-.twitter-icon:active {
-    box-shadow: 1px 1px;
-    position: relative;
-    top: 2px;
 }
 
 /**********フッターここまで**********/
@@ -438,7 +327,8 @@ footer {
     margin: 0 1vmin;
 }
 
-.fa-bars {
+.fa-bars,
+.fa-arrow-down {
     color: black;
     font-size: 40px;
 }

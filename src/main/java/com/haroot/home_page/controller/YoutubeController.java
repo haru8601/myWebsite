@@ -47,10 +47,12 @@ public class YoutubeController {
 					continue;
 				}
 				Map<String, Object> youtubeMap = new HashMap<>();
-				youtubeMap.put("ID", String.valueOf(itemLen - i - 1));
-				youtubeMap.put("TITLE", title);
-				youtubeMap.put("URL", "https://www.youtube.com/watch?v="
+				String id = String.valueOf(itemLen - i - 1);
+				youtubeMap.put("id", id);
+				youtubeMap.put("title", title);
+				youtubeMap.put("url", "https://www.youtube.com/watch?v="
 						+ snippet.get("resourceId").get("videoId").toString().replaceAll("\"", ""));
+				youtubeMap.put("img", "noImage.png");
 				youtubeList.add(youtubeMap);
 			}
 		} catch (IOException e) {

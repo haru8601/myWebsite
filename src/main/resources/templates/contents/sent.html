@@ -11,7 +11,7 @@
 <body>
     <header th:include="share/header"></header>
     <div class="except-header">
-        <div class="container flex-box">
+        <div class="container">
             <th:block th:include="share/menuBar"></th:block>
             <main>
                 <!-- コンテンツ2(ヘッダーのリンク先) -->
@@ -21,6 +21,7 @@
                         <a href="/">トップへ戻る</a>
                     </div>
                 </div>
+                <div th:include="share/ads"></div>
             </main>
         </div>
         <footer th:include="share/footer"></footer>
