@@ -78,6 +78,7 @@ function soundStop() {
 	clickCount = 0;
 	if (music) {
 		music.pause();
+		ableSoundBtn();
 	}
 	if (soundBtn) {
 		soundBtn.style.transform = "none";
@@ -105,18 +106,23 @@ function selectSong() {
 	// 実際に再生が開始する時間
 	music.addEventListener("playing", (event) => {
 		startTime = Date.now();
-		// 3秒以上遅延がある場合はもう再生しない
-		if (startTime - pushTime > 3000) {
+		// 2秒以上遅延がある場合はもう再生しない
+		if (startTime - pushTime > 2000) {
 			music.pause();
+			ableSoundBtn();
 		}
 	});
 	// 再生が終わった時間
 	music.addEventListener("ended", (event) => {
-		// ボタンを活性化
-		soundBtn.disabled = false;
-		soundBtn.style.cursor = "pointer";
-		soundFont.style.color = "black";
+		ableSoundBtn();
 	});
+}
+
+function ableSoundBtn() {
+	// ボタンを活性化
+	soundBtn.disabled = false;
+	soundBtn.style.cursor = "pointer";
+	soundFont.style.color = "black";
 }
 
 //ページ遷移時にメニューバーを戻す
