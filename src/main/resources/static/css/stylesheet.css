@@ -214,6 +214,7 @@ main {
     justify-content: space-around;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 2vh;
 }
 
 .item-all {
@@ -225,7 +226,6 @@ main {
     text-decoration: none;
     color: black;
     position: relative;
-    margin-bottom: max(2vh, 2vw);
 }
 
 .topic-link {
@@ -237,6 +237,7 @@ main {
     display: inline-block;
     width: 100%;
     height: 15vh;
+    margin-bottom: max(3vh, 3vw);
 }
 
 /* borderを動かすため(widthを0->100にするため)にtextなしのafterをつける */
@@ -267,12 +268,17 @@ main {
     text-align: left;
 }
 
-.item-img {
-    height: 95%;
+.item-imgDiv {
     width: 15%;
+    height: 95%;
+    border: solid 1px black;
+}
+
+.item-img {
+    width: 100%;
+    height: 100%;
     /*アスペクト比を保つ*/
     object-fit: cover;
-    border: solid 1px black;
 }
 
 .item p {

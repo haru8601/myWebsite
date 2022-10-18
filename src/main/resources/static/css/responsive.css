@@ -30,10 +30,20 @@
         font-size: 14px;
     }
 
+    .item-imgDiv {
+        width: 25%;
+        height: 85%;
+    }
+
+    .item-text {
+        width: 70%;
+    }
+
     .item-text>h2,
     .item-text>p {
         text-align: left;
     }
+
 
 
     div>main {

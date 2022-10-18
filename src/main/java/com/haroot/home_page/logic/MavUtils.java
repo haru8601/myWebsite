@@ -50,21 +50,9 @@ public class MavUtils {
     public static ModelAndView getArticleListMav(ModelAndView mav, JdbcTemplate jdbcT) {
         // 降順(最新から)で取得
         List<Map<String, Object>> articleList = jdbcT.queryForList("SELECT * FROM articles ORDER BY id DESC");
-        for (Map<String, Object> content : articleList) {
-            Object imgObj = content.get("img");
-            content.put("img", getThumbnailStr(imgObj, content.get("id").toString()));
-        }
         mav.addObject("articlesList", articleList);
         mav.addObject("errStr", "");
         mav.setViewName("contents/articles");
         return mav;
-    }
-
-    public static String getThumbnailStr(Object imgStr, String id) {
-        String resStr = "noImage.png";
-        if (imgStr != null) {
-            imgStr = "articles/" + id + "/thubmnail.png";
-        }
-        return resStr;
     }
 }
