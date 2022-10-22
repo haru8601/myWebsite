@@ -6,6 +6,7 @@ target
 HELP.md
 mvnw*
 *.xml
+!logback-spring.xml
 
 #hidden
 .DS_Store
