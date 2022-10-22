@@ -31,7 +31,6 @@ public class ToTopController {
     public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
         String referer = request.getHeader("REFERER");
         boolean displaySlot = true;
-        System.out.println(referer);
         // 遷移元が自分のサイト内なら(トップページ以外)
         if (referer != null && referer.matches("^https?://haroot.net/.+$")) {
             // slot非表示

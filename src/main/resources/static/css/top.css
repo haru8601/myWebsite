@@ -9,6 +9,11 @@
     background-color: #FFFFEA;
 }
 
+#canvas1{
+	margin:10px auto;
+	display:block;
+}
+
 .top-img {
     width: 100%;
     max-width: 100%;
