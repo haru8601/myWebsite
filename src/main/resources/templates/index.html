@@ -9,11 +9,11 @@
 	<!--Twitterカード用-->
 	<!--twitter以外でも使えるやつ-->
 	<meta property="og:type" content="website">
-	<meta id="share-title" property="og:title" th:content="はるーとのホームページ">
-	<meta id="share-detail" property="og:description" th:content="haroot.netのホームページです。">
+	<meta id="share-title" property="og:title" content="はるーとのホームページ">
+	<meta id="share-detail" property="og:description" content="haroot.netのホームページです。">
 	<meta id="share-url" property="og:url" content="https://haroot.net">
 	<meta property="og:site_name" content="haroot.net">
-	<meta property="og:image" content="https://haroot.net/images/homePage.png">
+	<meta property="og:image" th:content="@{/images/homePage.png}">
 	<!--twitter特有の設定-->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@haroot_net">
@@ -22,24 +22,18 @@
 <body>
 	<!--launch画面-->
 	<div id="launch">
-		<div class="slotBoxs">
-			<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[0]}|}"></div>
-			<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[1]}|}"></div>
-			<div class="slotBox"><img class="slotImg" th:src="@{|/images/${slotImg[2]}|}"></div>
-		</div>
-		<p class="bingo-text" th:if="${slotImg[0]==slotImg[1] && slotImg[0]==slotImg[2]}">BINGO!!!</p>
+		<canvas id="canvas1" width="700" , height="800">
+			<script th:src="@{/js/three.js}"></script>
+			<script th:src="@{/js/canvas.js}"></script>
+		</canvas>
 	</div>
-	<script>
-		if (window.sessionStorage.getItem("haroot-visited") == "1") {
-			// セッションあるのでlaunch表示しない
+	<th:block th:if="${displaySlot == false}">
+		<script>
+			// 他ページから戻った場合はlaunch非表示
 			const launchDiv = document.getElementById("launch");
 			launchDiv.style.display = "none";
-		} else {
-			// セッションに保存(ブラウザ閉じられたら無くなる)
-			window.sessionStorage.setItem("haroot-visited", "1");
-		}
-	</script>
-	<script th:src="@{/js/launch.js}"></script>
+		</script>
+	</th:block>
 
 	<header th:include="share/header"></header>
 

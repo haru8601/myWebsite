@@ -1,5 +1,7 @@
 package com.haroot.home_page.controller;
 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.logic.IpWriter;
-import com.haroot.home_page.model.Constants;
 import com.haroot.home_page.model.TopicData;
 
 import java.io.IOException;
@@ -21,54 +22,55 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ToTopController {
 
-	@Autowired
-	JdbcTemplate jdbcT;
+    @Autowired
+    JdbcTemplate jdbcT;
 
-	@RequestMapping("/")
-	public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
-		String[] DOTIMGS = Constants.DOTIMGS;
-		// スタート時のアニメーション用
-		Random random = new Random();
-		int slotNum = 3;
-		String[] slotImg = new String[slotNum];
-		for (int i = 0; i < slotNum; i++) {
-			int num = random.nextInt(slotNum);
-			slotImg[i] = DOTIMGS[num];
-		}
-		mav.addObject("slotImg", slotImg);
+    // public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-		// クライアントIPアドレス記録(非同期処理)
-		IpWriter ipWriter = new IpWriter(request, jdbcT);
-		ipWriter.start();
+    @RequestMapping("/")
+    public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
+        String referer = request.getHeader("REFERER");
+        boolean displaySlot = true;
+        System.out.println(referer);
+        // 遷移元が自分のサイト内なら(トップページ以外)
+        if (referer != null && referer.matches("^https?://haroot.net/.+$")) {
+            // slot非表示
+            displaySlot = false;
+        }
+        mav.addObject("displaySlot", displaySlot);
 
-		// トピックリスト取得
-		List<TopicData> topicDataList = new ArrayList<>();
-		try {
-			String topicsFilePath = "static/config/topics.yml";
-			InputStream is = new ClassPathResource(topicsFilePath).getInputStream();
-			topicDataList = new Yaml().load(is);
-			is.close();
-		}catch(IOException e) {
-			System.out.println("topics.yml load error");
-			e.printStackTrace();
-		}
-		mav.addObject("topicList", topicDataList);
+        // クライアントIPアドレス記録(非同期処理)
+        IpWriter ipWriter = new IpWriter(request, jdbcT);
+        ipWriter.start();
 
-		mav.setViewName("index");
-		return mav;
-	}
+        // トピックリスト取得
+        List<TopicData> topicDataList = new ArrayList<>();
+        try {
+            String topicsFilePath = "static/config/topics.yml";
+            InputStream is = new ClassPathResource(topicsFilePath).getInputStream();
+            topicDataList = new Yaml().load(is);
+            is.close();
+        } catch (IOException e) {
+            System.out.println("topics.yml load error");
+            e.printStackTrace();
+        }
+        mav.addObject("topicList", topicDataList);
 
-	@RequestMapping("/policy")
-	public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
+        mav.setViewName("index");
+        return mav;
+    }
 
-		mav.setViewName("policy");
-		return mav;
-	}
+    @RequestMapping("/policy")
+    public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
 
-	@RequestMapping("/test")
-	public ModelAndView test(ModelAndView mav) {
-		System.out.println("twitter api test.");
-		mav.setViewName("index");
-		return mav;
-	}
+        mav.setViewName("policy");
+        return mav;
+    }
+
+    @RequestMapping("/test")
+    public ModelAndView test(ModelAndView mav) {
+        System.out.println("twitter api test.");
+        mav.setViewName("index");
+        return mav;
+    }
 }
