@@ -25,7 +25,12 @@ function menu() {
 	}
 }
 
-const AUDIO_FILES = ["アクセサリーゲット", "きのみゲット", "たいせつなどうぐゲット", "どうぐゲット", "バッジゲット", "ポケッチアプリゲット", "わざマシンゲット", "わざ忘れ", "一緒に行こう！", "回復", "進化おめでとう"];
+//イベントを無効化
+function disabledEvent(event) {
+	event.preventDefault();
+}
+
+const AUDIO_FILES = ["アクセサリーゲット", "きのみゲット", "たいせつなどうぐゲット", "どうぐゲット", "バッジゲット", "ポケッチアプリゲット", "レベルアップ", "わざマシンゲット", "わざ忘れ", "一緒に行こう！", "回復", "進化おめでとう"];
 const FILE_COUNT = AUDIO_FILES.length;
 
 /**
@@ -39,90 +44,91 @@ const soundBtn = document.getElementById("sound-play");
 // @ts-ignore
 const soundFont = document.getElementsByClassName("fa-play")[0];
 
-/**
- * @type {HTMLAudioElement}
- */
-let music;
+let music = new Audio();
+let canPlayTime = 0;
+
+// リスナーを付与
+// srcが更新され再生可能になる時間
+music.addEventListener("canplaythrough", (event) => {
+	canPlayTime = Date.now();
+})
+// 再生が終わった時間
+music.addEventListener("ended", (event) => {
+	// 曲変更、ボタン活性化
+	selectSong();
+	ableSoundBtn();
+});
+
+// 初期化
+selectSong();
 let clickCount = 0;
 
 // SEが流れるがボタンがどっかいく関数(リスクとリターン)
-async function soundPlay() {
+function soundPlay() {
 	clickCount++;
 
-	// ボタンを非活性化
-	soundBtn.disabled = true;
-	soundBtn.style.cursor = "not-allowed";
-	if (soundFont) {
-		soundFont.style.color = "gray";
-	}
+	// ボタンの非活性化
+	disableSoundBtn();
 
 	// 再生
-	if (!music) {
-		selectSong();
+	const pushTime = Date.now();
+	if (pushTime >= canPlayTime) {
+		// 再生可能なら再生
+		music.play();
+	} else {
+		// 不可能ならボタンを戻す(活性化)
+		ableSoundBtn();
 	}
-	await music.play();
 
 	// ボタンの移動
-	const randomIntX = -1 * Math.round(Math.random() * 100);
-	const randomIntY = Math.round(Math.random() * 100);
-	if (soundBtn) {
-		soundBtn.style.transform = `translate(${randomIntX * clickCount}%, ${randomIntY * clickCount}%)`;
-	}
-
-	// 次の曲を選択しておく(読み込み遅延対策)
-	selectSong();
+	moveSoundBtn();
 }
 
 // 再生停止(リセット)
 function soundStop() {
 	clickCount = 0;
-	if (music) {
-		music.pause();
-		ableSoundBtn();
-	}
+
+	// 再生停止、曲変更、ボタン活性化
+	music.pause();
+	selectSong();
+	ableSoundBtn();
+
+	// 位置を戻す
 	if (soundBtn) {
 		soundBtn.style.transform = "none";
 	}
 }
 
-//イベントを無効化
-function disabledEvent(event) {
-	event.preventDefault();
-}
-
-let pushTime = 0;
-let startTime = 0;
 // 曲変更
 function selectSong() {
 	// 0 <= index < fileCount
 	const fileIndex = Math.floor(Math.random() * FILE_COUNT);
-	music = new Audio(`../audio/${AUDIO_FILES[fileIndex]}.wav`);
-
-	// 再生成したmusicにリスナーを付与
-	// 再生ボタン押した時間
-	music.addEventListener("play", (event) => {
-		pushTime = Date.now();
-	});
-	// 実際に再生が開始する時間
-	music.addEventListener("playing", (event) => {
-		startTime = Date.now();
-		// 2秒以上遅延がある場合はもう再生しない
-		if (startTime - pushTime > 2000) {
-			music.pause();
-			ableSoundBtn();
-		}
-	});
-	// 再生が終わった時間
-	music.addEventListener("ended", (event) => {
-		ableSoundBtn();
-	});
+	music.src = `../audio/${AUDIO_FILES[fileIndex]}.mp3`;
 }
 
+// ボタンの活性化
 function ableSoundBtn() {
-	// ボタンを活性化
 	soundBtn.disabled = false;
 	soundBtn.style.cursor = "pointer";
-	soundFont.style.color = "black";
+	if (soundFont) {
+		soundFont.style.color = "black";
+	}
+}
+// ボタンの非活性化
+function disableSoundBtn() {
+	soundBtn.disabled = true;
+	soundBtn.style.cursor = "not-allowed";
+	if (soundFont) {
+		soundFont.style.color = "gray";
+	}
+}
+// ボタンの移動
+function moveSoundBtn(){
+	const randomIntX = -1 * Math.round(Math.random() * 100);
+	const randomIntY = Math.round(Math.random() * 100);
+	if (soundBtn) {
+		soundBtn.style.transform = `translate(${randomIntX * clickCount}%, ${randomIntY * clickCount}%)`;
+	}
 }
 
 //ページ遷移時にメニューバーを戻す
