@@ -9,35 +9,60 @@ const canvas = document.querySelector('#canvas1');
 canvas.width = window.innerWidth * 0.95;
 canvas.height = window.innerHeight * 0.95;
 
+const RIGHT_ANGLE = Math.PI / 2;
+
 // レンダラーを作成 (描画先を指定した)
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
 renderer.setSize(canvas.width, canvas.height);
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;
 
+// カメラ作成
 const camera = setupCamera(
-	new THREE.Vector3(50, 50, 100),
-	new THREE.Vector3(0, 0, 0)
+    new THREE.Vector3(20, 50, 90),
+    new THREE.Vector3(0, 0, 0)
 );
 
 // シーンを作成
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('lightskyblue');
 
+// グリッド追加
 setupGrid();
+
 const BOX_COUNT = 3;
-const RIGHT_ANGLE = Math.PI / 2;
+let textureIndex = 0;
+let imageIndex = 0;
+const TEXTURE_DIRECTION = ["+x", "-x", "+y", "-y", "+z", "-z"];
 // オブジェクト生成
 const meshArr = setupObjects();
+
 // 光源生成
 setupLights();
 
-const start = Date.now();
-// 5秒間
-const stopTime = 5000;
-const stopDiff = 1000;
+let tickCount = 0;
 
-let count = 0;
+const boxStopFlg = [false, false, false];
+const stopTickCount = [0, 0, 0];
+const finalDegree = [0, 0, 0];
+
+const MAX_SPEED = RIGHT_ANGLE / 10; // (degree / 1 tick)
+const ENOUGH_MIN_SPEED = RIGHT_ANGLE / 60;
+// 正面からのずれの角度は10 degreeまで
+const ENOUGH_MIN_DIFF_DEGREE = 10 * (Math.PI / 180);
+
+let bingoFlg = true;
+// 最後BINGO表示の際の回転角
+const BINGO_DIFF_DEGREE = RIGHT_ANGLE / 170;
+
+// 止める対象boxのindex
+// 最初は何も止めないので存在しないindex
+let stopTargetIndex = 1000;
+// 各boxの速度
+let v = [MAX_SPEED, MAX_SPEED, MAX_SPEED];
+// boxを止め始めるtickカウント
+const REDUCE_SPEED_COUNT = 50;
+
 // 毎フレームの処理
 tick();
 
@@ -48,25 +73,25 @@ tick();
  * @returns {THREE.Camera}
  */
 function setupCamera(position, direction) {
-	// field of view(画角, 見える範囲の角度)
-	const fov = 100;
-	// カメラを作成
-	const camera = new THREE.PerspectiveCamera(
-		fov, canvas.width / canvas.height, 0.1, 10000);
-	// カメラ位置
-	camera.position.add(position);
-	// カメラの視線
-	camera.lookAt(direction);
-	return camera;
+    // field of view(画角, 見える範囲の角度)
+    const fov = 100;
+    // カメラを作成
+    const camera = new THREE.PerspectiveCamera(
+        fov, canvas.width / canvas.height, 0.1, 10000);
+    // カメラ位置
+    camera.position.add(position);
+    // カメラの視線
+    camera.lookAt(direction);
+    return camera;
 }
 
 function setupGrid() {
-	// y=0におけるgrid
-	const grid = new THREE.GridHelper(1000, 10, new THREE.Color('black'), new THREE.Color('black'));
-	scene.add(grid);
-	// 3D軸(x:赤, y:緑, z:青)
-	const axes = new THREE.AxesHelper(500);
-	scene.add(axes);
+    // y=0におけるgrid
+    const grid = new THREE.GridHelper(1000, 10, new THREE.Color('black'), new THREE.Color('black'));
+    scene.add(grid);
+    // 3D軸(x:赤, y:緑, z:青)
+    const axes = new THREE.AxesHelper(500);
+    scene.add(axes);
 }
 
 /**
@@ -78,141 +103,169 @@ function setupGrid() {
  * @returns {THREE.Mesh}
  */
 function createBoxMesh(size, position, rotation, textureMaterialArr) {
-	// 箱を作成
-	const boxGeo = new THREE.BoxGeometry(size, size, size);
-	const boxMesh = new THREE.Mesh(boxGeo, textureMaterialArr);
-	boxMesh.position.add(position);
-	boxMesh.rotation.setFromVector3(rotation);
-	boxMesh.castShadow = true;
-	scene.add(boxMesh);
-	return boxMesh;
+    // 箱を作成
+    const boxGeo = new THREE.BoxGeometry(size, size, size);
+    const boxMesh = new THREE.Mesh(boxGeo, textureMaterialArr);
+    boxMesh.position.add(position);
+    boxMesh.rotation.setFromVector3(rotation);
+    boxMesh.castShadow = true;
+    scene.add(boxMesh);
+    return boxMesh;
 }
 
 /**
  * 画像を付与したLambertMaterialを作成して返却する
- * @param {boolean} rotate
+ * @param {number} index boxのindex
  * @returns {THREE.MeshLambertMaterial}
  */
-function createLambertMaterial(rotate = false) {
-	const loader = new THREE.TextureLoader();
-	const IMAGE_PATH_ARR = ['people_white', 'exercise_white', 'wizard_white', 'electricity_white'];
-	const imgRandomIndex = Math.floor(Math.random() * IMAGE_PATH_ARR.length);
-	const src = `../images/three/${IMAGE_PATH_ARR[imgRandomIndex]}.png`;
-	const texture = loader.load(src);
-	// 回転が必要な画像
-	if (rotate) {
-		texture.center = new THREE.Vector2(0.5, 0.5);
-		texture.rotation = Math.PI;
-	}
-	const material = new THREE.MeshLambertMaterial({ map: texture });
-	return material;
+function createLambertMaterial(index) {
+    const loader = new THREE.TextureLoader();
+    const direction = TEXTURE_DIRECTION[textureIndex];
+    const IMAGE_PATH_ARR = ['people_white', 'exercise_white', 'wizard_white', 'electricity_white'];
+    const BINGO_PATH_ARR = ['bi', 'n', 'go'];
+    let src = "";
+    // 側面以外に貼る
+    if (!direction.includes("x")) {
+        src = `../images/three/${IMAGE_PATH_ARR[imageIndex]}.png`;
+        imageIndex = (imageIndex + 1) % IMAGE_PATH_ARR.length;
+    } else {
+        src = `../images/three/${BINGO_PATH_ARR[index]}.png`;
+    }
+    const texture = loader.load(src);
+    // 回転が必要な画像
+    if (TEXTURE_DIRECTION[textureIndex] == "-z") {
+        texture.center = new THREE.Vector2(0.5, 0.5);
+        texture.rotation = Math.PI;
+    }
+    const material = new THREE.MeshLambertMaterial({ map: texture });
+    textureIndex = (textureIndex + 1) % 6;
+    return material;
 }
 
-function createTextureMaterialArr() {
-	// 6つテクスチャをロードしたmaterial指定することで6面別のテクスチャにできる
-	const textureMaterialArr = [
-		// +x軸
-		createLambertMaterial(),
-		// -x軸
-		createLambertMaterial(),
-		// +y軸
-		createLambertMaterial(),
-		// -y軸
-		createLambertMaterial(),
-		// +z軸
-		createLambertMaterial(),
-		// -z軸 //向きおかしいから修正
-		createLambertMaterial(true),
-	];
-	return textureMaterialArr;
+/**
+ *
+ * @param {number} index boxのindex
+ * @returns
+ */
+function createTextureMaterialArr(index) {
+    // 6つテクスチャをロードしたmaterial指定することで6面別のテクスチャにできる
+    const textureMaterialArr = [];
+    for (let i = 0; i < 6; i++) {
+        textureMaterialArr.push(createLambertMaterial(index));
+    }
+    return textureMaterialArr;
 }
 
 function setupObjects() {
-	// 床
-	const planeGeo = new THREE.PlaneGeometry(canvas.width * 10, canvas.height * 10);
-	const redMaterial = new THREE.MeshLambertMaterial({ color: 'dimgray', side: THREE.DoubleSide });
-	const ground = new THREE.Mesh(planeGeo, redMaterial);
-	// デフォはz=0なのでy=0になるよう回転
-	ground.rotation.x = RIGHT_ANGLE;
-	ground.receiveShadow = true;
-	scene.add(ground);
+    // 床
+    const planeGeo = new THREE.PlaneGeometry(canvas.width * 10, canvas.height * 10);
+    const redMaterial = new THREE.MeshLambertMaterial({ color: 'dimgray', side: THREE.DoubleSide });
+    const ground = new THREE.Mesh(planeGeo, redMaterial);
+    // デフォはz=0なのでy=0になるよう回転
+    ground.rotation.x = RIGHT_ANGLE;
+    ground.receiveShadow = true;
+    scene.add(ground);
 
-	const size = 30;
-	const defaultDist = 30;
-	let meshArr = [];
-	for (let i = 0; i < BOX_COUNT; i++) {
-		const position = new THREE.Vector3(defaultDist * (i - 1), defaultDist, 0);
-		const rotation = new THREE.Vector3(RIGHT_ANGLE / (i + 1), 0, 0);
-		const boxMesh = createBoxMesh(size, position, rotation, createTextureMaterialArr());
-		meshArr.push(boxMesh);
-	}
-	// 作成したmeshを返却
-	return meshArr;
+    const boxSize = 30;
+    const defaultDist = 30;
+    let meshArr = [];
+    for (let i = 0; i < BOX_COUNT; i++) {
+        const position = new THREE.Vector3(defaultDist * (i - 1), defaultDist, 0);
+        // 0-360
+        const initDegree = Math.PI * 2 * Math.random();
+        const rotation = new THREE.Vector3(initDegree, 0, 0);
+        // const rotation = new THREE.Vector3(0, 0, 0);
+        const boxMesh = createBoxMesh(boxSize, position, rotation, createTextureMaterialArr(i));
+        meshArr.push(boxMesh);
+    }
+    // 作成したmeshを返却
+    return meshArr;
 }
 
 function setupLights() {
-	// ポイントライト
-	const point = new THREE.SpotLight('white', 1, 0, Math.PI / 4.3, 0.05, 1);
-	point.position.add(new THREE.Vector3(-10, 100, 60));
-	point.castShadow = true;
-	scene.add(point);
+    // ポイントライト
+    const point = new THREE.SpotLight('white', 1, 0, Math.PI / 4.3, 0.05, 1);
+    point.position.add(new THREE.Vector3(-10, 100, 60));
+    point.castShadow = true;
+    scene.add(point);
 
-	// 環境光
-	const ambient = new THREE.AmbientLight('lightyellow', 0.75);
-	scene.add(ambient); // シーンに追加
+    // 環境光
+    const ambient = new THREE.AmbientLight('lightyellow', 0.75);
+    scene.add(ambient); // シーンに追加
 }
 
 function tick() {
-	let nowTime = Date.now();
-	// 実行時間
-	const execTime = nowTime - start;
-	// 止まるまでの残り時間
-	const leftTime = stopTime - execTime;
 
-	// 残り時間すぎたら終了
-	if (leftTime < -1500) {
-		finalize();
-		return;
-	}
-	// シーン更新
-	updateScene(meshArr, leftTime);
+    if (v[BOX_COUNT - 1] == 0) {
+        if (bingoFlg) {
+            for (let i = 0; i < BOX_COUNT; i++) {
+                if (meshArr[i].rotation.y <= -RIGHT_ANGLE) {
+                    finalize();
+                    return;
+                }
+            }
+        } else {
+            finalize();
+            return;
+        }
+    }
 
-	// レンダリング
-	renderer.render(scene, camera);
+    // シーン更新
+    updateScene(meshArr);
 
-	// 次フレームの描画を予約
-	requestAnimationFrame(tick);
+    // レンダリング
+    renderer.render(scene, camera);
+
+    // 次フレームの描画を予約
+    requestAnimationFrame(tick);
 }
 
 /**
  * 各フレームでのシーン更新処理
  * @param {Array<THREE.Mesh>} meshArr 回転させるmeshの配列
- * @param {number} leftTime 回転終了までの残り時間
  */
-function updateScene(meshArr, leftTime) {
-	count++;
-	// ちょうど正面で終われる用のバッファ500ms
-	if (leftTime < -500) {
-		moveCamera(0.005, new THREE.Vector3(0, 0, 0));
-		return;
-	}
+function updateScene(meshArr) {
 
-	// 各mesh
-	for (let i = 0; i < BOX_COUNT; i++) {
-		// meshごとに時間差で回転を止める
-		if (leftTime - stopDiff * (BOX_COUNT - i - 1) <= 0) {
-			const degree = meshArr[i].rotation.x;
-			// 正面からの角度のズレ(178 degreesなら -2 degrees)
-			const diffDegree = degree - Math.round(degree / RIGHT_ANGLE) * RIGHT_ANGLE;
-			// 1/100以下のズレなら止める
-			if (Math.abs(diffDegree) < RIGHT_ANGLE / 100) {
-				continue;
-			}
-		}
-		// 角度の変動幅を小さくしていく(減速)
-		// 変動幅の計算は動かしながらそれっぽい動きになる数字で決定
-		meshArr[i].rotation.x += RIGHT_ANGLE / (count / ((i + 1) * 7));
-	}
+    tickCount++;
+    // 最後のboxが止まったら横回転開始
+    if (v[BOX_COUNT - 1] == 0) {
+        for (let i = 1; i < BOX_COUNT; i++) {
+            if (finalDegree[0] != finalDegree[i]) {
+                bingoFlg = false;
+            }
+        }
+        if (bingoFlg) {
+            rotateY();
+        }
+        return;
+    }
+
+    // 各meshを回転
+    for (let i = 0; i < BOX_COUNT; i++) {
+        meshArr[i].rotation.x = (meshArr[i].rotation.x + v[i]) % (Math.PI * 2);
+    }
+
+    // 0番目のboxを止め始める判定
+    if (tickCount < REDUCE_SPEED_COUNT) {
+        // 最初は止める判定を行わない
+        return;
+    } else if (tickCount == REDUCE_SPEED_COUNT) {
+        // 途中から0番目を止め始める
+        stopTargetIndex = 0;
+        stopTickCount[stopTargetIndex] = REDUCE_SPEED_COUNT;
+    }
+
+    // boxの速度変化
+    if (v[stopTargetIndex] < ENOUGH_MIN_SPEED &&
+        // 92 degree -> 2 degree
+        // 183 degree -> 3 degree
+        meshArr[stopTargetIndex].rotation.x % RIGHT_ANGLE < ENOUGH_MIN_DIFF_DEGREE) {
+        // 速度が遅く角度が十分小さい時、対象を止める
+        stopTarget();
+    } else {
+        // それ以外はstop対象の速度を変更
+        v[stopTargetIndex] = calcSpeed(tickCount - stopTickCount[stopTargetIndex]);
+    }
 }
 
 /**
@@ -221,21 +274,55 @@ function updateScene(meshArr, leftTime) {
  * @param {THREE.Vector3} direction
  */
 function moveCamera(thetaDiff, direction) {
-	const x = camera.position.x;
-	const z = camera.position.z;
-	let theta = Math.atan2(z, x);
-	let r = Math.sqrt(x * x + z * z);
-	theta += thetaDiff;
-	camera.position.x = r * Math.cos(theta);
-	camera.position.z = r * Math.sin(theta);
-	camera.lookAt(direction);
+    const x = camera.position.x;
+    const z = camera.position.z;
+    let theta = Math.atan2(z, x);
+    let r = Math.sqrt(x * x + z * z);
+    theta += thetaDiff;
+    camera.position.x = r * Math.cos(theta);
+    camera.position.z = r * Math.sin(theta);
+    camera.lookAt(direction);
 }
 
 // 終了処理
 function finalize() {
-	const launchDiv = document.getElementById("launch");
-	if (launchDiv != null) {
-		launchDiv.style.opacity = "0";
-		launchDiv.style.pointerEvents = "none";
-	}
+    // moveCamera();
+    const launchDiv = document.getElementById("launch");
+    if (launchDiv != null) {
+        launchDiv.style.opacity = "0";
+        launchDiv.style.pointerEvents = "none";
+    }
+}
+
+function stopTarget() {
+    // 角度を綺麗な値に強制変更(178 degree->180 degree)
+    meshArr[stopTargetIndex].rotation.x = Math.round(meshArr[stopTargetIndex].rotation.x / RIGHT_ANGLE) * RIGHT_ANGLE;
+    finalDegree[stopTargetIndex] = Math.round((meshArr[stopTargetIndex].rotation.x) / Math.PI * 180);
+    // 止めたカウント記憶
+    stopTickCount[stopTargetIndex + 1] = tickCount;
+    boxStopFlg[stopTargetIndex] = true;
+
+    // 速度0
+    v[stopTargetIndex] = 0;
+    // 止める対象を移動
+    stopTargetIndex++;
+}
+
+function calcSpeed(t) {
+    const a = -RIGHT_ANGLE / MAX_SPEED;
+    return RIGHT_ANGLE / (t - a);
+}
+
+function rotateY() {
+    for (let i = 0; i < 3; i++) {
+        const degree = finalDegree[i];
+        meshArr[i].rotation.y -= BINGO_DIFF_DEGREE;
+        if (degree == 90) {
+            meshArr[i].rotation.x -= BINGO_DIFF_DEGREE;
+        } else if (degree == 180) {
+            meshArr[i].rotation.x -= BINGO_DIFF_DEGREE * 2;
+        } else if (degree == 270) {
+            meshArr[i].rotation.x += BINGO_DIFF_DEGREE;
+        }
+    }
 }
