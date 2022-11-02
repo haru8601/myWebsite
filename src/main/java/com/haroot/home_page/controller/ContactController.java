@@ -45,6 +45,8 @@ public class ContactController {
 			ModelAndView mav) {
 		Pattern mailP = Pattern.compile("[a-zA-Z0-9]+@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}");
 		Pattern urlP = Pattern.compile("https?://.*\\.");
+		// その他のエラー
+		Pattern elseP = Pattern.compile("@Cryptaxbot");
 		// お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
 		if (mailP.matcher(formData.getContent()).find()) {
 			FieldError fieldError = new FieldError("formData", "content", "メールアドレスを含めることはできません");
@@ -52,6 +54,9 @@ public class ContactController {
 
 		} else if (urlP.matcher(formData.getContent()).find()) {
 			FieldError fieldError = new FieldError("formData", "content", "リンクを含めることはできません");
+			errResult.addError(fieldError);
+		} else if (elseP.matcher(formData.getContent()).find()) {
+			FieldError fieldError = new FieldError("formData", "content", "文章を変更してください");
 			errResult.addError(fieldError);
 		}
 
