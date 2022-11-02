@@ -26,6 +26,9 @@
 							</div>
 							<div class="item-text">
 								<h2 th:text="*{title}"></h2>
+								<th:block th:if="*{isPrivate==1}">
+									<p>※非公開</p>
+								</th:block>
 							</div>
 						</div>
 					</a>

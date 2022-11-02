@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
+import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.model.ArticleData;
 import com.haroot.home_page.model.IpProperties;
 import com.haroot.home_page.model.QiitaProperties;
@@ -27,109 +28,120 @@ import com.haroot.home_page.logic.MavUtils;
 @Controller
 @EnableConfigurationProperties({ IpProperties.class, QiitaProperties.class })
 public class ArticlesController {
-	@Autowired
-	IpProperties ipProperties;
-	@Autowired
-	QiitaProperties qiitaProperties;
-	@Autowired
-	JdbcTemplate jdbcT;
+    @Autowired
+    IpProperties ipProperties;
+    @Autowired
+    QiitaProperties qiitaProperties;
+    @Autowired
+    JdbcTemplate jdbcT;
 
-	@RequestMapping("articles")
-	public ModelAndView articles(ModelAndView mav) {
-		mav = MavUtils.getArticleListMav(mav, jdbcT);
-		return mav;
-	}
+    @RequestMapping("articles")
+    public ModelAndView articles(ModelAndView mav, HttpServletRequest request) {
+        String clientIp = IpLogic.getIp(request);
+        mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
+        return mav;
+    }
 
-	@RequestMapping("articles/{id}")
-	public ModelAndView list(ModelAndView mav, @PathVariable("id") String id) {
-		mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT);
-		return mav;
-	}
+    @RequestMapping("articles/{id}")
+    public ModelAndView list(ModelAndView mav, @PathVariable("id") String id, HttpServletRequest request) {
+        mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT, request, ipProperties);
+        return mav;
+    }
 
-	@RequestMapping("articles/countChange/{id}/{type}")
-	@ResponseBody
-	public void countChange(@PathVariable("id") String id, @PathVariable("type") String type) {
-		String selectStr = "SELECT like_count FROM articles WHERE id=" + id;
-		List<Map<String, Object>> articleList = jdbcT.queryForList(selectStr);
-		String likeCountStr = articleList.get(0).get("like_count").toString();
-		// 記事情報をupdate
-		String updateStr = "UPDATE articles SET like_count=? WHERE id=" + id;
+    @RequestMapping("articles/countChange/{id}/{type}")
+    @ResponseBody
+    public void countChange(@PathVariable("id") String id, @PathVariable("type") String type) {
+        String selectStr = "SELECT like_count FROM articles WHERE id=" + id;
+        List<Map<String, Object>> articleList = jdbcT.queryForList(selectStr);
+        String likeCountStr = articleList.get(0).get("like_count").toString();
+        // 記事情報をupdate
+        String updateStr = "UPDATE articles SET like_count=? WHERE id=" + id;
 
-		int count = Integer.parseInt(likeCountStr);
-		if (type.equals("up")) {
-			count++;
-		} else if (type.equals("down")) {
-			count--;
-		}
-		// change count
-		likeCountStr = String.valueOf(count);
-		jdbcT.update(updateStr, likeCountStr);
-		return;
-	}
+        int count = Integer.parseInt(likeCountStr);
+        if (type.equals("up")) {
+            count++;
+        } else if (type.equals("down")) {
+            count--;
+        }
+        // change count
+        likeCountStr = String.valueOf(count);
+        jdbcT.update(updateStr, likeCountStr);
+        return;
+    }
 
-	@RequestMapping("articles/create/{id}")
-	public ModelAndView create(ModelAndView mav, HttpServletRequest request, @PathVariable("id") String id) {
-		// 自分のみ作成できる
-		String ipAddress = request.getHeader("X-Forwarded-For");
-		if (ipAddress == null) {
-			ipAddress = request.getRemoteAddr();
-		}
-		if (ipAddress.equals(ipProperties.getIpAddress())) {
-			ArticleData articleData = new ArticleData();
-			// 既存記事の編集
-			if (!id.equals("-1")) {
-				Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id=" + id).get(0);
-				String title = article.get("title").toString();
-				String content = article.get("content").toString();
-				articleData.setTitle(title);
-				articleData.setContent(content);
-			}
-			mav.addObject(articleData);
-			mav.addObject(id);
+    @RequestMapping("articles/create/{id}")
+    public ModelAndView create(ModelAndView mav, HttpServletRequest request, @PathVariable("id") String id) {
+        // 自分のみ作成できる
+        String clientIp = IpLogic.getIp(request);
+        if (clientIp.equals(ipProperties.getIpAddress())) {
+            ArticleData articleData = new ArticleData();
+            // 既存記事の編集
+            if (!id.equals("-1")) {
+                Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id=" + id).get(0);
+                String title = article.get("title").toString();
+                String content = article.get("content").toString();
+                boolean isPrivate = (int) article.get("isPrivate") == 1;
+                articleData.setTitle(title);
+                articleData.setContent(content);
+                articleData.setIsPrivate(isPrivate);
+            }
+            mav.addObject(articleData);
+            mav.addObject(id);
 
-			mav.setViewName("contents/articles/create");
-		} else {
-			// 他は戻す
-			//既存記事のページ
-			if(!id.equals("-1")) {
-				mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT);
-				mav.addObject("errStr", "Sorry, you can't edit articles....");
-			}else {
-				mav = MavUtils.getArticleListMav(mav, jdbcT);
-				mav.addObject("errStr", "Sorry, you can't create articles....");
-			}
-		}
+            mav.setViewName("contents/articles/create");
+        } else {
+            // 他は戻す
+            // 既存記事のページ
+            if (!id.equals("-1")) {
+                mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT, request, ipProperties);
+                mav.addObject("errStr", "Sorry, you can't edit articles....");
+            } else {
+                mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
+                mav.addObject("errStr", "Sorry, you can't create articles....");
+            }
+        }
 
-		return mav;
-	}
+        return mav;
+    }
 
-	@RequestMapping("articles/created/{id}")
-	public ModelAndView create(ModelAndView mav, @ModelAttribute @Validated ArticleData articleData,
-			@PathVariable("id") String id, BindingResult errResult, HttpServletRequest request,
-			HttpServletResponse response) {
-		// エラーがあれば戻る
-		if (errResult.hasErrors()) {
-			mav.addObject(articleData);
-			mav.setViewName("contents/articles/create");
-			return mav;
-		}
+    @RequestMapping("articles/created/{id}")
+    public ModelAndView create(ModelAndView mav, @ModelAttribute @Validated ArticleData articleData,
+            @PathVariable("id") String id, BindingResult errResult, HttpServletRequest request,
+            HttpServletResponse response) {
+        // 外部からの侵入禁止
+        String clientIp = IpLogic.getIp(request);
+        if (!clientIp.equals(ipProperties.getIpAddress())) {
+            mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
+            return mav;
+        }
+        // エラーがあれば戻る
+        if (errResult.hasErrors()) {
+            mav.addObject(articleData);
+            mav.setViewName("contents/articles/create");
+            return mav;
+        }
 
-		String dateStr = DateLogic.getJSTDateStr();
-		String title = articleData.getTitle();
-		String content = articleData.getContent();
+        String dateStr = DateLogic.getJSTDateStr();
+        String title = articleData.getTitle();
+        String content = articleData.getContent();
+        boolean isPrivate = articleData.getIsPrivate();
+        int privateInt = 0;
+        if (isPrivate) {
+            privateInt = 1;
+        }
 
-		// 新規記事
-		if (id.equals("-1")) {
-			String sqlStr = "INSERT INTO articles(title, content, create_date) VALUES(?,?,?)";
-			jdbcT.update(sqlStr, title, content, dateStr);
-			// 既存記事
-		} else {
-			String sqlStr = "UPDATE articles SET title=?, content=? WHERE id=" + id;
-			jdbcT.update(sqlStr, title, content);
-		}
+        // 新規記事
+        if (id.equals("-1")) {
+            String sqlStr = "INSERT INTO articles(title, content, isPrivate, create_date) VALUES(?,?,?,)";
+            jdbcT.update(sqlStr, title, content, privateInt, dateStr);
+            // 既存記事
+        } else {
+            String sqlStr = "UPDATE articles SET title=?, content=?, isPrivate=?, update_date=? WHERE id=" + id;
+            jdbcT.update(sqlStr, title, content, privateInt, dateStr);
+        }
 
-		mav.setViewName("contents/articles/created");
+        mav.setViewName("contents/articles/created");
 
-		return mav;
-	}
+        return mav;
+    }
 }

@@ -33,6 +33,9 @@
 			<th:block th:include="share/menuBar"></th:block>
 			<main class="articles template">
 				<h2 class="title" th:text="${title}"></h2>
+				<th:block th:if="${isPrivate==1}">
+					<p>※非公開</p>
+				</th:block>
 				<pre>
 					<div class="marked" id="content"></div>
 				</pre>

@@ -7,11 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class IpWriter extends Thread {
+public class IpLogic extends Thread {
+
+	public static String getIp(HttpServletRequest request) {
+		String ip = request.getHeader("X-Forwarded-For");
+		if (ip == null) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
+	}
+
 	private HttpServletRequest request;
 	private JdbcTemplate jdbcT;
 
-	public IpWriter(
+	public IpLogic(
 			HttpServletRequest request,
 			JdbcTemplate jdbcT) {
 		this.request = request;
@@ -20,10 +29,7 @@ public class IpWriter extends Thread {
 
 	public void run() {
 		// クライアントIPアドレス記録
-		String ip = request.getHeader("X-Forwarded-For");
-		if (ip == null) {
-			ip = request.getRemoteAddr();
-		}
+		String ip = getIp(request);
 		// referer取得
 		String referer = request.getHeader("REFERER");
 		// urlからの直移動やharoot.net内の移動やなら無視

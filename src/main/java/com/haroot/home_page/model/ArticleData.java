@@ -7,6 +7,7 @@ public class ArticleData {
 	private String title;
 	@NotBlank
 	private String content;
+	private boolean isPrivate;
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -22,5 +23,13 @@ public class ArticleData {
 
 	public String getContent() {
 		return content;
+	}
+
+	public void setIsPrivate(boolean isPrivate) {
+		this.isPrivate = isPrivate;
+	}
+
+	public boolean getIsPrivate() {
+		return isPrivate;
 	}
 }

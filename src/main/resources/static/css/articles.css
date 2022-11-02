@@ -140,6 +140,16 @@ code {
 	white-space: pre;
 }
 
+.input-label,
+#isPrivate {
+	cursor: pointer;
+}
+
+#isPrivate {
+	width: auto;
+	display: inline-block;
+}
+
 
 /*******記事はレスポンシブでも中央寄せしない********/
 @media(max-width:670px) {

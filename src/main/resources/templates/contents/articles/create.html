@@ -45,10 +45,14 @@
 							});
 						</script>
 					</div>
+					<label for="isPrivate" class="input-label">
+						<input id="isPrivate" name="isPrivate" type="checkbox" th:checked="*{isPrivate}">
+						非公開
+					</label>
 					<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
 					<input class="submit" type="button" value="送信" onclick="submit()">
 					<div class="item noflex">
-						<a class="btn1" th:href="@{|/articles|}">記事一覧へ戻る</a>
+						<a class="btn1" href="/articles">記事一覧へ戻る</a>
 					</div>
 				</form>
 			</main>
