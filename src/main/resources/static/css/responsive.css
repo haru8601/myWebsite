@@ -30,6 +30,10 @@
         font-size: 14px;
     }
 
+    .item-link{
+        height:20vh;
+    }
+
     .item-imgDiv {
         width: 25%;
         height: 85%;
