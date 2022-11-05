@@ -37,6 +37,7 @@ replacedTagArr?.forEach((hTag)=>{
     linkChild.appendChild(textChild);
     // idではなぜか小文字なのでリンクもそれに合わせる
     // なぜかカッコも消えるのでそれも合わせる
-    linkChild.href=`#${hTag.text.toLowerCase().replaceAll(/\(|\)/g,"")}`;
+    // スペースは-になるっぽい
+    linkChild.href=`#${hTag.text.toLowerCase().replaceAll(/\(|\)/g,"").replaceAll(/\s/g, "-")}`;
     parentElement?.appendChild(linkChild);
 })
