@@ -1,12 +1,23 @@
+#articleContainer{
+	display:flex;
+	justify-content: space-between;
+}
+
+#articleContainer > *{
+	/* flex内の要素を正常にover-wrapさせるための処理 */
+	min-width: 0;
+}
+
 /********aside**********/
 
 #links {
+	flex-basis: 10%;
 	text-align: center;
+	max-width: 100px;
+	position:sticky;
+	position: -webkit-sticky;
+	top:80px;
 	height: 100%;
-	width: 10%;
-	position: fixed;
-	top: 80px;
-	left: 0;
 }
 
 #links>* {
@@ -54,8 +65,9 @@
 /*titleについてるpaddingを除去*/
 
 .template {
-	width: 90%;
-	margin: 0 0 0 auto;
+	flex-basis: 70%;
+	flex-grow: 10;
+	padding-right: 1vw;
 }
 
 .template .title {
@@ -101,7 +113,7 @@
 .marked h4 {
 	margin-top: 30px;
 	margin-bottom: 5px;
-	font-size: 16px;
+	font-size: 20px;
 }
 
 .editor-preview-side p,
@@ -150,9 +162,46 @@ code {
 	display: inline-block;
 }
 
+/***********目次********/
+#tableOfContents {
+	flex-basis: 20%;
+	height: 100%;
+	position:sticky;
+	position:-webkit-sticky;
+	top:80px;
+	background-color: aliceblue;
+}
+
+#contents-sticky{
+	max-height: 80vh;
+	overflow-y:scroll;
+	padding:2vh 1vw;
+	margin:2vh 0;
+}
+
+#contents-sticky > a{
+	color: gray;
+	display: block;
+	text-decoration: none;
+	margin-top: 1vh;
+}
+
+#contents-sticky > a:hover{
+	color:black;
+	background-color: rgb(167, 167, 167);
+}
 
 /*******記事はレスポンシブでも中央寄せしない********/
+@media (max-width:1000px) {
+	#tableOfContents{
+		display:none;
+	}
+}
 @media(max-width:670px) {
+
+	#articleContainer{
+		display:block;
+	}
 
 	.template {
 		width: 100%;
@@ -169,13 +218,20 @@ code {
 
 	#links {
 		background-color: rgb(218, 245, 222);
-		width: 100%;
+		width: 100vw;
 		height: auto;
-		position: sticky;
+		position: fixed;
 		display: flex;
 		align-items: flex-start;
 		justify-content: space-around;
+		left:0;
 		bottom: 0;
+		top:initial;
+		max-width: initial;
+	}
+
+	#tableOfContents{
+		display:none;
 	}
 }
 

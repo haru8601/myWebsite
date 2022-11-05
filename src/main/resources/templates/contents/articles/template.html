@@ -29,8 +29,25 @@
 <body>
 	<header th:include="share/header"></header>
 	<div class="except-header">
-		<div class="container">
-			<th:block th:include="share/menuBar"></th:block>
+		<div class="container" id="articleContainer">
+			<div id="links">
+				<div>
+					<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="countChange()"><i
+							class="fa-solid fa-thumbs-up"></i></button>
+					<p id="likeCount" th:text="${like_count}">0</p>
+				</div>
+				<div>
+					<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
+						class="twitter-share-button" data-show-count="false">
+						<i class="fa-brands fa-twitter">
+						</i>
+					</a>
+				</div>
+				<div>
+					<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
+					<p id="copyText">copied!</p>
+				</div>
+			</div>
 			<main class="articles template">
 				<h2 class="title" th:text="${title}"></h2>
 				<th:block th:if="${isPrivate==1}">
@@ -58,29 +75,16 @@
 				</th:block>
 				<a class="btn1 right" th:href="@{|/articles/create/${id}|}">編集</a>
 				<div class="clear"></div>
-				<div th:include="share/ads"></div>
 			</main>
+			<div id="tableOfContents">
+				<div id="contents-sticky"></div>
+			</div>
+			<th:block th:include="share/menuBar"></th:block>
 		</div>
-		<div id="links">
-			<div>
-				<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="countChange()"><i
-						class="fa-solid fa-thumbs-up"></i></button>
-				<p id="likeCount" th:text="${like_count}">0</p>
-			</div>
-			<div>
-				<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
-					class="twitter-share-button" data-show-count="false">
-					<i class="fa-brands fa-twitter">
-					</i>
-				</a>
-			</div>
-			<div>
-				<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
-				<p id="copyText">copied!</p>
-			</div>
-		</div>
+		<div th:include="share/ads"></div>
 		<footer th:include="share/footer"> </footer>
 	</div>
+	<script th:src="@{/js/tableOfContents.js}"></script>
 	<script>
 		//ツイート内容カスタマイズ
 		const tweetBtn = document.getElementsByClassName("twitter-share-button")[0];
