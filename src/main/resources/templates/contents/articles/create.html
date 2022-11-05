@@ -18,7 +18,6 @@
 	<header th:include="share/header"></header>
 	<div class="except-header">
 		<div class="container">
-			<th:block th:include="share/menuBar"></th:block>
 			<main class="articles">
 				<h2 class="title">記事作成</h2>
 				<form th:object="${articleData}" th:action="@{|/articles/created/${id}|}" method="post">
@@ -56,6 +55,7 @@
 					</div>
 				</form>
 			</main>
+			<th:block th:include="share/menuBar"></th:block>
 		</div>
 		<footer th:include="share/footer"> </footer>
 	</div>

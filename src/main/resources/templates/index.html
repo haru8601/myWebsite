@@ -40,7 +40,6 @@
 
 	<div class="except-header">
 		<div class="container">
-			<th:block th:include="share/menuBar"></th:block>
 			<main id="top">
 				<div class="topic-all">
 					<a class="topic-link down-btn" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
@@ -53,6 +52,7 @@
 				</div>
 				<img class="top-img" src="/images/top.png">
 			</main>
+			<th:block th:include="share/menuBar"></th:block>
 		</div>
 		<footer th:include="share/footer"></footer>
 	</div>

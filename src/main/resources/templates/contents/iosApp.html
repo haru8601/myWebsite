@@ -12,7 +12,6 @@
 	<header th:include="share/header"></header>
 	<div class="except-header">
 		<div class="container">
-			<th:block th:include="share/menuBar"></th:block>
 			<main id="ios-app">
 				<h2 class="title">iOSアプリ</h2>
 				<!-- 内容物リスト -->
@@ -33,6 +32,7 @@
 				</div>
 				<div th:include="share/ads"></div>
 			</main>
+			<th:block th:include="share/menuBar"></th:block>
 		</div>
 		<footer th:include="share/footer"></footer>
 	</div>

@@ -12,7 +12,6 @@
 	<header th:include="share/header"></header>
 	<div class="except-header">
 		<div class="container">
-			<th:block th:include="share/menuBar"></th:block>
 			<main>
 				<h2 class="title">経歴</h2>
 				<div class="career">
@@ -63,6 +62,7 @@
 				</div>
 				<div th:include="share/ads"></div>
 			</main>
+			<th:block th:include="share/menuBar"></th:block>
 		</div>
 		<footer th:include="share/footer"> </footer>
 	</div>

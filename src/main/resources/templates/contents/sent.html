@@ -12,7 +12,6 @@
     <header th:include="share/header"></header>
     <div class="except-header">
         <div class="container">
-            <th:block th:include="share/menuBar"></th:block>
             <main>
                 <!-- コンテンツ2(ヘッダーのリンク先) -->
                 <div class="contact-form">
@@ -23,6 +22,7 @@
                 </div>
                 <div th:include="share/ads"></div>
             </main>
+            <th:block th:include="share/menuBar"></th:block>
         </div>
         <footer th:include="share/footer"></footer>
     </div>

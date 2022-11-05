@@ -12,7 +12,6 @@
 	<header th:include="share/header"></header>
 	<div class="except-header">
 		<div class="container">
-			<th:block th:include="share/menuBar"></th:block>
 			<main id="bot">
 				<h2 class="title">Bot</h2>
 				<!-- 内容物リスト -->
@@ -40,6 +39,7 @@
 				<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 				<div th:include="share/ads"></div>
 			</main>
+			<th:block th:include="share/menuBar"></th:block>
 		</div>
 		<footer th:include="share/footer"></footer>
 	</div>
