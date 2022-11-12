@@ -32,7 +32,7 @@
 		<div class="container" id="articleContainer">
 			<div id="links">
 				<div>
-					<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="countChange()"><i
+					<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="updateCount()"><i
 							class="fa-solid fa-thumbs-up"></i></button>
 					<p id="likeCount" th:text="${like_count}">0</p>
 				</div>

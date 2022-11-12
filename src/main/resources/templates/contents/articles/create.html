@@ -20,7 +20,7 @@
 		<div class="container">
 			<main class="articles">
 				<h2 class="title">記事作成</h2>
-				<form th:object="${articleData}" th:action="@{|/articles/created/${id}|}" method="post">
+				<form th:object="${articleData}" th:action="@{|/articles/register/${id}|}" method="post">
 					<p>タイトル
 						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
 					<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>

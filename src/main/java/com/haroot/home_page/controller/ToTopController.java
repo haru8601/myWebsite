@@ -1,33 +1,28 @@
 package com.haroot.home_page.controller;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.model.TopicData;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest; 
 
 @Controller
 public class ToTopController {
 
     @Autowired
     JdbcTemplate jdbcT;
-
-    // public final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @RequestMapping("/")
+    
+    @GetMapping("/")
     public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
         String referer = request.getHeader("REFERER");
         boolean displaySlot = true;
@@ -50,7 +45,7 @@ public class ToTopController {
             topicDataList = new Yaml().load(is);
             is.close();
         } catch (IOException e) {
-            System.out.println("topics.yml load error");
+            System.err.println("topics.yml load error");
             e.printStackTrace();
         }
         mav.addObject("topicList", topicDataList);
@@ -59,14 +54,14 @@ public class ToTopController {
         return mav;
     }
 
-    @RequestMapping("/policy")
+    @GetMapping("/policy")
     public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
 
         mav.setViewName("policy");
         return mav;
     }
 
-    @RequestMapping("/test")
+    @GetMapping("/test")
     public ModelAndView test(ModelAndView mav) {
         System.out.println("twitter api test.");
         mav.setViewName("index");

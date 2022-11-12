@@ -1,6 +1,6 @@
 package com.haroot.home_page.controller;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,7 +26,7 @@ public class YoutubeController {
     @Autowired
     YoutubeProperties youtubeProperties;
 
-    @RequestMapping("youtube")
+    @GetMapping("/youtube")
     public ModelAndView youtube(ModelAndView mav) {
         // youtubeAPIから動画一覧を取得
         List<Map<String, Object>> youtubeList = new ArrayList<>();

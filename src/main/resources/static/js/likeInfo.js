@@ -9,7 +9,7 @@ window.onload = function () {
 	}
 }
 
-function countChange() {
+function updateCount() {
 	const articleId = getArticleId();
 	//セッション取得
 	let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
@@ -50,7 +50,7 @@ function countChange() {
 	//記事IDはurlの最後についてるのを取得
 	const pathArr = location.pathname.split("/");
 	const id = pathArr[pathArr.length - 1];
-	XHR.open("GET", "/articles/countChange/" + id + "/" + type);
+	XHR.open("GET", "/articles/updateCount/" + id + "/" + type);
 	XHR.send();
 
 	return;

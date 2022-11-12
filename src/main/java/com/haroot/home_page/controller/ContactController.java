@@ -1,6 +1,6 @@
 package com.haroot.home_page.controller;
 
-import java.util.regex.Pattern;
+import java.util.regex.Pattern; 
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
@@ -28,7 +28,7 @@ public class ContactController {
 	@Autowired
 	JdbcTemplate jdbcT;
 
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	@GetMapping("/contact")
 	public ModelAndView getContact(ModelAndView mav) {
 		FormData formData = new FormData();
 		mav.addObject("formData", formData);
@@ -37,7 +37,7 @@ public class ContactController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/sentForm", method = RequestMethod.POST)
+	@PostMapping("/sentForm")
 	public ModelAndView postContact(
 			@ModelAttribute @Validated FormData formData,
 			BindingResult errResult,
