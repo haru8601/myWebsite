@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -18,18 +17,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haroot.home_page.model.YoutubeProperties;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * youtubeコントローラー
  * @author sekiharuhito
  *
  */
 @Controller
+@RequiredArgsConstructor
 @EnableConfigurationProperties({ YoutubeProperties.class })
 public class YoutubeController {
-    @Autowired
-    JdbcTemplate jdbcT;
-    @Autowired
-    YoutubeProperties youtubeProperties;
+    final JdbcTemplate jdbcT;
+    final YoutubeProperties youtubeProperties;
 
     /**
      * Youtube一覧表示

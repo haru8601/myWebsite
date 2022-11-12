@@ -1,13 +1,11 @@
 package com.haroot.home_page.controller;
 
-import java.util.List; 
+import java.util.List;  
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -25,6 +23,9 @@ import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.model.ArticleData;
 import com.haroot.home_page.model.IpProperties;
 import com.haroot.home_page.model.QiitaProperties;
+
+import lombok.RequiredArgsConstructor;
+
 import com.haroot.home_page.logic.MavUtils;
 
 /**
@@ -33,14 +34,12 @@ import com.haroot.home_page.logic.MavUtils;
  *
  */
 @Controller
+@RequiredArgsConstructor
 @EnableConfigurationProperties({ IpProperties.class, QiitaProperties.class })
 public class ArticlesController {
-    @Autowired
-    IpProperties ipProperties;
-    @Autowired
-    QiitaProperties qiitaProperties;
-    @Autowired
-    JdbcTemplate jdbcT;
+    final IpProperties ipProperties;
+    final QiitaProperties qiitaProperties;
+    final JdbcTemplate jdbcT;
     
     /**
      * 記事一覧表示
@@ -112,10 +111,10 @@ public class ArticlesController {
                 Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id=" + id).get(0);
                 String title = article.get("title").toString();
                 String content = article.get("content").toString();
-                boolean isPrivate = (int) article.get("isPrivate") == 1;
+                boolean wip = (int) article.get("wip") == 1;
                 articleData.setTitle(title);
                 articleData.setContent(content);
-                articleData.setIsPrivate(isPrivate);
+                articleData.setWip(wip);
             }
             mav.addObject(articleData);
             mav.addObject(id);
@@ -169,19 +168,19 @@ public class ArticlesController {
         String dateStr = DateLogic.getJSTDateStr();
         String title = articleData.getTitle();
         String content = articleData.getContent();
-        boolean isPrivate = articleData.getIsPrivate();
+        boolean wip = articleData.isWip();
         int privateInt = 0;
-        if (isPrivate) {
+        if (wip) {
             privateInt = 1;
         }
 
         // 新規記事
         if (id.equals("-1")) {
-            String sqlStr = "INSERT INTO articles(title, content, isPrivate, create_date) VALUES(?,?,?,?)";
+            String sqlStr = "INSERT INTO articles(title, content, wip, create_date) VALUES(?,?,?,?)";
             jdbcT.update(sqlStr, title, content, privateInt, dateStr);
             // 既存記事
         } else {
-            String sqlStr = "UPDATE articles SET title=?, content=?, isPrivate=?, update_date=? WHERE id=" + id;
+            String sqlStr = "UPDATE articles SET title=?, content=?, wip=?, update_date=? WHERE id=" + id;
             jdbcT.update(sqlStr, title, content, privateInt, dateStr);
         }
 

@@ -22,6 +22,8 @@ Fonts
 images
 application.yml
 test
+.metadata
+Servers
 
 #font
 *.ttf

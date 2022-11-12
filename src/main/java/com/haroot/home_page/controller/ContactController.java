@@ -1,10 +1,9 @@
 package com.haroot.home_page.controller;
 
-import java.util.regex.Pattern; 
+import java.util.regex.Pattern;  
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -20,18 +19,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.model.FormData;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * 問い合わせコントローラー
  * @author sekiharuhito
  *
  */
 @Controller
+@RequiredArgsConstructor
 public class ContactController {
 
-	@Autowired
-	private MailSender sender;
-	@Autowired
-	JdbcTemplate jdbcT;
+	private final MailSender sender;
+	final JdbcTemplate jdbcT;
 
 	/**
 	 * 問い合わせ画面表示

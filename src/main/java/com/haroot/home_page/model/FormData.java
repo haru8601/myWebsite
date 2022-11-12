@@ -4,11 +4,14 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
+
 /**
  * 問い合わせデータ
  * @author sekiharuhito
  *
  */
+@Data
 public class FormData {
 
 	@NotBlank
@@ -23,36 +26,4 @@ public class FormData {
 
 	@AssertTrue(message = "プライバシーポリシーに同意する場合はチェックしてください")
 	private boolean checkbox;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public boolean getCheckbox() {
-		return checkbox;
-	}
-
-	public void setCheckbox(boolean checkbox) {
-		this.checkbox = checkbox;
-	}
 }

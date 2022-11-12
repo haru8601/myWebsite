@@ -1,14 +1,15 @@
 package com.haroot.home_page.controller;
 
-import java.util.List; 
+import java.util.List;  
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * iosアプリコントローラー
@@ -16,10 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
+@RequiredArgsConstructor
 public class IOSAppController {
 
-	@Autowired
-	JdbcTemplate jdbcT;
+	final JdbcTemplate jdbcT;
 
 	/**
 	 * ios-app画面表示

@@ -50,7 +50,7 @@
 			</div>
 			<main class="articles template">
 				<h2 class="title" th:text="${title}"></h2>
-				<th:block th:if="${isPrivate==1}">
+				<th:block th:if="${wip==1}">
 					<p>※非公開</p>
 				</th:block>
 				<pre>

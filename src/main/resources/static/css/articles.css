@@ -153,11 +153,11 @@ code {
 }
 
 .input-label,
-#isPrivate {
+#wip {
 	cursor: pointer;
 }
 
-#isPrivate {
+#wip {
 	width: auto;
 	display: inline-block;
 }

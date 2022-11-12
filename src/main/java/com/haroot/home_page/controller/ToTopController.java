@@ -1,6 +1,5 @@
 package com.haroot.home_page.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,10 @@ import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.model.TopicData;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -22,10 +25,11 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @Controller
+@Slf4j
+@RequiredArgsConstructor
 public class ToTopController {
 
-    @Autowired
-    JdbcTemplate jdbcT;
+    final JdbcTemplate jdbcT;
     
     /**
      * トップ画面表示
@@ -56,7 +60,7 @@ public class ToTopController {
             topicDataList = new Yaml().load(is);
             is.close();
         } catch (IOException e) {
-            System.err.println("topics.yml load error");
+            log.error("topics.yml load error");
             e.printStackTrace();
         }
         mav.addObject("topicList", topicDataList);

@@ -41,7 +41,7 @@ public class MavUtils {
     public static ModelAndView getArticleMav(ModelAndView mav, String id, QiitaProperties qiitaProperties,
             JdbcTemplate jdbcT, HttpServletRequest request, IpProperties ipProperties) {
         Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id = " + id).get(0);
-        int isPrivate = (int) article.get("isPrivate");
+        int wip = (int) article.get("wip");
 
         // 自分以外かつ非公開なら表示しない
         String clientIp = IpLogic.getIp(request);
@@ -50,7 +50,7 @@ public class MavUtils {
         String content = "";
 
         // 表示する場合
-        if (isPrivate == 0 || clientIp.equals(ipProperties.getIpAddress())) {
+        if (wip == 0 || clientIp.equals(ipProperties.getIpAddress())) {
             title = article.get("title").toString();
             likeCount = Integer.parseInt(article.get("like_count").toString());
             content = article.get("content").toString();
@@ -79,7 +79,7 @@ public class MavUtils {
         mav.addObject("title", title);
         mav.addObject("content", content);
         mav.addObject("like_count", likeCount);
-        mav.addObject("isPrivate", isPrivate);
+        mav.addObject("wip", wip);
 
         mav.setViewName("contents/articles/template");
         return mav;
@@ -98,7 +98,7 @@ public class MavUtils {
         String whereStr = "";
         // 自分以外のIPは非公開を表示しない
         if (!clientIp.equals(ipProperties.getIpAddress())) {
-            whereStr = "WHERE isPrivate = 0 ";
+            whereStr = "WHERE wip = 0 ";
         }
         // 降順(最新から)で取得
         String queryStr = "SELECT * FROM articles " + whereStr + "ORDER BY id DESC";
