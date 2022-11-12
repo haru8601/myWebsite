@@ -2,6 +2,11 @@ package com.haroot.home_page.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Qiitaプロパティ
+ * @author sekiharuhito
+ *
+ */
 @ConfigurationProperties(prefix = "qiita")
 public class QiitaProperties {
 	private String token;

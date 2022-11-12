@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,7 +16,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haroot.home_page.model.IpProperties;
 import com.haroot.home_page.model.QiitaProperties;
 
+/**
+ * MAVクラス
+ * @author sekiharuhito
+ *
+ */
 public class MavUtils {
+    @Value("${qiita.user}")
+    public String qiitaUserName;
+    
+    @Value("${ip-info.ipAddress}")
+    String hostIpAddress;
+    
+    /**
+     * 記事取得(1件)
+     * @param mav MAV
+     * @param id 記事ID
+     * @param qiitaProperties 
+     * @param jdbcT
+     * @param request
+     * @param ipProperties
+     * @return
+     */
     public static ModelAndView getArticleMav(ModelAndView mav, String id, QiitaProperties qiitaProperties,
             JdbcTemplate jdbcT, HttpServletRequest request, IpProperties ipProperties) {
         Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id = " + id).get(0);
@@ -63,6 +85,14 @@ public class MavUtils {
         return mav;
     }
 
+    /**
+     * 記事取得(複数)
+     * @param mav MAV
+     * @param jdbcT jdbcTemplate
+     * @param clientIp クライアントIPアドレス
+     * @param ipProperties IPプロパティ
+     * @return
+     */
     public static ModelAndView getArticleListMav(ModelAndView mav, JdbcTemplate jdbcT, String clientIp,
             IpProperties ipProperties) {
         String whereStr = "";

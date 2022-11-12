@@ -7,24 +7,34 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+/**
+ * ipアドレスクラス
+ * @author sekiharuhito
+ *
+ */
 public class IpLogic extends Thread {
+    
+    private HttpServletRequest request;
+    private JdbcTemplate jdbcT;
 
+    public IpLogic(
+            HttpServletRequest request,
+            JdbcTemplate jdbcT) {
+        this.request = request;
+        this.jdbcT = jdbcT;
+    }
+    
+    /**
+     * IPアドレス取得
+     * @param request リクエスト
+     * @return IPアドレス
+     */
 	public static String getIp(HttpServletRequest request) {
 		String ip = request.getHeader("X-Forwarded-For");
 		if (ip == null) {
 			ip = request.getRemoteAddr();
 		}
 		return ip;
-	}
-
-	private HttpServletRequest request;
-	private JdbcTemplate jdbcT;
-
-	public IpLogic(
-			HttpServletRequest request,
-			JdbcTemplate jdbcT) {
-		this.request = request;
-		this.jdbcT = jdbcT;
 	}
 
 	public void run() {

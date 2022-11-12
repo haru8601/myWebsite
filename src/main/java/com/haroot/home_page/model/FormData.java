@@ -4,6 +4,11 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * 問い合わせデータ
+ * @author sekiharuhito
+ *
+ */
 public class FormData {
 
 	@NotBlank

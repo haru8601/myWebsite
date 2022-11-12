@@ -2,6 +2,11 @@ package com.haroot.home_page.model;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * 記事データ
+ * @author sekiharuhito
+ *
+ */
 public class ArticleData {
 	@NotBlank
 	private String title;

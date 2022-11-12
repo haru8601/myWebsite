@@ -1,5 +1,10 @@
 package com.haroot.home_page.model;
 
+/**
+ * Topicデータ
+ * @author sekiharuhito
+ *
+ */
 public class TopicData {
 	private int id;
 	private String title;

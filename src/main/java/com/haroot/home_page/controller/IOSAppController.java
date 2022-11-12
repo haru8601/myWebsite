@@ -10,12 +10,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * iosアプリコントローラー
+ * @author sekiharuhito
+ *
+ */
 @Controller
 public class IOSAppController {
 
 	@Autowired
 	JdbcTemplate jdbcT;
 
+	/**
+	 * ios-app画面表示
+	 * @param mav MAV
+	 * @return
+	 */
 	@GetMapping("/ios-app")
 	public ModelAndView iosApp(ModelAndView mav) {
 		List<Map<String, Object>> iosAppList = jdbcT.queryForList("select * from iOSapp");
@@ -33,6 +43,12 @@ public class IOSAppController {
 		return mav;
 	}
 
+	/**
+	 * 個別アプリ画面表示
+	 * @param mav MAV
+	 * @param appName アプリ名
+	 * @return
+	 */
 	@GetMapping("/ios-app/{appName}")
 	public ModelAndView iosPage(
 			ModelAndView mav,
@@ -43,6 +59,12 @@ public class IOSAppController {
 		return mav;
 	}
 
+	/**
+	 * 個別アプリポリシー
+	 * @param mav MAV
+	 * @param appName アプリ名
+	 * @return
+	 */
 	@GetMapping("/ios-app/{appName}/policy")
 	public ModelAndView policy(
 			ModelAndView mav,

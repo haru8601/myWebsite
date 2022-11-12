@@ -16,12 +16,23 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest; 
 
+/**
+ * トップ画面コントローラー
+ * @author sekiharuhito
+ *
+ */
 @Controller
 public class ToTopController {
 
     @Autowired
     JdbcTemplate jdbcT;
     
+    /**
+     * トップ画面表示
+     * @param mav MAV
+     * @param request リクエスト
+     * @return
+     */
     @GetMapping("/")
     public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
         String referer = request.getHeader("REFERER");
@@ -54,17 +65,13 @@ public class ToTopController {
         return mav;
     }
 
+    /**
+     * ポリシー画面表示
+     */
     @GetMapping("/policy")
     public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
 
         mav.setViewName("policy");
-        return mav;
-    }
-
-    @GetMapping("/test")
-    public ModelAndView test(ModelAndView mav) {
-        System.out.println("twitter api test.");
-        mav.setViewName("index");
         return mav;
     }
 }

@@ -20,6 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.model.FormData;
 
+/**
+ * 問い合わせコントローラー
+ * @author sekiharuhito
+ *
+ */
 @Controller
 public class ContactController {
 
@@ -28,8 +33,13 @@ public class ContactController {
 	@Autowired
 	JdbcTemplate jdbcT;
 
+	/**
+	 * 問い合わせ画面表示
+	 * @param mav MAV
+	 * @return
+	 */
 	@GetMapping("/contact")
-	public ModelAndView getContact(ModelAndView mav) {
+	public ModelAndView contactLink(ModelAndView mav) {
 		FormData formData = new FormData();
 		mav.addObject("formData", formData);
 
@@ -37,10 +47,18 @@ public class ContactController {
 		return mav;
 	}
 
+	/**
+	 * 問い合わせ送信
+	 * @param formData 問い合わせフォーム
+	 * @param bindingResult エラー結果
+	 * @param request リクエスト
+	 * @param mav MAV
+	 * @return
+	 */
 	@PostMapping("/sentForm")
 	public ModelAndView postContact(
 			@ModelAttribute @Validated FormData formData,
-			BindingResult errResult,
+			BindingResult bindingResult,
 			HttpServletRequest request,
 			ModelAndView mav) {
 		Pattern mailP = Pattern.compile("[a-zA-Z0-9]+@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}");
@@ -50,18 +68,18 @@ public class ContactController {
 		// お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
 		if (mailP.matcher(formData.getContent()).find()) {
 			FieldError fieldError = new FieldError("formData", "content", "メールアドレスを含めることはできません");
-			errResult.addError(fieldError);
+			bindingResult.addError(fieldError);
 
 		} else if (urlP.matcher(formData.getContent()).find()) {
 			FieldError fieldError = new FieldError("formData", "content", "リンクを含めることはできません");
-			errResult.addError(fieldError);
+			bindingResult.addError(fieldError);
 		} else if (elseP.matcher(formData.getContent()).find()) {
 			FieldError fieldError = new FieldError("formData", "content", "文章を変更してください");
-			errResult.addError(fieldError);
+			bindingResult.addError(fieldError);
 		}
 
 		// エラーがあれば戻る
-		if (errResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			mav.addObject("formData", formData);
 			mav.setViewName("contents/contact");
 			return mav;

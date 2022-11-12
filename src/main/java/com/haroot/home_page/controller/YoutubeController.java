@@ -18,6 +18,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haroot.home_page.model.YoutubeProperties;
 
+/**
+ * youtubeコントローラー
+ * @author sekiharuhito
+ *
+ */
 @Controller
 @EnableConfigurationProperties({ YoutubeProperties.class })
 public class YoutubeController {
@@ -26,6 +31,11 @@ public class YoutubeController {
     @Autowired
     YoutubeProperties youtubeProperties;
 
+    /**
+     * Youtube一覧表示
+     * @param mav MAV
+     * @return
+     */
     @GetMapping("/youtube")
     public ModelAndView youtube(ModelAndView mav) {
         // youtubeAPIから動画一覧を取得

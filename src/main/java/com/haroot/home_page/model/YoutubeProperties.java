@@ -2,6 +2,11 @@ package com.haroot.home_page.model;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * youtubeプロパティ
+ * @author sekiharuhito
+ *
+ */
 @ConfigurationProperties(prefix = "youtube")
 public class YoutubeProperties {
 	private String key;

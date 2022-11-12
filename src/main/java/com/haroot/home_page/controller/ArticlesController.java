@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class ArticlesController {
     QiitaProperties qiitaProperties;
     @Autowired
     JdbcTemplate jdbcT;
-
+    
     /**
      * 記事一覧表示
      * @param mav MAV
