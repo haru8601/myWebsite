@@ -9,7 +9,7 @@ window.onload = function() {
 	}
 }
 
-function updateCount() {
+const updateCount = () => {
 	const articleId = getArticleId();
 	//セッション取得
 	let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
@@ -56,7 +56,7 @@ function updateCount() {
 	return;
 }
 
-function getArticleId() {
+const getArticleId = () => {
 	const path = location.pathname;
 	const articleId = path.replace(/^.*?([0-9]+)$/, "$1");
 	return articleId;

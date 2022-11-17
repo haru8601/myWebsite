@@ -1,4 +1,4 @@
-function copy() {
+const copy = () => {
 	if (!navigator.clipboard) {
 		//コピー失敗
 		return;

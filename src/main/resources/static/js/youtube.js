@@ -5,7 +5,7 @@ newTag.src = "https://www.youtube.com/iframe_api";
 document.body.appendChild(newTag);
 
 //youtubeの読み込み
-function onYouTubeIframeAPIReady() {
+const onYouTubeIframeAPIReady = () => {
 	new YT.Player(
 		'yt-iframe',
 		{
