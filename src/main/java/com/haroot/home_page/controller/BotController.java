@@ -2,6 +2,7 @@ package com.haroot.home_page.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
+@RequestMapping("/bot")
 public class BotController {
 
     /**
@@ -19,7 +21,7 @@ public class BotController {
      * @param mav MAVå
      * @return
      */
-    @GetMapping("/bot")
+    @GetMapping
     public ModelAndView bot(ModelAndView mav) {
         mav.setViewName("contents/bot");
         return mav;

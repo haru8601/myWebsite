@@ -11,6 +11,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @Controller
+@RequestMapping("/youtube")
 @RequiredArgsConstructor
 @EnableConfigurationProperties({ YoutubeProperties.class })
 public class YoutubeController {
@@ -38,7 +40,7 @@ public class YoutubeController {
      * @param mav MAV
      * @return
      */
-    @GetMapping("/youtube")
+    @GetMapping
     public ModelAndView youtube(ModelAndView mav) {
         // youtubeAPIから動画一覧を取得
         List<Map<String, Object>> youtubeList = new ArrayList<>();

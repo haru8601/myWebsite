@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @Controller
+@RequestMapping("/ios-app")
 @RequiredArgsConstructor
 public class IOSAppController {
 
@@ -29,7 +31,7 @@ public class IOSAppController {
      * @param mav MAV
      * @return
      */
-    @GetMapping("/ios-app")
+    @GetMapping
     public ModelAndView iosApp(ModelAndView mav) {
         List<Map<String, Object>> iosAppList = jdbcT.queryForList("select * from iOSapp");
         for (Map<String, Object> content : iosAppList) {
@@ -53,7 +55,7 @@ public class IOSAppController {
      * @param appName アプリ名
      * @return
      */
-    @GetMapping("/ios-app/{appName}")
+    @GetMapping("{appName}")
     public ModelAndView iosPage(
             ModelAndView mav,
             @PathVariable("appName") String appName) {
@@ -70,7 +72,7 @@ public class IOSAppController {
      * @param appName アプリ名
      * @return
      */
-    @GetMapping("/ios-app/{appName}/policy")
+    @GetMapping("{appName}/policy")
     public ModelAndView policy(
             ModelAndView mav,
             @PathVariable("appName") String appName) {

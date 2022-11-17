@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.logic.IpLogic;
+import com.haroot.home_page.logic.MavUtils;
 import com.haroot.home_page.model.ArticleData;
 import com.haroot.home_page.model.IpProperties;
 import com.haroot.home_page.model.QiitaProperties;
 
 import lombok.RequiredArgsConstructor;
-
-import com.haroot.home_page.logic.MavUtils;
 
 /**
  * 記事コントローラー
@@ -35,6 +35,7 @@ import com.haroot.home_page.logic.MavUtils;
  *
  */
 @Controller
+@RequestMapping("/articles")
 @RequiredArgsConstructor
 @EnableConfigurationProperties({ IpProperties.class, QiitaProperties.class })
 public class ArticlesController {
@@ -49,7 +50,7 @@ public class ArticlesController {
      * @param request リクエスト
      * @return
      */
-    @GetMapping("/articles")
+    @GetMapping
     public ModelAndView articleAll(ModelAndView mav, HttpServletRequest request) {
         String clientIp = IpLogic.getIp(request);
         mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
@@ -64,7 +65,7 @@ public class ArticlesController {
      * @param request リクエスト
      * @return
      */
-    @GetMapping("/articles/{id}")
+    @GetMapping("{id}")
     public ModelAndView article(ModelAndView mav, @PathVariable("id") String id, HttpServletRequest request) {
         mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT, request, ipProperties);
         return mav;
@@ -76,7 +77,7 @@ public class ArticlesController {
      * @param id   記事ID
      * @param type 追加か削除か
      */
-    @GetMapping("/articles/updateCount/{id}/{type}")
+    @GetMapping("updateCount/{id}/{type}")
     @ResponseBody
     public void updateCount(@PathVariable("id") String id, @PathVariable("type") String type) {
         String selectStr = "SELECT like_count FROM articles WHERE id=" + id;
@@ -105,7 +106,7 @@ public class ArticlesController {
      * @param id      記事ID
      * @return
      */
-    @GetMapping("/articles/create/{id}")
+    @GetMapping("create/{id}")
     public ModelAndView registerLink(ModelAndView mav, HttpServletRequest request, @PathVariable("id") String id) {
         // 自分のみ作成できる
         String clientIp = IpLogic.getIp(request);
@@ -151,7 +152,7 @@ public class ArticlesController {
      * @param response      レスポンス
      * @return
      */
-    @PostMapping("/articles/register/{id}")
+    @PostMapping("register/{id}")
     public ModelAndView register(ModelAndView mav,
             @ModelAttribute @Validated ArticleData articleData,
             BindingResult bindingResult,

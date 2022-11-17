@@ -1,9 +1,17 @@
 package com.haroot.home_page.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.yaml.snakeyaml.Yaml;
 
@@ -13,12 +21,6 @@ import com.haroot.home_page.model.TopicData;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * トップ画面コントローラー
  * 
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @Controller
+@RequestMapping("/")
 @Slf4j
 @RequiredArgsConstructor
 public class ToTopController {
@@ -39,7 +42,7 @@ public class ToTopController {
      * @param request リクエスト
      * @return
      */
-    @GetMapping("/")
+    @GetMapping
     public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
         String referer = request.getHeader("REFERER");
         boolean displaySlot = true;
@@ -74,7 +77,7 @@ public class ToTopController {
     /**
      * ポリシー画面表示
      */
-    @GetMapping("/policy")
+    @GetMapping("policy")
     public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
 
         mav.setViewName("policy");

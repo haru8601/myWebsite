@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
@@ -28,6 +29,7 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @Controller
+@RequestMapping("/contact")
 @RequiredArgsConstructor
 public class ContactController {
 
@@ -40,7 +42,7 @@ public class ContactController {
      * @param mav MAV
      * @return
      */
-    @GetMapping("/contact")
+    @GetMapping
     public ModelAndView contactLink(ModelAndView mav) {
         FormData formData = new FormData();
         mav.addObject("formData", formData);
@@ -58,7 +60,7 @@ public class ContactController {
      * @param mav           MAV
      * @return
      */
-    @PostMapping("/sentForm")
+    @PostMapping("send")
     public ModelAndView postContact(
             @ModelAttribute @Validated FormData formData,
             BindingResult bindingResult,
