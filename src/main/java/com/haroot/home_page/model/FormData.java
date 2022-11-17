@@ -8,22 +8,23 @@ import lombok.Data;
 
 /**
  * 問い合わせデータ
+ * 
  * @author sekiharuhito
  *
  */
 @Data
 public class FormData {
 
-	@NotBlank
-	private String name;
+    @NotBlank
+    private String name;
 
-	@NotBlank
-	@Email
-	private String email;
+    @NotBlank
+    @Email
+    private String email;
 
-	@NotBlank
-	private String content;
+    @NotBlank
+    private String content;
 
-	@AssertTrue(message = "プライバシーポリシーに同意する場合はチェックしてください")
-	private boolean checkbox;
+    @AssertTrue(message = "プライバシーポリシーに同意する場合はチェックしてください")
+    private boolean checkbox;
 }

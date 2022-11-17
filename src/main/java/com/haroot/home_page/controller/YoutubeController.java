@@ -1,6 +1,6 @@
 package com.haroot.home_page.controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * youtubeコントローラー
+ * 
  * @author sekiharuhito
  *
  */
@@ -33,6 +34,7 @@ public class YoutubeController {
 
     /**
      * Youtube一覧表示
+     * 
      * @param mav MAV
      * @return
      */

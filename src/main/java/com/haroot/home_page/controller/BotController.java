@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * botコントローラー
+ * 
  * @author sekiharuhito
  *
  */
@@ -14,12 +15,13 @@ public class BotController {
 
     /**
      * bot概要画面
+     * 
      * @param mav MAVå
      * @return
      */
-	@GetMapping("/bot")
-	public ModelAndView bot(ModelAndView mav) {
-		mav.setViewName("contents/bot");
-		return mav;
-	}
+    @GetMapping("/bot")
+    public ModelAndView bot(ModelAndView mav) {
+        mav.setViewName("contents/bot");
+        return mav;
+    }
 }

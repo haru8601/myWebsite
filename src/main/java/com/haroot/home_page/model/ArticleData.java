@@ -6,14 +6,15 @@ import lombok.Data;
 
 /**
  * 記事データ
+ * 
  * @author sekiharuhito
  *
  */
 @Data
 public class ArticleData {
-	@NotBlank
-	private String title;
-	@NotBlank
-	private String content;
-	private boolean wip;
+    @NotBlank
+    private String title;
+    @NotBlank
+    private String content;
+    private boolean wip;
 }

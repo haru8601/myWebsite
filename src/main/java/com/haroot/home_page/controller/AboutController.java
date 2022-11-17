@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * aboutコントローラー
+ * 
  * @author sekiharuhito
  *
  */
@@ -14,13 +15,14 @@ public class AboutController {
 
     /**
      * about画面表示
+     * 
      * @param mav MAV
      * @return
      */
-	@GetMapping("/about")
-	public ModelAndView about(ModelAndView mav) {
+    @GetMapping("/about")
+    public ModelAndView about(ModelAndView mav) {
 
-		mav.setViewName("contents/about");
-		return mav;
-	}
+        mav.setViewName("contents/about");
+        return mav;
+    }
 }

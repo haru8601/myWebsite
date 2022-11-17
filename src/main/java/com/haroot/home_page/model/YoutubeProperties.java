@@ -6,12 +6,13 @@ import lombok.Data;
 
 /**
  * youtubeプロパティ
+ * 
  * @author sekiharuhito
  *
  */
 @ConfigurationProperties(prefix = "youtube")
 @Data
 public class YoutubeProperties {
-	private String key;
-	private String playlistId;
+    private String key;
+    private String playlistId;
 }

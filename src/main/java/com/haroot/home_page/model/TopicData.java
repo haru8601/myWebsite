@@ -4,14 +4,15 @@ import lombok.Data;
 
 /**
  * Topicデータ
+ * 
  * @author sekiharuhito
  *
  */
 @Data
 public class TopicData {
-	private int id;
-	private String title;
-	private String url;
-	private String summary;
-	private String img;
+    private int id;
+    private String title;
+    private String url;
+    private String summary;
+    private String img;
 }

@@ -1,6 +1,6 @@
 package com.haroot.home_page.controller;
 
-import java.util.List;  
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +30,7 @@ import com.haroot.home_page.logic.MavUtils;
 
 /**
  * 記事コントローラー
+ * 
  * @author sekiharuhito
  *
  */
@@ -40,10 +41,11 @@ public class ArticlesController {
     final IpProperties ipProperties;
     final QiitaProperties qiitaProperties;
     final JdbcTemplate jdbcT;
-    
+
     /**
      * 記事一覧表示
-     * @param mav MAV
+     * 
+     * @param mav     MAV
      * @param request リクエスト
      * @return
      */
@@ -56,8 +58,9 @@ public class ArticlesController {
 
     /**
      * 個別記事表示
-     * @param mav MAV
-     * @param id 記事ID
+     * 
+     * @param mav     MAV
+     * @param id      記事ID
      * @param request リクエスト
      * @return
      */
@@ -69,7 +72,8 @@ public class ArticlesController {
 
     /**
      * 記事のいいね数更新
-     * @param id 記事ID
+     * 
+     * @param id   記事ID
      * @param type 追加か削除か
      */
     @GetMapping("/articles/updateCount/{id}/{type}")
@@ -95,9 +99,10 @@ public class ArticlesController {
 
     /**
      * 記事登録API
-     * @param mav MAV
+     * 
+     * @param mav     MAV
      * @param request リクエスト
-     * @param id 記事ID
+     * @param id      記事ID
      * @return
      */
     @GetMapping("/articles/create/{id}")
@@ -137,19 +142,20 @@ public class ArticlesController {
 
     /**
      * 記事登録
-     * @param mav MAV
-     * @param articleData 記事フォーム
+     * 
+     * @param mav           MAV
+     * @param articleData   記事フォーム
      * @param bindingResult エラー結果
-     * @param id 記事ID
-     * @param request リクエスト
-     * @param response レスポンス
+     * @param id            記事ID
+     * @param request       リクエスト
+     * @param response      レスポンス
      * @return
      */
     @PostMapping("/articles/register/{id}")
     public ModelAndView register(ModelAndView mav,
             @ModelAttribute @Validated ArticleData articleData,
-            BindingResult bindingResult, 
-            @PathVariable("id") String id, 
+            BindingResult bindingResult,
+            @PathVariable("id") String id,
             HttpServletRequest request,
             HttpServletResponse response) {
         // 外部からの侵入禁止

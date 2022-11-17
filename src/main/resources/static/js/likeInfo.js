@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function() {
 	const articleId = getArticleId();
 	//セッション取得
 	let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
@@ -56,7 +56,7 @@ function updateCount() {
 	return;
 }
 
-function getArticleId(){
+function getArticleId() {
 	const path = location.pathname;
 	const articleId = path.replace(/^.*?([0-9]+)$/, "$1");
 	return articleId;

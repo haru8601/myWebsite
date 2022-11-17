@@ -18,21 +18,23 @@ import com.haroot.home_page.model.QiitaProperties;
 
 /**
  * MAVクラス
+ * 
  * @author sekiharuhito
  *
  */
 public class MavUtils {
     @Value("${qiita.user}")
     public String qiitaUserName;
-    
+
     @Value("${ip-info.ipAddress}")
     String hostIpAddress;
-    
+
     /**
      * 記事取得(1件)
-     * @param mav MAV
-     * @param id 記事ID
-     * @param qiitaProperties 
+     * 
+     * @param mav             MAV
+     * @param id              記事ID
+     * @param qiitaProperties
      * @param jdbcT
      * @param request
      * @param ipProperties
@@ -87,9 +89,10 @@ public class MavUtils {
 
     /**
      * 記事取得(複数)
-     * @param mav MAV
-     * @param jdbcT jdbcTemplate
-     * @param clientIp クライアントIPアドレス
+     * 
+     * @param mav          MAV
+     * @param jdbcT        jdbcTemplate
+     * @param clientIp     クライアントIPアドレス
      * @param ipProperties IPプロパティ
      * @return
      */

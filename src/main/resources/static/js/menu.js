@@ -123,7 +123,7 @@ function disableSoundBtn() {
 	}
 }
 // ボタンの移動
-function moveSoundBtn(){
+function moveSoundBtn() {
 	const randomIntX = -1 * Math.round(Math.random() * 100);
 	const randomIntY = Math.round(Math.random() * 100);
 	if (soundBtn) {

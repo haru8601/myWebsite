@@ -6,11 +6,12 @@ import lombok.Data;
 
 /**
  * IPプロパティ
+ * 
  * @author sekiharuhito
  *
  */
 @ConfigurationProperties(prefix = "ip-info")
 @Data
 public class IpProperties {
-	private String ipAddress;
+    private String ipAddress;
 }

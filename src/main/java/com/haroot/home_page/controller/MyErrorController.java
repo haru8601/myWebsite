@@ -1,6 +1,6 @@
 package com.haroot.home_page.controller;
 
-import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * エラーコントローラー
+ * 
  * @author sekiharuhito
  *
  */
@@ -18,16 +19,17 @@ public class MyErrorController implements ErrorController {
 
     /**
      * エラー画面表示
+     * 
      * @param req リクエスト
      * @param mav MAV
      * @return
      */
-	@GetMapping("/error")
-	public ModelAndView error(HttpServletRequest req, ModelAndView mav) {
-		mav.setStatus(HttpStatus.NOT_FOUND);
+    @GetMapping("/error")
+    public ModelAndView error(HttpServletRequest req, ModelAndView mav) {
+        mav.setStatus(HttpStatus.NOT_FOUND);
 
-		mav.setViewName("contents/error");
-		return mav;
-	}
+        mav.setViewName("contents/error");
+        return mav;
+    }
 
 }

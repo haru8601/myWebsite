@@ -17,10 +17,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * トップ画面コントローラー
+ * 
  * @author sekiharuhito
  *
  */
@@ -30,10 +31,11 @@ import javax.servlet.http.HttpServletRequest;
 public class ToTopController {
 
     final JdbcTemplate jdbcT;
-    
+
     /**
      * トップ画面表示
-     * @param mav MAV
+     * 
+     * @param mav     MAV
      * @param request リクエスト
      * @return
      */
