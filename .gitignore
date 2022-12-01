@@ -20,7 +20,7 @@ META-INF
 audio
 Fonts
 images
-application.yml
+application*.yml
 test
 .metadata
 Servers

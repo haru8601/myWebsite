@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.haroot.home_page.model.YoutubeProperties;
+import com.haroot.home_page.properties.YoutubeProperties;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/youtube")
 @RequiredArgsConstructor
-@EnableConfigurationProperties({ YoutubeProperties.class })
 public class YoutubeController {
     final JdbcTemplate jdbcT;
     final YoutubeProperties youtubeProperties;

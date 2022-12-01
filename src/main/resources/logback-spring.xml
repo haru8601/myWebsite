@@ -6,20 +6,12 @@
 	<include
 		resource="org/springframework/boot/logging/logback/console-appender.xml"></include>
 	<timestamp key="LOG_DATE" datePattern="yyyyMMdd"></timestamp>
-	<property name="LOG_FILE"
-		value="/opt/tomcat-9/logs/application.log"></property>
+	<springProperty name="LOG_FILE" source="log.file" />
 	<property name="LOG_PATTERN"
 		value="%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-5le %lo{36} - %msg %n"></property>
 
 	<!-- 環境ごとに出力設定 -->
 	<springProfile name="local">
-		<!-- 下での参照先に使用 -->
-		<appender name="CONSOLE"
-			class="ch.qos.logback.core.ConsoleAppender">
-			<encoder>
-				<pattern>${LOG_PATTERN}</pattern>
-			</encoder>
-		</appender>
 		<!-- levelの設定とappenderの参照先指定 -->
 		<root level="INFO">
 			<appender-ref ref="CONSOLE"></appender-ref>

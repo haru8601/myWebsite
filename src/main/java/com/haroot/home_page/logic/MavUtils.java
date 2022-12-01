@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haroot.home_page.model.IpProperties;
-import com.haroot.home_page.model.QiitaProperties;
+import com.haroot.home_page.properties.QiitaProperties;
 
 /**
  * MAVクラス

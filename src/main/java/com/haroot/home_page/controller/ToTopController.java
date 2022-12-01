@@ -17,6 +17,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.model.TopicData;
+import com.haroot.home_page.properties.SiteProperty;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,8 @@ public class ToTopController {
 
     final JdbcTemplate jdbcT;
 
+    final SiteProperty siteProperty;
+
     /**
      * トップ画面表示
      * 
@@ -47,7 +50,7 @@ public class ToTopController {
         String referer = request.getHeader("REFERER");
         boolean displaySlot = true;
         // 遷移元が自分のサイト内なら(トップページ以外)
-        if (referer != null && referer.matches("^https?://haroot.net/.+$")) {
+        if (referer != null && referer.matches("^https?://" + siteProperty.getUrl() + "/.+$")) {
             // slot非表示
             displaySlot = false;
         }

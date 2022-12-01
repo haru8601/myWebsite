@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,7 +23,7 @@ import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.logic.MavUtils;
 import com.haroot.home_page.model.ArticleData;
 import com.haroot.home_page.model.IpProperties;
-import com.haroot.home_page.model.QiitaProperties;
+import com.haroot.home_page.properties.QiitaProperties;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,7 +36,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/articles")
 @RequiredArgsConstructor
-@EnableConfigurationProperties({ IpProperties.class, QiitaProperties.class })
 public class ArticlesController {
     final IpProperties ipProperties;
     final QiitaProperties qiitaProperties;
