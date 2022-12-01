@@ -133,8 +133,11 @@
 
 .editor-preview-side code,
 .marked code {
-	padding: 20px 10px;
 	background-color: rgb(229, 231, 231);
+}
+
+.editor-preview-side :not(pre) > code, .marked :not(pre) > code{
+	padding: 5px;
 }
 
 /*部分的にコードブロックの部分を手動で装飾*/
@@ -146,6 +149,7 @@
 /*preは標準だと折り返しされない*/
 pre {
 	white-space: pre-wrap;
+	padding: 5px;
 }
 
 code {
