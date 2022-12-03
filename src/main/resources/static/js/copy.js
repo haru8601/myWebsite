@@ -5,7 +5,7 @@ const copy = () => {
 	}
 
 	//コピー成功
-	navigator.clipboard.writeText(location.href).then(() => {
+	navigator.clipboard.writeText(location.href.replace(/#.+/,"")).then(() => {
 		const pTag = document.getElementById("copyText");
 		if (pTag != null) {
 			pTag.style.display = "block";

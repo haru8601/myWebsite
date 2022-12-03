@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<html la="ja">
+<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<th:block th:include="share/head"></th:block>
 	<title>YouTube - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/youtube.css}">
 	<meta name="description" content="harootがyoutubeに投稿した動画一覧です。">
 </head>
 
 <body>
-	<header th:include="share/header"></header>
-	<div class="except-header">
-		<div class="container">
-			<main>
-				<h2 class="title">YouTube</h2>
-				<!-- 内容物リスト -->
-				<a th:href="*{url}" class="item-link down-btn" target="_blank" th:each="content: ${youtubeList}"
-					th:object="${content}">
-					<div class="item">
-						<div class="item-imgDiv">
-							<img class="item-img" th:src="*{img}" alt=""
-								onerror="this.onerror=null; this.src='/images/noImage.png'">
-						</div>
-						<div class="item-text">
-							<h2 th:text="*{title}"></h2>
-						</div>
-					</div>
-				</a>
-				<div id="yt-wrapper">
-					<div id="yt-iframe"></div>
+	<main layout:fragment="content">
+		<h2 class="title">YouTube</h2>
+		<!-- 内容物リスト -->
+		<a th:href="*{url}" class="item-link down-btn" target="_blank" th:each="content: ${youtubeList}"
+			th:object="${content}">
+			<div class="item">
+				<div class="item-imgDiv">
+					<img class="item-img" th:src="*{img}" alt=""
+						onerror="this.onerror=null; this.src='/images/noImage.png'">
 				</div>
-			</main>
-			<th:block th:include="share/menuBar"></th:block>
+				<div class="item-text">
+					<h2 th:text="*{title}"></h2>
+				</div>
+			</div>
+		</a>
+		<!-- youtube動画埋め込み場所 -->
+		<div id="yt-iframe">
+			<iframe width="480" height="270" src="https://www.youtube.com/embed/R6V18nhDUPk"
+				title="YouTube video player" frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen></iframe>
 		</div>
-		<div th:include="share/ads"></div>
-		<footer th:include="share/footer"> </footer>
-	</div>
-	<script th:src="@{/js/youtube.js}"></script>
-	<div th:replace="share/lastProcess"></div>
+	</main>
 </body>
 
 </html>

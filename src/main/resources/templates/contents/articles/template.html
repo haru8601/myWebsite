@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html la="ja">
+<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-	<th:block th:include="share/head"></th:block>
 	<title th:text="${title}+' - haroot.net'">技術記事 - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
 	<meta name="description" th:content="${title}+'についての記事です。'">
@@ -27,76 +26,70 @@
 </head>
 
 <body>
-	<header th:include="share/header"></header>
-	<div class="except-header">
-		<div class="container" id="articleContainer">
-			<div id="links">
-				<div>
-					<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="updateCount()"><i
-							class="fa-solid fa-thumbs-up"></i></button>
-					<p id="likeCount" th:text="${like_count}">0</p>
-				</div>
-				<div>
-					<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
-						class="twitter-share-button" data-show-count="false">
-						<i class="fa-brands fa-twitter">
-						</i>
-					</a>
-				</div>
-				<div>
-					<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
-					<p id="copyText">copied!</p>
-				</div>
+	<main class="articles" id="template" layout:fragment="content">
+		<!-- リンクサイドバー -->
+		<div id="links">
+			<div>
+				<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="updateCount()"><i
+						class="fa-solid fa-thumbs-up"></i></button>
+				<p id="likeCount" th:text="${like_count}">0</p>
 			</div>
-			<main class="articles template">
-				<h2 class="title" th:text="${title}"></h2>
-				<th:block th:if="${wip==1}">
-					<p>※非公開</p>
-				</th:block>
-				<pre>
+			<div>
+				<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
+					class="twitter-share-button" data-show-count="false">
+					<i class="fa-brands fa-twitter">
+					</i>
+				</a>
+			</div>
+			<div>
+				<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
+				<p id="copyText">copied!</p>
+			</div>
+		</div>
+		<div id="main">
+			<h2 class="title" th:text="${title}"></h2>
+			<th:block th:if="${wip==1}">
+				<p>※非公開</p>
+			</th:block>
+			<pre>
 					<div class="marked" id="content"></div>
 				</pre>
-				<script th:inline="javascript">
-					//コードブロックをハイライト
-					hljs.initHighlightingOnLoad();
-					//thymleafのインライン処理(デフォルトを""にした)
-					let text = /*[[${content}]]*/"";
-					//部分的なコードはmarkedが対応してないから自分でspanにして色付け
-					text = text.replaceAll(/`(?!`)(.*?)`/gm, "<span class='part-code'>$1</span>");
-					//リンクは別タブにしたいのでhtml化
-					//ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
-					text = text.replaceAll(/([^!])\[(.*?)\]\((.*?)\)/gm, `$1<a href="$3" target="_blank">$2</a>`);
-					//テキストをマークダウン化して貼り付け
-					document.getElementById("content").innerHTML = marked.parse(text);
-				</script>
-				<a class="btn1" th:href="@{|/articles|}">記事一覧へ戻る</a>
-				<th:block th:if="${errStr!=''}">
-					<p class="errStr" th:text="${errStr}"></p>
-				</th:block>
-				<a class="btn1 right" th:href="@{|/articles/create/${id}|}">編集</a>
-				<div class="clear"></div>
-			</main>
-			<div id="tableOfContents">
-				<div id="contents-sticky"></div>
-			</div>
-			<th:block th:include="share/menuBar"></th:block>
+			<script th:inline="javascript">
+				//コードブロックをハイライト
+				hljs.initHighlightingOnLoad();
+				//thymleafのインライン処理(デフォルトを""にした)
+				let text = /*[[${content}]]*/"";
+				//部分的なコードはmarkedが対応してないから自分でspanにして色付け
+				text = text.replaceAll(/`(?!`)(.*?)`/gm, "<span class='part-code'>$1</span>");
+				//リンクは別タブにしたいのでhtml化
+				//ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
+				text = text.replaceAll(/([^!])\[(.*?)\]\((.*?)\)/gm, `$1<a href="$3" target="_blank">$2</a>`);
+				//テキストをマークダウン化して貼り付け
+				document.getElementById("content").innerHTML = marked.parse(text);
+			</script>
+			<a class="btn1" th:href="@{|/articles|}">記事一覧へ戻る</a>
+			<th:block th:if="${errStr!=''}">
+				<p class="errStr" th:text="${errStr}"></p>
+			</th:block>
+			<a class="btn1 right" th:href="@{|/articles/create/${id}|}">編集</a>
+			<div class="clear"></div>
 		</div>
-		<div th:include="share/ads"></div>
-		<footer th:include="share/footer"> </footer>
-	</div>
-	<script th:src="@{/js/tableOfContents.js}"></script>
-	<script>
-		//ツイート内容カスタマイズ
-		const tweetBtn = document.getElementsByClassName("twitter-share-button")[0];
-		const title = document.getElementsByClassName("title")[0].textContent;
-		const articleUrl = location.href;
-		const writer = "haroot_net";
-		const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}&via=${writer}`;
-		tweetBtn.setAttribute("href", tweetUrl);
-	</script>
-	<script th:src="@{/js/likeInfo.js}"></script>
-	<script th:src="@{/js/copy.js}"></script>
-	<div th:replace="share/lastProcess"></div>
+		<div id="tableOfContents">
+			<div id="contents-sticky"></div>
+		</div>
+		<script th:src="@{/js/tableOfContents.js}"></script>
+		<script>
+			//ツイート内容カスタマイズ
+			const tweetBtn = document.getElementsByClassName("twitter-share-button")[0];
+			const title = document.getElementsByClassName("title")[0].textContent;
+			const articleUrl = location.href;
+			const writer = "haroot_net";
+			const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}&via=${writer}`;
+			tweetBtn.setAttribute("href", tweetUrl);
+		</script>
+		<script th:src="@{/js/likeInfo.js}"></script>
+		<script th:src="@{/js/copy.js}"></script>
+	</main>
 </body>
 
 </html>

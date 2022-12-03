@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<th:block th:include="share/head"></th:block>
 	<title>はるーとのホームページ - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/top.css}">
 	<meta name="description" content="はるーとのホームページです。自作iosアプリの概要ページ、swiftやvscodeについての技術記事、自分のyoutubeの紹介ページ等で構成されています。">
@@ -21,42 +20,34 @@
 
 <body>
 	<!--launch画面-->
-	<div id="launch">
-		<!-- キャンバスサイズは実際の表示サイズとは別 -->
-		<canvas id="canvas1" width="700" height="800">
-			<script th:src="@{/js/three.js}"></script>
-			<script th:src="@{/js/canvas.js}"></script>
-		</canvas>
-	</div>
-	<th:block th:if="${displaySlot == false}">
-		<script>
-			// 他ページから戻った場合はlaunch非表示
-			const launchDiv = document.getElementById("launch");
-			launchDiv.style.display = "none";
-		</script>
-	</th:block>
-
-	<header th:include="share/header"></header>
-
-	<div class="except-header">
-		<div class="container">
-			<main id="top">
-				<div class="topic-all">
-					<a class="topic-link down-btn" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
-						<div class="topic">
-							<div class="topic-text">
-								<h2 th:text="*{title}"></h2>
-							</div>
-						</div>
-					</a>
-				</div>
-				<img class="top-img" src="/images/top.png">
-			</main>
-			<th:block th:include="share/menuBar"></th:block>
+	<div layout:fragment="launch">
+		<div id="launch">
+			<!-- キャンバスサイズは実際の表示サイズとは別 -->
+			<canvas id="canvas1" width="700" height="800">
+				<script th:src="@{/js/three.js}"></script>
+				<script th:src="@{/js/canvas.js}"></script>
+			</canvas>
 		</div>
-		<footer th:include="share/footer"></footer>
+		<th:block th:if="${displaySlot == false}">
+			<script>
+				// 他ページから戻った場合はlaunch非表示
+				const launchDiv = document.getElementById("launch");
+				launchDiv.style.display = "none";
+			</script>
+		</th:block>
 	</div>
-	<div th:replace="share/lastProcess"></div>
+	<main id="top" layout:fragment="content">
+		<div class="topic-all">
+			<a class="topic-link down-btn" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
+				<div class="topic">
+					<div class="topic-text">
+						<h2 th:text="*{title}"></h2>
+					</div>
+				</div>
+			</a>
+		</div>
+		<img class="top-img" src="/images/top.png">
+	</main>
 </body>
 
 </html>

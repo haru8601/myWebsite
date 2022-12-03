@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/stylesheet.css}">
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" media="print" onload="this.media='all'">
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<!--FontAwesome用-->
+	<!--<script src="https://kit.fontawesome.com/9d3de62271.js" crossorigin="anonymous"></script>-->
+	<link rel="stylesheet" th:href="@{/fontAwesome/css/all_haroot.css}" media="print" onload="this.media='all'">
+</head>
+
+<body>
+	<div>test</div>
+	<div layout:fragment="launch"></div>
+
+	<header th:include="share/header"></header>
+
+	<div class="except-header">
+		<div class="container">
+			<main layout:fragment="content"></main>
+			<th:block th:include="share/menuBar"></th:block>
+		</div>
+		<div th:include="share/ads"></div>
+		<footer th:include="share/footer"></footer>
+	</div>
+	<div th:replace="share/lastProcess"></div>
+</body>
+
+</html>
+</body>
+
+</html>

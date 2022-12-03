@@ -1,9 +1,9 @@
-#articleContainer{
+#template{
 	display:flex;
 	justify-content: space-between;
 }
 
-#articleContainer > *{
+#template > *{
 	/* flex内の要素を正常にover-wrapさせるための処理 */
 	min-width: 0;
 }
@@ -64,13 +64,13 @@
 
 /*titleについてるpaddingを除去*/
 
-.template {
+#main {
 	flex-basis: 70%;
 	flex-grow: 10;
 	padding-right: 1vw;
 }
 
-.template .title {
+#main .title {
 	padding-left: 0;
 }
 
@@ -203,16 +203,13 @@ code {
 }
 @media(max-width:670px) {
 
-	#articleContainer{
+	#main{
 		display:block;
-	}
-
-	.template {
 		width: 100%;
 		margin: 0;
 	}
 
-	.template * {
+	#main * {
 		text-align: start;
 	}
 

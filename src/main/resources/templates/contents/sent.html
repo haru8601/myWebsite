@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<th:block th:include="share/head"></th:block>
 	<title>送信完了 - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/sent.css}">
 	<meta name="description" content="harootのお問い合わせ完了ページです。">
 </head>
 
 <body>
-	<header th:include="share/header"></header>
-	<div class="except-header">
-		<div class="container">
-			<main>
-				<!-- コンテンツ2(ヘッダーのリンク先) -->
-				<div class="contact-form">
-					<h2>お問い合わせありがとうございました！</h2>
-					<div class="item">
-						<a href="/">トップへ戻る</a>
-					</div>
-				</div>
-			</main>
-			<th:block th:include="share/menuBar"></th:block>
+	<main layout:fragment="content">
+		<!-- コンテンツ2(ヘッダーのリンク先) -->
+		<div class="contact-form">
+			<h2>お問い合わせありがとうございました！</h2>
+			<div class="item">
+				<a href="/">トップへ戻る</a>
+			</div>
 		</div>
-		<div th:include="share/ads"></div>
-		<footer th:include="share/footer"></footer>
-	</div>
-	<div th:replace="share/lastProcess"></div>
+	</main>
 </body>
 
 </html>
