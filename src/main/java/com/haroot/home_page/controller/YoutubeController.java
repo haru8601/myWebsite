@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.haroot.home_page.properties.YoutubeProperties;
+import com.haroot.home_page.properties.YoutubeProperty;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class YoutubeController {
     final JdbcTemplate jdbcT;
-    final YoutubeProperties youtubeProperties;
+    final YoutubeProperty youtubeProperty;
 
     /**
      * Youtube一覧表示
@@ -45,8 +45,8 @@ public class YoutubeController {
         int maxResults = 50;
         try {
             URL url = new URL("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet" + "&playlistId="
-                    + youtubeProperties.getPlaylistId() + "&maxResults=" + String.valueOf(maxResults) + "&key="
-                    + youtubeProperties.getKey());
+                    + youtubeProperty.getPlaylistId() + "&maxResults=" + String.valueOf(maxResults) + "&key="
+                    + youtubeProperty.getKey());
             ObjectMapper mapper = new ObjectMapper();
             JsonNode json = mapper.readTree(url);
             int itemLen = json.get("items").size();

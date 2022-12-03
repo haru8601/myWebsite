@@ -3,8 +3,7 @@ package com.haroot.home_page.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -19,11 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
-import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.logic.MavUtils;
 import com.haroot.home_page.model.ArticleData;
-import com.haroot.home_page.model.IpProperties;
-import com.haroot.home_page.properties.QiitaProperties;
+import com.haroot.home_page.properties.QiitaProperty;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,35 +34,32 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/articles")
 @RequiredArgsConstructor
 public class ArticlesController {
-    final IpProperties ipProperties;
-    final QiitaProperties qiitaProperties;
+    final QiitaProperty qiitaProperty;
     final JdbcTemplate jdbcT;
+    final HttpSession session;
 
     /**
      * 記事一覧表示
      * 
-     * @param mav     MAV
-     * @param request リクエスト
+     * @param mav MAV
      * @return
      */
     @GetMapping
-    public ModelAndView articleAll(ModelAndView mav, HttpServletRequest request) {
-        String clientIp = IpLogic.getIp(request);
-        mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
+    public ModelAndView articleAll(ModelAndView mav) {
+        mav = MavUtils.getArticleListMav(mav, jdbcT, session);
         return mav;
     }
 
     /**
      * 個別記事表示
      * 
-     * @param mav     MAV
-     * @param id      記事ID
-     * @param request リクエスト
+     * @param mav MAV
+     * @param id  記事ID
      * @return
      */
     @GetMapping("{id}")
-    public ModelAndView article(ModelAndView mav, @PathVariable("id") String id, HttpServletRequest request) {
-        mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT, request, ipProperties);
+    public ModelAndView article(ModelAndView mav, @PathVariable("id") String id) {
+        mav = MavUtils.getArticleMav(mav, id, qiitaProperty, jdbcT, session);
         return mav;
     }
 
@@ -99,16 +93,14 @@ public class ArticlesController {
     /**
      * 記事登録API
      * 
-     * @param mav     MAV
-     * @param request リクエスト
-     * @param id      記事ID
+     * @param mav MAV
+     * @param id  記事ID
      * @return
      */
     @GetMapping("create/{id}")
-    public ModelAndView registerLink(ModelAndView mav, HttpServletRequest request, @PathVariable("id") String id) {
+    public ModelAndView registerLink(ModelAndView mav, @PathVariable("id") String id) {
         // 自分のみ作成できる
-        String clientIp = IpLogic.getIp(request);
-        if (clientIp.equals(ipProperties.getIpAddress())) {
+        if (session.getAttribute("isLogin") != null) {
             ArticleData articleData = new ArticleData();
             // 既存記事の編集
             if (!id.equals("-1")) {
@@ -128,10 +120,10 @@ public class ArticlesController {
             // 他は戻す
             // 既存記事のページ
             if (!id.equals("-1")) {
-                mav = MavUtils.getArticleMav(mav, id, qiitaProperties, jdbcT, request, ipProperties);
+                mav = MavUtils.getArticleMav(mav, id, qiitaProperty, jdbcT, session);
                 mav.addObject("errStr", "Sorry, you can't edit articles....");
             } else {
-                mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
+                mav = MavUtils.getArticleListMav(mav, jdbcT, session);
                 mav.addObject("errStr", "Sorry, you can't create articles....");
             }
         }
@@ -146,21 +138,16 @@ public class ArticlesController {
      * @param articleData   記事フォーム
      * @param bindingResult エラー結果
      * @param id            記事ID
-     * @param request       リクエスト
-     * @param response      レスポンス
      * @return
      */
     @PostMapping("register/{id}")
     public ModelAndView register(ModelAndView mav,
             @ModelAttribute @Validated ArticleData articleData,
             BindingResult bindingResult,
-            @PathVariable("id") String id,
-            HttpServletRequest request,
-            HttpServletResponse response) {
+            @PathVariable("id") String id) {
         // 外部からの侵入禁止
-        String clientIp = IpLogic.getIp(request);
-        if (!clientIp.equals(ipProperties.getIpAddress())) {
-            mav = MavUtils.getArticleListMav(mav, jdbcT, clientIp, ipProperties);
+        if (session.getAttribute("isLogin") == null) {
+            mav = MavUtils.getArticleListMav(mav, jdbcT, session);
             return mav;
         }
         // エラーがあれば戻る

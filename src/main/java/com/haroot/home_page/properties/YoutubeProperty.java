@@ -5,14 +5,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
 
 /**
- * Qiitaプロパティ
+ * youtubeプロパティ
  * 
  * @author sekiharuhito
  *
  */
-@ConfigurationProperties(prefix = "qiita")
+@ConfigurationProperties(prefix = "youtube")
 @Data
-public class QiitaProperties {
-    private String token;
-    private String user;
+public class YoutubeProperty {
+    private String key;
+    private String playlistId;
 }
