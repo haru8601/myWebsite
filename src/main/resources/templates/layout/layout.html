@@ -11,26 +11,22 @@
 	<!--FontAwesome用-->
 	<!--<script src="https://kit.fontawesome.com/9d3de62271.js" crossorigin="anonymous"></script>-->
 	<link rel="stylesheet" th:href="@{/fontAwesome/css/all_haroot.css}" media="print" onload="this.media='all'">
+	<title>layout page</title>
 </head>
 
 <body>
-	<div>test</div>
 	<div layout:fragment="launch"></div>
 
-	<header th:include="share/header"></header>
+	<header layout:replace="~{/layout/header::header}"></header>
 
 	<div class="except-header">
 		<div class="container">
 			<main layout:fragment="content"></main>
-			<th:block th:include="share/menuBar"></th:block>
+			<div layout:replace="~{/layout/menuBar::menuBar}"></div>
 		</div>
-		<div th:include="share/ads"></div>
-		<footer th:include="share/footer"></footer>
+		<div layout:replace="~{/layout/ads::ads}"></div>
+		<div layout:replace="~{/layout/footer::footer}"></div>
 	</div>
-	<div th:replace="share/lastProcess"></div>
+	<div layout:replace="~{/layout/lastProcess::lastProcess}"></div>
 </body>
-
-</html>
-</body>
-
 </html>
