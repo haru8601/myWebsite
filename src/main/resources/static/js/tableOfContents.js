@@ -25,7 +25,7 @@ replacedTagArr?.forEach((hTag) => {
 	const linkChild = document.createElement("a");
 
 	// 目次のリンク内に入れるhタグ
-	const textChild = (hTag.size == 1) && document.createElement("h3") || document.createElement("h4");
+	const textChild = ((hTag.size == 1) && document.createElement("h3")) || document.createElement("h4");
 	let text = "";
 	for (let i = 1; i < hTag.size; i++) {
 		// h1でなければスペースを入れる
@@ -38,6 +38,7 @@ replacedTagArr?.forEach((hTag) => {
 	// idではなぜか小文字なのでリンクもそれに合わせる
 	// なぜかカッコも消えるのでそれも合わせる
 	// スペースは-になるっぽい
-	linkChild.href = `#${hTag.text.toLowerCase().replaceAll(/\(|\)/g, "").replaceAll(/\s/g, "-")}`;
+	// ダブルクォートは除外されてる
+	linkChild.href = `#${hTag.text.toLowerCase().replaceAll(/\(|\)/g, "").replaceAll(/\s/g, "-").replaceAll(/"/g, "")}`;
 	parentElement?.appendChild(linkChild);
 })
