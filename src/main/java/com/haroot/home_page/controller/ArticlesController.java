@@ -1,5 +1,11 @@
 package com.haroot.home_page.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
 
@@ -14,33 +20,39 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.logic.MavUtils;
 import com.haroot.home_page.model.ArticleData;
+import com.haroot.home_page.properties.PathProperty;
 import com.haroot.home_page.properties.QiitaProperty;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 記事コントローラー
- * 
+ *
  * @author sekiharuhito
  *
  */
 @Controller
 @RequestMapping("/articles")
 @RequiredArgsConstructor
+@Slf4j
 public class ArticlesController {
     final QiitaProperty qiitaProperty;
     final JdbcTemplate jdbcT;
     final HttpSession session;
+    final PathProperty pathProperty;
 
     /**
      * 記事一覧表示
-     * 
+     *
      * @param mav MAV
      * @return
      */
@@ -52,7 +64,7 @@ public class ArticlesController {
 
     /**
      * 個別記事表示
-     * 
+     *
      * @param mav MAV
      * @param id  記事ID
      * @return
@@ -65,7 +77,7 @@ public class ArticlesController {
 
     /**
      * 記事のいいね数更新
-     * 
+     *
      * @param id   記事ID
      * @param type 追加か削除か
      */
@@ -92,7 +104,7 @@ public class ArticlesController {
 
     /**
      * 記事登録API
-     * 
+     *
      * @param mav MAV
      * @param id  記事ID
      * @return
@@ -133,7 +145,7 @@ public class ArticlesController {
 
     /**
      * 記事登録
-     * 
+     *
      * @param mav           MAV
      * @param articleData   記事フォーム
      * @param bindingResult エラー結果
@@ -179,5 +191,37 @@ public class ArticlesController {
         mav.setViewName("contents/articles/created");
 
         return mav;
+    }
+
+    /**
+     * 画像アップロード
+     * 
+     * @param id   記事IDr
+     * @param file ファイル
+     */
+    @PostMapping("/uploadImage/{id}")
+    @ResponseBody
+    public void uploadImage(@PathVariable("id") String id,
+            @RequestParam("imageFile") MultipartFile file) {
+        String articleImagePathStr = pathProperty.getResources() + "/static/images/articles" + "/" + id;
+        Path articleImagePath = Paths.get(articleImagePathStr);
+        // フォルダがなければ作成
+        if (Files.notExists(articleImagePath)) {
+            try {
+                Files.createDirectory(articleImagePath);
+            } catch (IOException ex) {
+                log.error(ex.getMessage(), ex);
+                return;
+            }
+        }
+
+        // 画像出力
+        try (OutputStream os = Files.newOutputStream(
+                Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
+                StandardOpenOption.CREATE)) {
+            os.write(file.getBytes());
+        } catch (IOException ex) {
+            log.error(ex.getMessage(), ex);
+        }
     }
 }

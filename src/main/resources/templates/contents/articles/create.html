@@ -17,15 +17,14 @@
 	<main class="articles" layout:fragment="content">
 		<h2 class="title">記事作成</h2>
 		<form th:object="${articleData}" th:action="@{|/articles/register/${id}|}" method="post">
-			<p>タイトル
-				<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
+			<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
 			<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>
-			</p>
+			<label for="title">タイトル</label>
 			<input th:field="*{title}" class="name" name="title">
-			<p>内容
-				<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
+
+			<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
 			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed"></p>
-			</p>
+			<label for="mde">内容</label>
 			<div class="markdown-div">
 				<textarea th:id="mde" th:value="*{content}" th:field="*{content}" name="content" rows="8"
 					cols="40"></textarea>
@@ -40,16 +39,18 @@
 					});
 				</script>
 			</div>
-			<label for="wip" class="input-label">
-				<input id="wip" name="wip" type="checkbox" th:checked="*{wip}">
-				非公開
-			</label>
+
+			<label for="wip" class="input-label">非公開</label>
+			<input id="wip" name="wip" type="checkbox" th:checked="*{wip}">
+
 			<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
 			<input class="submit" type="button" value="送信" onclick="submit()">
-			<div class="item noflex">
-				<a class="btn1" href="/articles">記事一覧へ戻る</a>
-			</div>
 		</form>
+		<input type="file" id="imageFile" onchange="uploadImage()">
+		<script th:src="@{/js/uploadImage.js}"></script>
+		<div class="item noflex">
+			<a class="btn1" href="/articles">記事一覧へ戻る</a>
+		</div>
 	</main>
 </body>
 

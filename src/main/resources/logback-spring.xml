@@ -6,7 +6,7 @@
 	<include
 		resource="org/springframework/boot/logging/logback/console-appender.xml"></include>
 	<timestamp key="LOG_DATE" datePattern="yyyyMMdd"></timestamp>
-	<springProperty name="LOG_FILE" source="log.file" />
+	<springProperty name="LOG_FILE" source="path.log" />
 	<property name="LOG_PATTERN"
 		value="%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-5le %lo{36} - %msg %n"></property>
 
