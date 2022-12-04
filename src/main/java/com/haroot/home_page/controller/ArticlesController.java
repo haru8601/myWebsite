@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.List;
 import java.util.Map;
 
@@ -157,10 +158,9 @@ public class ArticlesController {
             @ModelAttribute @Validated ArticleData articleData,
             BindingResult bindingResult,
             @PathVariable("id") String id) {
-        // 外部からの侵入禁止
+        // 外部からの侵入を防ぐためsession切れていれば強制非公開
         if (session.getAttribute("isLogin") == null) {
-            mav = MavUtils.getArticleListMav(mav, jdbcT, session);
-            return mav;
+            articleData.setWip(true);
         }
         // エラーがあれば戻る
         if (bindingResult.hasErrors()) {
@@ -203,12 +203,14 @@ public class ArticlesController {
     @ResponseBody
     public void uploadImage(@PathVariable("id") String id,
             @RequestParam("imageFile") MultipartFile file) {
-        String articleImagePathStr = pathProperty.getResources() + "/static/images/articles" + "/" + id;
+        String articleImagePathStr = pathProperty.getResources() + "/images/articles" + "/" + id;
         Path articleImagePath = Paths.get(articleImagePathStr);
         // フォルダがなければ作成
         if (Files.notExists(articleImagePath)) {
             try {
-                Files.createDirectory(articleImagePath);
+                // 実行可能にする
+                Files.createDirectory(articleImagePath,
+                        PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxrwxr-x")));
             } catch (IOException ex) {
                 log.error(ex.getMessage(), ex);
                 return;
@@ -218,8 +220,15 @@ public class ArticlesController {
         // 画像出力
         try (OutputStream os = Files.newOutputStream(
                 Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
-                StandardOpenOption.CREATE)) {
+                StandardOpenOption.CREATE_NEW)) {
             os.write(file.getBytes());
+        } catch (IOException ex) {
+            log.error(ex.getMessage(), ex);
+        }
+        // 権限変更
+        try {
+            Files.setPosixFilePermissions(Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
+                    PosixFilePermissions.fromString("rw-rw-r--"));
         } catch (IOException ex) {
             log.error(ex.getMessage(), ex);
         }
