@@ -25,18 +25,18 @@ public class AdminController {
     final HttpSession session;
 
     @GetMapping
-    public String top(@ModelAttribute UserDto userData) {
+    public String top(@ModelAttribute UserDto userDto) {
         return "/contents/admin/index";
     }
 
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute UserDto userData, BindingResult bindingResult) {
+    public String login(@Validated @ModelAttribute UserDto userDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/contents/admin/index";
         }
         // ログイン成功
-        if (userData.getUsername().equals(userProperty.getUsername())
-                && Base64.getEncoder().encodeToString(userData.getPassword().getBytes())
+        if (userDto.getUsername().equals(userProperty.getUsername())
+                && Base64.getEncoder().encodeToString(userDto.getPassword().getBytes())
                         .equals(userProperty.getPassword())) {
             session.setAttribute("isLogin", true);
             return "/contents/admin/user";

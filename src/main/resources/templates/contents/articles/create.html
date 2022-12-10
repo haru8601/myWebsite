@@ -16,7 +16,7 @@
 <body>
 	<main class="articles" layout:fragment="content">
 		<h2 class="title">記事作成</h2>
-		<form th:object="${articleData}" th:action="@{|/articles/register/${id}|}" method="post">
+		<form th:object="${articleDto}" th:action="@{|/articles/register/${id}|}" method="post">
 			<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
 			<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>
 			<label for="title">タイトル</label>

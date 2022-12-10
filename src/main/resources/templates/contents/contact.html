@@ -10,7 +10,7 @@
 <body>
 	<main layout:fragment="content">
 		<!-- コンテンツ2(ヘッダーのリンク先) -->
-		<form th:object="${formData}" action="/contact/send" method="post">
+		<form th:object="${contactForm}" action="/contact/send" method="post">
 			<div class="contact-form">
 				<h2 id="con">お問い合わせ</h2>
 				<div class="container">
@@ -34,7 +34,7 @@
 						<p th:if="${#fields.hasErrors('checkbox')}" th:errors="*{checkbox}" class="check-failed"></p>
 						<div class="check-area down-btn">
 							<input type="checkbox" th:name="checkbox" th:id="checkbox"
-								th:checked="${formData.checkbox}">
+								th:checked="*{checkbox}">
 							<label for="checkbox">はるーとの<a href="/policy">プライバシーポリシー</a>に同意します。</label>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 		<script th:inline="javascript">
 			//textareaのデータ表示
 			const textArea = document.getElementById("content");
-			textArea.innerHTML = /*[[${formData.content}]]*/"";
+			textArea.innerHTML = /*[[${contactForm.content}]]*/"";
 		</script>
 	</main>
 </body>

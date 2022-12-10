@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.haroot.home_page.exception.HarootNotFoundException;
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.logic.MavUtils;
 import com.haroot.home_page.model.ArticleDto;
@@ -112,27 +113,31 @@ public class ArticlesController {
      */
     @GetMapping("create/{id}")
     public ModelAndView registerLink(ModelAndView mav, @PathVariable("id") String id) {
+        int idNum = -1;
+        try {
+            idNum = Integer.parseInt(id);
+        } catch (NumberFormatException ex) {
+            throw new HarootNotFoundException(ex.getMessage(), ex);
+        }
         // 自分のみ作成できる
         if (session.getAttribute("isLogin") != null) {
-            ArticleDto articleData = new ArticleDto();
+            String title = "";
+            String content = "";
+            boolean wip = false;
             // 既存記事の編集
-            if (!id.equals("-1")) {
+            if (idNum != -1) {
                 Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id=" + id).get(0);
-                String title = article.get("title").toString();
-                String content = article.get("content").toString();
-                boolean wip = (int) article.get("wip") == 1;
-                articleData.setTitle(title);
-                articleData.setContent(content);
-                articleData.setWip(wip);
+                title = article.get("title").toString();
+                content = article.get("content").toString();
+                wip = article.get("wip").equals(1);
             }
-            mav.addObject(articleData);
-            mav.addObject(id);
+            mav.addObject(new ArticleDto(idNum, title, content, 0, wip));
 
             mav.setViewName("contents/articles/create");
         } else {
             // 他は戻す
             // 既存記事のページ
-            if (!id.equals("-1")) {
+            if (idNum != -1) {
                 mav = MavUtils.getArticleMav(mav, id, qiitaProperty, jdbcT, session);
                 mav.addObject("errStr", "Sorry, you can't edit articles....");
             } else {

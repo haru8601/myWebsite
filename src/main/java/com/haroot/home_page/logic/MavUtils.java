@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.haroot.home_page.exception.HarootNotFoundException;
+import com.haroot.home_page.model.ArticleDto;
 import com.haroot.home_page.properties.QiitaProperty;
 
 /**
@@ -33,8 +35,14 @@ public class MavUtils {
      */
     public static ModelAndView getArticleMav(ModelAndView mav, String id, QiitaProperty qiitaProperty,
             JdbcTemplate jdbcT, HttpSession session) {
+        int idNum = -1;
+        try {
+            idNum = Integer.parseInt(id);
+        } catch (NumberFormatException ex) {
+            throw new HarootNotFoundException(ex.getMessage(), ex);
+        }
         Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id = " + id).get(0);
-        int wip = (int) article.get("wip");
+        boolean wip = article.get("wip").equals(1);
 
         // 自分以外かつ非公開なら表示しない
         String title = "この記事は非公開です";
@@ -42,7 +50,7 @@ public class MavUtils {
         String content = "";
 
         // 表示する場合
-        if (wip == 0 || session.getAttribute("isLogin") != null) {
+        if (!wip || session.getAttribute("isLogin") != null) {
             title = article.get("title").toString();
             likeCount = Integer.parseInt(article.get("like_count").toString());
             content = article.get("content").toString();
@@ -66,13 +74,7 @@ public class MavUtils {
                 e.printStackTrace();
             }
         }
-
-        mav.addObject("id", id);
-        mav.addObject("title", title);
-        mav.addObject("content", content);
-        mav.addObject("like_count", likeCount);
-        mav.addObject("wip", wip);
-
+        mav.addObject(new ArticleDto(idNum, title, content, likeCount, wip));
         mav.setViewName("contents/articles/template");
         return mav;
     }

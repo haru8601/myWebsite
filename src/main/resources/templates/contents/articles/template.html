@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-	<title th:text="${title}+' - haroot.net'">技術記事 - haroot.net</title>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"
+	th:object="${articleDto}">
+	<title th:text="*{title}+' - haroot.net'">技術記事 - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
-	<meta name="description" th:content="${title}+'についての記事です。'">
+	<meta name="description" th:content="*{title}+'についての記事です。'">
 	<!--marked用-->
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<!--syntaxHighlight用-->
@@ -15,24 +16,24 @@
 	<!--Twitterカード用-->
 	<!--twitter以外でも使えるやつ-->
 	<meta property="og:type" content="article">
-	<meta id="share-title" property="og:title" th:content="${title}">
-	<meta id="share-detail" property="og:description" th:content="${title}+'についての記事です。'">
-	<meta id="share-url" property="og:url" th:content="@{|/articles/${id}|}">
+	<meta id="share-title" property="og:title" th:content="*{title}">
+	<meta id="share-detail" property="og:description" th:content="*{title}+'についての記事です。'">
+	<meta id="share-url" property="og:url" th:content="@{|/articles/*{id}|}">
 	<meta property="og:site_name" content="haroot.net">
-	<meta property="og:image" th:content="'https://haroot.net/images/articles/'+${id}+'/thumbnail.png'">
+	<meta property="og:image" th:content="'https://haroot.net/images/articles/'+*{id}+'/thumbnail.png'">
 	<!--twitter特有の設定-->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@haroot_net">
 </head>
 
 <body>
-	<main class="articles" id="template" layout:fragment="content">
+	<main class="articles" id="template" layout:fragment="content" th:object="${articleDto}">
 		<!-- リンクサイドバー -->
 		<div id="links">
 			<div>
-				<button type="button" th:href="@{|/articles/countUp/${id}|}" onclick="updateCount()"><i
+				<button type="button" th:href="@{|/articles/countUp/*{id}|}" onclick="updateCount()"><i
 						class="fa-solid fa-thumbs-up"></i></button>
-				<p id="likeCount" th:text="${like_count}">0</p>
+				<p id="likeCount" th:text="*{likeCount}">0</p>
 			</div>
 			<div>
 				<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
@@ -47,8 +48,10 @@
 			</div>
 		</div>
 		<div id="main">
-			<h2 class="title" th:text="${title}"></h2>
-			<th:block th:if="${wip==1}">
+			<h2 class="title" th:text="*{title}"></h2>
+			<!--<p th:text=*{create_date}></p>
+			<p th:text=*{update_date}></p>-->
+			<th:block th:if="*{wip==true}">
 				<p>※非公開</p>
 			</th:block>
 			<pre>
@@ -58,7 +61,7 @@
 				//コードブロックをハイライト
 				hljs.initHighlightingOnLoad();
 				//thymleafのインライン処理(デフォルトを""にした)
-				let text = /*[[${content}]]*/"";
+				let text = /*[[*{content}]]*/"";
 				//部分的なコードはmarkedが対応してないから自分でspanにして色付け
 				text = text.replaceAll(/`(?!`)(.*?)`/gm, "<span class='part-code'>$1</span>");
 				//リンクは別タブにしたいのでhtml化
@@ -71,7 +74,7 @@
 			<th:block th:if="${errStr!=''}">
 				<p class="errStr" th:text="${errStr}"></p>
 			</th:block>
-			<a class="btn1 right" th:href="@{|/articles/create/${id}|}">編集</a>
+			<a class="btn1 right" th:href="@{|/articles/create/*{id}|}">編集</a>
 			<div class="clear"></div>
 		</div>
 		<div id="tableOfContents">

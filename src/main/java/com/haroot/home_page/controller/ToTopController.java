@@ -61,17 +61,17 @@ public class ToTopController {
         ipWriter.start();
 
         // トピックリスト取得
-        List<TopicDto> topicDataList = new ArrayList<>();
+        List<TopicDto> topicDtoList = new ArrayList<>();
         try {
             String topicsFilePath = "static/config/topics.yml";
             InputStream is = new ClassPathResource(topicsFilePath).getInputStream();
-            topicDataList = new Yaml().load(is);
+            topicDtoList = new Yaml().load(is);
             is.close();
         } catch (IOException e) {
             log.error("topics.yml load error");
             e.printStackTrace();
         }
-        mav.addObject("topicList", topicDataList);
+        mav.addObject("topicList", topicDtoList);
 
         mav.setViewName("index");
         return mav;

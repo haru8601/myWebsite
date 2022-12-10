@@ -44,8 +44,8 @@ public class ContactController {
      */
     @GetMapping
     public ModelAndView contactLink(ModelAndView mav) {
-        FormDto formData = new FormDto();
-        mav.addObject("formData", formData);
+        FormDto formDto = new FormDto();
+        mav.addObject("contactForm", formDto);
 
         mav.setViewName("contents/contact");
         return mav;
