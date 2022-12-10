@@ -13,7 +13,7 @@ import lombok.Data;
  *
  */
 @Data
-public class FormData {
+public class FormDto {
 
     @NotBlank
     private String name;

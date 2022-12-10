@@ -28,7 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.logic.DateLogic;
 import com.haroot.home_page.logic.MavUtils;
-import com.haroot.home_page.model.ArticleData;
+import com.haroot.home_page.model.ArticleDto;
 import com.haroot.home_page.properties.PathProperty;
 import com.haroot.home_page.properties.QiitaProperty;
 
@@ -114,7 +114,7 @@ public class ArticlesController {
     public ModelAndView registerLink(ModelAndView mav, @PathVariable("id") String id) {
         // 自分のみ作成できる
         if (session.getAttribute("isLogin") != null) {
-            ArticleData articleData = new ArticleData();
+            ArticleDto articleData = new ArticleDto();
             // 既存記事の編集
             if (!id.equals("-1")) {
                 Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id=" + id).get(0);
@@ -155,7 +155,7 @@ public class ArticlesController {
      */
     @PostMapping("register/{id}")
     public ModelAndView register(ModelAndView mav,
-            @ModelAttribute @Validated ArticleData articleData,
+            @ModelAttribute @Validated ArticleDto articleData,
             BindingResult bindingResult,
             @PathVariable("id") String id) {
         // 外部からの侵入を防ぐためsession切れていれば強制非公開
@@ -209,8 +209,8 @@ public class ArticlesController {
         if (Files.notExists(articleImagePath)) {
             try {
                 // 実行可能にする
-                Files.createDirectory(articleImagePath,
-                        PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxrwxr-x")));
+                Files.createDirectory(articleImagePath);
+                Files.setPosixFilePermissions(articleImagePath, PosixFilePermissions.fromString("rwxrwxr-x"));
             } catch (IOException ex) {
                 log.error(ex.getMessage(), ex);
                 return;

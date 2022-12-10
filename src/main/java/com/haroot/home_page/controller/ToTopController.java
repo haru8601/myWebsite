@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.logic.IpLogic;
-import com.haroot.home_page.model.TopicData;
+import com.haroot.home_page.model.TopicDto;
 import com.haroot.home_page.properties.PathProperty;
 
 import lombok.RequiredArgsConstructor;
@@ -61,7 +61,7 @@ public class ToTopController {
         ipWriter.start();
 
         // トピックリスト取得
-        List<TopicData> topicDataList = new ArrayList<>();
+        List<TopicDto> topicDataList = new ArrayList<>();
         try {
             String topicsFilePath = "static/config/topics.yml";
             InputStream is = new ClassPathResource(topicsFilePath).getInputStream();

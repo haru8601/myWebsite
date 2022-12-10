@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.haroot.home_page.model.UserData;
+import com.haroot.home_page.model.UserDto;
 import com.haroot.home_page.properties.UserProperty;
 
 import lombok.RequiredArgsConstructor;
@@ -25,12 +25,12 @@ public class AdminController {
     final HttpSession session;
 
     @GetMapping
-    public String top(@ModelAttribute UserData userData) {
+    public String top(@ModelAttribute UserDto userData) {
         return "/contents/admin/index";
     }
 
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute UserData userData, BindingResult bindingResult) {
+    public String login(@Validated @ModelAttribute UserDto userData, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/contents/admin/index";
         }

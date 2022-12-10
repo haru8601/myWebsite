@@ -11,7 +11,7 @@ import lombok.Data;
  *
  */
 @Data
-public class ArticleData {
+public class ArticleDto {
     @NotBlank
     private String title;
     @NotBlank
