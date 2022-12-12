@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.yaml.snakeyaml.Yaml;
 
+import com.haroot.home_page.dto.TopicDto;
 import com.haroot.home_page.logic.IpLogic;
-import com.haroot.home_page.model.TopicDto;
 import com.haroot.home_page.properties.PathProperty;
 
 import lombok.RequiredArgsConstructor;

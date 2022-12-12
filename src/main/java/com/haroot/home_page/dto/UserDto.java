@@ -1,4 +1,4 @@
-package com.haroot.home_page.model;
+package com.haroot.home_page.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

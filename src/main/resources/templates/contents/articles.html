@@ -9,6 +9,9 @@
 
 <body>
 	<main class="articles" layout:fragment="content">
+		<th:block th:if="${errStr!=''}">
+			<p class="errStr" th:text="${errStr}"></p>
+		</th:block>
 		<h2 class="title">技術記事</h2>
 		<div class="item-all">
 			<!-- 内容物リスト -->
@@ -21,17 +24,14 @@
 					</div>
 					<div class="item-text">
 						<h2 th:text="*{title}"></h2>
-						<th:block th:if="*{wip==1}">
+						<th:block th:if="*{wip==true}">
 							<p>※非公開</p>
 						</th:block>
 					</div>
 				</div>
 			</a>
 		</div>
-		<th:block th:if="${errStr!=''}">
-			<p class="errStr" th:text="${errStr}"></p>
-		</th:block>
-		<a class="btn1 right" th:href="@{|/articles/create/-1|}">新規作成</a>
+		<a class="btn1 right" th:href="@{/articles/create}">新規作成</a>
 		<div class="clear"></div>
 	</main>
 </body>

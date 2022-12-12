@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.haroot.home_page.model.UserDto;
+import com.haroot.home_page.dto.UserDto;
 import com.haroot.home_page.properties.UserProperty;
 
 import lombok.RequiredArgsConstructor;

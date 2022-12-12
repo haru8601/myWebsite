@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.haroot.home_page.dto.FormDto;
 import com.haroot.home_page.logic.DateLogic;
-import com.haroot.home_page.model.FormDto;
 
 import lombok.RequiredArgsConstructor;
 

@@ -16,14 +16,12 @@
 <body>
 	<main class="articles" layout:fragment="content">
 		<h2 class="title">記事作成</h2>
-		<form th:object="${articleDto}" th:action="@{|/articles/register/${id}|}" method="post">
-			<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
+		<form th:object="${articleRegisterDto}" th:action="@{/articles/register}" method="post">
 			<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>
 			<label for="title">タイトル</label>
 			<input th:field="*{title}" class="name" name="title">
 
-			<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
-			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed"></p>
+			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed">test</p>
 			<label for="mde">内容</label>
 			<div class="markdown-div">
 				<textarea th:id="mde" th:value="*{content}" th:field="*{content}" name="content" rows="8"
@@ -40,8 +38,9 @@
 				</script>
 			</div>
 
-			<label for="wip" class="input-label">非公開</label>
-			<input id="wip" name="wip" type="checkbox" th:checked="*{wip}">
+			<label for="wip1" class="input-label">非公開</label>
+			<input th:field="*{wip}" type="checkbox" th:checked="*{wip}">
+			<input th:field="*{id}" type="hidden">
 
 			<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
 			<input class="submit" type="button" value="送信" onclick="submit()">

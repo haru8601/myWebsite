@@ -1,8 +1,10 @@
-package com.haroot.home_page.model;
+package com.haroot.home_page.dto;
 
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
+
+import com.haroot.home_page.controller.entity.ArticleEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,5 +36,10 @@ public class ArticleDto {
         this.content = content;
         this.likeCount = likeCount;
         this.wip = wip;
+    }
+
+    public static ArticleDto of(ArticleEntity entity) {
+        return new ArticleDto(entity.getId(), entity.getTitle(), entity.getContent(), entity.getLikeCount(),
+                entity.isWip(), entity.getCreateDate(), entity.getUpdateDate());
     }
 }

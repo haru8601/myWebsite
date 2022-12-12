@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,12 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.haroot.home_page.exception.HarootNotFoundException;
-import com.haroot.home_page.logic.DateLogic;
-import com.haroot.home_page.logic.MavUtils;
-import com.haroot.home_page.model.ArticleDto;
+import com.haroot.home_page.controller.entity.ArticleEntity;
+import com.haroot.home_page.dto.ArticleDto;
+import com.haroot.home_page.dto.ArticleRegisterDto;
 import com.haroot.home_page.properties.PathProperty;
 import com.haroot.home_page.properties.QiitaProperty;
+import com.haroot.home_page.service.ArticleService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,11 +45,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/articles")
 @RequiredArgsConstructor
 @Slf4j
-public class ArticlesController {
+public class ArticleController {
     final QiitaProperty qiitaProperty;
     final JdbcTemplate jdbcT;
     final HttpSession session;
     final PathProperty pathProperty;
+    final ArticleService articleService;
 
     /**
      * 記事一覧表示
@@ -60,7 +60,10 @@ public class ArticlesController {
      */
     @GetMapping
     public ModelAndView articleAll(ModelAndView mav) {
-        mav = MavUtils.getArticleListMav(mav, jdbcT, session);
+        List<ArticleEntity> articlesList = articleService.getAllArticle();
+        mav.addObject("articlesList", articlesList);
+        mav.addObject("errStr", "");
+        mav.setViewName("contents/articles");
         return mav;
     }
 
@@ -73,7 +76,9 @@ public class ArticlesController {
      */
     @GetMapping("{id}")
     public ModelAndView article(ModelAndView mav, @PathVariable("id") String id) {
-        mav = MavUtils.getArticleMav(mav, id, qiitaProperty, jdbcT, session);
+        ArticleDto article = articleService.getArticle(id);
+        mav.addObject("article", article);
+        mav.setViewName("/contents/articles/template");
         return mav;
     }
 
@@ -86,115 +91,102 @@ public class ArticlesController {
     @GetMapping("updateCount/{id}/{type}")
     @ResponseBody
     public void updateCount(@PathVariable("id") String id, @PathVariable("type") String type) {
-        String selectStr = "SELECT like_count FROM articles WHERE id=" + id;
-        List<Map<String, Object>> articleList = jdbcT.queryForList(selectStr);
-        String likeCountStr = articleList.get(0).get("like_count").toString();
-        // 記事情報をupdate
-        String updateStr = "UPDATE articles SET like_count=? WHERE id=" + id;
+        ArticleDto article = articleService.getArticle(id);
 
-        int count = Integer.parseInt(likeCountStr);
+        int tmpLikeCount = article.getLikeCount();
         if (type.equals("up")) {
-            count++;
+            tmpLikeCount++;
         } else if (type.equals("down")) {
-            count--;
+            tmpLikeCount--;
         }
-        // change count
-        likeCountStr = String.valueOf(count);
-        jdbcT.update(updateStr, likeCountStr);
-        return;
+        article.setLikeCount(tmpLikeCount);
+        // いいね数更新
+        articleService.updateArticle(article);
     }
 
     /**
      * 記事登録API
      *
      * @param mav MAV
-     * @param id  記事ID
      * @return
      */
-    @GetMapping("create/{id}")
-    public ModelAndView registerLink(ModelAndView mav, @PathVariable("id") String id) {
-        int idNum = -1;
-        try {
-            idNum = Integer.parseInt(id);
-        } catch (NumberFormatException ex) {
-            throw new HarootNotFoundException(ex.getMessage(), ex);
-        }
-        // 自分のみ作成できる
+    @GetMapping("create")
+    public ModelAndView registerLink(ModelAndView mav) {
         if (session.getAttribute("isLogin") != null) {
-            String title = "";
-            String content = "";
-            boolean wip = false;
-            // 既存記事の編集
-            if (idNum != -1) {
-                Map<String, Object> article = jdbcT.queryForList("SELECT * FROM articles WHERE id=" + id).get(0);
-                title = article.get("title").toString();
-                content = article.get("content").toString();
-                wip = article.get("wip").equals(1);
-            }
-            mav.addObject(new ArticleDto(idNum, title, content, 0, wip));
-
+            // 自分のみ作成できる
+            final int ID = -1;
+            final String TITLE = "";
+            final String CONTENT = "";
+            final boolean WIP = false;
+            mav.addObject("articleRegisterDto", new ArticleRegisterDto(ID, TITLE, CONTENT, WIP));
             mav.setViewName("contents/articles/create");
         } else {
             // 他は戻す
-            // 既存記事のページ
-            if (idNum != -1) {
-                mav = MavUtils.getArticleMav(mav, id, qiitaProperty, jdbcT, session);
-                mav.addObject("errStr", "Sorry, you can't edit articles....");
-            } else {
-                mav = MavUtils.getArticleListMav(mav, jdbcT, session);
-                mav.addObject("errStr", "Sorry, you can't create articles....");
-            }
+            List<ArticleEntity> articlesList = articleService.getAllArticle();
+            mav.addObject("articlesList", articlesList);
+            mav.addObject("errStr", "Sorry, you can't create articles....");
+            mav.setViewName("contents/articles");
         }
-
         return mav;
     }
 
     /**
-     * 記事登録
+     * 記事更新API
      *
-     * @param mav           MAV
-     * @param articleData   記事フォーム
-     * @param bindingResult エラー結果
-     * @param id            記事ID
+     * @param mav MAV
+     * @param id  記事ID
      * @return
      */
-    @PostMapping("register/{id}")
-    public ModelAndView register(ModelAndView mav,
-            @ModelAttribute @Validated ArticleDto articleData,
-            BindingResult bindingResult,
-            @PathVariable("id") String id) {
-        // 外部からの侵入を防ぐためsession切れていれば強制非公開
-        if (session.getAttribute("isLogin") == null) {
-            articleData.setWip(true);
+    @GetMapping("edit/{id}")
+    public ModelAndView editLink(ModelAndView mav, @PathVariable("id") String id) {
+        // 自分のみ作成できる
+        if (session.getAttribute("isLogin") != null) {
+            ArticleDto article = articleService.getArticle(id);
+            mav.addObject("articleRegisterDto", ArticleRegisterDto.of(article));
+            mav.setViewName("contents/articles/create");
+        } else {
+            // 他は戻す
+            ArticleDto article = articleService.getArticle(id);
+            mav.addObject("article", article);
+            mav.addObject("errStr", "Sorry, you can't edit articles....");
+            mav.setViewName("contents/articles/template");
         }
+        return mav;
+    }
+
+    /**
+     * 記事登録処理
+     *
+     * @param articleDto    記事フォーム
+     * @param bindingResult エラー結果
+     * @param mav           MAV
+     * @return
+     */
+    @PostMapping("register")
+    public ModelAndView register(@ModelAttribute @Validated ArticleRegisterDto articleRegisterDto,
+            BindingResult bindingResult, ModelAndView mav) {
         // エラーがあれば戻る
         if (bindingResult.hasErrors()) {
-            mav.addObject(articleData);
+            mav.addObject("articleRegisterDto", articleRegisterDto);
             mav.setViewName("contents/articles/create");
             return mav;
         }
-
-        String dateStr = DateLogic.getJSTDateStr();
-        String title = articleData.getTitle();
-        String content = articleData.getContent();
-        boolean wip = articleData.isWip();
-        int privateInt = 0;
-        if (wip) {
-            privateInt = 1;
+        // 外部からの侵入を防ぐためsession切れていれば強制非公開
+        if (session.getAttribute("isLogin") == null) {
+            articleRegisterDto.setWip(true);
         }
-
-        // 新規記事
-        if (id.equals("-1")) {
-            String sqlStr = "INSERT INTO articles(title, content, wip, create_date) VALUES(?,?,?,?)";
-            jdbcT.update(sqlStr, title, content, privateInt, dateStr);
-            // 既存記事
-        } else {
-            String sqlStr = "UPDATE articles SET title=?, content=?, wip=?, update_date=? WHERE id=" + id;
-            jdbcT.update(sqlStr, title, content, privateInt, dateStr);
+        int id = articleRegisterDto.getId();
+        ArticleDto articleDto = new ArticleDto();
+        // 既存記事なら色々取得
+        if (id != -1) {
+            articleDto = articleService.getArticle(String.valueOf(id));
         }
-
+        articleDto.setId(id);
+        articleDto.setTitle(articleRegisterDto.getTitle());
+        articleDto.setContent(articleRegisterDto.getContent());
+        articleDto.setWip(articleRegisterDto.isWip());
+        articleService.updateArticle(articleDto);
         mav.setViewName("contents/articles/created");
-
         return mav;
     }
 
