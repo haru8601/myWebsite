@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.yaml.snakeyaml.Yaml;
 
 import com.haroot.home_page.dto.TopicDto;
-import com.haroot.home_page.logic.IpLogic;
 import com.haroot.home_page.properties.PathProperty;
 
 import lombok.RequiredArgsConstructor;
@@ -55,10 +54,6 @@ public class ToTopController {
             displaySlot = false;
         }
         mav.addObject("displaySlot", displaySlot);
-
-        // クライアントIPアドレス記録(非同期処理)
-        IpLogic ipWriter = new IpLogic(request, jdbcT);
-        ipWriter.start();
 
         // トピックリスト取得
         List<TopicDto> topicDtoList = new ArrayList<>();
