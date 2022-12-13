@@ -10,7 +10,7 @@
 <body>
 	<main layout:fragment="content">
 		<!-- コンテンツ2(ヘッダーのリンク先) -->
-		<form th:object="${contactForm}" action="/contact/send" method="post">
+		<form th:object="${formDto}" action="/contact/send" method="post">
 			<div class="contact-form">
 				<h2 id="con">お問い合わせ</h2>
 				<div class="container">
@@ -46,7 +46,7 @@
 		<script th:inline="javascript">
 			//textareaのデータ表示
 			const textArea = document.getElementById("content");
-			textArea.innerHTML = /*[[${contactForm.content}]]*/"";
+			textArea.innerHTML = /*[[${formDto.content}]]*/"";
 		</script>
 	</main>
 </body>
