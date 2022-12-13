@@ -55,6 +55,8 @@
 			<th:block th:if="*{wip==true}">
 				<p>※非公開</p>
 			</th:block>
+			<p th:if="*{createDate != null}">作成日時: <span th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"></span></p>
+			<p th:if="*{updateDate != null}">更新日時: <span th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"></span></p>
 			<pre>
 				<div class="marked" id="content"></div>
 			</pre>

@@ -49,9 +49,8 @@ public class ArticleService {
         ArticleEntity article = articleRepository.findById(idNum)
                 .orElseThrow(() -> new HarootNotFoundException("記事が見つかりませんでした"));
         if (article.isWip() && session.getAttribute("isLogin") == null) {
-            article.setTitle("この記事は非公開です");
-            article.setLikeCount(0);
-            article.setContent("");
+            // 非公開なら情報マスキング
+            article = maskArticle(article);
         } else {
             int tmpLikeCount = article.getLikeCount();
             // QiitaAPIから記事一覧を取得
@@ -93,7 +92,28 @@ public class ArticleService {
         return articleList;
     }
 
+    /**
+     * 記事更新
+     * 
+     * @param article 記事
+     * @return 更新後の記事
+     */
     public ArticleEntity updateArticle(ArticleDto article) {
         return articleRepository.save(ArticleEntity.of(article));
+    }
+
+    /**
+     * 記事の情報を隠す
+     * 
+     * @param article 記事
+     * @return マスキング後の記事
+     */
+    public static ArticleEntity maskArticle(ArticleEntity article) {
+        article.setTitle("この記事は非公開です");
+        article.setContent("");
+        article.setLikeCount(0);
+        article.setCreateDate(null);
+        article.setUpdateDate(null);
+        return article;
     }
 }
