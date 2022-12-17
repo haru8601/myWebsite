@@ -162,8 +162,12 @@ main {
     min-height: 350px;
 }
 
-.title {
+.title, .summary {
     padding: 0 2vw 2vh 2vw;
+}
+
+.summary{
+	margin-bottom: 5vh;
 }
 
 .topic-all {

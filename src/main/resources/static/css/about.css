@@ -3,8 +3,27 @@
 	margin: 0 auto;
 	border-spacing: 5vh;
 	font-size: 18px;
+	border-collapse: collapse;
 }
 
-.career th {
-	width: 20%;
+.career thead{
+	border-bottom:1px solid black;
+}
+
+.career i{
+	margin:0 auto;
+}
+
+.career tr{
+	height:10vh;
+}
+
+.career .t1{
+	width:25%;
+}
+.career .t2{
+	width:15%;
+}
+.career .t3{
+	width:60%;
 }

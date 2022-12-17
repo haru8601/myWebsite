@@ -67,15 +67,10 @@ public class ContactController {
         // その他のエラー
         Pattern elseP = Pattern.compile("@Cryptaxbot");
         // お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
-        if (mailP.matcher(formDto.getContent()).find()) {
-            FieldError fieldError = new FieldError("formData", "content", "メールアドレスを含めることはできません");
-            bindingResult.addError(fieldError);
-
-        } else if (urlP.matcher(formDto.getContent()).find()) {
-            FieldError fieldError = new FieldError("formData", "content", "リンクを含めることはできません");
-            bindingResult.addError(fieldError);
-        } else if (elseP.matcher(formDto.getContent()).find()) {
-            FieldError fieldError = new FieldError("formData", "content", "文章を変更してください");
+        if (mailP.matcher(formDto.getContent()).find()
+                || urlP.matcher(formDto.getContent()).find()
+                || elseP.matcher(formDto.getContent()).find()) {
+            FieldError fieldError = new FieldError("formData", "content", "スパムっぽいので拒否します。");
             bindingResult.addError(fieldError);
         }
 

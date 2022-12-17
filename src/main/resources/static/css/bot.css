@@ -1,17 +1,29 @@
-main>* {
-	margin-left: 10px;
-	margin-bottom: 50px;
-}
-
 main>p {
 	margin-bottom: auto;
 }
 
+a:link{
+	color:black;
+}
 
-#bot img {
+.description div{
+	margin-left: 10px;
+	margin-bottom: 30px;
+}
+
+.description li{
+	list-style:decimal;
+}
+
+.description img {
 	width: 60%;
 }
 
+.func{
+	background-color: rgb(177, 229, 250);
+	border-radius: 10px;
+	padding:20px;
+}
 
 
 @media screen and (max-width:670px) {

@@ -13,6 +13,7 @@
 			<p class="errStr" th:text="${errStr}"></p>
 		</th:block>
 		<h2 class="title">技術記事</h2>
+		<p class="summary">調べてもなかなか解決しなかった技術的問題を記事にしました。</p>
 		<div class="item-all">
 			<!-- 内容物リスト -->
 			<a class="item-link down-btn" th:href="@{|/articles/*{id}|}" th:each="content: ${articlesList}"

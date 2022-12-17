@@ -1,3 +1,7 @@
+#music li{
+	list-style: none;
+}
+
 #yt-iframe {
     display:flex;
     width: fit-content;

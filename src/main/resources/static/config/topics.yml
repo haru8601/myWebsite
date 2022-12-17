@@ -2,29 +2,23 @@
   title: iOS Apps
   url: ios-app
   summary: 個人で製作したiOSアプリ一覧です。
-  img: top_ios-app.png
 - id: 2
   title: Articles
   url: articles
   summary: IT周りの自分用にまとめた記事一覧です。
-  img: top_articles.png
 - id: 3
-  title: Youtube
-  url: youtube
-  summary: Youtubeに投稿した動画一覧です。
-  img: top_youtube.png
+  title: Music
+  url: music
+  summary: 耳コピしたものとか置いてます。
 - id: 4
   title: Bot
   url: bot
   summary: twitterのbotを作ってみました。
-  img: top_bot.png
 - id: 5
   title: About
   url: about
   summary: harootとは...?
-  img: top_about.png
 - id: 6
   title: Contact
   url: contact
   summary: お問い合わせフォームはこちら。
-  img: top_contact.png

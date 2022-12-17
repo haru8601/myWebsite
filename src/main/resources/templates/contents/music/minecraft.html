@@ -2,14 +2,15 @@
 <html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<title>YouTube - haroot.net</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/youtube.css}">
-	<meta name="description" content="harootがyoutubeに投稿した動画一覧です。">
+	<title>MinecraftMusic - haroot.net</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/music.css}">
+	<meta name="description" content="MinecraftMusic名義でyoutubeに投稿した動画一覧です。">
 </head>
 
 <body>
-	<main layout:fragment="content">
-		<h2 class="title">YouTube</h2>
+	<main layout:fragment="content" id="minecraft">
+		<h2 class="title">マイクラ音楽 - MinecraftMusic</h2>
+		<p class="summary">マイクラの音ブロックを使って曲を耳コピしてみました。</p>
 		<!-- 内容物リスト -->
 		<a th:href="*{url}" class="item-link down-btn" target="_blank" th:each="content: ${youtubeList}"
 			th:object="${content}">

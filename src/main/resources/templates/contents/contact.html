@@ -8,11 +8,12 @@
 </head>
 
 <body>
-	<main layout:fragment="content">
+	<main layout:fragment="content" id="contact">
 		<!-- コンテンツ2(ヘッダーのリンク先) -->
 		<form th:object="${formDto}" action="/contact/send" method="post">
 			<div class="contact-form">
-				<h2 id="con">お問い合わせ</h2>
+				<h2 class="title">お問い合わせ</h2>
+				<p class="summary">スパムっぽい内容は弾いてます。</p>
 				<div class="container">
 					<p>名前
 						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->

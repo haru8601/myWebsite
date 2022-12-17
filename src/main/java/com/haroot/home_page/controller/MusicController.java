@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.haroot.home_page.dto.MusicDto;
 import com.haroot.home_page.properties.YoutubeProperty;
+import com.haroot.home_page.service.MusicService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,11 +28,24 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @Controller
-@RequestMapping("/youtube")
+@RequestMapping("/music")
 @RequiredArgsConstructor
-public class YoutubeController {
+public class MusicController {
     final JdbcTemplate jdbcT;
     final YoutubeProperty youtubeProperty;
+    final MusicService musicService;
+
+    @GetMapping
+    public ModelAndView music(ModelAndView mav) {
+        List<MusicDto> musicList = musicService.getAllMusic();
+        for (MusicDto content : musicList) {
+            String url = content.getUrl();
+            content.setUrl("music/" + url);
+        }
+        mav.addObject("musicList", musicList);
+        mav.setViewName("contents/music");
+        return mav;
+    }
 
     /**
      * Youtube一覧表示
@@ -38,8 +53,8 @@ public class YoutubeController {
      * @param mav MAV
      * @return
      */
-    @GetMapping
-    public ModelAndView youtube(ModelAndView mav) {
+    @GetMapping("/minecraft")
+    public ModelAndView minecraft(ModelAndView mav) {
         // youtubeAPIから動画一覧を取得
         List<Map<String, Object>> youtubeList = new ArrayList<>();
         int maxResults = 50;
@@ -72,7 +87,7 @@ public class YoutubeController {
         }
 
         mav.addObject("youtubeList", youtubeList);
-        mav.setViewName("contents/youtube");
+        mav.setViewName("contents/music/minecraft");
         return mav;
     }
 }
