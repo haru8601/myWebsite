@@ -81,4 +81,10 @@ public class ToTopController {
         mav.setViewName("policy");
         return mav;
     }
+
+    @GetMapping("/twitter-auth")
+    public ModelAndView auth(ModelAndView mav) {
+        mav.setViewName("error/500");
+        return mav;
+    }
 }
