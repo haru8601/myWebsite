@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.haroot.home_page.controller.entity.ArticleEntity;
 import com.haroot.home_page.dto.ArticleDto;
+import com.haroot.home_page.entity.ArticleEntity;
 import com.haroot.home_page.exception.HarootNotFoundException;
 import com.haroot.home_page.properties.QiitaProperty;
 import com.haroot.home_page.repository.ArticleRepository;

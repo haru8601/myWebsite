@@ -7,7 +7,11 @@
     font-family: "Hiragino Mincho ProN";
 }
 
-*:visited {
+a:link{
+	color:inherit;
+}
+
+a:visited {
     color: inherit;
 }
 
@@ -79,10 +83,14 @@ header {
     border-bottom: 2px black solid;
 }
 
+.header-content{
+	display:flex;
+	justify-content: space-between;
+}
+
 header button {
     height: 100%;
     padding: 0 2vmin;
-    float: right;
     background-color: transparent;
     border: none;
 }
@@ -92,11 +100,8 @@ header button:hover {
     transition: all 0.5s;
 }
 
-.header-logo>* {
-    font-family: 'CustomFont';
-}
-
 .header-logo a {
+	font-family: 'CustomFont';
     font-size: 40px;
     line-height: 80px;
     float: left;
@@ -111,6 +116,7 @@ header button:hover {
 
 .except-header {
     width: 100%;
+    min-height: calc(100vh - 80px);
 }
 
 .container {
@@ -275,6 +281,10 @@ textarea {
 
 footer {
     margin-bottom: 10vh;
+}
+
+.footer-list{
+	text-align:right;
 }
 
 .footer-list>ul>li {

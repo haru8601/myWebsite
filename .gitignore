@@ -31,3 +31,6 @@ Servers
 
 #google
 ads.html
+
+.rewrite-cache
+*.log

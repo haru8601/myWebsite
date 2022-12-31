@@ -16,13 +16,14 @@
 <body>
 	<header layout:replace="~{/layout/header::header}"></header>
 	<div class="except-header">
-		<div class="container">
-			<main layout:fragment="content"></main>
-			<div layout:replace="~{/layout/menuBar::menuBar}"></div>
+		<div class="except-aside">
+			<div class="container">
+				<main layout:fragment="content"></main>
+			</div>
+			<div layout:replace="~{/layout/ads::ads}"></div>
+			<div layout:replace="~{/layout/footer::footer}"></div>
 		</div>
-		<div layout:replace="~{/layout/ads::ads}"></div>
-		<div layout:replace="~{/layout/footer::footer}"></div>
-	</div>
+		<div layout:replace="~{/layout/menuBar::menuBar}"></div>
 	<div layout:replace="~{/layout/lastProcess::lastProcess}"></div>
 </body>
 </html>

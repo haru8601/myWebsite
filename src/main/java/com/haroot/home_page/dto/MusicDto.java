@@ -3,7 +3,7 @@ package com.haroot.home_page.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.haroot.home_page.controller.entity.MusicEntity;
+import com.haroot.home_page.entity.MusicEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

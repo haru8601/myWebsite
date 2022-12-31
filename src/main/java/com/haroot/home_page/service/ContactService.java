@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
-import com.haroot.home_page.controller.entity.ContactEntity;
 import com.haroot.home_page.dto.FormDto;
+import com.haroot.home_page.entity.ContactEntity;
 import com.haroot.home_page.repository.ContactRepository;
 
 import lombok.RequiredArgsConstructor;

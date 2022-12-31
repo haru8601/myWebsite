@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
-import com.haroot.home_page.controller.entity.ArticleEntity;
+import com.haroot.home_page.entity.ArticleEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

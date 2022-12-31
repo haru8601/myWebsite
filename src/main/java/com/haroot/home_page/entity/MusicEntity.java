@@ -1,4 +1,4 @@
-package com.haroot.home_page.controller.entity;
+package com.haroot.home_page.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
