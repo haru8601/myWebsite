@@ -1,6 +1,8 @@
 package com.haroot.home_page.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
@@ -41,5 +43,11 @@ public class ArticleDto {
     public static ArticleDto of(ArticleEntity entity) {
         return new ArticleDto(entity.getId(), entity.getTitle(), entity.getContent(), entity.getLikeCount(),
                 entity.isWip(), entity.getCreateDate(), entity.getUpdateDate());
+    }
+
+    public static List<ArticleDto> listOf(List<ArticleEntity> entityList) {
+        List<ArticleDto> dtoList = new ArrayList<>();
+        entityList.forEach((entity) -> dtoList.add(of(entity)));
+        return dtoList;
     }
 }

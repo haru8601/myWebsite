@@ -43,14 +43,15 @@ let tickCount = 0;
 
 const boxStopFlg = [false, false, false];
 const stopTickCount = [0, 0, 0];
-const finalDegree = [0, 0, 0];
+const finalDegreeArr = [0, 0, 0];
 
-const MAX_SPEED = RIGHT_ANGLE / 10; // (degree / 1 tick)
-const ENOUGH_MIN_SPEED = RIGHT_ANGLE / 60;
+const MAX_SPEED = RIGHT_ANGLE / 8; // (degree / 1 tick)
+const ENOUGH_MIN_SPEED = RIGHT_ANGLE / 45;
 // 正面からのずれの角度は10 degreeまで
-const ENOUGH_MIN_DIFF_DEGREE = 10 * (Math.PI / 180);
+const ENOUGH_MIN_DIFF_DEGREE = 15 * (Math.PI / 180);
 
-let bingoFlg = true;
+let bingoFlg = false;
+let stopFlg = false;
 // 最後BINGO表示の際の回転角
 const BINGO_DIFF_DEGREE = RIGHT_ANGLE / 170;
 
@@ -62,6 +63,8 @@ let v = [MAX_SPEED, MAX_SPEED, MAX_SPEED];
 // boxを止め始めるtickカウント
 const REDUCE_SPEED_COUNT = 50;
 
+const startTime = performance.now(); // milli sec
+const TIME_LIMIT = 5 * 1000;
 // 毎フレームの処理
 tick();
 
@@ -194,18 +197,17 @@ function setupLights() {
 }
 
 function tick() {
-
-	if (v[BOX_COUNT - 1] == 0) {
-		if (bingoFlg) {
-			for (let i = 0; i < BOX_COUNT; i++) {
-				if (meshArr[i].rotation.y <= -RIGHT_ANGLE) {
-					finalize();
-					return;
-				}
+	// 終了条件
+	if (stopFlg || !bingoFlg && performance.now() - startTime > TIME_LIMIT) {
+		finalize();
+		return;
+	} else if (bingoFlg) {
+		// 止まってはないけどビンゴ
+		for (let i = 0; i < BOX_COUNT; i++) {
+			if (meshArr[i].rotation.y <= -RIGHT_ANGLE) {
+				finalize();
+				return;
 			}
-		} else {
-			finalize();
-			return;
 		}
 	}
 
@@ -226,15 +228,14 @@ function tick() {
 function updateScene(meshArr) {
 
 	tickCount++;
-	// 最後のboxが止まったら横回転開始
+	// 最後のboxが止まったら
 	if (v[BOX_COUNT - 1] == 0) {
-		for (let i = 1; i < BOX_COUNT; i++) {
-			if (finalDegree[0] != finalDegree[i]) {
-				bingoFlg = false;
-			}
-		}
+		bingoFlg = checkBingo();
+		// bingoなら横回転
 		if (bingoFlg) {
 			rotateY();
+		} else {
+			stopFlg = true;
 		}
 		return;
 	}
@@ -268,6 +269,19 @@ function updateScene(meshArr) {
 }
 
 /**
+ * ビンゴか否か確認
+ * @returns true: ビンゴ, false: ビンゴじゃない
+ */
+function checkBingo() {
+	let resFlg = true;
+	// 全て角度一致ならbingo
+	finalDegreeArr.forEach((boxDegree) => {
+		resFlg &&= finalDegreeArr[0] == boxDegree;
+	});
+	return resFlg;
+}
+
+/**
  *
  * @param {number} thetaDiff
  * @param {THREE.Vector3} direction
@@ -285,7 +299,6 @@ function moveCamera(thetaDiff, direction) {
 
 // 終了処理
 function finalize() {
-	// moveCamera();
 	const launchDiv = document.getElementById("launch");
 	if (launchDiv != null) {
 		launchDiv.style.opacity = "0";
@@ -296,7 +309,7 @@ function finalize() {
 function stopTarget() {
 	// 角度を綺麗な値に強制変更(178 degree->180 degree)
 	meshArr[stopTargetIndex].rotation.x = Math.round(meshArr[stopTargetIndex].rotation.x / RIGHT_ANGLE) * RIGHT_ANGLE;
-	finalDegree[stopTargetIndex] = Math.round((meshArr[stopTargetIndex].rotation.x) / Math.PI * 180);
+	finalDegreeArr[stopTargetIndex] = Math.round((meshArr[stopTargetIndex].rotation.x) / Math.PI * 180);
 	// 止めたカウント記憶
 	stopTickCount[stopTargetIndex + 1] = tickCount;
 	boxStopFlg[stopTargetIndex] = true;
@@ -314,7 +327,7 @@ function calcSpeed(t) {
 
 function rotateY() {
 	for (let i = 0; i < 3; i++) {
-		const degree = finalDegree[i];
+		const degree = finalDegreeArr[i];
 		meshArr[i].rotation.y -= BINGO_DIFF_DEGREE;
 		if (degree == 90) {
 			meshArr[i].rotation.x -= BINGO_DIFF_DEGREE;

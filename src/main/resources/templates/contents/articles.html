@@ -32,7 +32,9 @@
 				</div>
 			</a>
 		</div>
-		<a class="btn1 right" th:href="@{/articles/create}">新規作成</a>
+		<th:block th:if="${#session.getAttribute('isLogin')}">
+			<a class="btn1 right" th:href="@{/articles/create}">新規作成</a>
+		</th:block>
 		<div class="clear"></div>
 	</main>
 </body>

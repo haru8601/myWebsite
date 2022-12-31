@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"
-	th:object="${article}">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" th:object="${article}">
 	<title th:text="*{title}+' - haroot.net'">技術記事 - haroot.net</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
 	<meta name="description" th:content="*{title}+'についての記事です。'">
@@ -55,8 +54,10 @@
 			<th:block th:if="*{wip==true}">
 				<p>※非公開</p>
 			</th:block>
-			<p th:if="*{createDate != null}">作成日時: <span th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"></span></p>
-			<p th:if="*{updateDate != null}">更新日時: <span th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"></span></p>
+			<p th:if="*{createDate != null}">作成日時: <span
+					th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"></span></p>
+			<p th:if="*{updateDate != null}">更新日時: <span
+					th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"></span></p>
 			<pre>
 				<div class="marked" id="content"></div>
 			</pre>
@@ -74,7 +75,9 @@
 				document.getElementById("content").innerHTML = marked.parse(text);
 			</script>
 			<a class="btn1" th:href="@{|/articles|}">記事一覧へ戻る</a>
-			<a class="btn1 right" th:href="@{|/articles/edit/*{id}|}">編集</a>
+			<th:block th:if="${#session.getAttribute('isLogin')}">
+				<a class="btn1 right" th:href="@{|/articles/edit/*{id}|}">編集</a>
+			</th:block>
 			<div class="clear"></div>
 		</div>
 		<div id="tableOfContents">

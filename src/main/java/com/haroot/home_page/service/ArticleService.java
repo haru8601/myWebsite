@@ -81,7 +81,7 @@ public class ArticleService {
      * 
      * @return
      */
-    public List<ArticleEntity> getAllArticle() {
+    public List<ArticleDto> getAllArticle() {
         List<ArticleEntity> articleList = new ArrayList<>();
         // ログインユーザーでなければ公開記事のみ表示
         if (session.getAttribute("isLogin") == null) {
@@ -89,7 +89,7 @@ public class ArticleService {
         } else {
             articleList = articleRepository.findAllByOrderByUpdateDateDesc();
         }
-        return articleList;
+        return ArticleDto.listOf(articleList);
     }
 
     /**

@@ -19,24 +19,21 @@
 </head>
 
 <body>
-	<!--launch画面-->
-	<div layout:fragment="launch">
-		<div id="launch">
-			<!-- キャンバスサイズは実際の表示サイズとは別 -->
-			<canvas id="canvas1" width="700" height="800">
-				<script th:src="@{/js/three.js}"></script>
-				<script th:src="@{/js/canvas.js}"></script>
-			</canvas>
-		</div>
-		<th:block th:if="${displaySlot == false}">
+	<main id="top" layout:fragment="content">
+		<!--launch画面(他サイトやトップから飛んできた場合のみ)-->
+		<th:block th:if="${displaySlot}">
+			<div id="launch">
+				<!-- キャンバスサイズは実際の表示サイズとは別 -->
+				<canvas id="canvas1" width="700" height="800">
+					<script th:src="@{/js/three.js}"></script>
+					<script th:src="@{/js/canvas.js}"></script>
+				</canvas>
+			</div>
 			<script>
-				// 他ページから戻った場合はlaunch非表示
 				const launchDiv = document.getElementById("launch");
-				launchDiv.style.display = "none";
+				launchDiv.style.display = "block";
 			</script>
 		</th:block>
-	</div>
-	<main id="top" layout:fragment="content">
 		<div class="topic-all">
 			<a class="topic-link down-btn" th:each="topic: ${topicList}" th:object="${topic}" th:href="*{url}">
 				<div class="topic">
