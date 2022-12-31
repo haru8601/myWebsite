@@ -2,8 +2,6 @@ package com.haroot.home_page.controller;
 
 import java.util.Base64;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.haroot.home_page.dto.UserDto;
 import com.haroot.home_page.properties.UserProperty;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller

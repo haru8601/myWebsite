@@ -5,8 +5,8 @@ harootのホームページ。リンクは[こちら](https://haroot.net)。
 | 技術                   | バージョン  | description                      |
 | -------------------- | ------ | -------------------------------- |
 | Java                 | 17.0.3 | 開発言語                             |
-| Spring Boot          | 2.5.6  | フレームワーク                          |
-| Thymeleaf            | 2.5.6  | 画面テンプレート                                 |
+| Spring Boot          | 3.0.1  | フレームワーク                          |
+| Thymeleaf            | 3.0.1  | 画面テンプレート                                 |
 | maven                | 4.0.0  | Java用ビルドツール                      |
 | SpringToolSuite      | 4.14.0 | Eclipseを拡張したSpring用開発ツール         |
 | Ascii Tree Generator | 1.2.4  | markdownでのファイルtree生成(VSCode拡張機能) |
@@ -22,6 +22,11 @@ harootのホームページ。リンクは[こちら](https://haroot.net)。
 │   │   └── active # local
 │   ├── jpa
 │   │   └── open-in-view # false
+│   ├── datasource
+│   │   ├── url # jdbc:mysql://AAAAA:3306/BBB
+│   │   ├── username # admin
+│   │   ├── password # password
+│   │   └── driver-class-name # com.mysql.cj.jdbc.Driver
 │   └── mail
 │       ├── host # 略
 │       ├── port # 587
@@ -39,7 +44,11 @@ harootのホームページ。リンクは[こちら](https://haroot.net)。
 ├── qiita
 │   ├── token # 略
 │   └── user # haru8601
-└── user
-    ├── username # root
-    └── password # password
+├── user
+│   ├── username # root
+│   └── password # password
+└── path
+    ├── log # /hoge/log/app.log
+    ├── site # haroot.net
+    └── resource # /hoge/aaa
 ```

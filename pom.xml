@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.6</version>
+		<version>3.0.1</version>
 		<relativePath />
 		<!-- lookup parent from repository -->
 	</parent>
@@ -19,6 +19,7 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,6 +60,14 @@
 			<version>1.40.1</version>
 		</dependency>
 		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 		</dependency>
@@ -73,10 +82,6 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -100,11 +105,14 @@
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
-			<version>3.1.0</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -133,6 +141,13 @@
 			<id>local</id>
 			<build>
 				<finalName>ROOT</finalName>
+				<!--<plugins> <plugin> <groupId>org.openrewrite.maven</groupId> <artifactId>rewrite-maven-plugin</artifactId> 
+					<version>4.38.0</version> <configuration> <activeRecipes> <recipe>org.openrewrite.java.spring.boot3.SpringBoot2To3Migration</recipe> 
+					</activeRecipes> </configuration> <dependencies> <dependency> <groupId>org.openrewrite.recipe</groupId> 
+					<artifactId>rewrite-spring</artifactId> <version>4.31.0</version> </dependency> 
+					</dependencies> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+					<artifactId>maven-jdeprscan-plugin</artifactId> <version>3.0.0-alpha-1</version> 
+					<configuration> <release>17</release> </configuration> </plugin> </plugins> -->
 			</build>
 		</profile>
 	</profiles>

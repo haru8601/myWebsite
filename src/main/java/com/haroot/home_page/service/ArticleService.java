@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -17,6 +15,7 @@ import com.haroot.home_page.exception.HarootNotFoundException;
 import com.haroot.home_page.properties.QiitaProperty;
 import com.haroot.home_page.repository.ArticleRepository;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 /**

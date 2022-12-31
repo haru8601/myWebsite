@@ -58,7 +58,7 @@ public class IOSAppController {
     @GetMapping("{appName}")
     public ModelAndView iosPage(
             ModelAndView mav,
-            @PathVariable("appName") String appName) {
+            @PathVariable String appName) {
         mav.addObject("appName", appName);
 
         mav.setViewName("contents/iosApp/" + appName);
@@ -75,7 +75,7 @@ public class IOSAppController {
     @GetMapping("{appName}/policy")
     public ModelAndView policy(
             ModelAndView mav,
-            @PathVariable("appName") String appName) {
+            @PathVariable String appName) {
         mav.setViewName("contents/iosApp/" + appName + "/policy");
         return mav;
     }

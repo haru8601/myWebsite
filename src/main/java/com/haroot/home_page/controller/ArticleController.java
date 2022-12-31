@@ -9,8 +9,6 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,6 +29,7 @@ import com.haroot.home_page.properties.PathProperty;
 import com.haroot.home_page.properties.QiitaProperty;
 import com.haroot.home_page.service.ArticleService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,7 +73,7 @@ public class ArticleController {
      * @return
      */
     @GetMapping("{id}")
-    public ModelAndView article(ModelAndView mav, @PathVariable("id") String id) {
+    public ModelAndView article(ModelAndView mav, @PathVariable String id) {
         ArticleDto article = articleService.getArticle(id);
         mav.addObject("article", article);
         mav.setViewName("/contents/articles/template");
@@ -89,7 +88,7 @@ public class ArticleController {
      */
     @GetMapping("updateCount/{id}/{type}")
     @ResponseBody
-    public void updateCount(@PathVariable("id") String id, @PathVariable("type") String type) {
+    public void updateCount(@PathVariable String id, @PathVariable String type) {
         ArticleDto article = articleService.getArticle(id);
 
         int tmpLikeCount = article.getLikeCount();
@@ -137,7 +136,7 @@ public class ArticleController {
      * @return
      */
     @GetMapping("edit/{id}")
-    public ModelAndView editLink(ModelAndView mav, @PathVariable("id") String id) {
+    public ModelAndView editLink(ModelAndView mav, @PathVariable String id) {
         // 自分のみ作成できる
         if (session.getAttribute("isLogin") != null) {
             ArticleDto article = articleService.getArticle(id);
@@ -197,7 +196,7 @@ public class ArticleController {
      */
     @PostMapping("/uploadImage/{id}")
     @ResponseBody
-    public void uploadImage(@PathVariable("id") String id,
+    public void uploadImage(@PathVariable String id,
             @RequestParam("imageFile") MultipartFile file) {
         String articleImagePathStr = pathProperty.getResources() + "/images/articles" + "/" + id;
         Path articleImagePath = Paths.get(articleImagePathStr);
