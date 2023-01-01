@@ -1,14 +1,15 @@
 package com.haroot.home_page.controller;
 
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.haroot.home_page.dto.IosAppDto;
+import com.haroot.home_page.service.IosAppService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,9 +22,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/ios-app")
 @RequiredArgsConstructor
-public class IOSAppController {
+public class IosAppController {
 
-	private final JdbcTemplate jdbcT;
+	private final IosAppService iosAppService;
 
 	/**
 	 * ios-app画面表示
@@ -33,13 +34,13 @@ public class IOSAppController {
 	 */
 	@GetMapping
 	public ModelAndView iosApp(ModelAndView mav) {
-		List<Map<String, Object>> iosAppList = jdbcT.queryForList("select * from iOSapp");
-		for (Map<String, Object> content : iosAppList) {
-			String url = content.get("URL").toString();
+		List<IosAppDto> iosAppList = iosAppService.getAll();
+		for (IosAppDto iosApp : iosAppList) {
+			String url = iosApp.getUrl();
 			if (url.equals("")) {
-				content.put("URL", "#");
+				iosApp.setUrl("#");
 			} else {
-				content.put("URL", "ios-app/" + url);
+				iosApp.setUrl("ios-app/" + url);
 			}
 		}
 		mav.addObject("iosAppList", iosAppList);
