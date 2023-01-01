@@ -1,4 +1,5 @@
-window.onload = function() {
+// 初期処理
+window.addEventListener("DOMContentLoaded", () => {
 	const articleId = getArticleId();
 	//セッション取得
 	let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
@@ -7,7 +8,7 @@ window.onload = function() {
 		let icon = document.getElementsByClassName("fa-thumbs-up")[0];
 		icon.style.color = "rgb(220, 74, 71)";
 	}
-}
+});
 
 const updateCount = () => {
 	const articleId = getArticleId();

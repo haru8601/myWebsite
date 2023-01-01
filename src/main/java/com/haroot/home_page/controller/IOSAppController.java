@@ -23,60 +23,56 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IOSAppController {
 
-    final JdbcTemplate jdbcT;
+	private final JdbcTemplate jdbcT;
 
-    /**
-     * ios-app画面表示
-     * 
-     * @param mav MAV
-     * @return
-     */
-    @GetMapping
-    public ModelAndView iosApp(ModelAndView mav) {
-        List<Map<String, Object>> iosAppList = jdbcT.queryForList("select * from iOSapp");
-        for (Map<String, Object> content : iosAppList) {
-            String url = content.get("URL").toString();
-            if (url.equals("")) {
-                content.put("URL", "#");
-            } else {
-                content.put("URL", "ios-app/" + url);
-            }
-        }
-        mav.addObject("iosAppList", iosAppList);
+	/**
+	 * ios-app画面表示
+	 * 
+	 * @param mav MAV
+	 * @return
+	 */
+	@GetMapping
+	public ModelAndView iosApp(ModelAndView mav) {
+		List<Map<String, Object>> iosAppList = jdbcT.queryForList("select * from iOSapp");
+		for (Map<String, Object> content : iosAppList) {
+			String url = content.get("URL").toString();
+			if (url.equals("")) {
+				content.put("URL", "#");
+			} else {
+				content.put("URL", "ios-app/" + url);
+			}
+		}
+		mav.addObject("iosAppList", iosAppList);
 
-        mav.setViewName("contents/iosApp");
-        return mav;
-    }
+		mav.setViewName("contents/iosApp");
+		return mav;
+	}
 
-    /**
-     * 個別アプリ画面表示
-     * 
-     * @param mav     MAV
-     * @param appName アプリ名
-     * @return
-     */
-    @GetMapping("{appName}")
-    public ModelAndView iosPage(
-            ModelAndView mav,
-            @PathVariable String appName) {
-        mav.addObject("appName", appName);
+	/**
+	 * 個別アプリ画面表示
+	 * 
+	 * @param mav     MAV
+	 * @param appName アプリ名
+	 * @return
+	 */
+	@GetMapping("{appName}")
+	public ModelAndView iosPage(ModelAndView mav, @PathVariable String appName) {
+		mav.addObject("appName", appName);
 
-        mav.setViewName("contents/iosApp/" + appName);
-        return mav;
-    }
+		mav.setViewName("contents/iosApp/" + appName);
+		return mav;
+	}
 
-    /**
-     * 個別アプリポリシー
-     * 
-     * @param mav     MAV
-     * @param appName アプリ名
-     * @return
-     */
-    @GetMapping("{appName}/policy")
-    public ModelAndView policy(
-            ModelAndView mav,
-            @PathVariable String appName) {
-        mav.setViewName("contents/iosApp/" + appName + "/policy");
-        return mav;
-    }
+	/**
+	 * 個別アプリポリシー
+	 * 
+	 * @param mav     MAV
+	 * @param appName アプリ名
+	 * @return
+	 */
+	@GetMapping("{appName}/policy")
+	public ModelAndView policy(ModelAndView mav, @PathVariable String appName) {
+		mav.setViewName("contents/iosApp/" + appName + "/policy");
+		return mav;
+	}
 }

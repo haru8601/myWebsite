@@ -3,14 +3,14 @@ let barLeft = "80%";
 let menuBar = document.getElementById("menu-bar");
 
 // 遷移時にバーを初期化
-window.onload = () => {
+window.addEventListener("DOMContentLoaded", () => {
 	if (!menuBar) {
 		return;
 	}
 	menuBar.style.left = "100%";
 	menuFlg = false;
 	setBarLeft();
-}
+});
 
 // リサイズ時はbarLeftの更新とbarの移動
 window.onresize = () => {

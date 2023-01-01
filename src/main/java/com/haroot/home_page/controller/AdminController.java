@@ -20,27 +20,26 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class AdminController {
-    final UserProperty userProperty;
-    final HttpSession session;
+	private final UserProperty userProperty;
+	private final HttpSession session;
 
-    @GetMapping
-    public String top(@ModelAttribute UserDto userDto) {
-        return "/contents/admin/index";
-    }
+	@GetMapping
+	public String top(@ModelAttribute UserDto userDto) {
+		return "/contents/admin/index";
+	}
 
-    @PostMapping("/login")
-    public String login(@Validated @ModelAttribute UserDto userDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "/contents/admin/index";
-        }
-        // ログイン成功
-        if (userDto.getUsername().equals(userProperty.getUsername())
-                && Base64.getEncoder().encodeToString(userDto.getPassword().getBytes())
-                        .equals(userProperty.getPassword())) {
-            session.setAttribute("isLogin", true);
-            return "/contents/admin/user";
-        }
-        bindingResult.rejectValue("username", null, "ユーザー名またはパスワードが違います");
-        return "/contents/admin/index";
-    }
+	@PostMapping("/login")
+	public String login(@Validated @ModelAttribute UserDto userDto, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "/contents/admin/index";
+		}
+		// ログイン成功
+		if (userDto.getUsername().equals(userProperty.getUsername()) && Base64.getEncoder()
+				.encodeToString(userDto.getPassword().getBytes()).equals(userProperty.getPassword())) {
+			session.setAttribute("isLogin", true);
+			return "/contents/admin/user";
+		}
+		bindingResult.rejectValue("username", null, "ユーザー名またはパスワードが違います");
+		return "/contents/admin/index";
+	}
 }

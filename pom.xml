@@ -141,13 +141,6 @@
 			<id>local</id>
 			<build>
 				<finalName>ROOT</finalName>
-				<!--<plugins> <plugin> <groupId>org.openrewrite.maven</groupId> <artifactId>rewrite-maven-plugin</artifactId> 
-					<version>4.38.0</version> <configuration> <activeRecipes> <recipe>org.openrewrite.java.spring.boot3.SpringBoot2To3Migration</recipe> 
-					</activeRecipes> </configuration> <dependencies> <dependency> <groupId>org.openrewrite.recipe</groupId> 
-					<artifactId>rewrite-spring</artifactId> <version>4.31.0</version> </dependency> 
-					</dependencies> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
-					<artifactId>maven-jdeprscan-plugin</artifactId> <version>3.0.0-alpha-1</version> 
-					<configuration> <release>17</release> </configuration> </plugin> </plugins> -->
 			</build>
 		</profile>
 	</profiles>

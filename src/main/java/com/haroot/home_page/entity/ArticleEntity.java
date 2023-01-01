@@ -26,8 +26,6 @@ public class ArticleEntity {
 
 	private String content;
 
-	private int likeCount;
-
 	private boolean wip;
 
 	@CreationTimestamp

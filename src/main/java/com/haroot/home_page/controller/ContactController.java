@@ -30,72 +30,69 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ContactController {
 
-    private final MailSender sender;
-    final ContactService contactService;
+	private final MailSender sender;
+	private final ContactService contactService;
 
-    /**
-     * 問い合わせ画面表示
-     * 
-     * @param mav MAV
-     * @return
-     */
-    @GetMapping
-    public ModelAndView contactLink(ModelAndView mav) {
-        FormDto formDto = new FormDto();
-        mav.addObject("formDto", formDto);
+	/**
+	 * 問い合わせ画面表示
+	 * 
+	 * @param mav MAV
+	 * @return
+	 */
+	@GetMapping
+	public ModelAndView contactLink(ModelAndView mav) {
+		FormDto formDto = new FormDto();
+		mav.addObject("formDto", formDto);
 
-        mav.setViewName("contents/contact");
-        return mav;
-    }
+		mav.setViewName("contents/contact");
+		return mav;
+	}
 
-    /**
-     * 問い合わせ送信
-     * 
-     * @param formData      問い合わせフォーム
-     * @param bindingResult エラー結果
-     * @param request       リクエスト
-     * @param mav           MAV
-     * @return
-     */
-    @PostMapping("send")
-    public ModelAndView postContact(
-            @ModelAttribute @Validated FormDto formDto,
-            BindingResult bindingResult,
-            ModelAndView mav) {
-        Pattern mailP = Pattern.compile("[a-zA-Z0-9]+@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}");
-        Pattern urlP = Pattern.compile("https?://.*\\.");
-        // その他のエラー
-        Pattern elseP = Pattern.compile("@Cryptaxbot");
-        // お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
-        if (mailP.matcher(formDto.getContent()).find()
-                || urlP.matcher(formDto.getContent()).find()
-                || elseP.matcher(formDto.getContent()).find()) {
-            FieldError fieldError = new FieldError("formData", "content", "スパムっぽいので拒否します。");
-            bindingResult.addError(fieldError);
-        }
+	/**
+	 * 問い合わせ送信
+	 * 
+	 * @param formData      問い合わせフォーム
+	 * @param bindingResult エラー結果
+	 * @param request       リクエスト
+	 * @param mav           MAV
+	 * @return
+	 */
+	@PostMapping("send")
+	public ModelAndView postContact(@ModelAttribute @Validated FormDto formDto, BindingResult bindingResult,
+			ModelAndView mav) {
+		Pattern mailP = Pattern.compile("[a-zA-Z0-9]+@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}");
+		Pattern urlP = Pattern.compile("https?://.*\\.");
+		// その他のエラー
+		Pattern elseP = Pattern.compile("@Cryptaxbot");
+		// お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
+		if (mailP.matcher(formDto.getContent()).find() || urlP.matcher(formDto.getContent()).find()
+				|| elseP.matcher(formDto.getContent()).find()) {
+			FieldError fieldError = new FieldError("formData", "content", "スパムっぽいので拒否します。");
+			bindingResult.addError(fieldError);
+		}
 
-        // エラーがあれば戻る
-        if (bindingResult.hasErrors()) {
-            mav.addObject("formDto", formDto);
-            mav.setViewName("contents/contact");
-            return mav;
-        }
+		// エラーがあれば戻る
+		if (bindingResult.hasErrors()) {
+			mav.addObject("formDto", formDto);
+			mav.setViewName("contents/contact");
+			return mav;
+		}
 
-        // メール送信
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom("noreply@haroot.net");
-        msg.setTo("haroot.net@gmail.com");
-        msg.setSubject("【通知】お問い合わせがありました");
-        String br = System.getProperty("line.separator");
-        String message = formDto.getName() + "さんからお問い合わせがありました。" + br + br + "メールアドレス: "
-                + formDto.getEmail() + br + br + "お問い合わせ内容: " + br + formDto.getContent();
-        msg.setText(message);
-        this.sender.send(msg);
+		// メール送信
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setFrom("noreply@haroot.net");
+		msg.setTo("haroot.net@gmail.com");
+		msg.setSubject("【通知】お問い合わせがありました");
+		String br = System.getProperty("line.separator");
+		String message = formDto.getName() + "さんからお問い合わせがありました。" + br + br + "メールアドレス: " + formDto.getEmail() + br + br
+				+ "お問い合わせ内容: " + br + formDto.getContent();
+		msg.setText(message);
+		this.sender.send(msg);
 
-        // DBに保存
-        contactService.register(formDto);
+		// DBに保存
+		contactService.register(formDto);
 
-        mav.setViewName("contents/sent");
-        return mav;
-    }
+		mav.setViewName("contents/sent");
+		return mav;
+	}
 }

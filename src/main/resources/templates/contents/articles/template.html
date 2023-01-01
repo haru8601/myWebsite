@@ -30,9 +30,9 @@
 		<!-- リンクサイドバー -->
 		<div id="links">
 			<div>
-				<button type="button" th:href="@{|/articles/countUp/*{id}|}" onclick="updateCount()"><i
+				<button type="button" onclick="updateCount()"><i
 						class="fa-solid fa-thumbs-up"></i></button>
-				<p id="likeCount" th:text="*{likeCount}">0</p>
+				<p id="likeCount" th:text="${likeCount}">0</p>
 			</div>
 			<div>
 				<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
