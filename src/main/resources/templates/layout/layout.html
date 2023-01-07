@@ -2,6 +2,17 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+	<!-- gtag読み込み -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-KG2Q0JRLTH"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-KG2Q0JRLTH');
+	</script>
+
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -20,10 +31,13 @@
 			<div class="container">
 				<main layout:fragment="content"></main>
 			</div>
+			<!-- adsense設置場所 -->
 			<div layout:replace="~{/layout/ads::ads}"></div>
 			<div layout:replace="~{/layout/footer::footer}"></div>
 		</div>
 		<div layout:replace="~{/layout/menuBar::menuBar}"></div>
-	<div layout:replace="~{/layout/lastProcess::lastProcess}"></div>
+		<script th:src="@{/js/menu.js}"></script>
+	</div>
 </body>
+
 </html>
