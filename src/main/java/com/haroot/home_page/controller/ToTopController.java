@@ -63,6 +63,7 @@ public class ToTopController {
 			e.printStackTrace();
 		}
 		mav.addObject("topicList", topicDtoList);
+		mav.addObject("isTop", true);
 
 		mav.setViewName("index");
 		return mav;

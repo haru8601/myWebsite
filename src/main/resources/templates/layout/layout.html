@@ -31,8 +31,10 @@
 			<div class="container">
 				<main layout:fragment="content"></main>
 			</div>
-			<!-- adsense設置場所 -->
-			<div layout:replace="~{/layout/ads::ads}"></div>
+			<th:block th:if="${isTop == null}">
+				<!-- adsense設置場所 -->
+				<div layout:replace="~{/layout/ads::ads}"></div>
+			</th:block>
 			<div layout:replace="~{/layout/footer::footer}"></div>
 		</div>
 		<div layout:replace="~{/layout/menuBar::menuBar}"></div>
