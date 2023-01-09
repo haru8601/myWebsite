@@ -21,7 +21,12 @@ harootのホームページ。リンクは[こちら](https://haroot.net)。
 │   ├── profiles
 │   │   └── active # local
 │   ├── jpa
-│   │   └── open-in-view # false
+│   │   ├── open-in-view # false(optional)
+│   │   └── properties
+│   │       └── jakarta
+│   │           └── persistence
+│   │              └── sharedCache
+│   │                  └── mode # ENABLE_SELECTIVE(optional)
 │   ├── datasource
 │   │   ├── url # jdbc:mysql://AAAAA:3306/BBB
 │   │   ├── username # admin
