@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * トップ画面コントローラー
- * 
+ *
  * @author sekiharuhito
  *
  */
@@ -35,7 +35,7 @@ public class ToTopController {
 
 	/**
 	 * トップ画面表示
-	 * 
+	 *
 	 * @param mav     MAV
 	 * @param request リクエスト
 	 * @return

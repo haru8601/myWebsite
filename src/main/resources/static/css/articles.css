@@ -18,6 +18,8 @@
 	position: -webkit-sticky;
 	top:80px;
 	height: 100%;
+	/* html上の配置順と異なるので順序指定 */
+	order: 1;
 }
 
 #links>* {
@@ -30,7 +32,6 @@
 }
 
 #links .fa-thumbs-up {
-	/*color:rgb(220, 74, 71);*/
 	color: rgb(61, 60, 63);
 	transition: color 0.5s ease;
 }
@@ -64,13 +65,14 @@
 
 /*titleについてるpaddingを除去*/
 
-#main {
+#articleMain {
 	flex-basis: 70%;
 	flex-grow: 10;
 	padding-right: 1vw;
+	order:2
 }
 
-#main .title {
+#articleMain .title {
 	padding-left: 0;
 }
 
@@ -175,6 +177,7 @@ code {
 	position:-webkit-sticky;
 	top:80px;
 	background-color: rgb(214, 253, 232);
+	order:3
 }
 
 #contents-sticky{
@@ -203,33 +206,26 @@ code {
 	}
 }
 @media(max-width:670px) {
-
-	#main{
+	
+	#template{
 		display:block;
-		width: 100%;
-		margin: 0;
 	}
 
-	#main * {
+	#articleMain * {
 		text-align: start;
-	}
-
-	#links>* {
-		padding: 20px;
 	}
 
 	#links {
 		background-color: rgb(218, 245, 222);
-		width: 100vw;
 		height: auto;
-		position: fixed;
 		display: flex;
-		align-items: flex-start;
 		justify-content: space-around;
-		left:0;
-		bottom: 0;
-		top:initial;
 		max-width: initial;
+		margin:1vh 0;
+	}
+	
+	#links>* {
+		padding: 20px;
 	}
 
 	#tableOfContents{

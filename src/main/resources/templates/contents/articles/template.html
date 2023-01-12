@@ -27,26 +27,7 @@
 
 <body>
 	<main class="articles" id="template" layout:fragment="content" th:object="${article}">
-		<!-- リンクサイドバー -->
-		<div id="links">
-			<div>
-				<button type="button" onclick="updateCount()"><i
-						class="fa-solid fa-thumbs-up"></i></button>
-				<p id="likeCount" th:text="${likeCount}">0</p>
-			</div>
-			<div>
-				<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
-					class="twitter-share-button" data-show-count="false">
-					<i class="fa-brands fa-twitter">
-					</i>
-				</a>
-			</div>
-			<div>
-				<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
-				<p id="copyText">copied!</p>
-			</div>
-		</div>
-		<div id="main">
+		<div id="articleMain">
 			<th:block th:if="${errStr!=''}">
 				<p class="errStr" th:text="${errStr}"></p>
 			</th:block>
@@ -82,6 +63,25 @@
 		</div>
 		<div id="tableOfContents">
 			<div id="contents-sticky"></div>
+		</div>
+		<!-- リンクサイドバー -->
+		<!-- Mobile用に一番下に配置 -->
+		<div id="links">
+			<div>
+				<button type="button" onclick="updateCount()"><i class="fa-solid fa-thumbs-up"></i></button>
+				<p id="likeCount" th:text="${likeCount}">0</p>
+			</div>
+			<div>
+				<a target="_blank" href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
+					class="twitter-share-button" data-show-count="false">
+					<i class="fa-brands fa-twitter">
+					</i>
+				</a>
+			</div>
+			<div>
+				<button onclick="copy()"><i class="fa-solid fa-link"></i></button>
+				<p id="copyText">copied!</p>
+			</div>
 		</div>
 		<script th:src="@{/js/tableOfContents.js}"></script>
 		<script>
