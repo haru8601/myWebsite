@@ -8,13 +8,9 @@
 <body>
 	<div layout:fragment="menuBar" id="menu-bar">
 		<aside>
-			<a class="down-btn" href="/">top</a>
-			<a class="down-btn" href="/ios-app">iOS apps</a>
-			<a class="down-btn" href="/articles">articles</a>
-			<a class="down-btn" href="/music">music</a>
-			<a class="down-btn" href="/bot">bot</a>
-			<a class="down-btn" href="/about">about</a>
-			<a class="down-btn" href="/contact">contact</a>
+			<th:block th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}">
+				<a class="down-btn" th:href="|/${topic.getUrl()}|" th:text="${topic.getTitle()}"></a>
+			</th:block>
 		</aside>
 	</div>
 </body>

@@ -35,13 +35,9 @@ public class IosAppController {
 	@GetMapping
 	public ModelAndView iosApp(ModelAndView mav) {
 		List<IosAppDto> iosAppList = iosAppService.getAll();
-		for (IosAppDto iosApp : iosAppList) {
-			String url = iosApp.getUrl();
-			if (url.equals("")) {
-				iosApp.setUrl("#");
-			} else {
-				iosApp.setUrl("ios-app/" + url);
-			}
+		for (IosAppDto content : iosAppList) {
+			String url = content.getUrl();
+			content.setUrl(url != null ? "ios-app/" + url : "#");
 		}
 		mav.addObject("iosAppList", iosAppList);
 

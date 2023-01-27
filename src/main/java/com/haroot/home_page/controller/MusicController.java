@@ -21,7 +21,7 @@ import com.haroot.home_page.service.MusicService;
 import lombok.RequiredArgsConstructor;
 
 /**
- * youtubeコントローラー
+ * musicコントローラー
  * 
  * @author sekiharuhito
  *
@@ -38,7 +38,7 @@ public class MusicController {
 		List<MusicDto> musicList = musicService.getAllMusic();
 		for (MusicDto content : musicList) {
 			String url = content.getUrl();
-			content.setUrl("music/" + url);
+			content.setUrl(url != null ? "music/" + url : "#");
 		}
 		mav.addObject("musicList", musicList);
 		mav.setViewName("contents/music");
@@ -46,7 +46,7 @@ public class MusicController {
 	}
 
 	/**
-	 * Youtube一覧表示
+	 * minecraft動画一覧表示
 	 * 
 	 * @param mav MAV
 	 * @return
@@ -57,9 +57,10 @@ public class MusicController {
 		List<Map<String, Object>> youtubeList = new ArrayList<>();
 		int maxResults = 50;
 		try {
-			URL url = new URL("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet" + "&playlistId="
-					+ youtubeProperty.getPlaylistId() + "&maxResults=" + String.valueOf(maxResults) + "&key="
-					+ youtubeProperty.getKey());
+			URL url = new URL(
+				"https://www.googleapis.com/youtube/v3/playlistItems?part=snippet" + "&playlistId="
+						+ youtubeProperty.getPlaylistId() + "&maxResults=" + String.valueOf(maxResults) + "&key="
+						+ youtubeProperty.getKey());
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode json = mapper.readTree(url);
 			int itemLen = json.get("items").size();

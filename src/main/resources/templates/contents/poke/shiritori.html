@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}"
+	th:with="title='ポ○モンしりとり'">
+
+<head>
+	<title th:text="|${title} - ${@environment.getProperty('path.site')}|">haroot</title>
+	<!-- botのスタイル流用 -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bot.css}">
+	<meta name="description" content="harootが作成したしりとり出来るサイトの紹介です。">
+</head>
+
+<body>
+	<main id="shiritori" layout:fragment="content">
+		<h2 class="title" th:text="${title}"></h2>
+		<p class="summary">しりとり出来るサイトを作ってみました。</p>
+		<div class="description">
+			<div>
+				<a href="https://www.pikachu-unown.com" target="_blank">サイトへ行く</a>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
