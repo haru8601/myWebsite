@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<title>管理画面 - haroot.net</title>
+	<title th:text="|管理画面 - ${site}|">haroot</title>
 	<meta name="description" content="管理画面です。">
 	<link type="text/css" rel="stylesheet" th:href="@{css/admin.css}">
 </head>

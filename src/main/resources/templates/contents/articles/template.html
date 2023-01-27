@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}"
+	th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).ARTICLES}">
 
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#" th:object="${article}">
-	<title th:text="*{title}+' - haroot.net'">技術記事 - haroot.net</title>
+	<title th:text="|*{title} - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
-	<meta name="description" th:content="*{title}+'についての記事です。'">
+	<meta name="description" th:content="|*{title}についての記事です。|">
 	<!--marked用-->
 	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 	<!--syntaxHighlight用-->
@@ -16,10 +17,10 @@
 	<!--twitter以外でも使えるやつ-->
 	<meta property="og:type" content="article">
 	<meta id="share-title" property="og:title" th:content="*{title}">
-	<meta id="share-detail" property="og:description" th:content="*{title}+'についての記事です。'">
-	<meta id="share-url" property="og:url" th:content="@{|/articles/*{id}|}">
-	<meta property="og:site_name" content="haroot.net">
-	<meta property="og:image" th:content="'https://haroot.net/images/articles/'+*{id}+'/thumbnail.png'">
+	<meta id="share-detail" property="og:description" th:content="|*{title}についての記事です。|">
+	<meta id="share-url" property="og:url" th:content="@{|/${topic.getUrl()}/*{id}|}">
+	<meta property="og:site_name" content="${site}">
+	<meta property="og:image" th:content="|https://haroot.net/images/${topic.getUrl()}/*{id}/thumbnail.png|">
 	<!--twitter特有の設定-->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@haroot_net">

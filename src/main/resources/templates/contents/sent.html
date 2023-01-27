@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<title>送信完了 - haroot.net</title>
+	<title th:text="|送信完了 - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/sent.css}">
 	<meta name="description" content="harootのお問い合わせ完了ページです。">
 </head>

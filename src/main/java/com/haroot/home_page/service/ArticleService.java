@@ -32,7 +32,7 @@ public class ArticleService {
    * @param id 記事ID
    * @return
    */
-  public ArticleDto getArticle(String id) {
+  public ArticleDto getOne(String id) {
     int idNum = -1;
     try {
       idNum = Integer.parseInt(id);
@@ -52,7 +52,7 @@ public class ArticleService {
    * @return
    */
   public ArticleDto getAndFixArticle(String id) {
-    ArticleDto article = getArticle(id);
+    ArticleDto article = getOne(id);
     if (article.isWip() && session.getAttribute("isLogin") == null) {
       // 非公開なら情報マスキング
       article = maskArticle(article);
@@ -66,7 +66,7 @@ public class ArticleService {
    * 
    * @return
    */
-  public List<ArticleDto> getAllArticle() {
+  public List<ArticleDto> getAll() {
     List<ArticleEntity> articleList = new ArrayList<>();
     // ログインユーザーでなければ公開記事のみ表示
     if (session.getAttribute("isLogin") == null) {
@@ -83,7 +83,7 @@ public class ArticleService {
    * @param article 記事
    * @return 更新後の記事
    */
-  public ArticleEntity updateArticle(ArticleDto article) {
+  public ArticleEntity update(ArticleDto article) {
     return articleRepository.save(ArticleEntity.of(article));
   }
 

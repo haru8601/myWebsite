@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class MusicService {
   private final MusicRepository musicRepository;
 
-  public List<MusicDto> getAllMusic() {
+  public List<MusicDto> getAll() {
     return MusicDto.ofList(musicRepository.findAll());
   }
 }

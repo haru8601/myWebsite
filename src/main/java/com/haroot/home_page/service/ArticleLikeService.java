@@ -30,7 +30,7 @@ public class ArticleLikeService {
    * @param id 記事ID
    * @return likeDTO
    */
-  public ArticleLikeDto get(String id) {
+  public ArticleLikeDto getOne(String id) {
     int idNum = -1;
     try {
       idNum = Integer.parseInt(id);
@@ -57,7 +57,7 @@ public class ArticleLikeService {
    * @return likeDTO
    */
   public ArticleLikeDto getAndAddQiita(String id, String title) {
-    ArticleLikeDto likeDto = get(id);
+    ArticleLikeDto likeDto = getOne(id);
     int tmpLikeCount = likeDto.getLikeCount();
     // QiitaAPIから記事一覧を取得
     try {

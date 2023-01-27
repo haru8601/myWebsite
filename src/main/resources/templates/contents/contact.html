@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}"
+	th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).CONTACT}">
 
 <head>
-	<title>お問い合わせ - haroot.net</title>
+	<title th:text="|${topic.getTitleJp()} - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/contact.css}">
-	<meta name="description" content="haroot.netのお問い合わせフォームです。">
+	<meta name="description" th:content="${topic.getSummary()}">
 </head>
 
 <body>
@@ -12,9 +13,10 @@
 		<!-- コンテンツ2(ヘッダーのリンク先) -->
 		<form th:object="${formDto}" action="/contact/send" method="post">
 			<div class="contact-form">
-				<h2 class="title">お問い合わせ</h2>
-				<p class="summary">スパムっぽい内容は弾いてます。</p>
+				<h2 class="title" th:text="${topic.getTitleJp()}"></h2>
+				<p class="summary" th:text="${topic.getSummary()}"></p>
 				<div class="container">
+					<p>※スパムっぽい内容は弾いてます。</p>
 					<p>名前
 						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
 					<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="check-failed"></p>
@@ -34,8 +36,7 @@
 					<div class="policy-area">
 						<p th:if="${#fields.hasErrors('checkbox')}" th:errors="*{checkbox}" class="check-failed"></p>
 						<div class="check-area down-btn">
-							<input type="checkbox" th:name="checkbox" th:id="checkbox"
-								th:checked="*{checkbox}">
+							<input type="checkbox" th:name="checkbox" th:id="checkbox" th:checked="*{checkbox}">
 							<label for="checkbox">はるーとの<a href="/policy">プライバシーポリシー</a>に同意します。</label>
 						</div>
 					</div>

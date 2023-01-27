@@ -2,7 +2,7 @@
 <html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<title>NOT FOUNT... - haroot.net</title>
+	<title th:text="|SERVER ERROR - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/error.css}">
 	<meta name="description" content="haroot.netでエラーが起きた際のページです。。">
 </head>

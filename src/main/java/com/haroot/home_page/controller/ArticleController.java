@@ -57,7 +57,7 @@ public class ArticleController {
    */
   @GetMapping
   public ModelAndView articleAll(ModelAndView mav) {
-    List<ArticleDto> articlesList = articleService.getAllArticle();
+    List<ArticleDto> articlesList = articleService.getAll();
     mav.addObject("articlesList", articlesList);
     mav.addObject("errStr", "");
     mav.setViewName("contents/articles");
@@ -91,7 +91,7 @@ public class ArticleController {
   @ResponseBody
   public void updateCount(@PathVariable String id, @PathVariable String type) {
     // qiitaのいいね数は取得せず直接DBから取得
-    ArticleLikeDto likeDto = articleLikeService.get(id);
+    ArticleLikeDto likeDto = articleLikeService.getOne(id);
 
     int tmpLikeCount = likeDto.getLikeCount();
     if (type.equals("up")) {
@@ -126,7 +126,7 @@ public class ArticleController {
       mav.setViewName("contents/articles/create");
     } else {
       // 他は戻す
-      List<ArticleDto> articlesList = articleService.getAllArticle();
+      List<ArticleDto> articlesList = articleService.getAll();
       mav.addObject("articlesList", articlesList);
       mav.addObject("errStr", "Sorry, you can't create articles....");
       mav.setViewName("contents/articles");
@@ -191,7 +191,7 @@ public class ArticleController {
     articleDto.setTitle(articleRegisterDto.getTitle());
     articleDto.setContent(articleRegisterDto.getContent());
     articleDto.setWip(articleRegisterDto.isWip());
-    articleService.updateArticle(articleDto);
+    articleService.update(articleDto);
     mav.setViewName("contents/articles/created");
     return mav;
   }

@@ -35,7 +35,7 @@ public class MusicController {
 
   @GetMapping
   public ModelAndView music(ModelAndView mav) {
-    List<MusicDto> musicList = musicService.getAllMusic();
+    List<MusicDto> musicList = musicService.getAll();
     for (MusicDto content : musicList) {
       String url = content.getUrl();
       content.setUrl(url != null ? "music/" + url : "#");

@@ -2,7 +2,7 @@
 <html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<title>MinecraftMusic - haroot.net</title>
+	<title th:text="|MinecraftMusic - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/music.css}">
 	<meta name="description" content="MinecraftMusic名義でyoutubeに投稿した動画一覧です。">
 </head>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}"
+	th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).ARTICLES}">
 
 <head>
-	<title>技術記事 - haroot.net</title>
+	<title th:text="|${topic.getTitleJp()} - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
-	<meta name="description" content="haroot.netの技術記事一覧です。">
+	<meta name="description" th:content="${topic.getSummary()}">
 </head>
 
 <body>
@@ -12,15 +13,15 @@
 		<th:block th:if="${errStr!=''}">
 			<p class="errStr" th:text="${errStr}"></p>
 		</th:block>
-		<h2 class="title">技術記事</h2>
-		<p class="summary">調べてもなかなか解決しなかった技術的問題を記事にしました。</p>
+		<h2 class="title" th:text="${topic.getTitleJp()}"></h2>
+		<p class="summary" th:text="${topic.getSummary()}"></p>
 		<div class="item-all">
 			<!-- 内容物リスト -->
-			<a class="item-link down-btn" th:href="@{|/articles/*{id}|}" th:each="content: ${articlesList}"
+			<a class="item-link down-btn" th:href="@{|/${topic.getUrl()}/*{id}|}" th:each="content: ${articlesList}"
 				th:object="${content}">
 				<div class="item">
 					<div class="item-imgDiv">
-						<img class="item-img" th:src="'/images/articles/'+*{id}+'/thumbnail.png'" alt="サムネイル画像です。"
+						<img class="item-img" th:src="|/images/${topic.getUrl()}/*{id}/thumbnail.png|" alt="サムネイル画像です。"
 							onerror="this.onerror=null; this.src='/images/noImage.png'">
 					</div>
 					<div class="item-text">

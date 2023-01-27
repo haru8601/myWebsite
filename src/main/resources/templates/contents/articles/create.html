@@ -2,7 +2,7 @@
 <html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
 
 <head>
-	<title>記事作成 - haroot.net</title>
+	<title th:text="|記事作成 - ${site}|">haroot</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
 	<!--simpleMDE用-->
 	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
