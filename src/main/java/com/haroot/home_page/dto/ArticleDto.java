@@ -21,30 +21,35 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ArticleDto {
-	private int id;
-	@NotBlank
-	private String title;
-	@NotBlank
-	private String content;
-	private boolean wip;
-	private LocalDateTime createDate;
-	private LocalDateTime updateDate;
+  private int id;
+  @NotBlank
+  private String title;
+  @NotBlank
+  private String content;
+  private boolean wip;
+  private LocalDateTime createDate;
+  private LocalDateTime updateDate;
 
-	public ArticleDto(int id, String title, String content, boolean wip) {
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.wip = wip;
-	}
+  public ArticleDto(int id, String title, String content, boolean wip) {
+    this.id = id;
+    this.title = title;
+    this.content = content;
+    this.wip = wip;
+  }
 
-	public static ArticleDto of(ArticleEntity entity) {
-		return new ArticleDto(entity.getId(), entity.getTitle(), entity.getContent(), entity.isWip(),
-				entity.getCreateDate(), entity.getUpdateDate());
-	}
+  public static ArticleDto of(ArticleEntity entity) {
+    return new ArticleDto(
+      entity.getId(),
+      entity.getTitle(),
+      entity.getContent(),
+      entity.isWip(),
+      entity.getCreateDate(),
+      entity.getUpdateDate());
+  }
 
-	public static List<ArticleDto> listOf(List<ArticleEntity> entityList) {
-		List<ArticleDto> dtoList = new ArrayList<>();
-		entityList.forEach((entity) -> dtoList.add(of(entity)));
-		return dtoList;
-	}
+  public static List<ArticleDto> listOf(List<ArticleEntity> entityList) {
+    List<ArticleDto> dtoList = new ArrayList<>();
+    entityList.forEach((entity) -> dtoList.add(of(entity)));
+    return dtoList;
+  }
 }

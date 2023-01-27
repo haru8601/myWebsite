@@ -10,11 +10,14 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ArticleLikeDto {
-	private int id;
-	private int likeCount;
-	private LocalDateTime lastUpdate;
+  private int id;
+  private int likeCount;
+  private LocalDateTime lastUpdate;
 
-	public static ArticleLikeDto of(ArticleLikeEntity entity) {
-		return new ArticleLikeDto(entity.getId(), entity.getLikeCount(), entity.getLastUpdate());
-	}
+  public static ArticleLikeDto of(ArticleLikeEntity entity) {
+    return new ArticleLikeDto(
+      entity.getId(),
+      entity.getLikeCount(),
+      entity.getLastUpdate());
+  }
 }

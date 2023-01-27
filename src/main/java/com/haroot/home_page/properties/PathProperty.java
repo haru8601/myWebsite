@@ -7,7 +7,7 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "path")
 @Data
 public class PathProperty {
-    private String log;
-    private String site;
-    private String resources;
+  private String log;
+  private String site;
+  private String resources;
 }

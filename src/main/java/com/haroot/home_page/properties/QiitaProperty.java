@@ -13,6 +13,6 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "qiita")
 @Data
 public class QiitaProperty {
-    private String token;
-    private String user;
+  private String token;
+  private String user;
 }

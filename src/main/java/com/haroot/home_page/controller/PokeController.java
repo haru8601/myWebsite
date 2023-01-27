@@ -22,47 +22,47 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/poke")
 @RequiredArgsConstructor
 public class PokeController {
-	private final PokeService pokeService;
+  private final PokeService pokeService;
 
-	/**
-	 * poke一覧画面
-	 * 
-	 * @param mav MAV
-	 * @return
-	 */
-	@GetMapping
-	public ModelAndView poke(ModelAndView mav) {
-		List<PokeDto> pokeList = pokeService.getAll();
-		for (PokeDto content : pokeList) {
-			String url = content.getUrl();
-			content.setUrl(url != null ? "poke/" + url : "#");
-		}
-		mav.addObject("pokeList", pokeList);
-		mav.setViewName("contents/poke");
-		return mav;
-	}
+  /**
+   * poke一覧画面
+   * 
+   * @param mav MAV
+   * @return
+   */
+  @GetMapping
+  public ModelAndView poke(ModelAndView mav) {
+    List<PokeDto> pokeList = pokeService.getAll();
+    for (PokeDto content : pokeList) {
+      String url = content.getUrl();
+      content.setUrl(url != null ? "poke/" + url : "#");
+    }
+    mav.addObject("pokeList", pokeList);
+    mav.setViewName("contents/poke");
+    return mav;
+  }
 
-	/**
-	 * bot表示
-	 * 
-	 * @param mav MAV
-	 * @return
-	 */
-	@GetMapping("/bot")
-	public ModelAndView bot(ModelAndView mav) {
-		mav.setViewName("contents/poke/bot");
-		return mav;
-	}
+  /**
+   * bot表示
+   * 
+   * @param mav MAV
+   * @return
+   */
+  @GetMapping("/bot")
+  public ModelAndView bot(ModelAndView mav) {
+    mav.setViewName("contents/poke/bot");
+    return mav;
+  }
 
-	/**
-	 * しりとりサイト表示
-	 * 
-	 * @param mav MAV
-	 * @return
-	 */
-	@GetMapping("/shiritori")
-	public ModelAndView shiritori(ModelAndView mav) {
-		mav.setViewName("contents/poke/shiritori");
-		return mav;
-	}
+  /**
+   * しりとりサイト表示
+   * 
+   * @param mav MAV
+   * @return
+   */
+  @GetMapping("/shiritori")
+  public ModelAndView shiritori(ModelAndView mav) {
+    mav.setViewName("contents/poke/shiritori");
+    return mav;
+  }
 }

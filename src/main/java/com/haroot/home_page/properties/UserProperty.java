@@ -7,6 +7,6 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "user")
 @Data
 public class UserProperty {
-    private String username;
-    private String password;
+  private String username;
+  private String password;
 }

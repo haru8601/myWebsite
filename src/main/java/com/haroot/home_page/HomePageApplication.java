@@ -10,13 +10,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @ConfigurationPropertiesScan
 public class HomePageApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(HomePageApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(HomePageApplication.class, args);
+  }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(HomePageApplication.class);
-    }
+  @Override
+  protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+    return application.sources(HomePageApplication.class);
+  }
 
 }

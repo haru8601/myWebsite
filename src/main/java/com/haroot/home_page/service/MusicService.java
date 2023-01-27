@@ -12,9 +12,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MusicService {
-	private final MusicRepository musicRepository;
+  private final MusicRepository musicRepository;
 
-	public List<MusicDto> getAllMusic() {
-		return MusicDto.ofList(musicRepository.findAll());
-	}
+  public List<MusicDto> getAllMusic() {
+    return MusicDto.ofList(musicRepository.findAll());
+  }
 }

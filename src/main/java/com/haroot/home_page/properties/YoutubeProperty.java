@@ -13,6 +13,6 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "youtube")
 @Data
 public class YoutubeProperty {
-    private String key;
-    private String playlistId;
+  private String key;
+  private String playlistId;
 }

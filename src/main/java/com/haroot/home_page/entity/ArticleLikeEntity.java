@@ -15,17 +15,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ArticleLikeEntity {
-	@Id
-	private int id;
+  @Id
+  private int id;
 
-	private int likeCount;
+  private int likeCount;
 
-	@UpdateTimestamp
-	private LocalDateTime lastUpdate;
+  @UpdateTimestamp
+  private LocalDateTime lastUpdate;
 
-	public ArticleLikeEntity(int id, int likeCount) {
-		this.id = id;
-		this.likeCount = likeCount;
-	}
+  public ArticleLikeEntity(int id, int likeCount) {
+    this.id = id;
+    this.likeCount = likeCount;
+  }
 
 }

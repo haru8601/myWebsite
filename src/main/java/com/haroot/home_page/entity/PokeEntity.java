@@ -12,13 +12,13 @@ import lombok.Data;
 @Data
 @Table(name = "poke")
 public class PokeEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@NotBlank
-	private String title;
-	@NotBlank
-	private String summary;
-	private String url;
-	private String img;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  @NotBlank
+  private String title;
+  @NotBlank
+  private String summary;
+  private String url;
+  private String img;
 }

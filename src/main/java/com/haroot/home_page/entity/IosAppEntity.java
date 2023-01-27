@@ -12,13 +12,13 @@ import lombok.Data;
 @Table(name = "ios_app")
 @Data
 public class IosAppEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@NotBlank
-	private String title;
-	private String url;
-	private String summary;
-	@NotBlank
-	private String img;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+  @NotBlank
+  private String title;
+  private String url;
+  private String summary;
+  @NotBlank
+  private String img;
 }

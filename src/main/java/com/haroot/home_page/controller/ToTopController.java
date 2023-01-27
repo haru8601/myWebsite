@@ -21,45 +21,45 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ToTopController {
 
-	private final PathProperty pathProperty;
+  private final PathProperty pathProperty;
 
-	/**
-	 * トップ画面表示
-	 *
-	 * @param mav     MAV
-	 * @param request リクエスト
-	 * @return
-	 */
-	@GetMapping
-	public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
-		String referer = request.getHeader("REFERER");
-		boolean displaySlot = true;
-		// 遷移元が自分のサイト内なら(トップページ以外)
-		if (referer != null && referer.matches("^https?://" + pathProperty.getSite() + "/.+$")) {
-			// slot非表示
-			displaySlot = false;
-		}
-		mav.addObject("displaySlot", displaySlot);
+  /**
+   * トップ画面表示
+   *
+   * @param mav     MAV
+   * @param request リクエスト
+   * @return
+   */
+  @GetMapping
+  public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
+    String referer = request.getHeader("REFERER");
+    boolean displaySlot = true;
+    // 遷移元が自分のサイト内なら(トップページ以外)
+    if (referer != null && referer.matches("^https?://" + pathProperty.getSite() + "/.+$")) {
+      // slot非表示
+      displaySlot = false;
+    }
+    mav.addObject("displaySlot", displaySlot);
 
-		mav.addObject("isTop", true);
+    mav.addObject("isTop", true);
 
-		mav.setViewName("index");
-		return mav;
-	}
+    mav.setViewName("index");
+    return mav;
+  }
 
-	/**
-	 * ポリシー画面表示
-	 */
-	@GetMapping("policy")
-	public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
+  /**
+   * ポリシー画面表示
+   */
+  @GetMapping("policy")
+  public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
 
-		mav.setViewName("policy");
-		return mav;
-	}
+    mav.setViewName("policy");
+    return mav;
+  }
 
-	@GetMapping("/twitter-auth")
-	public ModelAndView auth(ModelAndView mav) {
-		mav.setViewName("error/500");
-		return mav;
-	}
+  @GetMapping("/twitter-auth")
+  public ModelAndView auth(ModelAndView mav) {
+    mav.setViewName("error/500");
+    return mav;
+  }
 }

@@ -9,7 +9,7 @@ import com.haroot.home_page.entity.ArticleEntity;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleEntity, Integer> {
-	List<ArticleEntity> findAllByOrderByUpdateDateDesc();
+  List<ArticleEntity> findAllByOrderByUpdateDateDesc();
 
-	List<ArticleEntity> findAllByWipFalseOrderByUpdateDateDesc();
+  List<ArticleEntity> findAllByWipFalseOrderByUpdateDateDesc();
 }

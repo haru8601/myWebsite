@@ -15,16 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/about")
 public class AboutController {
 
-    /**
-     * about画面表示
-     * 
-     * @param mav MAV
-     * @return
-     */
-    @GetMapping
-    public ModelAndView about(ModelAndView mav) {
+  /**
+   * about画面表示
+   * 
+   * @param mav MAV
+   * @return
+   */
+  @GetMapping
+  public ModelAndView about(ModelAndView mav) {
 
-        mav.setViewName("contents/about");
-        return mav;
-    }
+    mav.setViewName("contents/about");
+    return mav;
+  }
 }

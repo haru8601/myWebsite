@@ -7,8 +7,8 @@ import com.haroot.home_page.exception.HarootNotFoundException;
 
 @ControllerAdvice
 public class HarootExceptionHandler {
-    @ExceptionHandler(HarootNotFoundException.class)
-    public String handleHarootNotFoundException(HarootNotFoundException ex) {
-        return "/error/404";
-    }
+  @ExceptionHandler(HarootNotFoundException.class)
+  public String handleHarootNotFoundException(HarootNotFoundException ex) {
+    return "/error/404";
+  }
 }

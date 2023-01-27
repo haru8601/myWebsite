@@ -12,9 +12,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class PokeService {
-	private final PokeRepository pokeRepository;
+  private final PokeRepository pokeRepository;
 
-	public List<PokeDto> getAll() {
-		return PokeDto.ofList(pokeRepository.findAll());
-	}
+  public List<PokeDto> getAll() {
+    return PokeDto.ofList(pokeRepository.findAll());
+  }
 }

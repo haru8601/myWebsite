@@ -12,14 +12,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class IosAppService {
-	private final IosAppRepository iosAppRepository;
+  private final IosAppRepository iosAppRepository;
 
-	/**
-	 * 全件取得
-	 * 
-	 * @return iosAppのリスト
-	 */
-	public List<IosAppDto> getAll() {
-		return IosAppDto.listOf(iosAppRepository.findAll());
-	}
+  /**
+   * 全件取得
+   * 
+   * @return iosAppのリスト
+   */
+  public List<IosAppDto> getAll() {
+    return IosAppDto.listOf(iosAppRepository.findAll());
+  }
 }
