@@ -7,7 +7,7 @@ public enum TopicEnum {
   IOS_APP("iOS Apps", "iOSアプリ", "ios-app", "個人で製作したiOSアプリ一覧です。"),
   ARTICLES("Articles", "技術記事", "articles", "IT周りの自分用にまとめた記事一覧です。"),
   MUSIC("Music", "音楽", "music", "耳コピしたものとか置いてます。"),
-  POKE("Poké", "ポ○モン", "poke", "ポケモン関係(もちろん非公式)のプロダクトです。"),
+  POKE("Poké", "ポ○モン", "poke", "ポ○モン関係(もちろん非公式)のプロダクトです。"),
   ABOUT("About", "経歴", "about", "harootとは...?"),
   CONTACT("Contact", "お問い合わせ", "contact", "お問い合わせフォームはこちら。");
 
