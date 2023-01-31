@@ -1,81 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-<!--  created with free sitemap generation system www.sitemapxml.jp  -->
-<url>
-  <loc>https://haroot.net/</loc>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://haroot.net/policy</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/contact</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/ios-app</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/ios-app/english-quiz</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/ios-app/english-quiz/policy</loc>
-  <priority>0.6</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/music</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/music/minecraft</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/bot</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/about</loc>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/13</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/12</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/11</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/10</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/9</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/8</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/16</loc>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://haroot.net/articles/15</loc>
-  <priority>0.7</priority>
-</url>
+  <!--  created with free sitemap generation system www.sitemapxml.jp  -->
+  <url>
+    <loc>https://haroot.net/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/policy</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/contact</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/ios-app</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/ios-app/english-quiz</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/ios-app/english-quiz/policy</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/music</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/poke</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/poke/bot</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/poke/shiritori</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/about</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/9</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/18</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/13</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/12</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/11</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/10</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/8</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/16</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://haroot.net/articles/15</loc>
+    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
 </urlset>
