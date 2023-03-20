@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}"
-	th:with="title='ポ○モンしりとり'">
+	th:with="title='ポケモンしりとり'">
 
 <head>
 	<title th:text="|${title} - ${@environment.getProperty('path.site')}|">haroot</title>
-	<!-- botのスタイル流用 -->
-	<link type="text/css" rel="stylesheet" th:href="@{/css/bot.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/poke.css}">
 	<meta name="description" content="harootが作成したしりとり出来るサイトの紹介です。">
 </head>
 
@@ -14,6 +13,24 @@
 		<h2 class="title" th:text="${title}"></h2>
 		<p class="summary">しりとり出来るサイトを作ってみました。</p>
 		<div class="description">
+			<div>
+				<div>
+					<a href="https://www.pikachu-unown.com" target="_blank">サイトへ行く</a>
+				</div>
+			</div>
+			<br>
+			<div>
+				<img class="item-img shiritori-img" th:src="@{/images/poke/shiritori/battle2.png}">
+				<p>制限時間内にたくさん答えるとスコアが増え</p>
+			</div>
+			<div>
+				<img class="item-img shiritori-img" th:src="@{/images/poke/shiritori/ed1.png}">
+				<p>結果はランキングに保存できます</p>
+			</div>
+			<div>
+				<img class="item-img shiritori-img" th:src="@{/images/poke/shiritori/battle3.png}">
+				<p>相手ポケモンに有利なタイプを出すと、スコアが大きく伸びます</p>
+			</div>
 			<div>
 				<a href="https://www.pikachu-unown.com" target="_blank">サイトへ行く</a>
 			</div>
