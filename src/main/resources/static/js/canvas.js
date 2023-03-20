@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 /**
  * 描画先の canvas エレメント
  * @type {HTMLCanvasElement}
@@ -305,22 +307,6 @@ function checkBingo() {
     resFlg &&= finalDegreeArr[0] == boxDegree;
   });
   return resFlg;
-}
-
-/**
- *
- * @param {number} thetaDiff
- * @param {THREE.Vector3} direction
- */
-function moveCamera(thetaDiff, direction) {
-  const x = camera.position.x;
-  const z = camera.position.z;
-  let theta = Math.atan2(z, x);
-  let r = Math.sqrt(x * x + z * z);
-  theta += thetaDiff;
-  camera.position.x = r * Math.cos(theta);
-  camera.position.z = r * Math.sin(theta);
-  camera.lookAt(direction);
 }
 
 // 終了処理

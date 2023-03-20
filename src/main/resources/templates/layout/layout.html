@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
-	th:with="site=${@environment.getProperty('path.site')}">
+<html
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org"
+  th:with="site=${@environment.getProperty('path.site')}"
+>
+  <head>
+    <!-- gtag読み込み -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-KG2Q0JRLTH"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-KG2Q0JRLTH");
+    </script>
 
-<head>
-	<!-- gtag読み込み -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-KG2Q0JRLTH"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag("js", new Date());
-		gtag("config", "G-KG2Q0JRLTH");
-	</script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" th:href="@{/css/stylesheet.css}" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/responsive.css}"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
+    <!--FontAwesome用-->
+    <script
+      src="https://kit.fontawesome.com/cee3ec41f4.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>layout page</title>
+  </head>
 
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-	<link rel="stylesheet" th:href="@{/css/stylesheet.css}" />
-	<link rel="stylesheet" th:href="@{/css/responsive.css}" media="print" onload="this.media='all'" />
-	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
-	<!--FontAwesome用-->
-	<script src="https://kit.fontawesome.com/cee3ec41f4.js" crossorigin="anonymous"></script>
-	<title>layout page</title>
-</head>
-
-<body>
-	<header layout:replace="~{/layout/header::header}"></header>
-	<div class="except-header">
-		<div class="except-aside">
-			<div class="container">
-				<main layout:fragment="content"></main>
-			</div>
-			<th:block th:if="${isTop == null}">
-				<!-- adsense設置場所 -->
-				<div layout:replace="~{/layout/ads::ads}"></div>
-			</th:block>
-			<div layout:replace="~{/layout/footer::footer}"></div>
-		</div>
-		<div layout:replace="~{/layout/menuBar::menuBar}"></div>
-		<script th:src="@{/js/menu.js}"></script>
-	</div>
-</body>
-
+  <body>
+    <header layout:replace="~{/layout/header::header}"></header>
+    <div class="except-header">
+      <div class="except-aside">
+        <div class="container">
+          <main layout:fragment="content"></main>
+        </div>
+        <th:block th:if="${isTop == null}">
+          <!-- adsense設置場所 -->
+          <div layout:replace="~{/layout/ads::ads}"></div>
+        </th:block>
+        <div layout:replace="~{/layout/footer::footer}"></div>
+      </div>
+      <div layout:replace="~{/layout/menuBar::menuBar}"></div>
+      <script th:src="@{/js/menu.js}"></script>
+    </div>
+  </body>
 </html>

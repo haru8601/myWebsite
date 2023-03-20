@@ -5,6 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
   let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
   //likeしてれば色変更
   if (likeFlg == "1") {
+    /** @type {HTMLElement} */
+    // @ts-ignore
     let icon = document.getElementsByClassName("fa-thumbs-up")[0];
     icon.style.color = "rgb(220, 74, 71)";
   }
@@ -38,6 +40,8 @@ const updateCount = () => {
   //セッションにlikeを記録
   sessionStorage.setItem(`haroot-likeFlg_${articleId}`, likeFlg);
   //アイコンの色変更
+  /** @type {HTMLElement} */
+  // @ts-ignore
   let icon = document.getElementsByClassName("fa-thumbs-up")[0];
   icon.style.color = color;
 

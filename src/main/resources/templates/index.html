@@ -40,10 +40,17 @@
       <!--launch画面(他サイトやトップから飛んできた場合のみ)-->
       <th:block th:if="${displaySlot}">
         <div id="launch">
+          <script type="importmap">
+            {
+              "imports": {
+                "three": "https://unpkg.com/three@0.150.0/build/three.module.js"
+              }
+            }
+          </script>
           <!-- キャンバスサイズは実際の表示サイズとは別 -->
           <canvas id="canvas1" width="700" height="800">
             <script th:src="@{/js/three.js}"></script>
-            <script th:src="@{/js/canvas.js}"></script>
+            <script type="module" th:src="@{/js/canvas.js}"></script>
           </canvas>
         </div>
         <script>
