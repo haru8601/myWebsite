@@ -70,6 +70,15 @@ input.submit {
     cursor: pointer;
 }
 
+.copyright{
+	font-size: 10px;
+	text-align: start;
+}
+
+.flex{
+	display: flex;
+}
+
 /*********ヘッダー***********/
 
 header {
@@ -285,16 +294,13 @@ footer {
 
 .footer-list{
 	text-align:right;
+	display: flex;
+	flex-direction: row-reverse;
 }
 
-.footer-list>ul>li {
+.footer-list>* {
     padding: 1vh 1vw;
     font-size: 18px;
-    list-style: none;
-    display: inline-block;
-}
-
-.footer-list>ul>li>a {
     color: black;
 }
 

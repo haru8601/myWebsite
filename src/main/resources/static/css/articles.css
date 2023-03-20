@@ -175,7 +175,7 @@ code {
 	height: 100%;
 	position:sticky;
 	position:-webkit-sticky;
-	top:80px;
+	top: calc(80px + 2vh);
 	background-color: rgb(214, 253, 232);
 	order:3
 }
@@ -206,7 +206,7 @@ code {
 	}
 }
 @media(max-width:670px) {
-	
+
 	#template{
 		display:block;
 	}
@@ -217,13 +217,20 @@ code {
 
 	#links {
 		background-color: rgb(218, 245, 222);
+		width: 100%;
 		height: auto;
+		position: sticky;
+		position: -webkit-sticky;
 		display: flex;
+		align-items: flex-start;
 		justify-content: space-around;
+		left:0;
+		bottom: 2vh;
+		top:initial;
 		max-width: initial;
 		margin:1vh 0;
 	}
-	
+
 	#links>* {
 		padding: 20px;
 	}
