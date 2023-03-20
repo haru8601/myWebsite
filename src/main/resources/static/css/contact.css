@@ -1,45 +1,45 @@
-input[type=checkbox] {
-	display: inline-block;
-	width: auto;
-	margin: 0 0 0 10px;
+input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin: 0 0 0 10px;
 }
 
 .policy-area {
-	width: 70%;
-	margin: 20px 0;
+  width: 70%;
+  margin: 20px 0;
 }
 
 .check-area {
-	border: outset 5px gray;
-	align-items: center;
+  border: outset 5px gray;
+  align-items: center;
 }
 
-.check-area>* {
-	padding: 20px 0;
-	cursor: pointer;
+.check-area > * {
+  padding: 20px 0;
+  cursor: pointer;
 }
 
-.check-area>label {
-	width: 100%;
-	padding-left: 5px;
-	padding-right: 5px;
+.check-area > label {
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .submit {
-	font-size: max(2vh, 2vw);
-	background-color: #E6E8E6;
-	color: black;
+  font-size: max(2vh, 2vw);
+  background-color: #e6e8e6;
+  color: black;
 }
 
 .submit:hover {
-	background-color: #c8c9c8;
-	transition: background-color 0.5s;
-	cursor: pointer;
+  background-color: #c8c9c8;
+  transition: background-color 0.5s;
+  cursor: pointer;
 }
 
-@media(max-width:670px) {
-	.policy-area {
-		margin-left: auto;
-		margin-right: auto;
-	}
+@media (max-width: 670px) {
+  .policy-area {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

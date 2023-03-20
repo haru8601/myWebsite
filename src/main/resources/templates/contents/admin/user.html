@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  lang="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title th:text="|ユーザー画面 - ${site}|">haroot</title>
+    <meta name="description" content="ユーザー画面です。" />
+  </head>
 
-<head>
-	<title th:text="|ユーザー画面 - ${site}|">haroot</title>
-	<meta name="description" content="ユーザー画面です。">
-</head>
-
-<body>
-	<main layout:fragment="content">
-		<h2 class="title">ログイン成功!</h2>
-	</main>
-</body>
-
+  <body>
+    <main layout:fragment="content">
+      <h2 class="title">ログイン成功!</h2>
+    </main>
+  </body>
 </html>

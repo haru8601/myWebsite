@@ -1,20 +1,25 @@
 # haroot.net
-harootのホームページ。リンクは[こちら](https://haroot.net)。
+
+haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
 ## 技術要素
-| 技術                   | バージョン  | description                      |
-| -------------------- | ------ | -------------------------------- |
-| Java                 | 17.0.3 | 開発言語                             |
-| Spring Boot          | 3.0.1  | フレームワーク                          |
-| Thymeleaf            | 3.0.1  | 画面テンプレート                                 |
-| maven                | 4.0.0  | Java用ビルドツール                      |
-| SpringToolSuite      | 4.14.0 | Eclipseを拡張したSpring用開発ツール         |
-| Ascii Tree Generator | 1.2.4  | markdownでのファイルtree生成(VSCode拡張機能) |
-| Text Tables          | 0.1.5  | markdownでのテーブル編集(VSCode拡張機能)     |
+
+| 技術                 | バージョン | description                                      |
+| -------------------- | ---------- | ------------------------------------------------ |
+| Java                 | 17.0.3     | 開発言語                                         |
+| Spring Boot          | 3.0.1      | フレームワーク                                   |
+| Thymeleaf            | 3.0.1      | 画面テンプレート                                 |
+| maven                | 4.0.0      | Java 用ビルドツール                              |
+| SpringToolSuite      | 4.14.0     | Eclipse を拡張した Spring 用開発ツール           |
+| Ascii Tree Generator | 1.2.4      | markdown でのファイル tree 生成(VSCode 拡張機能) |
+| Text Tables          | 0.1.5      | markdown でのテーブル編集(VSCode 拡張機能)       |
+
 <br>
 
 ## application.yaml
+
 下記のプロパティを含む必要があります。
+
 ```sh
 .
 ├── spring

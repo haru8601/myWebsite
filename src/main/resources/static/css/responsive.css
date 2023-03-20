@@ -1,74 +1,71 @@
 @charset "UTF-8";
 
 @media screen and (max-width: 1000px) {
-
-    /*header{
+  /*header{
         background-color:blue;
     }*/
-    h2 {
-        font-size: 20px;
-    }
+  h2 {
+    font-size: 20px;
+  }
 }
 
 @media screen and (max-width: 670px) {
-    /*header{
+  /*header{
 		background-color:red;
 	}*/
 
-    h1,
-    h2,
-    h3,
-    p {
-        text-align: center;
-    }
+  h1,
+  h2,
+  h3,
+  p {
+    text-align: center;
+  }
 
-    h2 {
-        font-size: 16px;
-    }
+  h2 {
+    font-size: 16px;
+  }
 
-    p {
-        font-size: 14px;
-    }
+  p {
+    font-size: 14px;
+  }
 
-    .item-link{
-        height:20vh;
-    }
+  .item-link {
+    height: 20vh;
+  }
 
-    .item-imgDiv {
-        width: 25%;
-        height: 85%;
-    }
+  .item-imgDiv {
+    width: 25%;
+    height: 85%;
+  }
 
-    .item-text {
-        width: 70%;
-    }
+  .item-text {
+    width: 70%;
+  }
 
-    .item-text>h2,
-    .item-text>p {
-        text-align: left;
-    }
+  .item-text > h2,
+  .item-text > p {
+    text-align: left;
+  }
 
+  div > main {
+    width: 100%;
+    border-right: none;
+  }
 
+  input,
+  textarea {
+    margin: 4vmin auto;
+  }
 
-    div>main {
-        width: 100%;
-        border-right: none;
-    }
+  #menu-bar {
+    width: 100%;
+  }
 
-    input,
-    textarea {
-        margin: 4vmin auto;
-    }
+  .footer-list > * {
+    font-size: 10px;
+  }
 
-    #menu-bar {
-        width: 100%;
-    }
-
-    .footer-list>* {
-        font-size: 10px;
-    }
-
-    [class^="fa-"] {
-        font-size: 30px;
-    }
+  [class^="fa-"] {
+    font-size: 30px;
+  }
 }

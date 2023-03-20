@@ -1,9 +1,9 @@
-#music li{
-	list-style: none;
+#music li {
+  list-style: none;
 }
 
 #yt-iframe {
-    width: fit-content;
-    margin: 0 auto;
-    border: 2px black solid;
+  width: fit-content;
+  margin: 0 auto;
+  border: 2px black solid;
 }

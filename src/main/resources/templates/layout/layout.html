@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
- th:with="site=${@environment.getProperty('path.site')}">
+	th:with="site=${@environment.getProperty('path.site')}">
 
 <head>
 	<!-- gtag読み込み -->
@@ -10,16 +10,16 @@
 		function gtag() {
 			dataLayer.push(arguments);
 		}
-		gtag('js', new Date());
-		gtag('config', 'G-KG2Q0JRLTH');
+		gtag("js", new Date());
+		gtag("config", "G-KG2Q0JRLTH");
 	</script>
 
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<link rel="stylesheet" th:href="@{/css/stylesheet.css}">
-	<link rel="stylesheet" th:href="@{/css/responsive.css}" media="print" onload="this.media='all'">
-	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" th:href="@{/css/stylesheet.css}" />
+	<link rel="stylesheet" th:href="@{/css/responsive.css}" media="print" onload="this.media='all'" />
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
 	<!--FontAwesome用-->
 	<script src="https://kit.fontawesome.com/cee3ec41f4.js" crossorigin="anonymous"></script>
 	<title>layout page</title>

@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  la="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title th:text="|SERVER ERROR - ${site}|">haroot</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/error.css}" />
+    <meta
+      name="description"
+      content="haroot.netでエラーが起きた際のページです。。"
+    />
+  </head>
 
-<head>
-	<title th:text="|SERVER ERROR - ${site}|">haroot</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/error.css}">
-	<meta name="description" content="haroot.netでエラーが起きた際のページです。。">
-</head>
-
-<body>
-	<main layout:fragment="content">
-		<h2>サーバーエラーが発生しました。。。</h2>
-		<img class="error-img" th:src="@{/images/おばけ.png}">
-	</main>
-</body>
-
+  <body>
+    <main layout:fragment="content">
+      <h2>サーバーエラーが発生しました。。。</h2>
+      <img class="error-img" th:src="@{/images/おばけ.png}" />
+    </main>
+  </body>
 </html>

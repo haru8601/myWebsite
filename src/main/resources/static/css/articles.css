@@ -1,63 +1,63 @@
-#template{
-	justify-content: space-between;
+#template {
+  justify-content: space-between;
 }
 
-#template > *{
-	/* flex内の要素を正常にover-wrapさせるための処理 */
-	min-width: 0;
+#template > * {
+  /* flex内の要素を正常にover-wrapさせるための処理 */
+  min-width: 0;
 }
 
 /********aside**********/
 
 #links {
-	flex-basis: 10%;
-	text-align: center;
-	max-width: 100px;
-	position:sticky;
-	position: -webkit-sticky;
-	top:80px;
-	height: 100%;
-	/* html上の配置順と異なるので順序指定 */
-	order: 1;
+  flex-basis: 10%;
+  text-align: center;
+  max-width: 100px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 80px;
+  height: 100%;
+  /* html上の配置順と異なるので順序指定 */
+  order: 1;
 }
 
-#links>* {
-	display: block;
-	padding: 30px 0;
+#links > * {
+  display: block;
+  padding: 30px 0;
 }
 
 #links i {
-	font-size: 30px;
+  font-size: 30px;
 }
 
 #links .fa-thumbs-up {
-	color: rgb(61, 60, 63);
-	transition: color 0.5s ease;
+  color: rgb(61, 60, 63);
+  transition: color 0.5s ease;
 }
 
 #links .fa-twitter {
-	color: rgb(109, 177, 244);
-	pointer-events: none;
+  color: rgb(109, 177, 244);
+  pointer-events: none;
 }
 
 #links .fa-link {
-	color: rgb(115, 213, 97);
+  color: rgb(115, 213, 97);
 }
 
 #links button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	text-align: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
 }
 
 .twitter-share-button {
-	display: inline-block;
+  display: inline-block;
 }
 
 #copyText {
-	display: none;
-	transition: all 1s ease;
+  display: none;
+  transition: all 1s ease;
 }
 
 /********asideここまで**********/
@@ -65,26 +65,26 @@
 /*titleについてるpaddingを除去*/
 
 #articleMain {
-	flex-basis: 70%;
-	flex-grow: 10;
-	padding-right: 1vw;
-	order:2
+  flex-basis: 70%;
+  flex-grow: 10;
+  padding-right: 1vw;
+  order: 2;
 }
 
 #articleMain .title {
-	padding-left: 0;
+  padding-left: 0;
 }
 
 .articles .errStr {
-	color: red;
-	text-align: center;
+  color: red;
+  text-align: center;
 }
 
 .articles .btn1 {
-	width: 50%;
-	margin: 10px auto;
-	text-align: center;
-	color: black;
+  width: 50%;
+  margin: 10px auto;
+  text-align: center;
+  color: black;
 }
 
 /********マークダウン表示用**************/
@@ -92,151 +92,151 @@
 /*simpleMDEのプレビュー側に自動でつくクラス*/
 .editor-preview-side h1,
 .marked h1 {
-	border-bottom: 2px solid rgb(199, 199, 199);
-	margin-top: 30px;
-	margin-bottom: 5px;
+  border-bottom: 2px solid rgb(199, 199, 199);
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .editor-preview-side h2,
 .marked h2 {
-	border-bottom: 2px solid rgb(199, 199, 199);
-	margin-top: 30px;
-	margin-bottom: 5px;
+  border-bottom: 2px solid rgb(199, 199, 199);
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .editor-preview-side h3,
 .marked h3 {
-	margin-top: 30px;
-	margin-bottom: 5px;
+  margin-top: 30px;
+  margin-bottom: 5px;
 }
 
 .editor-preview-side h4,
 .marked h4 {
-	margin-top: 30px;
-	margin-bottom: 5px;
-	font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  font-size: 20px;
 }
 
 .editor-preview-side p,
 .marked p {
-	overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .editor-preview-side a,
 .marked a {
-	color: rgb(100, 170, 49);
+  color: rgb(100, 170, 49);
 }
 
 .editor-preview-side img,
 .marked img {
-	max-width: 100%;
-	border: 2px solid black;
+  max-width: 100%;
+  border: 2px solid black;
 }
 
 .editor-preview-side code,
 .marked code {
-	background-color: rgb(229, 231, 231);
+  background-color: rgb(229, 231, 231);
 }
 
-.editor-preview-side :not(pre) > code, .marked :not(pre) > code{
-	padding: 5px;
+.editor-preview-side :not(pre) > code,
+.marked :not(pre) > code {
+  padding: 5px;
 }
 
 /*部分的にコードブロックの部分を手動で装飾*/
 .part-code {
-	background-color: rgb(229, 231, 231);
-	padding: 4px 8px;
+  background-color: rgb(229, 231, 231);
+  padding: 4px 8px;
 }
 
 /*preは標準だと折り返しされない*/
 pre {
-	white-space: pre-wrap;
-	padding: 5px;
+  white-space: pre-wrap;
+  padding: 5px;
 }
 
 code {
-	white-space: pre;
+  white-space: pre;
 }
 
 .input-label,
 #wip {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #wip {
-	width: auto;
-	display: inline-block;
+  width: auto;
+  display: inline-block;
 }
 
 /***********目次********/
 #tableOfContents {
-	flex-basis: 20%;
-	height: 100%;
-	position:sticky;
-	position:-webkit-sticky;
-	top: calc(80px + 2vh);
-	background-color: rgb(214, 253, 232);
-	order:3
+  flex-basis: 20%;
+  height: 100%;
+  position: sticky;
+  position: -webkit-sticky;
+  top: calc(80px + 2vh);
+  background-color: rgb(214, 253, 232);
+  order: 3;
 }
 
-#contents-sticky{
-	max-height: 80vh;
-	overflow-y:scroll;
-	padding:2vh 1vw;
-	margin:2vh 0;
+#contents-sticky {
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding: 2vh 1vw;
+  margin: 2vh 0;
 }
 
-#contents-sticky > a{
-	color: gray;
-	display: block;
-	text-decoration: none;
-	margin-top: 1vh;
+#contents-sticky > a {
+  color: gray;
+  display: block;
+  text-decoration: none;
+  margin-top: 1vh;
 }
 
-#contents-sticky > a:hover{
-	color:black;
-	background-color: rgb(167, 167, 167);
+#contents-sticky > a:hover {
+  color: black;
+  background-color: rgb(167, 167, 167);
 }
 
 /*******記事はレスポンシブでも中央寄せしない********/
-@media (max-width:1000px) {
-	#tableOfContents{
-		display:none;
-	}
+@media (max-width: 1000px) {
+  #tableOfContents {
+    display: none;
+  }
 }
-@media(max-width:670px) {
+@media (max-width: 670px) {
+  #template {
+    display: block;
+  }
 
-	#template{
-		display:block;
-	}
+  #articleMain * {
+    text-align: start;
+  }
 
-	#articleMain * {
-		text-align: start;
-	}
+  #links {
+    background-color: rgb(218, 245, 222);
+    width: 100%;
+    height: auto;
+    position: sticky;
+    position: -webkit-sticky;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    left: 0;
+    bottom: 2vh;
+    top: initial;
+    max-width: initial;
+    margin: 1vh 0;
+  }
 
-	#links {
-		background-color: rgb(218, 245, 222);
-		width: 100%;
-		height: auto;
-		position: sticky;
-		position: -webkit-sticky;
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-around;
-		left:0;
-		bottom: 2vh;
-		top:initial;
-		max-width: initial;
-		margin:1vh 0;
-	}
+  #links > * {
+    padding: 20px;
+  }
 
-	#links>* {
-		padding: 20px;
-	}
-
-	#tableOfContents{
-		display:none;
-	}
+  #tableOfContents {
+    display: none;
+  }
 }
 
 /***************/

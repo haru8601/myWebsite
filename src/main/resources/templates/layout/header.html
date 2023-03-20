@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <title>header page</title>
+  </head>
 
-<head>
-	<title>header page</title>
-</head>
-
-<body>
-	<header layout:fragment="header">
-		<div class="container header-content flex">
-			<div class="header-logo">
-				<a href="/">haroot.net</a>
-			</div>
-			<div class="flex">
-				<button id="sound-play" onclick="soundPlay()">
-					<i class="fa-solid fa-play"></i>
-				</button>
-				<button class="down-btn" onclick="soundStop()">
-					<i class="fa-solid fa-stop"></i>
-				</button>
-				<button class="down-btn" onclick="menu()">
-					<i class="fa-solid fa-bars"></i>
-				</button>
-			</div>
-		</div>
-	</header>
-</body>
-
+  <body>
+    <header layout:fragment="header">
+      <div class="container header-content flex">
+        <div class="header-logo">
+          <a href="/">haroot.net</a>
+        </div>
+        <div class="flex">
+          <button id="sound-play" onclick="soundPlay()">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <button class="down-btn" onclick="soundStop()">
+            <i class="fa-solid fa-stop"></i>
+          </button>
+          <button class="down-btn" onclick="menu()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+  </body>
 </html>

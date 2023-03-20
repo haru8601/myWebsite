@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <title>menu-bar page</title>
+  </head>
 
-<head>
-	<title>menu-bar page</title>
-</head>
-
-<body>
-	<div layout:fragment="menuBar" id="menu-bar">
-		<aside>
-			<th:block th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}">
-				<a class="down-btn" th:href="|/${topic.getUrl()}|" th:text="${topic.getTitle()}"></a>
-			</th:block>
-		</aside>
-	</div>
-</body>
-
+  <body>
+    <div layout:fragment="menuBar" id="menu-bar">
+      <aside>
+        <th:block
+          th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+        >
+          <a
+            class="down-btn"
+            th:href="|/${topic.getUrl()}|"
+            th:text="${topic.getTitle()}"
+          ></a>
+        </th:block>
+      </aside>
+    </div>
+  </body>
 </html>

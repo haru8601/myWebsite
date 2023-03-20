@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  la="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title th:text="|記事作成完了 - ${site}|">haroot</title>
+    <meta
+      name="description"
+      content="harootが技術記事を作成した時に表示されるページです。"
+    />
+  </head>
 
-<head>
-	<title th:text="|記事作成完了 - ${site}|">haroot</title>
-	<meta name="description" content="harootが技術記事を作成した時に表示されるページです。">
-</head>
-
-<body>
-	<main class="articles" layout:fragment="content">
-		<h2 class="title">記事を作成しました</h2>
-		<a href="/articles">記事一覧に戻る</a>
-	</main>
-</body>
-
+  <body>
+    <main class="articles" layout:fragment="content">
+      <h2 class="title">記事を作成しました</h2>
+      <a href="/articles">記事一覧に戻る</a>
+    </main>
+  </body>
 </html>

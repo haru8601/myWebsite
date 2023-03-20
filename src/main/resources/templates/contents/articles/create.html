@@ -1,54 +1,85 @@
 <!DOCTYPE html>
-<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  la="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title th:text="|記事作成 - ${site}|">haroot</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}" />
+    <!--simpleMDE用-->
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
+    />
+    <!--syntaxHighlight用-->
+    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css"
+    />
+    <meta
+      name="description"
+      content="harootが技術記事作成するためのページです。現状他の方はご利用いただけません。"
+    />
+  </head>
 
-<head>
-	<title th:text="|記事作成 - ${site}|">haroot</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}">
-	<!--simpleMDE用-->
-	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-	<!--syntaxHighlight用-->
-	<script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
-	<meta name="description" content="harootが技術記事作成するためのページです。現状他の方はご利用いただけません。">
-</head>
+  <body>
+    <main class="articles" layout:fragment="content">
+      <h2 class="title">記事作成</h2>
+      <form
+        th:object="${articleRegisterDto}"
+        th:action="@{/articles/register}"
+        method="post"
+      >
+        <p
+          th:if="${#fields.hasErrors('title')}"
+          th:errors="*{title}"
+          class="check-failed"
+        ></p>
+        <label for="title">タイトル</label>
+        <input th:field="*{title}" class="name" name="title" />
 
-<body>
-	<main class="articles" layout:fragment="content">
-		<h2 class="title">記事作成</h2>
-		<form th:object="${articleRegisterDto}" th:action="@{/articles/register}" method="post">
-			<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="check-failed"></p>
-			<label for="title">タイトル</label>
-			<input th:field="*{title}" class="name" name="title">
+        <p
+          th:if="${#fields.hasErrors('content')}"
+          th:errors="*{content}"
+          class="check-failed"
+        >
+          test
+        </p>
+        <label for="mde">内容</label>
+        <div class="markdown-div">
+          <textarea
+            th:id="mde"
+            th:value="*{content}"
+            th:field="*{content}"
+            name="content"
+            rows="8"
+            cols="40"
+          ></textarea>
+          <script>
+            //マークダウンプレビュー用クラス
+            let simplemde = new SimpleMDE({
+              element: document.getElementById("mde"),
+              placeholder: "Please input the content here.",
+              renderingConfig: {
+                codeSyntaxHighlighting: true,
+              },
+            });
+          </script>
+        </div>
 
-			<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed">test</p>
-			<label for="mde">内容</label>
-			<div class="markdown-div">
-				<textarea th:id="mde" th:value="*{content}" th:field="*{content}" name="content" rows="8"
-					cols="40"></textarea>
-				<script>
-					//マークダウンプレビュー用クラス
-					let simplemde = new SimpleMDE({
-						element: document.getElementById("mde"),
-						placeholder: "Please input the content here.",
-						renderingConfig: {
-							codeSyntaxHighlighting: true,
-						}
-					});
-				</script>
-			</div>
+        <label for="wip1" class="input-label">非公開</label>
+        <input th:field="*{wip}" type="checkbox" th:checked="*{wip}" />
+        <input th:field="*{id}" type="hidden" />
 
-			<label for="wip1" class="input-label">非公開</label>
-			<input th:field="*{wip}" type="checkbox" th:checked="*{wip}">
-			<input th:field="*{id}" type="hidden">
-
-			<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
-			<input class="submit" type="button" value="送信" onclick="submit()">
-		</form>
-		<input type="file" id="imageFile" onchange="uploadImage()">
-		<script th:src="@{/js/uploadImage.js}"></script>
-		<a class="btn1" href="/articles">記事一覧へ戻る</a>
-	</main>
-</body>
-
+        <!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
+        <input class="submit" type="button" value="送信" onclick="submit()" />
+      </form>
+      <input type="file" id="imageFile" onchange="uploadImage()" />
+      <script th:src="@{/js/uploadImage.js}"></script>
+      <a class="btn1" href="/articles">記事一覧へ戻る</a>
+    </main>
+  </body>
 </html>

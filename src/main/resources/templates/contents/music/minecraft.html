@@ -1,37 +1,58 @@
 <!DOCTYPE html>
-<html la="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  la="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title th:text="|MinecraftMusic - ${site}|">haroot</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/music.css}" />
+    <meta
+      name="description"
+      content="MinecraftMusic名義でyoutubeに投稿した動画一覧です。"
+    />
+  </head>
 
-<head>
-	<title th:text="|MinecraftMusic - ${site}|">haroot</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/music.css}">
-	<meta name="description" content="MinecraftMusic名義でyoutubeに投稿した動画一覧です。">
-</head>
-
-<body>
-	<main layout:fragment="content" id="minecraft">
-		<h2 class="title">マイクラ音楽 - MinecraftMusic</h2>
-		<p class="summary">マイクラの音ブロックを使って曲を耳コピしてみました。</p>
-		<!-- 内容物リスト -->
-		<a th:href="*{url}" class="item-link down-btn" target="_blank" th:each="content: ${youtubeList}"
-			th:object="${content}">
-			<div class="item flex">
-				<div class="item-imgDiv">
-					<img class="item-img" th:src="*{img}" alt=""
-						onerror="this.onerror=null; this.src='/images/noImage.png'">
-				</div>
-				<div class="item-text">
-					<h2 th:text="*{title}"></h2>
-				</div>
-			</div>
-		</a>
-		<!-- youtube動画埋め込み場所 -->
-		<div id="yt-iframe" class="flex">
-			<iframe width="480" height="270" src="https://www.youtube.com/embed/R6V18nhDUPk"
-				title="YouTube video player" frameborder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen></iframe>
-		</div>
-	</main>
-</body>
-
+  <body>
+    <main layout:fragment="content" id="minecraft">
+      <h2 class="title">マイクラ音楽 - MinecraftMusic</h2>
+      <p class="summary">
+        マイクラの音ブロックを使って曲を耳コピしてみました。
+      </p>
+      <!-- 内容物リスト -->
+      <a
+        th:href="*{url}"
+        class="item-link down-btn"
+        target="_blank"
+        th:each="content: ${youtubeList}"
+        th:object="${content}"
+      >
+        <div class="item flex">
+          <div class="item-imgDiv">
+            <img
+              class="item-img"
+              th:src="*{img}"
+              alt=""
+              onerror="this.onerror=null; this.src='/images/noImage.png'"
+            />
+          </div>
+          <div class="item-text">
+            <h2 th:text="*{title}"></h2>
+          </div>
+        </div>
+      </a>
+      <!-- youtube動画埋め込み場所 -->
+      <div id="yt-iframe" class="flex">
+        <iframe
+          width="480"
+          height="270"
+          src="https://www.youtube.com/embed/R6V18nhDUPk"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </main>
+  </body>
 </html>

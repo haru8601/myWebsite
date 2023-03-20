@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  lang="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title th:text="|送信完了 - ${site}|">haroot</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/sent.css}" />
+    <meta name="description" content="harootのお問い合わせ完了ページです。" />
+  </head>
 
-<head>
-	<title th:text="|送信完了 - ${site}|">haroot</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/sent.css}">
-	<meta name="description" content="harootのお問い合わせ完了ページです。">
-</head>
-
-<body>
-	<main layout:fragment="content">
-		<!-- コンテンツ2(ヘッダーのリンク先) -->
-		<div class="contact-form">
-			<h2>お問い合わせありがとうございました！</h2>
-			<div class="item flex">
-				<a href="/">トップへ戻る</a>
-			</div>
-		</div>
-	</main>
-</body>
-
+  <body>
+    <main layout:fragment="content">
+      <!-- コンテンツ2(ヘッダーのリンク先) -->
+      <div class="contact-form">
+        <h2>お問い合わせありがとうございました！</h2>
+        <div class="item flex">
+          <a href="/">トップへ戻る</a>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

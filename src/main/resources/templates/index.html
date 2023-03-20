@@ -1,50 +1,70 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}">
+<html
+  lang="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <head>
+    <title>はるーとのホームページ - haroot.net</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/top.css}" />
+    <meta
+      name="description"
+      content="はるーとのホームページです。自作iosアプリの概要ページ、swiftやvscodeについての技術記事、自分のyoutubeの紹介ページ等で構成されています。"
+    />
+    <!--Twitterカード用-->
+    <!--twitter以外でも使えるやつ-->
+    <meta property="og:type" content="website" />
+    <meta
+      id="share-title"
+      property="og:title"
+      content="はるーとのホームページ"
+    />
+    <meta
+      id="share-detail"
+      property="og:description"
+      content="haroot.netのホームページです。"
+    />
+    <meta id="share-url" property="og:url" content="https://haroot.net" />
+    <meta property="og:site_name" th:content="${site}" />
+    <meta
+      property="og:image"
+      content="https://haroot.net/images/homePage.png"
+    />
+    <!--twitter特有の設定-->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@haroot_net" />
+  </head>
 
-<head>
-	<title>はるーとのホームページ - haroot.net</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/top.css}">
-	<meta name="description" content="はるーとのホームページです。自作iosアプリの概要ページ、swiftやvscodeについての技術記事、自分のyoutubeの紹介ページ等で構成されています。">
-	<!--Twitterカード用-->
-	<!--twitter以外でも使えるやつ-->
-	<meta property="og:type" content="website">
-	<meta id="share-title" property="og:title" content="はるーとのホームページ">
-	<meta id="share-detail" property="og:description" content="haroot.netのホームページです。">
-	<meta id="share-url" property="og:url" content="https://haroot.net">
-	<meta property="og:site_name" th:content="${site}">
-	<meta property="og:image" content="https://haroot.net/images/homePage.png">
-	<!--twitter特有の設定-->
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@haroot_net">
-</head>
-
-<body>
-	<main id="top" layout:fragment="content">
-		<!--launch画面(他サイトやトップから飛んできた場合のみ)-->
-		<th:block th:if="${displaySlot}">
-			<div id="launch">
-				<!-- キャンバスサイズは実際の表示サイズとは別 -->
-				<canvas id="canvas1" width="700" height="800">
-					<script th:src="@{/js/three.js}"></script>
-					<script th:src="@{/js/canvas.js}"></script>
-				</canvas>
-			</div>
-			<script>
-				const launchDiv = document.getElementById("launch");
-				launchDiv.style.display = "block";
-			</script>
-		</th:block>
-		<div class="topic-all flex">
-			<a class="topic-link down-btn" th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}" th:href="${topic.getUrl()}">
-				<div class="topic">
-					<div class="topic-text">
-						<h2 th:text="${topic.getTitle()}"></h2>
-					</div>
-				</div>
-			</a>
-		</div>
-		<img class="top-img" src="/images/top.png">
-	</main>
-</body>
-
+  <body>
+    <main id="top" layout:fragment="content">
+      <!--launch画面(他サイトやトップから飛んできた場合のみ)-->
+      <th:block th:if="${displaySlot}">
+        <div id="launch">
+          <!-- キャンバスサイズは実際の表示サイズとは別 -->
+          <canvas id="canvas1" width="700" height="800">
+            <script th:src="@{/js/three.js}"></script>
+            <script th:src="@{/js/canvas.js}"></script>
+          </canvas>
+        </div>
+        <script>
+          const launchDiv = document.getElementById("launch");
+          launchDiv.style.display = "block";
+        </script>
+      </th:block>
+      <div class="topic-all flex">
+        <a
+          class="topic-link down-btn"
+          th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+          th:href="${topic.getUrl()}"
+        >
+          <div class="topic">
+            <div class="topic-text">
+              <h2 th:text="${topic.getTitle()}"></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+      <img class="top-img" src="/images/top.png" />
+    </main>
+  </body>
 </html>
