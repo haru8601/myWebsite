@@ -48,11 +48,6 @@ p {
     top: 2px;
 }
 
-.credit {
-    color: #0000EE;
-    text-decoration: underline;
-}
-
 .right {
     float: right;
 }
@@ -93,7 +88,6 @@ header {
 }
 
 .header-content{
-	display:flex;
 	justify-content: space-between;
 }
 
@@ -179,18 +173,18 @@ main {
     min-height: 350px;
 }
 
-.title, .summary {
-    padding: 0 2vw 2vh 2vw;
+.title {
+    padding-left: 2vw;
+    padding-bottom: 2vh;
 }
 
 .summary{
-	margin-bottom: 5vh;
+	margin-bottom: 7vh;
 }
 
 .topic-all {
     text-align: center;
     justify-content: space-around;
-    display: flex;
     flex-wrap: wrap;
     margin-bottom: 2vh;
 }
@@ -236,7 +230,6 @@ main {
 }
 
 .item {
-    display: flex;
     justify-content: space-around;
     height: 100%;
 }

@@ -34,7 +34,7 @@
 				launchDiv.style.display = "block";
 			</script>
 		</th:block>
-		<div class="topic-all">
+		<div class="topic-all flex">
 			<a class="topic-link down-btn" th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}" th:href="${topic.getUrl()}">
 				<div class="topic">
 					<div class="topic-text">

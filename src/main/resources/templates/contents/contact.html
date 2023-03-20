@@ -15,7 +15,6 @@
 			<div class="contact-form">
 				<h2 class="title" th:text="${topic.getTitleJp()}"></h2>
 				<p class="summary" th:text="${topic.getSummary()}"></p>
-				<div class="container">
 					<p>※スパムっぽい内容は弾いてます。</p>
 					<p>名前
 						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
@@ -35,7 +34,7 @@
 					<textarea th:field="*{content}"></textarea>
 					<div class="policy-area">
 						<p th:if="${#fields.hasErrors('checkbox')}" th:errors="*{checkbox}" class="check-failed"></p>
-						<div class="check-area down-btn">
+						<div class="check-area down-btn flex">
 							<input type="checkbox" th:name="checkbox" th:id="checkbox" th:checked="*{checkbox}">
 							<label for="checkbox">はるーとの<a href="/policy">プライバシーポリシー</a>に同意します。</label>
 						</div>
@@ -43,7 +42,6 @@
 					<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
 					<input class="submit down-btn" type="button" value="送信" onclick="submit()">
 				</div>
-			</div>
 		</form>
 		<script th:inline="javascript">
 			//textareaのデータ表示

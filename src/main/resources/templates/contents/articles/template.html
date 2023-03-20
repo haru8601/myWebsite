@@ -27,7 +27,7 @@
 </head>
 
 <body>
-	<main class="articles" id="template" layout:fragment="content" th:object="${article}">
+	<main class="articles flex" id="template" layout:fragment="content" th:object="${article}">
 		<div id="articleMain">
 			<th:block th:if="${errStr!=''}">
 				<p class="errStr" th:text="${errStr}"></p>
