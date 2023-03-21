@@ -9,6 +9,9 @@
       <div class="container header-content flex">
         <div class="header-logo">
           <a href="/">haroot.net</a>
+          <th:block th:if="${isTop != null && isTop}">
+            <span class="header-info">スロットやる？</span>
+          </th:block>
         </div>
         <div class="flex">
           <button id="sound-play" onclick="soundPlay()">

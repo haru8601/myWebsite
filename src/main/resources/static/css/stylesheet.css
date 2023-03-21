@@ -103,6 +103,25 @@ header button:hover {
   transition: all 0.5s;
 }
 
+.header-logo {
+  position: relative;
+}
+
+.header-info {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  word-break: keep-all;
+  font-size: 14px;
+  padding-left: 1vw;
+}
+
+.header-logo:hover .header-info {
+  display: inline-block;
+}
+
 .header-logo a {
   font-family: "CustomFont";
   font-size: 40px;
@@ -289,6 +308,7 @@ footer {
   text-align: right;
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 2vh;
 }
 
 .footer-list > * {

@@ -1,13 +1,16 @@
 package com.haroot.home_page.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.properties.PathProperty;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -31,13 +34,24 @@ public class ToTopController {
    * @return
    */
   @GetMapping
-  public ModelAndView toTop(ModelAndView mav, HttpServletRequest request) {
+  public ModelAndView toTop(ModelAndView mav, HttpServletRequest request, HttpServletResponse response,
+      @CookieValue(name = "visited", required = false) String visitedFlg) {
     String referer = request.getHeader("REFERER");
-    boolean displaySlot = true;
-    // 遷移元が自分のサイト内なら(トップページ以外)
-    if (referer != null && referer.matches("^https?://" + pathProperty.getSite() + "/.+$")) {
-      // slot非表示
-      displaySlot = false;
+    boolean displaySlot = false;
+    // 遷移元がトップページなら
+    if (referer != null && referer.matches("^https?://" + pathProperty.getSite() + "/?$")) {
+      // slot表示
+      displaySlot = true;
+    }
+    // 初訪問なら
+    if (visitedFlg == null || !visitedFlg.equals("true")) {
+      Cookie visitedCookie = new Cookie(
+        "visited",
+        "true");
+      visitedCookie.setMaxAge(60 * 60 * 24 * 365); // 1年間
+      response.addCookie(visitedCookie);
+      // slot表示
+      displaySlot = true;
     }
     mav.addObject("displaySlot", displaySlot);
 

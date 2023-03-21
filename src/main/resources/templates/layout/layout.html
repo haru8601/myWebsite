@@ -48,7 +48,7 @@
         <div class="container">
           <main layout:fragment="content"></main>
         </div>
-        <th:block th:if="${isTop == null}">
+        <th:block th:if="${isTop == null || !isTop}">
           <!-- adsense設置場所 -->
           <div layout:replace="~{/layout/ads::ads}"></div>
         </th:block>
