@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
-@RequestMapping("/about")
+@RequestMapping("about")
 public class AboutController {
 
   /**

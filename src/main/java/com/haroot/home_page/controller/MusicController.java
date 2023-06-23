@@ -22,12 +22,12 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * musicコントローラー
- * 
+ *
  * @author sekiharuhito
  *
  */
 @Controller
-@RequestMapping("/music")
+@RequestMapping("music")
 @RequiredArgsConstructor
 public class MusicController {
   private final YoutubeProperty youtubeProperty;
@@ -47,20 +47,20 @@ public class MusicController {
 
   /**
    * minecraft動画一覧表示
-   * 
+   *
    * @param mav MAV
    * @return
    */
-  @GetMapping("/minecraft")
+  @GetMapping("minecraft")
   public ModelAndView minecraft(ModelAndView mav) {
     // youtubeAPIから動画一覧を取得
     List<Map<String, Object>> youtubeList = new ArrayList<>();
     int maxResults = 50;
     try {
       URL url = new URL(
-        "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet" + "&playlistId="
-            + youtubeProperty.getPlaylistId() + "&maxResults=" + String.valueOf(maxResults) + "&key="
-            + youtubeProperty.getKey());
+          "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet" + "&playlistId="
+              + youtubeProperty.getPlaylistId() + "&maxResults=" + String.valueOf(maxResults) + "&key="
+              + youtubeProperty.getKey());
       ObjectMapper mapper = new ObjectMapper();
       JsonNode json = mapper.readTree(url);
       int itemLen = json.get("items").size();

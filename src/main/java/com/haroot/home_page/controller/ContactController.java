@@ -21,12 +21,12 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * 問い合わせコントローラー
- * 
+ *
  * @author sekiharuhito
  *
  */
 @Controller
-@RequestMapping("/contact")
+@RequestMapping("contact")
 @RequiredArgsConstructor
 public class ContactController {
 
@@ -35,7 +35,7 @@ public class ContactController {
 
   /**
    * 問い合わせ画面表示
-   * 
+   *
    * @param mav MAV
    * @return
    */
@@ -50,7 +50,7 @@ public class ContactController {
 
   /**
    * 問い合わせ送信
-   * 
+   *
    * @param formData      問い合わせフォーム
    * @param bindingResult エラー結果
    * @param request       リクエスト
@@ -68,9 +68,9 @@ public class ContactController {
     if (mailP.matcher(formDto.getContent()).find() || urlP.matcher(formDto.getContent()).find()
         || elseP.matcher(formDto.getContent()).find()) {
       FieldError fieldError = new FieldError(
-        "formData",
-        "content",
-        "スパムっぽいので拒否します。");
+          "formData",
+          "content",
+          "スパムっぽいので拒否します。");
       bindingResult.addError(fieldError);
     }
 

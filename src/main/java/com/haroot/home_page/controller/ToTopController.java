@@ -46,8 +46,8 @@ public class ToTopController {
     // 初訪問なら
     if (visitedFlg == null || !visitedFlg.equals("true")) {
       Cookie visitedCookie = new Cookie(
-        "visited",
-        "true");
+          "visited",
+          "true");
       visitedCookie.setMaxAge(60 * 60 * 24 * 365); // 1年間
       response.addCookie(visitedCookie);
       // slot表示
@@ -71,7 +71,7 @@ public class ToTopController {
     return mav;
   }
 
-  @GetMapping("/twitter-auth")
+  @GetMapping("twitter-auth")
   public ModelAndView auth(ModelAndView mav) {
     mav.setViewName("error/500");
     return mav;

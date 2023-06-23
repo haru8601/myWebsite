@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * iosアプリコントローラー
- * 
+ *
  * @author sekiharuhito
  *
  */
 @Controller
-@RequestMapping("/ios-app")
+@RequestMapping("ios-app")
 @RequiredArgsConstructor
 public class IosAppController {
 
@@ -28,7 +28,7 @@ public class IosAppController {
 
   /**
    * ios-app画面表示
-   * 
+   *
    * @param mav MAV
    * @return
    */
@@ -47,7 +47,7 @@ public class IosAppController {
 
   /**
    * 個別アプリ画面表示
-   * 
+   *
    * @param mav     MAV
    * @param appName アプリ名
    * @return
@@ -62,7 +62,7 @@ public class IosAppController {
 
   /**
    * 個別アプリポリシー
-   * 
+   *
    * @param mav     MAV
    * @param appName アプリ名
    * @return

@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("admin")
 @RequiredArgsConstructor
 public class AdminController {
   private final UserProperty userProperty;
@@ -28,7 +28,7 @@ public class AdminController {
     return "/contents/admin/index";
   }
 
-  @PostMapping("/login")
+  @PostMapping("login")
   public String login(@Validated @ModelAttribute UserDto userDto, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
       return "/contents/admin/index";

@@ -14,19 +14,19 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * pokeコントローラー
- * 
+ *
  * @author sekiharuhito
  *
  */
 @Controller
-@RequestMapping("/poke")
+@RequestMapping("poke")
 @RequiredArgsConstructor
 public class PokeController {
   private final PokeService pokeService;
 
   /**
    * poke一覧画面
-   * 
+   *
    * @param mav MAV
    * @return
    */
@@ -44,11 +44,11 @@ public class PokeController {
 
   /**
    * bot表示
-   * 
+   *
    * @param mav MAV
    * @return
    */
-  @GetMapping("/bot")
+  @GetMapping("bot")
   public ModelAndView bot(ModelAndView mav) {
     mav.setViewName("contents/poke/bot");
     return mav;
@@ -56,11 +56,11 @@ public class PokeController {
 
   /**
    * しりとりサイト表示
-   * 
+   *
    * @param mav MAV
    * @return
    */
-  @GetMapping("/shiritori")
+  @GetMapping("shiritori")
   public ModelAndView shiritori(ModelAndView mav) {
     mav.setViewName("contents/poke/shiritori");
     return mav;

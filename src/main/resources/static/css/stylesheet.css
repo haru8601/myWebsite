@@ -1,20 +1,5 @@
 @charset "UTF-8";
 
-* {
-  margin: 0;
-  box-sizing: border-box;
-  /*デフォルトフォント*/
-  font-family: "Hiragino Mincho ProN";
-}
-
-a:link {
-  color: inherit;
-}
-
-a:visited {
-  color: inherit;
-}
-
 @font-face {
   /* 使用する際のフォント名指定 */
   font-family: "CustomFont";
@@ -24,6 +9,13 @@ a:visited {
     url("../Fonts/Parisienne/Parisienne-Regular.eot")
       format("embedded-opentype");
   font-display: swap;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  /*デフォルトフォント*/
+  font-family: "Hiragino Mincho ProN";
 }
 
 html {
@@ -37,6 +29,19 @@ body {
   max-width: 100%;
   width: 100%;
   background-color: rgb(250, 250, 230);
+}
+
+a:link {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a > .fa-arrow-up-right-from-square {
+  font-size: 20px;
+  padding-right: 0.2vw;
 }
 
 p {
@@ -68,6 +73,10 @@ input.submit {
 .copyright {
   font-size: 10px;
   text-align: start;
+}
+
+.copyright > .fa-arrow-up-right-from-square {
+  font-size: 10px;
 }
 
 .flex {

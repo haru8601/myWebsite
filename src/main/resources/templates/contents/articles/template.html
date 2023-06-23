@@ -90,7 +90,7 @@
           //ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
           text = text.replaceAll(
             /([^!])\[(.*?)\]\((.*?)\)/gm,
-            `$1<a href="$3" target="_blank">$2</a>`
+            `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`
           );
           //テキストをマークダウン化して貼り付け
           document.getElementById("content").innerHTML = marked.parse(text);
@@ -116,7 +116,7 @@
         <div>
           <a
             target="_blank"
-            href="https://twitter.com/share?url=https://haroot.net&via=haroot_net"
+            href="https://twitter.com/share?url=https://haroot.net"
             class="twitter-share-button"
             data-show-count="false"
           >
@@ -136,8 +136,7 @@
         )[0];
         const title = document.getElementsByClassName("title")[0].textContent;
         const articleUrl = location.href;
-        const writer = "haroot_net";
-        const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}&via=${writer}`;
+        const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}`;
         tweetBtn.setAttribute("href", tweetUrl);
       </script>
       <script th:src="@{/js/likeInfo.js}"></script>
