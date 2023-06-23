@@ -40,6 +40,11 @@
       <!--launch画面(他サイトやトップから飛んできた場合のみ)-->
       <th:block th:if="${displaySlot}">
         <div id="launch">
+          <!--importmapがブラウザによっては対応してないので定義(polyfill)-->
+          <script
+            async
+            src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"
+          ></script>
           <script type="importmap">
             {
               "imports": {
