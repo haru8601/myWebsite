@@ -23,8 +23,13 @@ public class HomePageFilter implements Filter {
     // ルート("/")以外で末尾にスラッシュがある場合
     if (requestUri.matches("..*\\/$")) {
       HttpServletResponse httpResponse = (HttpServletResponse) response;
+      String redirectUri = requestUri.replaceAll("(..*)\\/$", "$1");
+      String queryStr = httpRequest.getQueryString();
+      if (queryStr != null) {
+        redirectUri += "?" + queryStr;
+      }
       // 末尾のスラッシュを取り除いてリダイレクト
-      httpResponse.sendRedirect(requestUri.replaceAll("(..*)\\/$", "$1"));
+      httpResponse.sendRedirect(redirectUri);
       return;
     }
     // 後続処理へ
