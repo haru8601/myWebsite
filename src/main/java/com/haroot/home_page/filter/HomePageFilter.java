@@ -21,11 +21,12 @@ public class HomePageFilter implements Filter {
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     String requestUri = httpRequest.getRequestURI();
     // ルート("/")以外で末尾にスラッシュがある場合
-    if (requestUri.matches("..*\\/$")) {
+    if (requestUri.matches(".+\\/$")) {
       HttpServletResponse httpResponse = (HttpServletResponse) response;
-      String redirectUri = requestUri.replaceAll("(..*)\\/$", "$1");
+      String redirectUri = requestUri.replaceAll("(.+)\\/$", "$1");
       String queryStr = httpRequest.getQueryString();
       if (queryStr != null) {
+        // クエリパラメータを再度付与
         redirectUri += "?" + queryStr;
       }
       // 末尾のスラッシュを取り除いてリダイレクト
