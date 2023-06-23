@@ -8,6 +8,7 @@
     <title th:text="|英単語クイズ - 小中学生の英語暗記 - ${site}|">
       haroot
     </title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/iosApp.css}" />
     <meta
       name="description"
       content="harootが最初にお試しで作成したiosアプリ「英単語クイズ - 小中学生の英語暗記」の概要ページです。"
@@ -15,20 +16,25 @@
   </head>
 
   <body>
-    <main layout:fragment="content">
-      <h1>英単語クイズ - 小中学生の英語暗記</h1>
-      <h2>リンク</h2>
-      <ul class="link">
-        <li>
-          <a href="https://apple.co/3fxIjX7" target="_blank"
-            ><i class="fa-solid fa-arrow-up-right-from-square"></i>Apple
-            Store</a
-          >
-        </li>
-        <li>
-          <a th:href="@{|/ios-app/${appName}/policy|}">プライバシーポリシー</a>
-        </li>
-      </ul>
+    <main id="englishQuiz" layout:fragment="content">
+      <h2 class="title">英単語クイズ - 小中学生の英語暗記</h2>
+      <h3>リンク</h3>
+      <div>
+        <ul class="link">
+          <li>
+            <a href="https://apple.co/3fxIjX7" target="_blank"
+              ><i class="fa-solid fa-arrow-up-right-from-square"></i>Apple
+              Store</a
+            >
+          </li>
+          <li>
+            <a th:href="@{|/ios-app/${appName}/policy|}"
+              >プライバシーポリシー</a
+            >
+          </li>
+        </ul>
+      </div>
+      <a class="back-btn" th:href="@{|/ios-app|}">一覧へ戻る</a>
     </main>
   </body>
 </html>

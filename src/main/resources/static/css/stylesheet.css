@@ -83,6 +83,13 @@ input.submit {
   display: flex;
 }
 
+.back-btn {
+  margin: 10px auto;
+  text-align: center;
+  color: black;
+  display: inline-block;
+}
+
 /*********ヘッダー***********/
 
 header {
