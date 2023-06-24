@@ -29,6 +29,10 @@
     font-size: 14px;
   }
 
+  a > .fa-arrow-up-right-from-square {
+    font-size: 12px;
+  }
+
   .item-link {
     height: 20vh;
   }
