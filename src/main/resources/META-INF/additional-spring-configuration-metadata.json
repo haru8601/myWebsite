@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "spring.mail.properties.mail.smtp.auth",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.properties.mail.smtp.auth'"
+  },
+  {
+    "name": "spring.mail.properties.mail.smtp.starttls.enable",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mail.properties.mail.smtp.starttls.enable'"
+  },
+  {
+    "name": "logging.name",
+    "type": "java.lang.String",
+    "description": "A description for 'logging.name'"
+  },
+  {
+    "name": "youtube.key",
+    "type": "java.lang.String",
+    "description": "A description for 'youtube.key'"
+  },
+  {
+    "name": "server.profiles.active",
+    "type": "java.lang.String",
+    "description": "A description for 'server.profiles.active'"
+  }
+]}

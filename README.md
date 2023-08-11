@@ -2,7 +2,7 @@
 
 haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
-## 技術要素
+# 技術要素
 
 | 技術                 | バージョン | description                                      |
 | -------------------- | ---------- | ------------------------------------------------ |
@@ -15,6 +15,8 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 | Text Tables          | 0.1.5      | markdown でのテーブル編集(VSCode 拡張機能)       |
 
 <br>
+
+# 環境構築
 
 ## application.yaml
 
@@ -62,3 +64,9 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
     ├── site # haroot.net
     └── resource # /hoge/aaa
 ```
+
+# デプロイ
+
+Run As > Maven Build<br>
+
+`/target`に war ファイルが生成される
