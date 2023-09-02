@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * pokeコントローラー
  *
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Controller

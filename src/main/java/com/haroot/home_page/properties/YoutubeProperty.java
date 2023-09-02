@@ -6,8 +6,8 @@ import lombok.Data;
 
 /**
  * youtubeプロパティ
- * 
- * @author sekiharuhito
+ *
+ * @author haroot
  *
  */
 @ConfigurationProperties(prefix = "youtube")

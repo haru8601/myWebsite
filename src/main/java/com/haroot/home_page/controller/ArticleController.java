@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 記事コントローラー
  *
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Controller

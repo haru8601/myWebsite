@@ -1,5 +1,6 @@
 package com.haroot.home_page.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +15,16 @@ import lombok.NoArgsConstructor;
 /**
  * 記事データ
  * 
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleDto {
+public class ArticleDto implements Serializable {
+  private static final long serialVersionUID = 548863522455651433L;
   private int id;
+
   @NotBlank
   private String title;
   @NotBlank

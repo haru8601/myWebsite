@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * iosアプリコントローラー
  *
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Controller

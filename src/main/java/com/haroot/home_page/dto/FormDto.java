@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * 問い合わせデータ
  * 
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Data

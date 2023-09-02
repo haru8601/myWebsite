@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 問い合わせコントローラー
  *
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Controller

@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * aboutコントローラー
- * 
- * @author sekiharuhito
+ *
+ * @author haroot
  *
  */
 @Controller
@@ -17,7 +17,7 @@ public class AboutController {
 
   /**
    * about画面表示
-   * 
+   *
    * @param mav MAV
    * @return
    */

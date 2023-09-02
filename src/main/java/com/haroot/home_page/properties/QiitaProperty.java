@@ -6,8 +6,8 @@ import lombok.Data;
 
 /**
  * Qiitaプロパティ
- * 
- * @author sekiharuhito
+ *
+ * @author haroot
  *
  */
 @ConfigurationProperties(prefix = "qiita")

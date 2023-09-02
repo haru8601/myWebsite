@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.haroot.home_page.client.Memcached;
 import com.haroot.home_page.dto.ArticleDto;
 import com.haroot.home_page.entity.ArticleEntity;
 import com.haroot.home_page.exception.HarootNotFoundException;
@@ -12,23 +13,27 @@ import com.haroot.home_page.repository.ArticleRepository;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * MAVクラス
- * 
- * @author sekiharuhito
+ *
+ * @author haroot
  *
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ArticleService {
 
   private final ArticleRepository articleRepository;
   private final HttpSession session;
+  private final Memcached memcached;
+  private final String prefix = "articles-";
 
   /**
    * 記事取得(1件)
-   * 
+   *
    * @param id 記事ID
    * @return
    */
@@ -38,16 +43,24 @@ public class ArticleService {
       idNum = Integer.parseInt(id);
     } catch (NumberFormatException ex) {
       throw new HarootNotFoundException(
-        ex.getMessage(),
-        ex);
+          ex.getMessage(),
+          ex);
     }
-    return ArticleDto.of(articleRepository.findById(idNum).orElseThrow(() -> new HarootNotFoundException(
-      "記事が見つかりませんでした")));
+    ArticleDto article = memcached.getArticle(prefix + id);
+    if (article != null) {
+      log.debug("cache hit, id:" + id);
+      return article;
+    }
+    log.debug("cache not found, id:" + id);
+    article = ArticleDto.of(articleRepository.findById(idNum).orElseThrow(() -> new HarootNotFoundException(
+        "記事が見つかりませんでした")));
+    memcached.setArticle(prefix + id, article);
+    return article;
   }
 
   /**
    * 記事取得と修正(1件)
-   * 
+   *
    * @param id 記事ID
    * @return
    */
@@ -63,7 +76,7 @@ public class ArticleService {
 
   /**
    * 記事取得(複数)
-   * 
+   *
    * @return
    */
   public List<ArticleDto> getAll() {
@@ -79,17 +92,18 @@ public class ArticleService {
 
   /**
    * 記事更新
-   * 
+   *
    * @param article 記事
    * @return 更新後の記事
    */
   public ArticleEntity update(ArticleDto article) {
+    memcached.setArticle(prefix + article.getId(), article);
     return articleRepository.save(ArticleEntity.of(article));
   }
 
   /**
    * 記事の情報を隠す
-   * 
+   *
    * @param article 記事
    * @return マスキング後の記事
    */

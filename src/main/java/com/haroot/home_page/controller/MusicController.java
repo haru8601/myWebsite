@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * musicコントローラー
  *
- * @author sekiharuhito
+ * @author haroot
  *
  */
 @Controller
