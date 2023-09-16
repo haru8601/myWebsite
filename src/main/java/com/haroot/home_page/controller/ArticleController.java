@@ -119,10 +119,10 @@ public class ArticleController {
       final String CONTENT = "";
       final boolean WIP = false;
       mav.addObject("articleRegisterDto", new ArticleRegisterDto(
-          ID,
-          TITLE,
-          CONTENT,
-          WIP));
+        ID,
+        TITLE,
+        CONTENT,
+        WIP));
       mav.setViewName("contents/articles/create");
     } else {
       // 他は戻す
@@ -221,7 +221,7 @@ public class ArticleController {
 
     // 画像出力
     try (OutputStream os = Files.newOutputStream(Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
-        StandardOpenOption.CREATE_NEW)) {
+      StandardOpenOption.CREATE_NEW)) {
       os.write(file.getBytes());
     } catch (IOException ex) {
       log.error(ex.getMessage(), ex);
@@ -229,7 +229,7 @@ public class ArticleController {
     // 権限変更
     try {
       Files.setPosixFilePermissions(Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
-          PosixFilePermissions.fromString("rw-rw-r--"));
+        PosixFilePermissions.fromString("rw-rw-r--"));
     } catch (IOException ex) {
       log.error(ex.getMessage(), ex);
     }

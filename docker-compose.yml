@@ -1,6 +1,6 @@
 version: "3"
 services:
   redis:
-    image: memcached
+    image: redis
     ports:
-      - 11211:11211
+      - 6379:6379
