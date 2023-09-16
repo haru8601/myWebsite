@@ -46,7 +46,13 @@ public class ArticleService {
         ex.getMessage(),
         ex);
     }
-    ArticleDto article = (ArticleDto) redisRepository.get(prefix + id);
+    ArticleDto article = null;
+    try {
+      article = (ArticleDto) redisRepository.get(prefix + id);
+    } catch (Exception e) {
+      log.error("redis get error");
+      log.error(e.getMessage());
+    }
     if (article != null) {
       log.debug("cache hit, id:" + id);
       return article;
@@ -54,7 +60,12 @@ public class ArticleService {
     log.debug("cache not found, id:" + id);
     article = ArticleDto.of(articleRepository.findById(idNum).orElseThrow(() -> new HarootNotFoundException(
       "記事が見つかりませんでした")));
-    redisRepository.set(prefix + id, article);
+    try {
+      redisRepository.set(prefix + id, article);
+    } catch (Exception e) {
+      log.error("redis set error");
+      log.error(e.getMessage());
+    }
     return article;
   }
 
@@ -99,7 +110,12 @@ public class ArticleService {
   public ArticleEntity update(ArticleDto article) {
     if (article.getId() != -1) {
       // 既存記事ならキャッシュ更新
-      redisRepository.set(prefix + article.getId(), article);
+      try {
+        redisRepository.set(prefix + article.getId(), article);
+      } catch (Exception e) {
+        log.error("redis set error");
+        log.error(e.getMessage());
+      }
     }
     return articleRepository.save(ArticleEntity.of(article));
   }
