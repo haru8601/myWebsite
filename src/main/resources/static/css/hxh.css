@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Hunter";
+  src: url("../Fonts/Hunter/hunter.ttf") format("truetype");
+  font-display: swap;
+}
+
+.hunter {
+  font-family: "Hunter";
+}

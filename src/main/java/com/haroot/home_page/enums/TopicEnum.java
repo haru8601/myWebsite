@@ -8,6 +8,7 @@ public enum TopicEnum {
   ARTICLES("Articles", "技術記事", "articles", "IT周りの自分用にまとめた記事一覧です。"),
   MUSIC("Music", "音楽", "music", "耳コピしたものとか置いてます。"),
   POKE("Poké", "ポケモン", "poke", "ポケモン関係(もちろん非公式)のプロダクトです。"),
+  OTHERS("Others", "その他", "others", "その他のコンテンツです"),
   ABOUT("About", "経歴", "about", "harootとは...?"),
   CONTACT("Contact", "お問い合わせ", "contact", "お問い合わせフォームはこちら。");
 
