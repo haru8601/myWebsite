@@ -63,6 +63,7 @@
           class="topic-link down-btn"
           th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           th:href="${topic.getUrl()}"
+          th:if="${topic.isDisplayInTop()}"
         >
           <div class="topic">
             <div class="topic-text">

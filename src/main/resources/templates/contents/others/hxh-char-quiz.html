@@ -7,19 +7,14 @@
   <head>
     <title th:text="|hxh ハンター文字クイズ - ${site}|">haroot</title>
     <link type="text/css" rel="stylesheet" th:href="@{/css/hxh.css}" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
     <meta name="description" content="hxhのハンター文字クイズです。" />
   </head>
 
   <body>
     <main layout:fragment="content">
       <h2 class="title">hxh ハンター文字クイズ</h2>
-      <p id="hunter-q" class="hunter">もんだい</p>
+      <h3 class="my-3">問題</h3>
+      <p id="hunter-q" class="hunter fs-5" th:text="${wrods}"></p>
       <div class="position-relative">
         <div
           id="ok"
@@ -33,30 +28,16 @@
         ></i>
       </div>
       <div class="input-group">
-        <input class="form-control" id="hunter-input" />
-        <button class="btn btn-primary" onclick="checkAnswer()">回答</button>
+        <input class="form-control m-0" id="hunter-input" />
+        <button class="btn btn-primary" type="btn" onclick="checkAnswer()">回答</button>
+        <button id="show-answer-btn" class="btn btn-warning" type="btn" onclick="showAnswerOrNext()">正解を見る</button>
       </div>
-      <script>
-        function checkAnswer() {
-          const input = document.getElementById("hunter-input").value;
-          const answer = document.getElementById("hunter-q").innerText;
-          const ok = document.getElementById("ok");
-          const ng = document.getElementById("ng");
-          if (input == answer) {
-            console.log("ok");
-            ok.classList.remove("d-none");
-            setTimeout(function () {
-              ok.classList.add("d-none");
-            }, 1000);
-          } else {
-            console.log("ng");
-            ng.classList.remove("d-none");
-            setTimeout(function () {
-              ng.classList.add("d-none");
-            }, 1000);
-          }
-        }
+      <p id="hunter-a"></p>
+      <script th:inline="javascript">
+        // scriptファイルで変数を使えるように、inlineで定義しておく
+        const words = /*[[${words}]]*/[];
       </script>
+      <script th:inline="javascript" th:src="@{/js/checkAnswer.js}"></script>
     </main>
   </body>
 </html>
