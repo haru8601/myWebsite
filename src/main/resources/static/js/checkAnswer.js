@@ -1,6 +1,6 @@
 /** @type {string[]} */
 // @ts-ignore
-const quizWords = words;
+const quizWords = words || [];
 const hunterQuestion = document.getElementById("hunter-q");
 const hunterInput = /** @type {HTMLInputElement | null} */ (document.getElementById("hunter-input"));
 const answerBtn = document.getElementById('show-answer-btn');

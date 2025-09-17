@@ -89,6 +89,16 @@
 
 /********マークダウン表示用**************/
 
+/* 固定ヘッダーで隠れないようページ内リンクのスクロール位置を補正 */
+.marked h1,
+.marked h2,
+.marked h3,
+.marked h4,
+.marked h5,
+.marked h6 {
+  scroll-margin-top: 100px; /* ヘッダーの高さ+余白 */
+}
+
 /*simpleMDEのプレビュー側に自動でつくクラス*/
 .editor-preview-side h1,
 .marked h1 {

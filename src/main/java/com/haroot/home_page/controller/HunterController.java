@@ -1,9 +1,10 @@
 package com.haroot.home_page.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,14 +46,21 @@ public class HunterController {
   public ModelAndView others(ModelAndView mav) {
     ObjectMapper mapper = new ObjectMapper();
     try {
-      BufferedReader fishBr = Files.newBufferedReader(Path.of(pathProperty.getResources() + "/json/words/fish.json"));
+      File fishFile = new File(pathProperty.getStaticResources() + "/json/words/fish.json");
+      File vegetablesFile = new File(pathProperty.getStaticResources() + "/json/words/vegetables.json");
+      if (!fishFile.exists() || !vegetablesFile.exists()) {
+        System.out.println("fish or vegetables file not found.");
+        System.out.println(fishFile.getAbsolutePath());
+        System.out.println(vegetablesFile.getAbsolutePath());
+      }
+      BufferedReader fishBr = Files.newBufferedReader(fishFile.toPath(), Charset.forName("UTF-8"));
       WordsDto fishJson = mapper.readValue(fishBr, WordsDto.class);
-      BufferedReader vegetablesBr = Files
-          .newBufferedReader(Path.of(pathProperty.getResources() + "/json/words/vegetables.json"));
+      BufferedReader vegetablesBr = Files.newBufferedReader(vegetablesFile.toPath(), Charset.forName("UTF-8"));
       WordsDto vegetablesJson = mapper.readValue(vegetablesBr, WordsDto.class);
       mav.addObject("words",
-        Stream.concat(fishJson.getNames().stream(), vegetablesJson.getNames().stream()).collect(Collectors.toList()));
+          Stream.concat(fishJson.getNames().stream(), vegetablesJson.getNames().stream()).collect(Collectors.toList()));
     } catch (IOException e) {
+      System.out.println("Failed to load words.");
       System.out.println(e.getMessage());
     }
 

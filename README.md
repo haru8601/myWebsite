@@ -67,6 +67,6 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
 # デプロイ
 
-Run As > Maven Build<br>
+`pom.xml`を開き、Run As > Maven Build<br>
 
 `/target`に war ファイルが生成される

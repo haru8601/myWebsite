@@ -30,3 +30,6 @@ Servers
 ads.html
 
 .rewrite-cache
+
+# intellij
+.idea
