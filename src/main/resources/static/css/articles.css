@@ -75,6 +75,12 @@
   padding-left: 0;
 }
 
+/* bootstrapか何かで自動でつく余白を削除 */
+#articleMain p,
+#articleMain pre {
+  margin-bottom: 0;
+}
+
 .articles .errStr {
   color: red;
   text-align: center;
@@ -116,6 +122,7 @@
 
 .editor-preview-side h3,
 .marked h3 {
+  border-bottom: 2px solid rgb(199, 199, 199);
   margin-top: 30px;
   margin-bottom: 5px;
 }
@@ -125,6 +132,7 @@
   margin-top: 30px;
   margin-bottom: 5px;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .editor-preview-side p,

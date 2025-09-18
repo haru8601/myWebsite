@@ -44,8 +44,9 @@ a > .fa-arrow-up-right-from-square {
   padding-right: 0.2vw;
 }
 
-p {
-  line-height: 2;
+/* デフォルトのフォントサイズ設定 */
+p, ul > li , pre {
+  font-size: 16px;
 }
 
 .down-btn:active {

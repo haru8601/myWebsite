@@ -70,3 +70,7 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 `pom.xml`を開き、Run As > Maven Build<br>
 
 `/target`に war ファイルが生成される
+
+## 画像ファイル
+
+記事のサムネイル画像は直接、`/var/www/html/images/articles/{id}/thumbnail.png`に配置します。
