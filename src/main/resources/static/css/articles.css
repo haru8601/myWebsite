@@ -75,6 +75,12 @@
   padding-left: 0;
 }
 
+/* bootstrapか何かで自動でつく余白を削除 */
+#articleMain p,
+#articleMain pre {
+  margin-bottom: 0;
+}
+
 .articles .errStr {
   color: red;
   text-align: center;
@@ -88,6 +94,16 @@
 }
 
 /********マークダウン表示用**************/
+
+/* 固定ヘッダーで隠れないようページ内リンクのスクロール位置を補正 */
+.marked h1,
+.marked h2,
+.marked h3,
+.marked h4,
+.marked h5,
+.marked h6 {
+  scroll-margin-top: 100px; /* ヘッダーの高さ+余白 */
+}
 
 /*simpleMDEのプレビュー側に自動でつくクラス*/
 .editor-preview-side h1,
@@ -106,6 +122,7 @@
 
 .editor-preview-side h3,
 .marked h3 {
+  border-bottom: 2px solid rgb(199, 199, 199);
   margin-top: 30px;
   margin-bottom: 5px;
 }
@@ -115,6 +132,7 @@
   margin-top: 30px;
   margin-bottom: 5px;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .editor-preview-side p,

@@ -13,13 +13,15 @@
     <link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}" />
     <meta name="description" th:content="|*{title}についての記事です。|" />
     <!--marked用-->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@16.3.0/lib/marked.umd.min.js"></script>
+    <!-- ヘッダーにidを付与する -->
+    <script src="https://cdn.jsdelivr.net/npm/marked-gfm-heading-id@4.1.2/lib/index.umd.min.js"></script>
     <!--syntaxHighlight用-->
-    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
     <!--jquery用-->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!--Twitterカード用-->
@@ -78,7 +80,7 @@
 			</pre>
         <script th:inline="javascript">
           //コードブロックをハイライト
-          hljs.initHighlightingOnLoad();
+          hljs.highlightAll();
           //thymleafのインライン処理(デフォルトを""にした)
           let text = /*[[*{content}]]*/ "";
           //部分的なコードはmarkedが対応してないから自分でspanにして色付け
@@ -93,6 +95,7 @@
             `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`
           );
           //テキストをマークダウン化して貼り付け
+          marked.use(window.markedGfmHeadingId.gfmHeadingId({ prefix: "" }));
           document.getElementById("content").innerHTML = marked.parse(text);
         </script>
         <a class="back-btn" th:href="@{|/articles|}">一覧へ戻る</a>

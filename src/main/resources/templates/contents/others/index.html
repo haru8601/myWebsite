@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+  la="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+  th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).OTHERS}"
+>
+  <head>
+    <title th:text="|${topic.getTitleJp()} - ${site}|">haroot</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/about.css}" />
+    <meta name="description" th:content="${topic.getSummary()}" />
+  </head>
+
+  <body>
+    <main layout:fragment="content">
+      <h2 class="title" th:text="${topic.getTitleJp()}"></h2>
+      <p class="summary" th:text="${topic.getSummary()}"></p>
+      <div class="item-all">
+        <!-- 内容物リスト -->
+        <a class="item-link down-btn" th:href="@{/others/hxh-char-quiz}">
+          <div class="item flex">
+            <div class="item-text">
+              <h2>ハンター文字クイズ</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
