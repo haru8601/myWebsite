@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-HomePageApplication<HomePage>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.haroot.home_page.HomePageApplication",
+      "projectName": "HomePage",
+      "args": "--spring.profiles.active=local",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
