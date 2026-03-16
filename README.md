@@ -71,6 +71,12 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
 `/target`に war ファイルが生成される
 
+## VSCodeの場合
+
+`Maven: Execute Commands...` > `package`
+
+`/target`に war ファイルが生成される
+
 ## 画像ファイル
 
 記事のサムネイル画像は直接、`/var/www/html/images/articles/{id}/thumbnail.png`に配置します。

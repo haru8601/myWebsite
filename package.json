@@ -1,0 +1,17 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "haroot のホームページ。リンクは[こちら](https://haroot.net)。",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "sass src/main/resources/static/scss:src/main/resources/static/css --watch"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "sass": "^1.98.0"
+  }
+}
