@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   xmlns:th="http://www.thymeleaf.org"
@@ -32,13 +32,14 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" th:href="@{/css/stylesheet.css}" />
-    <link
+    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <!-- FIXME: デザインリニューアル時に対応 -->
+    <!-- <link
       rel="stylesheet"
       th:href="@{/css/responsive.css}"
       media="print"
       onload="this.media='all'"
-    />
+    /> -->
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
     <!--FontAwesome用-->
     <script
@@ -62,7 +63,6 @@
         <div layout:replace="~{/layout/footer::footer}"></div>
       </div>
       <div layout:replace="~{/layout/menuBar::menuBar}"></div>
-      <script th:src="@{/js/menu.js}"></script>
     </div>
   </body>
 </html>

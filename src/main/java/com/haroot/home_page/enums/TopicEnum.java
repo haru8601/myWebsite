@@ -4,13 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum TopicEnum {
-  IOS_APP("iOS Apps", "iOSアプリ", "ios-app", "個人で製作したiOSアプリ一覧です。", true),
+  ABOUT("About", "経歴", "about", "harootとは...?", true),
+  WORKS("Works", "ワークス", "works", "個人で製作した作品一覧です。", true),
   ARTICLES("Articles", "技術記事", "articles", "IT周りの自分用にまとめた記事一覧です。", true),
-  MUSIC("Music", "音楽", "music", "耳コピしたものとか置いてます。", true),
-  POKE("Poké", "ポケモン", "poke", "ポケモン関係(もちろん非公式)のプロダクトです。", true),
-  OTHERS("Others", "その他", "others", "その他のコンテンツです", true),
-  ABOUT("About", "経歴", "about", "harootとは...?", false),
-  CONTACT("Contact", "お問い合わせ", "contact", "お問い合わせフォームはこちら。", false);
+  CONTACT("Contact", "お問い合わせ", "contact", "お問い合わせフォームはこちら。", true);
 
   private final String title;
   private final String titleJp;

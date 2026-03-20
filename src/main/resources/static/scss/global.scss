@@ -1,0 +1,47 @@
+@font-face {
+  /* 使用する際のフォント名指定 */
+  font-family: "CustomFont";
+
+  src:
+    url("../Fonts/Parisienne/Parisienne-Regular.ttf") format("truetype"),
+    url("../Fonts/Parisienne/Parisienne-Regular.woff") format("woff"),
+    url("../Fonts/Parisienne/Parisienne-Regular.eot") format("embedded-opentype");
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  /*デフォルトフォント*/
+  font-family: "Hiragino Mincho ProN";
+}
+
+html {
+  max-width: 100%;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+
+  body {
+    max-width: 100%;
+    width: 100%;
+    background-color: rgb(250, 250, 230);
+  }
+
+  a {
+    &:link {
+      color: inherit;
+    }
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  /* デフォルトのフォントサイズ設定 */
+  p,
+  ul > li,
+  pre {
+    font-size: 16px;
+  }
+}
