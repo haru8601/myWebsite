@@ -29,6 +29,8 @@ html {
   }
 
   a {
+    text-decoration: none;
+
     &:link {
       color: inherit;
     }

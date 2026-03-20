@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "sass src/main/resources/static/scss:src/main/resources/static/css --watch"
+    "scss": "sass src/main/resources/static/scss:src/main/resources/static/css"
   },
   "devDependencies": {
     "prettier": "^3.8.1",
