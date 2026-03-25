@@ -9,13 +9,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
-    <!--bootstrap用-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
     <link rel="stylesheet" th:href="@{/css/global.css}" />
     <!-- FIXME: デザインリニューアル時に対応 -->
     <!-- <link
@@ -26,6 +19,7 @@
     /> -->
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
     <!--FontAwesome用-->
+    <!-- NOTE: scssからのnpm直参照だとttfファイルが読めないので一旦CDNを使用 -->
     <script
       src="https://kit.fontawesome.com/cee3ec41f4.js"
       crossorigin="anonymous"
@@ -34,6 +28,7 @@
 
     <title>はるーとのホームページ - haroot.net</title>
     <link type="text/css" rel="stylesheet" th:href="@{/css/top.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/css/modules.css}" />
     <meta
       name="description"
       content="はるーとのホームページです。自作iosアプリの概要ページ、swiftやvscodeについての技術記事、自分のyoutubeの紹介ページ等で構成されています。"

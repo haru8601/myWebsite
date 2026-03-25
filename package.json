@@ -8,10 +8,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "sass src/main/resources/static/scss:src/main/resources/static/css"
+    "scss": "sass --pkg-importer=node src/main/resources/static/scss:src/main/resources/static/css"
   },
   "devDependencies": {
     "prettier": "^3.8.1",
     "sass": "^1.98.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
   }
 }
