@@ -90,7 +90,7 @@
           th:if="${topic.displayInTop}"
         >
           <div>
-            <h2 class="hr-choose-item">
+            <h2 class="hr-choose-item" th:data-hr-choose-index="${stat.index}">
               <i
                 th:if="${stat.index == 0}"
                 class="fa-solid fa-caret-right hr-choose-icon"
@@ -101,6 +101,7 @@
         </a>
       </div>
     </main>
+    <script th:src="@{/js/global.js}"></script>
     <script th:src="@{/js/top.js}"></script>
   </body>
 </html>
