@@ -51,17 +51,13 @@
 
   <body>
     <header layout:replace="~{/layout/header::header}"></header>
-    <div class="except-header">
-      <div class="except-aside">
-        <div class="container">
-          <main layout:fragment="content"></main>
-        </div>
-        <th:block th:if="${isTop == null || !isTop}">
-          <!-- adsense設置場所 -->
-          <div layout:replace="~{/layout/ads::ads}"></div>
-        </th:block>
-        <div layout:replace="~{/layout/footer::footer}"></div>
-      </div>
+    <div>
+      <main layout:fragment="content"></main>
+      <th:block th:if="${isTop == null || !isTop}">
+        <!-- adsense設置場所 -->
+        <div layout:replace="~{/layout/ads::ads}"></div>
+      </th:block>
+      <div layout:replace="~{/layout/footer::footer}"></div>
     </div>
   </body>
 </html>
