@@ -85,23 +85,27 @@
           </canvas>
         </div>
       </th:block>
-      <div class="d-flex justify-content-center">
+      <div class="hr-title d-flex justify-content-center">
         <h1>haroot.net</h1>
       </div>
-      <div class="topic-all d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center gap-4">
         <a
-          class="topic-link down-btn"
-          th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+          th:each="topic, stat: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           th:href="${topic.url}"
           th:if="${topic.displayInTop}"
         >
-          <div class="topic">
-            <div class="topic-text">
-              <h2 th:text="${topic.title}"></h2>
-            </div>
+          <div>
+            <h2 class="hr-choose-item">
+              <i
+                th:if="${stat.index == 0}"
+                class="fa-solid fa-caret-right hr-choose-icon"
+              ></i>
+              <span th:text="${topic.title}"></span>
+            </h2>
           </div>
         </a>
       </div>
     </main>
+    <script th:src="@{/js/top.js}"></script>
   </body>
 </html>

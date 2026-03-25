@@ -4,10 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum TopicEnum {
-  ABOUT("About", "経歴", "about", "harootとは...?", true),
-  WORKS("Works", "ワークス", "works", "個人で製作した作品一覧です。", true),
-  ARTICLES("Articles", "技術記事", "articles", "IT周りの自分用にまとめた記事一覧です。", true),
-  CONTACT("Contact", "お問い合わせ", "contact", "お問い合わせフォームはこちら。", true);
+  ABOUT("ABOUT", "経歴", "about", "harootとは...?", true),
+  WORKS("WORKS", "ワークス", "works", "個人で製作した作品一覧です。", true),
+  ARTICLES("ARTICLES", "技術記事", "articles", "IT周りの自分用にまとめた記事一覧です。", true),
+  CONTACT("CONTACT", "お問い合わせ", "contact", "お問い合わせフォームはこちら。", true);
 
   private final String title;
   private final String titleJp;

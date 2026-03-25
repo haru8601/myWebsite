@@ -65,6 +65,21 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
     └── resource # /hoge/aaa
 ```
 
+# 開発
+
+## css
+
+### 規則
+
+- 基本はbootstrapのクラスを使用
+- 独自のクラス名を使う場合、`hr-`のprefixを付ける
+
+### コンパイル
+
+```sh
+npm run scss
+```
+
 # デプロイ
 
 `pom.xml`を開き、Run As > Maven Build<br>

@@ -1,5 +1,14 @@
-body {
-  background: linear-gradient(rgb(250, 250, 230), 60%, rgb(235, 215, 230));
+main .hr-title {
+  margin: 20vh 0 10vh 0;
+}
+main .hr-choose-item {
+  position: relative;
+}
+main .hr-choose-item .hr-choose-icon {
+  position: absolute;
+  left: -30%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /*# sourceMappingURL=top.css.map */
