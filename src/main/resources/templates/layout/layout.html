@@ -39,12 +39,6 @@
       onload="this.media='all'"
     /> -->
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
-    <!--FontAwesome用-->
-    <!-- NOTE: scssからのnpm直参照だとttfファイルが読めないので一旦CDNを使用 -->
-    <script
-      src="https://kit.fontawesome.com/cee3ec41f4.js"
-      crossorigin="anonymous"
-    ></script>
     <title>layout page</title>
   </head>
 
@@ -58,6 +52,6 @@
       </th:block>
       <div layout:replace="~{/layout/footer::footer}"></div>
     </div>
-    <script th:src="@{/js/global.js}"></script>
+    <script th:src="@{/dist/bundler.bundle.js}"></script>
   </body>
 </html>

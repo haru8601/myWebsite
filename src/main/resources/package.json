@@ -17,6 +17,7 @@
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
     "bootstrap": "^5.3.8",
     "css-loader": "^7.1.4",
     "mini-css-extract-plugin": "^2.10.2",
