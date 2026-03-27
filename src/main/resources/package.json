@@ -1,0 +1,25 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "haroot のホームページ。リンクは[こちら](https://haroot.net)。",
+  "license": "ISC",
+  "author": "haroot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scss": "sass --pkg-importer=node src/main/resources/static/scss:src/main/resources/static/css",
+    "bundle": "webpack"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "sass": "^1.98.0",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "css-loader": "^7.1.4",
+    "mini-css-extract-plugin": "^2.10.2",
+    "sass-loader": "^16.0.7"
+  }
+}

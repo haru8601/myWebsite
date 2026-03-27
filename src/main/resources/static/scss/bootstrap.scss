@@ -1,0 +1,6 @@
+@use "variables" as *;
+
+$nav-tabs-link-active-color: white;
+$nav-tabs-link-active-bg: $background-color-default;
+// NOTE: @useに移行すべきだが、bootstrap5が未対応なため@importを使用
+@import "~bootstrap/scss/bootstrap";

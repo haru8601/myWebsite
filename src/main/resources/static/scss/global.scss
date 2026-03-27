@@ -1,5 +1,7 @@
+@use "variables" as *;
+
 @font-face {
-  /* 使用する際のフォント名指定 */
+  // 使用する際のフォント名指定
   font-family: "CustomFont";
 
   src:
@@ -12,7 +14,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  /*デフォルトフォント*/
+  // デフォルトフォント
   font-family: "Hiragino Mincho ProN";
 }
 
@@ -25,26 +27,40 @@ html {
   body {
     max-width: 100%;
     width: 100%;
-    background-color: #212529; // NOTE: bootstrapのdarkに合わせている
+    background-color: $background-color-default; // NOTE: bootstrapのdarkに合わせている
     color: white;
-  }
 
-  a {
-    text-decoration: none;
-
-    &:link {
-      color: inherit;
+    main {
+      margin: 10vh 10vw;
     }
 
-    &:visited {
-      color: inherit;
+    a {
+      text-decoration: none;
+
+      &:link {
+        color: inherit;
+      }
+
+      &:visited {
+        color: inherit;
+      }
+    }
+
+    // デフォルトのフォントサイズ設定
+    p,
+    ul > li,
+    pre {
+      font-size: 16px;
     }
   }
 
-  /* デフォルトのフォントサイズ設定 */
-  p,
-  ul > li,
-  pre {
-    font-size: 16px;
+  // bootstrapクラスの修正
+  .nav-link:not(.active) {
+    color: gray;
+  }
+
+  .nav-tabs .nav-link.active {
+    color: white;
+    background-color: $background-color-default;
   }
 }

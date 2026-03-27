@@ -9,7 +9,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
     />
-    <link rel="stylesheet" th:href="@{/css/global.css}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      th:href="@{/dist/style.css}"
+    />
     <!-- FIXME: デザインリニューアル時に対応 -->
     <!-- <link
       rel="stylesheet"
@@ -27,8 +32,6 @@
     <!--/* layout.htmlと同じ設定ここまで */-->
 
     <title>はるーとのホームページ - haroot.net</title>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/top.css}" />
-    <link type="text/css" rel="stylesheet" th:href="@{/css/modules.css}" />
     <meta
       name="description"
       content="はるーとのホームページです。自作iosアプリの概要ページ、swiftやvscodeについての技術記事、自分のyoutubeの紹介ページ等で構成されています。"
@@ -101,7 +104,7 @@
         </a>
       </div>
     </main>
-    <script th:src="@{/js/global.js}"></script>
-    <script th:src="@{/js/top.js}"></script>
+    <script th:src="@{/dist/bundler.bundle.js}"></script>
+    <script th:src="@{/dist/top.bundle.js}"></script>
   </body>
 </html>

@@ -32,3 +32,4 @@ ads.html
 node_modules/
 Fonts
 images
+dist/

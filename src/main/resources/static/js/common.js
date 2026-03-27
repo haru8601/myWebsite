@@ -3,7 +3,7 @@
  * @param {HTMLElement | null} element
  * @returns {HTMLElement} not-nullな要素
  */
-const _notNullWrapper = (element) => {
+export const _notNullWrapper = (element) => {
   if (!element) {
     throw new Error("element is NOT found.");
   }
@@ -15,6 +15,6 @@ const _notNullWrapper = (element) => {
  * @param target {HTMLElement}
  * @param to {HTMLElement}
  */
-const _moveElement = (target, to) => {
+export const _moveElement = (target, to) => {
   to.appendChild(target);
 };

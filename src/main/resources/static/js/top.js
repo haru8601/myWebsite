@@ -1,3 +1,5 @@
+import { _notNullWrapper, _moveElement } from "./common.js";
+
 /**
  * @type {NodeListOf<HTMLElement>}
  */

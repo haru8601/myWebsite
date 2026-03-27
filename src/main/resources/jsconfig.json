@@ -3,5 +3,5 @@
     "checkJs": true
   },
   // vscodeが他のjsファイルを参照できるようにする
-  "include": ["src/main/resources/static/js/**/*.js"]
+  "include": ["static/js/**/*.js"]
 }
