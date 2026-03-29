@@ -17,7 +17,7 @@
           <a
             class="nav-link active"
             data-bs-toggle="tab"
-            data-bs-target="#nav-home"
+            data-bs-target="#tab-profile"
             type="button"
             role="tab"
             >PROFILE</a
@@ -27,118 +27,180 @@
           <a
             class="nav-link"
             data-bs-toggle="tab"
-            data-bs-target="#nav-home2"
+            data-bs-target="#tab-skills"
             type="button"
             role="tab"
             >SKILLS</a
           >
         </li>
         <li class="nav-item border rounded-top">
-          <a class="nav-link" href="#">BACKGROUND</a>
+          <a
+            class="nav-link"
+            data-bs-toggle="tab"
+            data-bs-target="#tab-background"
+            type="button"
+            role="tab"
+            >BACKGROUND</a
+          >
         </li>
       </ul>
 
-      <div
-        class="tab-pane fade show active"
-        id="nav-home"
-        role="tabpanel"
-        tabindex="0"
-      >
-        aaa
-      </div>
-      <div class="tab-pane fade" id="nav-home2" role="tabpanel" tabindex="0">
-        bbb
-      </div>
-      <div>
-        <table>
-          <thead>
-            <th class="t1">日付</th>
-            <td class="t2"></td>
-            <td class="t3">概要</td>
-          </thead>
-          <tbody>
-            <tr>
-              <th>2021/03</th>
-              <td><i class="fa-solid fa-school"></i></td>
-              <td>東京工業大学 地球惑星科学系 卒業</td>
-            </tr>
-            <tr>
-              <th>2021/04</th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>ニートになる</td>
-            </tr>
-            <tr>
-              <th></th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>Qiita記事投稿開始</td>
-            </tr>
-            <tr>
-              <th></th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>iOSアプリ開発開始</td>
-            </tr>
-            <tr>
-              <th></th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>マイクラ音楽(Youtube)投稿開始</td>
-            </tr>
-            <tr>
-              <th></th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>haroot.net(このホームページ)作成開始</td>
-            </tr>
-            <tr>
-              <th>2021/06</th>
-              <td><i class="fa-solid fa-people-group"></i></td>
-              <td>SES就職</td>
-            </tr>
-            <tr>
-              <th>2021/08</th>
-              <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
-              <td>Java Sliver取得</td>
-            </tr>
-            <tr>
-              <th>2021/09</th>
-              <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
-              <td>Oracle Bronze DBA取得</td>
-            </tr>
-            <tr>
-              <th>2021/11</th>
-              <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
-              <td>基本情報取得</td>
-            </tr>
-            <tr>
-              <th>2022/05</th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>Twitterのbot作成</td>
-            </tr>
-            <tr>
-              <th>2022/09</th>
-              <td><i class="fa-solid fa-people-group"></i></td>
-              <td>SES退社</td>
-            </tr>
-            <tr>
-              <th>2022/11</th>
-              <td><i class="fa-solid fa-people-group"></i></td>
-              <td>チーム○ボ就職</td>
-            </tr>
-            <tr>
-              <th>2022/12</th>
-              <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
-              <td>AWS SAA取得</td>
-            </tr>
-            <tr>
-              <th>2023/01</th>
-              <td><i class="fa-solid fa-person-running"></i></td>
-              <td>ポケモンしりとりサイト作成</td>
-            </tr>
-            <tr>
-              <th>2026/02</th>
-              <td><i class="fa-solid fa-people-group"></i></td>
-              <td>ビ⚪︎リーチ就職</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="tab-content border rounded p-5">
+        <div
+          id="tab-profile"
+          class="tab-pane fade show active"
+          role="tabpanel"
+          tabindex="0"
+        >
+          <div class="d-flex gap-5">
+            <div id="status" class="d-flex flex-column justify-content-between">
+              <div class="text-center">
+                <img th:src="@{/images/noImage.png}" width="100px" />
+              </div>
+              <div class="container-fluid border rounded py-2">
+                <div class="row">
+                  <div class="col-4">高さ</div>
+                  <div class="col-8">0xA8 cm</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">重さ</div>
+                  <div class="col-8">0x35 kg</div>
+                </div>
+                <div class="row">
+                  <div class="col-4">性格</div>
+                  <div class="col-8">INTP-A</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap-2">
+              <div>No. 086</div>
+              <div class="d-flex gap-3 align-items-center">
+                <h3 class="m-0">HAROOT</h3>
+                <h4 class="m-0">はるーと</h4>
+              </div>
+              <div>Engineer</div>
+              <div class="d-flex gap-2">
+                <div class="badge rounded-pill text-bg-warning">
+                  <i class="fa-brands fa-steam me-1 p-1"></i>ゲーム
+                </div>
+                <div class="badge rounded-pill text-bg-success">
+                  <i class="fa-solid fa-drum me-1 p-1"></i>音楽
+                </div>
+              </div>
+              <!--/* <div class="row">
+                えんしゅうりつを　２０桁　暗記しているが　役に立ったことは　ないらしい。
+              </div> */-->
+              <!--/* <div class="row">
+                ２つの　大学院に　合格した後　どちらも辞退した　やっかいな　いきもの。
+              </div> */-->
+              <div>
+                格闘ゲームを　始めるために　自作PCの中身を　全て入れ替えた。<br />
+                ストリートファイター６では　アルティメットマスターに　到達したらしい。
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-skills" class="tab-pane fade" role="tabpanel" tabindex="0">
+          bbb
+        </div>
+        <div
+          id="tab-background"
+          class="tab-pane fade"
+          role="tabpanel"
+          tabindex="0"
+        >
+          <div>
+            <table>
+              <thead>
+                <th class="t1">日付</th>
+                <td class="t2"></td>
+                <td class="t3">概要</td>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>2021/03</th>
+                  <td><i class="fa-solid fa-school"></i></td>
+                  <td>東京工業大学 地球惑星科学系 卒業</td>
+                </tr>
+                <tr>
+                  <th>2021/04</th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>ニートになる</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>Qiita記事投稿開始</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>iOSアプリ開発開始</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>マイクラ音楽(Youtube)投稿開始</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>haroot.net(このホームページ)作成開始</td>
+                </tr>
+                <tr>
+                  <th>2021/06</th>
+                  <td><i class="fa-solid fa-people-group"></i></td>
+                  <td>SES就職</td>
+                </tr>
+                <tr>
+                  <th>2021/08</th>
+                  <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
+                  <td>Java Sliver取得</td>
+                </tr>
+                <tr>
+                  <th>2021/09</th>
+                  <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
+                  <td>Oracle Bronze DBA取得</td>
+                </tr>
+                <tr>
+                  <th>2021/11</th>
+                  <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
+                  <td>基本情報取得</td>
+                </tr>
+                <tr>
+                  <th>2022/05</th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>Twitterのbot作成</td>
+                </tr>
+                <tr>
+                  <th>2022/09</th>
+                  <td><i class="fa-solid fa-people-group"></i></td>
+                  <td>SES退社</td>
+                </tr>
+                <tr>
+                  <th>2022/11</th>
+                  <td><i class="fa-solid fa-people-group"></i></td>
+                  <td>チーム○ボ就職</td>
+                </tr>
+                <tr>
+                  <th>2022/12</th>
+                  <td><i class="fa-solid fa-arrow-up-right-dots"></i></td>
+                  <td>AWS SAA取得</td>
+                </tr>
+                <tr>
+                  <th>2023/01</th>
+                  <td><i class="fa-solid fa-person-running"></i></td>
+                  <td>ポケモンしりとりサイト作成</td>
+                </tr>
+                <tr>
+                  <th>2026/02</th>
+                  <td><i class="fa-solid fa-people-group"></i></td>
+                  <td>ビ⚪︎リーチ就職</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </main>
   </body>

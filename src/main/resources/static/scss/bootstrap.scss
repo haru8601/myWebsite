@@ -1,6 +1,8 @@
 @use "variables" as *;
 
+// aboutで使用するタブのカスタマイズ
 $nav-tabs-link-active-color: white;
 $nav-tabs-link-active-bg: $background-color-default;
+$nav-tabs-border-width: 0;
 // NOTE: @useに移行すべきだが、bootstrap5が未対応なため@importを使用
 @import "~bootstrap/scss/bootstrap";

@@ -53,14 +53,4 @@ html {
       font-size: 16px;
     }
   }
-
-  // bootstrapクラスの修正
-  .nav-link:not(.active) {
-    color: gray;
-  }
-
-  .nav-tabs .nav-link.active {
-    color: white;
-    background-color: $background-color-default;
-  }
 }

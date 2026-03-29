@@ -6,3 +6,4 @@ import "../scss/bootstrap.scss";
 // 独自scss
 import "../scss/global.scss";
 import "../scss/top.scss";
+import "../scss/about.scss";

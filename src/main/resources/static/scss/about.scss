@@ -1,0 +1,26 @@
+@use "variables" as *;
+
+#about {
+  // bootstrapクラスの修正
+  .nav-tabs {
+    margin-right: 5vw;
+
+    .nav-link:not(.active) {
+      color: gray;
+    }
+
+    .nav-link.active {
+      color: white;
+      background-color: $background-color-default;
+    }
+  }
+
+  #status {
+    width: 40%;
+
+    .row > .col-4,
+    .col-8 {
+      padding-right: 0;
+    }
+  }
+}
