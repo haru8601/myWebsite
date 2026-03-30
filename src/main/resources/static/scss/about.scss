@@ -4,6 +4,13 @@
   // bootstrapクラスの修正
   .nav-tabs {
     margin-right: 5vw;
+    // NOTE: 次の.tab-contentと重ね、手前に表示することで重なり部分の.tab-contentのborderを見えなくしている
+    margin-bottom: -1px;
+
+    .nav-item {
+      position: relative;
+      z-index: 2;
+    }
 
     .nav-link:not(.active) {
       color: gray;
