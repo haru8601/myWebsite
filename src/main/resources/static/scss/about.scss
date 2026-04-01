@@ -22,12 +22,82 @@
     }
   }
 
-  #status {
+  #status-container {
     width: 40%;
 
     .row > .col-4,
     .col-8 {
       padding-right: 0;
+    }
+  }
+
+  #tab-background {
+    #background-container {
+      position: relative;
+      text-align: center;
+      padding: 0 1rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -20px; // 上下にはみ出す設定
+        left: 50%;
+        height: calc(100% + 40px); // 上下にはみ出す設定
+        border-left: 5px solid white;
+        z-index: -1; // 他の要素より基本後ろに置く
+      }
+
+      .hr-comment-right {
+        position: relative;
+        margin-left: 50px;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -40px;
+          width: 40px;
+          border-top: 2px solid red;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -40px;
+          transform: translate(-50%, -50%);
+          width: 10px;
+          height: 10px;
+          background-color: red;
+        }
+      }
+
+      .hr-comment-left {
+        position: relative;
+        margin-right: 50px;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 100%;
+          width: 40px;
+          border-top: 2px solid blue;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: calc(100% + 40px);
+          transform: translate(-50%, -50%);
+          width: 10px;
+          height: 10px;
+          background-color: blue;
+        }
+      }
     }
   }
 
