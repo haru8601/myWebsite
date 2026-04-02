@@ -8,10 +8,10 @@ main {
 
     .hr-choose-icon {
       position: absolute;
-      // セクションより左側に配置
-      left: -30%;
       // 上下の中央揃え
       top: 50%;
+      // セクションより左側に配置
+      right: 100%;
       transform: translateY(-50%);
     }
   }

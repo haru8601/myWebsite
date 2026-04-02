@@ -16,5 +16,5 @@ export const _notNullWrapper = (element) => {
  * @param to {HTMLElement}
  */
 export const _moveElement = (target, to) => {
-  to.appendChild(target);
+  to.prepend(target);
 };

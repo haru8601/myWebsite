@@ -1,21 +1,23 @@
 @use "variables" as *;
 
-@font-face {
-  // 使用する際のフォント名指定
-  font-family: "CustomFont";
+@import "~@fontsource/jersey-10/index.css";
 
-  src:
-    url("../Fonts/Parisienne/Parisienne-Regular.ttf") format("truetype"),
-    url("../Fonts/Parisienne/Parisienne-Regular.woff") format("woff"),
-    url("../Fonts/Parisienne/Parisienne-Regular.eot") format("embedded-opentype");
-  font-display: swap;
-}
+// @font-face {
+// 使用する際のフォント名指定
+// font-family: "CustomFont";
+
+// src:
+//   url("../Fonts/Parisienne/Parisienne-Regular.ttf") format("truetype"),
+//   url("../Fonts/Parisienne/Parisienne-Regular.woff") format("woff"),
+//   url("../Fonts/Parisienne/Parisienne-Regular.eot") format("embedded-opentype");
+// font-display: swap;
+// }
 
 * {
   margin: 0;
   box-sizing: border-box;
   // デフォルトフォント
-  font-family: "Hiragino Mincho ProN";
+  font-family: "Noto Sans JP";
 }
 
 html {
@@ -29,6 +31,11 @@ html {
     width: 100%;
     background-color: $background-color-default; // NOTE: bootstrapのdarkに合わせている
     color: white;
+
+    header,
+    footer {
+      margin: 0 10vw;
+    }
 
     main {
       margin: 10vh 10vw;
@@ -51,6 +58,14 @@ html {
     ul > li,
     pre {
       font-size: 16px;
+    }
+  }
+
+  .hr-dot {
+    font-family: "Jersey 10";
+
+    &.hr-size-1 {
+      font-size: 3rem;
     }
   }
 }

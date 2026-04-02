@@ -17,8 +17,12 @@
           <th:block
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >
-            <a class="d-flex gap-2" th:href="${topic.url}"
-              ><img th:src="@{/images/noImage.png}" width="30px" /><span
+            <a class="d-flex gap-1" th:href="${topic.url}"
+              ><img
+                th:src="@{/images/noImage.png}"
+                width="20px"
+                height="20px" /><span
+                class="hr-dot h5"
                 th:text="${topic.title}"
               ></span
             ></a>

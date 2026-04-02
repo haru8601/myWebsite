@@ -17,6 +17,7 @@
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
+    "@fontsource/jersey-10": "^5.2.8",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "bootstrap": "^5.3.8",
     "css-loader": "^7.1.4",
