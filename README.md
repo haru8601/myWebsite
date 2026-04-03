@@ -67,6 +67,11 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
 # 開発
 
+## maven
+
+`pom.xml`を変更したら \
+VSCodeで`cmd`+`shift`+`P` > `Java: Reload Projects`
+
 ## css
 
 ### 規則
