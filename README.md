@@ -67,19 +67,37 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
 # 開発
 
-## maven
+## BE
+
+### java
+
+sdkmanでバージョンを管理
+
+```sh
+sdk list java
+```
+
+### maven
 
 `pom.xml`を変更したら \
 VSCodeで`cmd`+`shift`+`P` > `Java: Reload Projects`
 
-## css
+## FE
 
-### 規則
+### thymeleaf
+
+- `thymeleaf`のfragmentを用いて、ヘッダーやフッターをコンポーネント化している
+- `thymeleaf-layout-dialect`のdecorateを用いて、\
+各ページをlayout.htmlの一部として逆importさせている
+
+### css
+
+#### 規則
 
 - 基本はbootstrapのクラスを使用
 - 独自のクラス名を使う場合、`hr-`のprefixを付ける
 
-### コンパイル
+#### コンパイル
 
 ```sh
 npm run scss
