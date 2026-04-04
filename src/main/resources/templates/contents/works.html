@@ -12,8 +12,8 @@
 
   <body>
     <main id="works" layout:fragment="content">
-      <div class="d-flex gap-5 justify-content-center mb-5">
-        <div th:each="workGenre: ${worksMap}">
+      <div id="toc" class="hr- d-flex gap-5 justify-content-center">
+        <div th:each="workGenre: ${worksMap}" class="text-center">
           <img th:src="@{/images/noImage.png}" width="20px" height="20px" />
           <p th:text="${workGenre.key.name}" class="hr-dot h2"></p>
         </div>
@@ -24,16 +24,19 @@
             th:text="${workGenre.key.name}"
             class="hr-dot hr-size-1 text-center"
           ></p>
-          <div class="d-flex">
-            <div th:each="works: ${workGenre.value}">
+          <div class="d-flex gap-5">
+            <a
+              th:each="works: ${workGenre.value}"
+              th:href="@{|/works/${workGenre.key.url}/${works.url}|}"
+            >
               <img
                 th:src="@{/images/noImage.png}"
                 width="300px"
                 height="300px"
               />
-              <p th:text="${works.title}"></p>
+              <p th:text="${works.title}" class="mb-1"></p>
               <p th:text="${works.titleEn}"></p>
-            </div>
+            </a>
           </div>
         </div>
       </div>

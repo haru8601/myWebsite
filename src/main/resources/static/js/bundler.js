@@ -7,3 +7,4 @@ import "../scss/bootstrap.scss";
 import "../scss/global.scss";
 import "../scss/top.scss";
 import "../scss/about.scss";
+import "../scss/works.scss";
