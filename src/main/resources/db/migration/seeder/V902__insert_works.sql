@@ -1,0 +1,48 @@
+INSERT INTO
+  works (`genre_id`, `title`, `title_en`, `summary`, `summary_en`, `url`, `image_path`)
+VALUES
+  (
+    1,
+    "ポケモンしりとり",
+    "Pokémon Word Chain",
+    "ポケモンの名前を使ったしりとりサイトです。",
+    "tmp",
+    "poke-shiritori",
+    NULL
+  ),
+  (
+    1,
+    "ハンター文字クイズ",
+    "tmp",
+    "ハンターハンターのハンター文字を使ったクイズです。",
+    "tmp",
+    "hxh-char-quiz",
+    NULL
+  ),
+  (
+    2,
+    "英単語クイズ - 小中学生の英語暗記",
+    "tmp",
+    "小中学生向けの英単語クイズアプリです。",
+    "tmp",
+    "english-quiz",
+    NULL
+  ),
+  (
+    3,
+    "マイクラ音楽",
+    "tmp",
+    "マインクラフトの音ブロックを用いて耳コピ演奏しているYouTubeです。",
+    "tmp",
+    "minecraft",
+    NULL
+  ),
+  (
+    4,
+    "ポケモン言えるかなBot",
+    "tmp",
+    "1日1回ポケモンの名前を思い出そうとするTwitter(X)のボットです。",
+    "tmp",
+    "poke-bot",
+    NULL
+  );

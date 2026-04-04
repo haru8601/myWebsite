@@ -82,6 +82,13 @@ sdk list java
 `pom.xml`を変更したら \
 VSCodeで`cmd`+`shift`+`P` > `Java: Reload Projects`
 
+### ORM
+
+Spring Data JPAを使用。
+- DB規模が小さい前提
+- JOINも基本用いず、ロジック側で結合、マッピングを行う
+- パフォーマンスが落ちる場合、別のORMを検討する
+
 ## FE
 
 ### thymeleaf

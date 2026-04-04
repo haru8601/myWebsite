@@ -1,0 +1,10 @@
+CREATE TABLE
+  `ios_app` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(100) NOT NULL,
+    `url` VARCHAR(100) DEFAULT NULL,
+    `summary` VARCHAR(100) DEFAULT NULL,
+    `img` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `IMG_UNIQUE` (`img`)
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
