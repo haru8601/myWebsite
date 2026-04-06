@@ -21,24 +21,24 @@ import lombok.RequiredArgsConstructor;
  *
  */
 @Controller
-@RequestMapping("works")
+@RequestMapping("work")
 @RequiredArgsConstructor
 public class WorkController {
   private final WorkService workService;
 
   /**
-   * works画面表示
+   * work画面表示
    *
    * @param mav MAV
    * @return
    */
   @GetMapping
-  public ModelAndView works(ModelAndView mav) {
-    Map<WorkGenreDto, List<WorkDto>> worksMap = workService.getAllWithGenres();
+  public ModelAndView work(ModelAndView mav) {
+    Map<WorkGenreDto, List<WorkDto>> workListMap = workService.getAllWithGenres();
 
-    mav.addObject("worksMap", worksMap);
+    mav.addObject("workListMap", workListMap);
 
-    mav.setViewName("contents/works");
+    mav.setViewName("contents/work");
     return mav;
   }
 }

@@ -1,5 +1,5 @@
 CREATE TABLE
-  works (
+  `work` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `genre_id` INT UNSIGNED NOT NULL,
     `title` VARCHAR(50) NOT NULL,
@@ -10,5 +10,5 @@ CREATE TABLE
     `image_path` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY `genre_id_fk_idx` (`genre_id`),
-    CONSTRAINT `works_genre_id_fk` FOREIGN KEY (`genre_id`) REFERENCES `work_genres` (`id`)
+    CONSTRAINT `work_genre_id_fk` FOREIGN KEY (`genre_id`) REFERENCES `work_genres` (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;

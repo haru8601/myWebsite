@@ -1,5 +1,5 @@
 INSERT INTO
-  works (`genre_id`, `title`, `title_en`, `summary`, `summary_en`, `url`, `image_path`)
+  `work` (`genre_id`, `title`, `title_en`, `summary`, `summary_en`, `url`, `image_path`)
 VALUES
   (
     1,

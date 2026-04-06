@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 import com.haroot.home_page.dto.WorkDto;
 import com.haroot.home_page.dto.WorkGenreDto;
 import com.haroot.home_page.repository.WorkGenreRepository;
-import com.haroot.home_page.repository.WorksRepository;
+import com.haroot.home_page.repository.WorkRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class WorksQueryService {
+public class WorkQueryService {
 
-  private final WorksRepository worksRepository;
+  private final WorkRepository workRepository;
   private final WorkGenreRepository workGenreRepository;
 
   /**
@@ -29,7 +29,7 @@ public class WorksQueryService {
    */
   public Map<WorkGenreDto, List<WorkDto>> findAllGroupedByGenre() {
     // 作品一覧を取得(idの昇順)
-    List<WorkDto> works = WorkDto.ofList(worksRepository.findAll(Sort.by("id")));
+    List<WorkDto> workList = WorkDto.ofList(workRepository.findAll(Sort.by("id")));
     // ジャンル一覧を取得
     List<WorkGenreDto> workGenres = WorkGenreDto.ofList(workGenreRepository.findAll());
     // ジャンルをキーごとのMapに変換
@@ -39,7 +39,7 @@ public class WorksQueryService {
 
     // 作品をジャンルごとにグルーピング
     // NOTE: LinkedHashMapで取得時のソートを保持している
-    return works.stream()
+    return workList.stream()
         .collect(Collectors.groupingBy(
             work -> genreMap.get(work.getGenreId()),
             LinkedHashMap::new,

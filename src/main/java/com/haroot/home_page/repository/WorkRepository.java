@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.haroot.home_page.entity.WorkEntity;
 
 @Repository
-public interface WorksRepository extends JpaRepository<WorkEntity, Integer> {
+public interface WorkRepository extends JpaRepository<WorkEntity, Integer> {
 
 }

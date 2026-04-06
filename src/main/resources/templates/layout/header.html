@@ -17,7 +17,7 @@
           <th:block
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >
-            <a class="d-flex gap-1" th:href="${topic.url}"
+            <a class="d-flex gap-1" th:href="@{|/${topic.url}|}"
               ><img
                 th:src="@{/images/noImage.png}"
                 width="20px"
