@@ -110,6 +110,11 @@ Spring Data JPAを使用。
 npm run scss
 ```
 
+## ライブラリ管理
+
+- `npm`で管理
+- インストール時に`Takumi Guard`で悪意のあるパッケージをブロック
+
 # デプロイ
 
 `pom.xml`を開き、Run As > Maven Build<br>
