@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
   la="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -36,12 +36,12 @@
     <meta
       id="share-url"
       property="og:url"
-      th:content="@{|/${topic.getUrl()}/*{id}|}"
+      th:content="@{|/${topic.url}/*{id}|}"
     />
     <meta property="og:site_name" content="${site}" />
     <meta
       property="og:image"
-      th:content="|https://haroot.net/images/${topic.getUrl()}/*{id}/thumbnail.png|"
+      th:content="|https://haroot.net/images/${topic.url}/*{id}/thumbnail.png|"
     />
     <!--twitter特有の設定-->
     <meta name="twitter:card" content="summary" />
@@ -86,13 +86,13 @@
           //部分的なコードはmarkedが対応してないから自分でspanにして色付け
           text = text.replaceAll(
             /`(?!`)(.*?)`/gm,
-            "<span class='part-code'>$1</span>"
+            "<span class='part-code'>$1</span>",
           );
           //リンクは別タブにしたいのでhtml化
           //ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
           text = text.replaceAll(
             /([^!])\[(.*?)\]\((.*?)\)/gm,
-            `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`
+            `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`,
           );
           //テキストをマークダウン化して貼り付け
           marked.use(window.markedGfmHeadingId.gfmHeadingId({ prefix: "" }));
@@ -135,7 +135,7 @@
       <script>
         //ツイート内容カスタマイズ
         const tweetBtn = document.getElementsByClassName(
-          "twitter-share-button"
+          "twitter-share-button",
         )[0];
         const title = document.getElementsByClassName("title")[0].textContent;
         const articleUrl = location.href;

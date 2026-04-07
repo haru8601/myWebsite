@@ -6,8 +6,8 @@
   th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).ABOUT}"
 >
   <head>
-    <title th:text="|${topic.getTitleJp()} - ${site}|">haroot</title>
-    <meta name="description" th:content="${topic.getSummary()}" />
+    <title th:text="|${topic.titleJp} - ${site}|">haroot</title>
+    <meta name="description" th:content="${topic.summary}" />
   </head>
 
   <body>

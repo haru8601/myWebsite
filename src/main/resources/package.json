@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@fontsource/jersey-10": "^5.2.8",
+    "@fontsource/noto-sans-jp": "^5.2.9",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "bootstrap": "^5.3.8",
     "css-loader": "^7.1.4",

@@ -1,6 +1,7 @@
 @use "variables" as *;
 
 @import "~@fontsource/jersey-10/index.css";
+@import "~@fontsource/noto-sans-jp/500.css";
 
 // @font-face {
 // 使用する際のフォント名指定
@@ -18,6 +19,8 @@
   box-sizing: border-box;
   // デフォルトフォント
   font-family: "Noto Sans JP";
+  // NOTE: mediumのfont-weightを指定
+  font-weight: 500;
 }
 
 html {
@@ -51,6 +54,10 @@ html {
       &:visited {
         color: inherit;
       }
+    }
+
+    p {
+      margin: 0;
     }
 
     // デフォルトのフォントサイズ設定
