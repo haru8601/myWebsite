@@ -9,6 +9,5 @@ CREATE TABLE
     `url` VARCHAR(255) NOT NULL,
     `image_path` VARCHAR(255) DEFAULT NULL,
     PRIMARY KEY (`id`),
-    KEY `genre_id_fk_idx` (`genre_id`),
     CONSTRAINT `work_genre_id_fk` FOREIGN KEY (`genre_id`) REFERENCES `work_genres` (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;

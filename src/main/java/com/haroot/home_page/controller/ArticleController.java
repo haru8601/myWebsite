@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.haroot.home_page.dto.ArticleDetailDto;
 import com.haroot.home_page.dto.ArticleDto;
 import com.haroot.home_page.dto.ArticleLikeDto;
 import com.haroot.home_page.dto.ArticleRegisterDto;
@@ -57,7 +58,7 @@ public class ArticleController {
    */
   @GetMapping
   public ModelAndView articleAll(ModelAndView mav) {
-    List<ArticleDto> articlesList = articleService.getAll();
+    List<ArticleDetailDto> articlesList = articleService.getAll();
     mav.addObject("articleList", articlesList);
     mav.addObject("errStr", "");
     mav.setViewName("contents/articles");
@@ -126,7 +127,7 @@ public class ArticleController {
       mav.setViewName("contents/articles/create");
     } else {
       // 他は戻す
-      List<ArticleDto> articlesList = articleService.getAll();
+      List<ArticleDetailDto> articlesList = articleService.getAll();
       mav.addObject("articlesList", articlesList);
       mav.addObject("errStr", "Sorry, you can't create articles....");
       mav.setViewName("contents/articles");

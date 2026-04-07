@@ -33,9 +33,11 @@
                 th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
               ></p>
               <i class="fa-solid fa-heart text-danger"></i>
-              <p>0</p>
+              <p th:text="*{likeCount}"></p>
             </div>
-            <div>tag1</div>
+            <div th:each="tag: *{tagList}">
+              <span th:text="${tag.tagId}"></span>
+            </div>
           </div>
         </a>
       </div>

@@ -1,5 +1,5 @@
 INSERT INTO
-  work_genres (`id`, `name`, `url`, `image_path`)
+  `work_genres` (`id`, `name`, `url`, `image_path`)
 VALUES
   (1, "GAME", "game", NULL),
   (2, "APPS", "apps", NULL),

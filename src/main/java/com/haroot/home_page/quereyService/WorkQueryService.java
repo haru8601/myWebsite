@@ -29,13 +29,13 @@ public class WorkQueryService {
    */
   public Map<WorkGenreDto, List<WorkDto>> findAllGroupedByGenre() {
     // 作品一覧を取得(idの昇順)
-    List<WorkDto> workList = WorkDto.ofList(workRepository.findAll(Sort.by("id")));
+    List<WorkDto> workList = WorkDto.listOf(workRepository.findAll(Sort.by("id")));
     // ジャンル一覧を取得
     List<WorkGenreDto> workGenres = WorkGenreDto.ofList(workGenreRepository.findAll());
     // ジャンルをキーごとのMapに変換
     Map<Integer, WorkGenreDto> genreMap = workGenres
         .stream()
-        .collect(Collectors.toMap(WorkGenreDto::getId, g -> g));
+        .collect(Collectors.toMap(WorkGenreDto::getId, val -> val));
 
     // 作品をジャンルごとにグルーピング
     // NOTE: LinkedHashMapで取得時のソートを保持している

@@ -31,7 +31,7 @@ public class WorkDto {
         entity.getImagePath());
   }
 
-  public static List<WorkDto> ofList(List<WorkEntity> entityList) {
+  public static List<WorkDto> listOf(List<WorkEntity> entityList) {
     return entityList
         .stream()
         .map((entity) -> WorkDto.of(entity))
