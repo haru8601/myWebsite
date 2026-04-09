@@ -26,7 +26,7 @@ public class WorkGenreDto {
   public static List<WorkGenreDto> ofList(List<WorkGenreEntity> entityList) {
     return entityList
         .stream()
-        .map((entity) -> WorkGenreDto.of(entity))
+        .map(entity -> of(entity))
         .toList();
   }
 }

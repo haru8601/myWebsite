@@ -24,7 +24,7 @@ public class ArticleTagDto {
   public static List<ArticleTagDto> listOf(List<ArticleTagEntity> entityList) {
     return entityList
         .stream()
-        .map((entity) -> ArticleTagDto.of(entity))
+        .map(entity -> of(entity))
         .toList();
   }
 }

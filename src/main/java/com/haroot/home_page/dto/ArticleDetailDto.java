@@ -18,7 +18,7 @@ public class ArticleDetailDto {
   private LocalDateTime createDate;
   private LocalDateTime updateDate;
   private int likeCount;
-  private List<ArticleTagDto> tagList;
+  private List<ArticleTagDetailDto> tagList;
 
   public ArticleDetailDto(
       int id,
@@ -28,7 +28,7 @@ public class ArticleDetailDto {
       LocalDateTime createDate,
       LocalDateTime updateDate,
       int likeCount,
-      List<ArticleTagDto> tagList) {
+      List<ArticleTagDetailDto> tagList) {
     this.id = id;
     this.title = title;
     this.content = content;

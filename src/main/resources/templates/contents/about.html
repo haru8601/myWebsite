@@ -124,20 +124,38 @@
             <div class="row">
               <div class="hr-dot h2 col-4 align-content-center">BACKEND</div>
               <div class="col-8 d-flex flex-wrap gap-2 align-content-center">
-                <span class="badge text-bg-success">Java</span>
-                <span class="badge text-bg-success">Kotlin</span>
-                <span class="badge text-bg-primary">SpringBoot</span>
-                <span class="badge text-bg-success">PHP</span>
-                <span class="badge text-bg-primary">Laravel</span>
-                <span class="badge text-bg-success">Go</span>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Java, Language)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Kotlin, Language)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag('Spring Boot', Framework)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(PHP, Language)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Laravel, Framework)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Go, Language)}"
+                ></th:block>
               </div>
             </div>
             <div class="row">
               <div class="hr-dot h2 col-4 align-content-center">FRONTEND</div>
               <div class="col-8 d-flex flex-wrap gap-2 align-content-center">
-                <span class="badge text-bg-success">Typescript</span>
-                <span class="badge text-bg-primary">React</span>
-                <span class="badge text-bg-primary">Next.js</span>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Typescript, Language)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(React, Framework)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Next.js, Framework)}"
+                ></th:block>
               </div>
             </div>
             <div class="row">
@@ -145,20 +163,38 @@
                 INFRASTRUCTURE
               </div>
               <div class="col-8 d-flex flex-wrap gap-2 align-content-center">
-                <span class="badge text-bg-success">Athena</span>
-                <span class="badge text-bg-success">DMS</span>
-                <span class="badge text-bg-success">CodePipeline</span>
-                <span class="badge text-bg-success">Kinesis</span>
-                <span class="badge text-bg-success">aws-cdk</span>
-                <span class="badge text-bg-primary">BigQuery</span>
-                <span class="badge text-bg-primary">Firebase</span>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Athena, Infrastructure)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(DMS, Infrastructure)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag('Code Pipeline', Infrastructure)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Kinesis, Infrastructure)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(BigQuery, Infrastructure)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Firebase, Infrastructure)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(aws-cdk, Tools)}"
+                ></th:block>
               </div>
             </div>
             <div class="row">
               <div class="hr-dot h2 col-4 align-content-center">OTHERS</div>
               <div class="col-8 d-flex flex-wrap gap-2 align-content-center">
-                <span class="badge text-bg-warning">JUnit</span>
-                <span class="badge text-bg-warning">Gatling</span>
+                <th:block
+                  th:replace="~{layout/tag :: tag(JUnit, Tools)}"
+                ></th:block>
+                <th:block
+                  th:replace="~{layout/tag :: tag(Gatling, Tools)}"
+                ></th:block>
               </div>
             </div>
           </div>

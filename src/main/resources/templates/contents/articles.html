@@ -11,15 +11,17 @@
   </head>
 
   <body>
-    <main class="articles" layout:fragment="content">
+    <main id="articles" layout:fragment="content">
       <th:block th:if="${errStr!=''}">
         <p class="errStr" th:text="${errStr}"></p>
       </th:block>
-      <div>
+      <div class="d-flex flex-column">
         <a
+          id="hr-article-link"
           th:each="article: ${articleList}"
           th:object="${article}"
           th:href="@{|/${topic.url}/*{id}|}"
+          class="py-4"
         >
           <div class="d-flex flex-column">
             <div>
@@ -28,15 +30,21 @@
                 <span>※非公開</span>
               </th:block>
             </div>
-            <div class="d-flex">
+            <div class="d-flex gap-3">
               <p
                 th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
               ></p>
-              <i class="fa-solid fa-heart text-danger"></i>
-              <p th:text="*{likeCount}"></p>
+              <div class="d-flex align-items-center">
+                <i class="fa-solid fa-heart text-danger"></i>
+                <p th:text="*{likeCount}"></p>
+              </div>
             </div>
-            <div th:each="tag: *{tagList}">
-              <span th:text="${tag.tagId}"></span>
+            <div class="d-flex gap-2 my-1">
+              <th:block th:each="tag: *{tagList}">
+                <th:block
+                  th:replace="~{layout/tag :: tag(${tag.tagName}, ${tag.tagType})}"
+                ></th:block>
+              </th:block>
             </div>
           </div>
         </a>

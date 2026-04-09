@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "scss": "sass --pkg-importer=node src/main/resources/static/scss:src/main/resources/static/css",
-    "bundle": "webpack"
+    "bundle": "webpack",
+    "clean": "rm -rf ./static/dist/"
   },
   "devDependencies": {
     "prettier": "^3.8.1",

@@ -25,7 +25,7 @@ public class ArticleLikeDto {
   public static List<ArticleLikeDto> listOf(List<ArticleLikeEntity> entityList) {
     return entityList
         .stream()
-        .map((entity) -> ArticleLikeDto.of(entity))
+        .map(entity -> of(entity))
         .toList();
   }
 }

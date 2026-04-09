@@ -52,7 +52,7 @@ public class ArticleDto implements Serializable {
   public static List<ArticleDto> listOf(List<ArticleEntity> entityList) {
     return entityList
         .stream()
-        .map((entity) -> ArticleDto.of(entity))
+        .map(entity -> of(entity))
         .toList();
   }
 }

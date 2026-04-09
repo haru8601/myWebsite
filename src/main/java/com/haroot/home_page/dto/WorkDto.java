@@ -34,7 +34,7 @@ public class WorkDto {
   public static List<WorkDto> listOf(List<WorkEntity> entityList) {
     return entityList
         .stream()
-        .map((entity) -> WorkDto.of(entity))
+        .map(entity -> of(entity))
         .toList();
   }
 }

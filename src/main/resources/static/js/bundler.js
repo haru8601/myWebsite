@@ -8,3 +8,4 @@ import "../scss/global.scss";
 import "../scss/top.scss";
 import "../scss/about.scss";
 import "../scss/work.scss";
+import "../scss/articles.scss";
