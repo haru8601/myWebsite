@@ -9,3 +9,4 @@ import "../scss/top.scss";
 import "../scss/about.scss";
 import "../scss/work.scss";
 import "../scss/articles.scss";
+import "../scss/contact.scss";

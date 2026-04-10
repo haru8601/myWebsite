@@ -1,54 +1,114 @@
-<!DOCTYPE html>
-<html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout}"
-	th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).CONTACT}">
+<!doctype html>
+<html
+  lang="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+  th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).CONTACT}"
+>
+  <head>
+    <title th:text="|${topic.titleJp} - ${site}|">haroot</title>
+    <meta name="description" th:content="${topic.summary}" />
+  </head>
 
-<head>
-	<title th:text="|${topic.titleJp} - ${site}|">haroot</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/contact.css}">
-	<meta name="description" th:content="${topic.summary}">
-</head>
-
-<body>
-	<main layout:fragment="content" id="contact">
-		<!-- コンテンツ2(ヘッダーのリンク先) -->
-		<form th:object="${formDto}" action="/contact/send" method="post">
-			<div class="contact-form">
-				<h2 class="title" th:text="${topic.titleJp}"></h2>
-				<p class="summary" th:text="${topic.summary}"></p>
-					<p>※スパムっぽい内容は弾いてます。</p>
-					<p>名前
-						<!--checkから戻ってきて名前が入力されていなかったら注意書きを追加-->
-					<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="check-failed"></p>
-					</p>
-					<input th:field="*{name}" class="name">
-					<p>メールアドレス
-						<!--checkから戻ってきてアドレスが入力されていなかったら注意書きを追加-->
-					<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="check-failed"></p>
-					</p>
-					<input th:field="*{email}" class="email">
-					<p>お問い合わせ内容
-						<!--checkから戻ってきて問い合わせが入力されていなかったら注意書きを追加-->
-					<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="check-failed"></p>
-					<!-- リンクが含まれていればキック-->
-					</p>
-					<textarea th:field="*{content}"></textarea>
-					<div class="policy-area">
-						<p th:if="${#fields.hasErrors('checkbox')}" th:errors="*{checkbox}" class="check-failed"></p>
-						<div class="check-area down-btn flex">
-							<input type="checkbox" th:name="checkbox" th:id="checkbox" th:checked="*{checkbox}">
-							<label for="checkbox">はるーとの<a href="/policy">プライバシーポリシー</a>に同意します。</label>
-						</div>
-					</div>
-					<!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
-					<input class="submit down-btn" type="button" value="送信" onclick="submit()">
-				</div>
-		</form>
-		<script th:inline="javascript">
-			//textareaのデータ表示
-			const textArea = document.getElementById("content");
-			textArea.innerHTML = /*[[${formDto.content}]]*/"";
-		</script>
-	</main>
-</body>
-
+  <body>
+    <main id="contact" layout:fragment="content">
+      <!-- コンテンツ2(ヘッダーのリンク先) -->
+      <form th:object="${formDto}" action="/contact/send" method="post">
+        <div>
+          <p>
+            ご質問、ご相談につきましては下記フォームからお問い合わせください。
+          </p>
+          <p>Please use the form below for any questions or inquiries.</p>
+          <p>※スパムと判断した内容はお送りいただけない場合がございます。</p>
+        </div>
+        <div class="d-flex flex-column gap-4 mt-5">
+          <div>
+            <label for="name" class="form-label"
+              >名前<span class="ms-2">Name</span></label
+            >
+            <input
+              th:field="*{name}"
+              class="form-control"
+              autocomplete="name"
+              th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'"
+            />
+            <p
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"
+            ></p>
+          </div>
+          <div>
+            <label for="email" class="form-label"
+              >メールアドレス<span class="ms-2">Email Address</span></label
+            >
+            <input
+              th:field="*{email}"
+              class="form-control"
+              autocomplete="email"
+              th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'"
+            />
+            <p
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"
+            ></p>
+          </div>
+          <div>
+            <label for="content" class="form-label"
+              >お問い合わせ内容<span class="ms-2">Message</span></label
+            >
+            <textarea
+              class="form-control"
+              th:field="*{content}"
+              rows="8"
+              th:classappend="${#fields.hasErrors('content')} ? 'is-invalid'"
+            ></textarea>
+            <p
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('content')}"
+              th:errors="*{content}"
+            ></p>
+          </div>
+          <div class="mx-auto">
+            <div class="form-check">
+              <input
+                id="checkbox"
+                name="checkbox"
+                type="checkbox"
+                th:checked="*{checkbox}"
+                class="form-check-input"
+                role="button"
+                th:classappend="${#fields.hasErrors('checkbox')} ? 'is-invalid'"
+              />
+              <label for="checkbox" class="form-check-label" role="button"
+                >はるーとの<a href="/policy" class="text-decoration-underline"
+                  >プライバシーポリシー</a
+                >に同意します。</label
+              >
+              <p
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('checkbox')}"
+                th:errors="*{checkbox}"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center my-4">
+          <!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
+          <input
+            type="button"
+            class="btn btn-danger text-white w-50"
+            value="送信 Send"
+            onclick="submit()"
+          />
+        </div>
+      </form>
+      <script th:inline="javascript">
+        //textareaのデータ表示
+        const textArea = document.getElementById("content");
+        textArea.innerHTML = /*[[${formDto.content}]]*/ "";
+      </script>
+    </main>
+  </body>
 </html>

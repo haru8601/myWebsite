@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+#contact {
+  form {
+    input[type="checkbox"]:checked {
+      background-color: $danger;
+      border-color: white;
+    }
+  }
+}
