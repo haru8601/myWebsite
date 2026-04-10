@@ -18,8 +18,11 @@
           <p>
             ご質問、ご相談につきましては下記フォームからお問い合わせください。
           </p>
-          <p>Please use the form below for any questions or inquiries.</p>
           <p>※スパムと判断した内容はお送りいただけない場合がございます。</p>
+
+          <p class="mt-3">
+            Please use the form below for any questions or inquiries.
+          </p>
         </div>
         <div class="d-flex flex-column gap-4 mt-5">
           <div>
@@ -71,7 +74,8 @@
             ></p>
           </div>
           <div class="mx-auto">
-            <div class="form-check">
+            <!--/* NOTE: デフォルトではform-checkがpadding-leftをつけるが、flexにするなら不要 */-->
+            <div class="form-check d-flex gap-2 align-items-center ps-0">
               <input
                 id="checkbox"
                 name="checkbox"
@@ -81,11 +85,17 @@
                 role="button"
                 th:classappend="${#fields.hasErrors('checkbox')} ? 'is-invalid'"
               />
-              <label for="checkbox" class="form-check-label" role="button"
-                >はるーとの<a href="/policy" class="text-decoration-underline"
+              <label for="checkbox" class="form-check-label" role="button">
+                はるーとの<a href="/policy" class="text-decoration-underline"
                   >プライバシーポリシー</a
-                >に同意します。</label
-              >
+                >に同意します。<br />
+                <span class="ms-2"
+                  >I agree to Haroot's
+                  <a href="/policy" class="text-decoration-underline"
+                    >Privacy Policy</a
+                  >.</span
+                >
+              </label>
               <p
                 class="invalid-feedback"
                 th:if="${#fields.hasErrors('checkbox')}"
