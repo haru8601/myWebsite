@@ -44,7 +44,7 @@ public class ContactController {
     FormDto formDto = new FormDto();
     mav.addObject("formDto", formDto);
 
-    mav.setViewName("contents/contact");
+    mav.setViewName("contents/contact/index");
     return mav;
   }
 
@@ -77,7 +77,7 @@ public class ContactController {
     // エラーがあれば戻る
     if (bindingResult.hasErrors()) {
       mav.addObject("formDto", formDto);
-      mav.setViewName("contents/contact");
+      mav.setViewName("contents/contact/index");
       return mav;
     }
 
@@ -95,7 +95,7 @@ public class ContactController {
     // DBに保存
     contactService.register(formDto);
 
-    mav.setViewName("contents/sent");
+    mav.setViewName("contents/contact/sent");
     return mav;
   }
 }
