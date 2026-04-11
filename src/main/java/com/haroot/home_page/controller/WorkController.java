@@ -38,7 +38,7 @@ public class WorkController {
 
     mav.addObject("workListMap", workListMap);
 
-    mav.setViewName("contents/work");
+    mav.setViewName("contents/work/index");
     return mav;
   }
 }

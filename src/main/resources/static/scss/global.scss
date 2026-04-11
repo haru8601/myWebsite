@@ -74,9 +74,26 @@ html {
     &.hr-size-1 {
       font-size: 3rem;
     }
+
+    &.hr-size-2 {
+      font-size: 2rem;
+    }
   }
 
   .hr-icon {
     font-size: 24px;
+  }
+
+  .hr-img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border: 3px solid white;
+    border-radius: 0.375rem; // NOTE: bootstrapのroundedサイズに合わせている
+  }
+
+  .hr-shadow-btn {
+    border: none;
+    box-shadow: inset -5px -8px 8px #743232;
   }
 }

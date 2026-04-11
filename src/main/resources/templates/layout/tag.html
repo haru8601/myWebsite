@@ -4,7 +4,7 @@
     <th:block th:fragment="tag(name, type)">
       <span
         th:text="${name}"
-        class="badge rounded-pill"
+        class="badge rounded-pill px-3 py-2"
         th:classappend="${type == 'Language' ? 'text-bg-danger' : (type == 'Framework' ? 'text-bg-success' : (type == 'Infrastructure' ? 'text-bg-primary' : (type == 'Tools' ? 'text-bg-warning' : 'text-bg-secondary')))}"
       ></span>
     </th:block>

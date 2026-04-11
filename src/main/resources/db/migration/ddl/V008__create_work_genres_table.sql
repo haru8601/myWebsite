@@ -1,5 +1,5 @@
-CREATE TABLE
-  work_genres (
+CREATE TABLE IF NOT EXISTS
+  `work_genres` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
     `url` VARCHAR(255) NOT NULL,

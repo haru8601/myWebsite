@@ -8,10 +8,17 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.haroot.home_page.dto.WorkDetailDto;
 import com.haroot.home_page.dto.WorkDto;
 import com.haroot.home_page.dto.WorkGenreDto;
+import com.haroot.home_page.dto.WorkTagDetailDto;
+import com.haroot.home_page.entity.TagEntity;
+import com.haroot.home_page.entity.WorkEntity;
+import com.haroot.home_page.entity.WorkTagEntity;
+import com.haroot.home_page.repository.TagRepository;
 import com.haroot.home_page.repository.WorkGenreRepository;
 import com.haroot.home_page.repository.WorkRepository;
+import com.haroot.home_page.repository.WorkTagRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +28,8 @@ public class WorkQueryService {
 
   private final WorkRepository workRepository;
   private final WorkGenreRepository workGenreRepository;
+  private final WorkTagRepository workTagRepository;
+  private final TagRepository tagRepository;
 
   /**
    * ジャンルごとの作品を全件取得する
@@ -44,5 +53,19 @@ public class WorkQueryService {
             work -> genreMap.get(work.getGenreId()),
             LinkedHashMap::new,
             Collectors.toList()));
+  }
+
+  public WorkDetailDto getWithTags(String url) {
+    // 作品取得
+    WorkEntity work = workRepository.findByUrl(url).orElseThrow();
+
+    // 作品に紐づくタグ一覧取得
+    List<WorkTagEntity> workTagList = workTagRepository.findAllByWorkId(work.getId());
+    // タグ一覧の取得
+    List<TagEntity> tagList = tagRepository.findAll();
+    // 作品のタグにタグ名を紐付け
+    List<WorkTagDetailDto> tagDetailList = WorkTagDetailDto.listOf(workTagList, tagList);
+
+    return WorkDetailDto.of(work, tagDetailList);
   }
 }

@@ -1,7 +1,17 @@
 INSERT INTO
-  `work` (`genre_id`, `title`, `title_en`, `summary`, `summary_en`, `url`, `image_path`)
+  `work` (
+    `id`,
+    `genre_id`,
+    `title`,
+    `title_en`,
+    `summary`,
+    `summary_en`,
+    `url`,
+    `image_path`
+  )
 VALUES
   (
+    1,
     1,
     "ポケモンしりとり",
     "Pokémon Word Chain",
@@ -11,6 +21,7 @@ VALUES
     NULL
   ),
   (
+    2,
     1,
     "ハンター文字クイズ",
     "tmp",
@@ -20,6 +31,7 @@ VALUES
     NULL
   ),
   (
+    3,
     2,
     "英単語クイズ - 小中学生の英語暗記",
     "tmp",
@@ -29,6 +41,7 @@ VALUES
     NULL
   ),
   (
+    4,
     3,
     "マイクラ音楽",
     "tmp",
@@ -38,6 +51,7 @@ VALUES
     NULL
   ),
   (
+    5,
     4,
     "ポケモン言えるかなBot",
     "tmp",

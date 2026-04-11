@@ -1,4 +1,4 @@
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
   `article_like` (
     `id` INT UNSIGNED NOT NULL,
     `like_count` INT UNSIGNED NOT NULL DEFAULT '0',

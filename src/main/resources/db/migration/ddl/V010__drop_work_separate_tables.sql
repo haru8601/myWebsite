@@ -1,5 +1,5 @@
-DROP TABLE `ios_app`;
+DROP TABLE IF EXISTS `ios_app`;
 
-DROP TABLE `music`;
+DROP TABLE IF EXISTS `music`;
 
-DROP TABLE `poke`;
+DROP TABLE IF EXISTS `poke`;

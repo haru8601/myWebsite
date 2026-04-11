@@ -1,4 +1,4 @@
-CREATE TABLE
+CREATE TABLE IF NOT EXISTS
   `article_tags` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `article_id` INT NOT NULL,
