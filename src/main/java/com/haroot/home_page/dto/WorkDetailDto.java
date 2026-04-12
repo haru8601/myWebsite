@@ -11,7 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class WorkDetailDto {
   private int id;
-  private int genreId;
+  private WorkGenreDto genre;
   private String title;
   private String titleEn;
   private String summary;
@@ -20,10 +20,11 @@ public class WorkDetailDto {
   private String imagePath;
   private List<WorkTagDetailDto> tagList;
 
-  public static WorkDetailDto of(WorkEntity entity, List<WorkTagDetailDto> tagList) {
+  public static WorkDetailDto of(WorkEntity entity,
+      WorkGenreDto genre, List<WorkTagDetailDto> tagList) {
     return new WorkDetailDto(
         entity.getId(),
-        entity.getGenreId(),
+        genre,
         entity.getTitle(),
         entity.getTitleEn(),
         entity.getSummary(),
@@ -31,12 +32,5 @@ public class WorkDetailDto {
         entity.getUrl(),
         entity.getImagePath(),
         tagList);
-  }
-
-  public static List<WorkDetailDto> listOf(List<WorkEntity> entityList, List<WorkTagDetailDto> tagList) {
-    return entityList
-        .stream()
-        .map(entity -> of(entity, tagList))
-        .toList();
   }
 }

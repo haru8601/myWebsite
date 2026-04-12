@@ -27,7 +27,7 @@ public class WorkDetailController {
     try {
       WorkDetailDto work = workService.getWithTags(url);
       mav.addObject("work", work);
-      mav.setViewName("contents/work/" + url);
+      mav.setViewName("contents/work/" + work.getGenre().getUrl() + "/" + url);
       return mav;
     } catch (Throwable e) {
       // TODO: エラーメッセージを渡す

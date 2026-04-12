@@ -3,6 +3,7 @@ package com.haroot.home_page.quereyService;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Sort;
@@ -55,9 +56,13 @@ public class WorkQueryService {
             Collectors.toList()));
   }
 
-  public WorkDetailDto getWithTags(String url) {
+  public WorkDetailDto getDetail(String url) throws NoSuchElementException {
     // 作品取得
     WorkEntity work = workRepository.findByUrl(url).orElseThrow();
+    // 作品のジャンル取得
+    WorkGenreDto genre = WorkGenreDto.of(
+        workGenreRepository.findById(work.getGenreId())
+            .orElseThrow());
 
     // 作品に紐づくタグ一覧取得
     List<WorkTagEntity> workTagList = workTagRepository.findAllByWorkId(work.getId());
@@ -66,6 +71,6 @@ public class WorkQueryService {
     // 作品のタグにタグ名を紐付け
     List<WorkTagDetailDto> tagDetailList = WorkTagDetailDto.listOf(workTagList, tagList);
 
-    return WorkDetailDto.of(work, tagDetailList);
+    return WorkDetailDto.of(work, genre, tagDetailList);
   }
 }
