@@ -26,8 +26,8 @@ public class WorkService {
             .orElseThrow());
   }
 
-  public WorkDetailDto getWithTags(String url) throws NoSuchElementException {
-    return workQueryService.getDetail(url);
+  public WorkDetailDto getWithTags(String name) throws NoSuchElementException {
+    return workQueryService.getDetail(name);
   }
 
   public Map<WorkGenreDto, List<WorkDto>> getAllWithGenres() {

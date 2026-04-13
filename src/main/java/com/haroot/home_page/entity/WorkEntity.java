@@ -16,6 +16,8 @@ public class WorkEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
+  @NotBlank
+  private String name;
   @NotNull
   private int genreId;
   @NotBlank
@@ -24,7 +26,7 @@ public class WorkEntity {
   private String titleEn;
   private String summary;
   private String summaryEn;
-  @NotBlank
-  private String url;
   private String imagePath;
+  private String workUrl;
+  private String policyUrl;
 }

@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("work/{genre}/{url}")
+@RequestMapping("work/{genre}/{name}")
 @RequiredArgsConstructor
 @Slf4j
 public class WorkDetailController {
@@ -22,12 +22,12 @@ public class WorkDetailController {
   @GetMapping
   public ModelAndView template(
       @PathVariable String genre,
-      @PathVariable String url,
+      @PathVariable String name,
       ModelAndView mav) {
     try {
-      WorkDetailDto work = workService.getWithTags(url);
+      WorkDetailDto work = workService.getWithTags(name);
       mav.addObject("work", work);
-      mav.setViewName("contents/work/" + work.getGenre().getUrl() + "/" + url);
+      mav.setViewName("contents/work/" + work.getGenre().getUrl() + "/" + name);
       return mav;
     } catch (Throwable e) {
       // TODO: エラーメッセージを渡す

@@ -13,7 +13,7 @@ VALUES
   (10, "John the Ripper", "Tools"),
   (11, "Homebrew", "Tools"),
   (12, "VSCode", "Others"),
-  (13, "Twitter(X)", "Others"),
+  (13, "X(Twitter)", "Others"),
   (14, "Bot", "Others"),
   (15, "Typescript", "Language"),
   (16, "React", "Framework"),

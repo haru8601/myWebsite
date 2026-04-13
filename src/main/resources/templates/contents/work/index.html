@@ -27,7 +27,7 @@
           <div class="d-flex gap-5">
             <a
               th:each="work: ${workGenre.value}"
-              th:href="@{|/work/${workGenre.key.url}/${work.url}|}"
+              th:href="@{|/work/${workGenre.key.url}/${work.name}|}"
             >
               <img
                 th:src="@{/images/noImage.png}"

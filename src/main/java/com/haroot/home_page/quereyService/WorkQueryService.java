@@ -56,9 +56,9 @@ public class WorkQueryService {
             Collectors.toList()));
   }
 
-  public WorkDetailDto getDetail(String url) throws NoSuchElementException {
+  public WorkDetailDto getDetail(String name) throws NoSuchElementException {
     // 作品取得
-    WorkEntity work = workRepository.findByUrl(url).orElseThrow();
+    WorkEntity work = workRepository.findByName(name).orElseThrow();
     // 作品のジャンル取得
     WorkGenreDto genre = WorkGenreDto.of(
         workGenreRepository.findById(work.getGenreId())

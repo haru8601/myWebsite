@@ -11,24 +11,28 @@ import lombok.Data;
 @AllArgsConstructor
 public class WorkDto {
   private int id;
+  private String name;
   private int genreId;
   private String title;
   private String titleEn;
   private String summary;
   private String summaryEn;
-  private String url;
   private String imagePath;
+  private String workUrl;
+  private String policyUrl;
 
   public static WorkDto of(WorkEntity entity) {
     return new WorkDto(
         entity.getId(),
+        entity.getName(),
         entity.getGenreId(),
         entity.getTitle(),
         entity.getTitleEn(),
         entity.getSummary(),
         entity.getSummaryEn(),
-        entity.getUrl(),
-        entity.getImagePath());
+        entity.getImagePath(),
+        entity.getWorkUrl(),
+        entity.getPolicyUrl());
   }
 
   public static List<WorkDto> listOf(List<WorkEntity> entityList) {

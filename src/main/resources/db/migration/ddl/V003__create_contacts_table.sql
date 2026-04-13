@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS
     `content` TEXT NOT NULL,
     `ip` VARCHAR(45) DEFAULT NULL,
     `create_date` TIMESTAMP NULL DEFAULT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `id_UNIQUE` (`id`)
+    PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;

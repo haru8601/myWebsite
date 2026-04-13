@@ -9,5 +9,5 @@ import com.haroot.home_page.entity.WorkEntity;
 
 @Repository
 public interface WorkRepository extends JpaRepository<WorkEntity, Integer> {
-  Optional<WorkEntity> findByUrl(String url);
+  Optional<WorkEntity> findByName(String name);
 }

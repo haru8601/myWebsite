@@ -22,17 +22,25 @@
         <div class="row">
           <!--/* NOTE: 左端をタイトルと合わせるためpaddingを削除 */-->
           <div class="col-4 p-0">
-            <button
+            <a
+              th:if="${work.workUrl}"
+              th:href="${work.workUrl}"
+              target="_blank"
               class="hr-dot hr-shadow-btn hr-size-2 btn btn-danger text-white py-0"
             >
               <img th:src="@{/images/noImage.png}" width="20px" height="20px" />
               PLAY NOW!
-            </button>
+            </a>
           </div>
           <div class="col-8">
             <p th:text="${work.summary}"></p>
             <p th:text="${work.summaryEn}"></p>
-            <!--/* TODO: プライバシーポリシー判定 */-->
+            <a
+              th:if="${work.policyUrl}"
+              th:href="@{|/policy/${work.policyUrl}|}"
+              class="text-decoration-underline"
+              >Privacy Policy</a
+            >
             <div class="d-flex gap-2 mt-3">
               <th:block th:each="tag: ${work.tagList}">
                 <th:block
