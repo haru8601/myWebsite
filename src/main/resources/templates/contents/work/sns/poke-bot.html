@@ -6,7 +6,20 @@
 >
   <body>
     <div layout:fragment="work-custom-content">
-      <p>test2</p>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/sns/poke-bot/tweet-incorrect.png',
+          '毎日21時に、ポケモンの名前をランダムに並び替えてツイートします。',
+          'Tweets randomly shuffled Pokémon names every day at 9 PM(JST).'
+        )}"
+      ></th:block>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/sns/poke-bot/tweet-correct.png',
+          '並びが正しいと、種族値も一緒にツイートします。',
+          'If the order is correct, the base stats will also be tweeted.'
+        )}"
+      ></th:block>
     </div>
   </body>
 </html>

@@ -26,10 +26,13 @@
               th:if="${work.workUrl}"
               th:href="${work.workUrl}"
               target="_blank"
-              class="hr-dot hr-shadow-btn hr-size-2 btn btn-danger text-white py-0"
+              class="hr-shadow-btn btn btn-danger"
             >
               <img th:src="@{/images/noImage.png}" width="20px" height="20px" />
-              PLAY NOW!
+              <span
+                th:text="${(work.genre.name == 'GAME' || work.genre.name == 'APPS') ? 'PLAY NOW!' : 'WATCH NOW!'}"
+                class="hr-dot h2 text-white"
+              ></span>
             </a>
           </div>
           <div class="col-8">

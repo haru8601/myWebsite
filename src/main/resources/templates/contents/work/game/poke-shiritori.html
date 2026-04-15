@@ -6,29 +6,27 @@
 >
   <body>
     <div layout:fragment="work-custom-content">
-      <div class="mb-5">
-        <img
-          class="hr-img pb-3"
-          th:src="@{/images/poke/shiritori/battle2.png}"
-        />
-        <p>制限時間内にたくさん答えることで、スコアが増えます。</p>
-        <p>The more words you answer in time, the higher your score.</p>
-      </div>
-      <div class="mb-5">
-        <img class="hr-img pb-3" th:src="@{/images/poke/shiritori/ed1.png}" />
-        <p>スコアはランキングに保存できます。</p>
-        <p>Your score can be saved to the leaderboard.</p>
-      </div>
-      <div class="mb-5">
-        <img
-          class="hr-img pb-3"
-          th:src="@{/images/poke/shiritori/battle3.png}"
-        />
-        <p>
-          相手ポケモンに有利なタイプを持っている場合、スコアが大きく伸びます。
-        </p>
-        <p>Super effective types give your score a big boost.</p>
-      </div>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/game/poke-shiritori/timer-add.png',
+          '制限時間内にたくさん答えることで、スコアが増えます。',
+          'The more words you answer in time, the higher your score.'
+        )}"
+      ></th:block>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/game/poke-shiritori/result.png',
+          'スコアはランキングに保存できます。',
+          'Your score can be saved to the leaderboard.'
+        )}"
+      ></th:block>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/game/poke-shiritori/super-effective.png',
+          '相手ポケモンに有利なタイプを持っている場合、スコアが大きく伸びます。',
+          'Super effective types give your score a big boost.'
+        )}"
+      ></th:block>
     </div>
   </body>
 </html>
