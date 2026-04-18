@@ -9,6 +9,9 @@ import com.haroot.home_page.repository.ContactRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @author haroot
+ */
 @Service
 @RequiredArgsConstructor
 public class ContactService {
@@ -24,10 +27,10 @@ public class ContactService {
       ip = request.getRemoteAddr();
     }
     ContactEntity contactEntity = new ContactEntity(
-      name,
-      email,
-      content,
-      ip);
+        name,
+        email,
+        content,
+        ip);
     // DBに保存
     return contactRepository.save(contactEntity);
   }

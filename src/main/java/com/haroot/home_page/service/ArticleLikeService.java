@@ -17,6 +17,9 @@ import com.haroot.home_page.repository.ArticleLikeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author haroot
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j

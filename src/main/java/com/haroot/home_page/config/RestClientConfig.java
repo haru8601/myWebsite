@@ -1,0 +1,33 @@
+package com.haroot.home_page.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.support.RestClientAdapter;
+import org.springframework.web.service.invoker.HttpServiceProxyFactory;
+
+import com.haroot.home_page.client.GoogleApiClient;
+import com.haroot.home_page.properties.GoogleApiProperty;
+
+import lombok.RequiredArgsConstructor;
+
+@Configuration
+@RequiredArgsConstructor
+public class RestClientConfig {
+  private final GoogleApiProperty googleApiProperty;
+
+  @Bean
+  RestClient googleRestClient() {
+    return RestClient.builder()
+        .baseUrl(googleApiProperty.getBaseUrl())
+        .build();
+  }
+
+  // NOTE: Client(interface)の実装クラスを自動生成してBean登録している
+  @Bean
+  GoogleApiClient googleApiClient(RestClient googleRestClient) {
+    RestClientAdapter adapter = RestClientAdapter.create(googleRestClient);
+    HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
+    return factory.createClient(GoogleApiClient.class);
+  }
+}

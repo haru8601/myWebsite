@@ -15,7 +15,7 @@ package com.haroot.home_page.controller;
 // import com.fasterxml.jackson.databind.JsonNode;
 // import com.fasterxml.jackson.databind.ObjectMapper;
 // import com.haroot.home_page.dto.MusicDto;
-// import com.haroot.home_page.properties.YoutubeProperty;
+// import com.haroot.home_page.properties.GoogleApiProperty;
 // import com.haroot.home_page.service.MusicService;
 
 // import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ package com.haroot.home_page.controller;
 // @RequestMapping("music")
 // @RequiredArgsConstructor
 // public class MusicController {
-// private final YoutubeProperty youtubeProperty;
+// private final GoogleApiProperty youtubeProperty;
 // private final MusicService musicService;
 
 // @GetMapping
