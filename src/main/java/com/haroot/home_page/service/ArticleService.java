@@ -92,6 +92,7 @@ public class ArticleService {
    * @return
    */
   public List<ArticleDetailDto> getAll() {
+    // FIXME: Service層でセッションを使わない
     // ログインユーザーでなければ公開記事のみ表示
     if (session.getAttribute("isLogin") == null) {
       return articleQueryService.findAllWithoutPrivate();

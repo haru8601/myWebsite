@@ -8,6 +8,7 @@ import "../scss/global.scss";
 import "../scss/top.scss";
 import "../scss/about.scss";
 import "../scss/work.scss";
+import "../scss/hunter.scss";
 import "../scss/articles.scss";
 import "../scss/contact.scss";
 import "../scss/policy.scss";

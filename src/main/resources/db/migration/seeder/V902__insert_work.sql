@@ -26,7 +26,7 @@ VALUES
   ),
   (
     2,
-    "hxh-char-quiz",
+    "hunter-script-quiz",
     1,
     "ハンター文字クイズ",
     "Hunter Script Quiz",

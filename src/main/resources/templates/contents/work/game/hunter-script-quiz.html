@@ -1,0 +1,58 @@
+<!doctype html>
+<html
+  la="ja"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/layout/layout}"
+>
+  <body>
+    <main id="hunterScriptQuiz" layout:fragment="content">
+      <div th:object="${work}">
+        <p class="h2" th:text="*{title}"></p>
+        <p class="hr-hunter-script" th:text="*{title}"></p>
+
+        <div
+          class="hr-bg-vintage-paper d-flex flex-column align-items-center p-5 gap-4 position-relative"
+        >
+          <!--/* NOTE: 正誤判定のマークはクイズが表示されてるエリアの中心に表示する */-->
+          <i id="quizOk" class="hr-quiz-judge fa-regular fa-circle d-none"></i>
+          <i id="quizNg" class="hr-quiz-judge fa-solid fa-xmark d-none"></i>
+
+          <div class="d-flex flex-column align-items-center">
+            <label
+              id="hunter-q"
+              for="hunter-input"
+              class="form-label hr-hunter-script h1 text-black"
+              th:text="${words}"
+            ></label>
+            <p id="hunter-a" class="h5 text-black"></p>
+          </div>
+          <div class="w-75">
+            <input class="form-control" id="hunter-input" />
+          </div>
+          <div class="d-flex flex-column align-items-center gap-2">
+            <button
+              class="hr-outer-shadow-btn btn btn-danger rounded-pill text-white px-4 py-2"
+              type="btn"
+              onclick="checkAnswer()"
+            >
+              <span class="h5">回答する</span>
+            </button>
+            <a
+              id="show-answer-btn"
+              onclick="showAnswerOrNext()"
+              class="text-black"
+              role="button"
+            >
+              正解を見る
+            </a>
+          </div>
+        </div>
+        <script th:inline="javascript">
+          // scriptファイルで変数を使えるように、inlineで定義しておく
+          const words = /*[[${words}]]*/ [];
+        </script>
+        <script th:inline="javascript" th:src="@{/js/checkAnswer.js}"></script>
+      </div>
+    </main>
+  </body>
+</html>

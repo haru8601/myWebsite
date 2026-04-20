@@ -2,17 +2,19 @@
 // @ts-ignore
 const quizWords = words || [];
 const hunterQuestion = document.getElementById("hunter-q");
-const hunterInput = /** @type {HTMLInputElement | null} */ (document.getElementById("hunter-input"));
-const answerBtn = document.getElementById('show-answer-btn');
+const hunterInput = /** @type {HTMLInputElement | null} */ (
+  document.getElementById("hunter-input")
+);
+const answerBtn = document.getElementById("show-answer-btn");
 const answerArea = document.getElementById("hunter-a");
 
 /**
  * 正解エリアの非表示とボタン文言のリセット
  */
 const resetAnswer = () => {
-  answerArea && (answerArea.innerText = '');
-  answerBtn && (answerBtn.innerText = '正解を見る');
-}
+  answerArea && (answerArea.innerText = "");
+  answerBtn && (answerBtn.innerText = "正解を見る");
+};
 
 /**
  * @param {string[]} words
@@ -23,7 +25,7 @@ const resetAnswer = () => {
 const selectWord = (words) => {
   const i = Math.random() * words.length;
   return words[Math.floor(i)];
-}
+};
 
 /**
  * 問題の単語を変更する
@@ -57,24 +59,27 @@ const toKatakana = (str) => {
   });
 };
 
+/**
+ * 正誤判定をし、ox記号を表示
+ */
 const checkAnswer = () => {
-  const ok = document.getElementById("ok");
-  const ng = document.getElementById("ng");
-  const inputValue = hunterInput?.value || '';
-  const answer = hunterQuestion?.innerText || '';
+  const ok = document.getElementById("quizOk");
+  const ng = document.getElementById("quizNg");
+  const inputValue = hunterInput?.value || "";
+  const answer = hunterQuestion?.innerText || "";
 
   // ひらがなの場合はカタカナにして比較
   if (toKatakana(inputValue) === toKatakana(answer)) {
     ok?.classList.remove("d-none");
     setTimeout(function () {
-      hunterInput && (hunterInput.value = '');
+      hunterInput && (hunterInput.value = "");
       ok?.classList.add("d-none");
       switchQuestion();
     }, 1000);
   } else {
     ng?.classList.remove("d-none");
     setTimeout(function () {
-      hunterInput && (hunterInput.value = '');
+      hunterInput && (hunterInput.value = "");
       ng?.classList.add("d-none");
     }, 1000);
   }
@@ -87,7 +92,9 @@ const showAnswerOrNext = () => {
     resetAnswer();
   } else {
     // 正解が表示されていない場合は正解を表示
-    answerArea && (answerArea.innerText = hunterQuestion && hunterQuestion.innerText || '');
-    answerBtn && (answerBtn.innerText = '次の問題へ');
+    answerArea &&
+      (answerArea.innerText =
+        (hunterQuestion && hunterQuestion.innerText) || "");
+    answerBtn && (answerBtn.innerText = "次の問題へ");
   }
 };
