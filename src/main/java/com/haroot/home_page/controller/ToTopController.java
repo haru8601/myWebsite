@@ -61,15 +61,6 @@ public class ToTopController {
     return mav;
   }
 
-  /**
-   * ポリシー画面表示
-   */
-  @GetMapping("policy")
-  public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
-    mav.setViewName("policy");
-    return mav;
-  }
-
   @GetMapping("twitter-auth")
   public ModelAndView auth(ModelAndView mav) {
     mav.setViewName("error/500");

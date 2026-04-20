@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.dto.WorkDetailDto;
+import com.haroot.home_page.exception.HarootServerException;
 import com.haroot.home_page.service.WorkService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,9 +31,10 @@ public class WorkDetailController {
       mav.setViewName("contents/work/" + work.getGenre().getUrl() + "/" + name);
       return mav;
     } catch (Throwable e) {
-      // TODO: エラーメッセージを渡す
-      mav.setViewName("redirect:/work");
-      return mav;
+      System.err.println("作品詳細の取得に失敗しました.");
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      throw new HarootServerException("作品詳細の取得に失敗しました.", e);
     }
   }
 }

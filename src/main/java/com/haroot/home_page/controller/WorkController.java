@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.dto.WorkDto;
 import com.haroot.home_page.dto.WorkGenreDto;
+import com.haroot.home_page.exception.HarootServerException;
 import com.haroot.home_page.service.WorkService;
 
 import lombok.RequiredArgsConstructor;
@@ -34,11 +35,18 @@ public class WorkController {
    */
   @GetMapping
   public ModelAndView work(ModelAndView mav) {
-    Map<WorkGenreDto, List<WorkDto>> workListMap = workService.getAllWithGenres();
+    try {
+      Map<WorkGenreDto, List<WorkDto>> workListMap = workService.getAllWithGenres();
 
-    mav.addObject("workListMap", workListMap);
+      mav.addObject("workListMap", workListMap);
 
-    mav.setViewName("contents/work/index");
-    return mav;
+      mav.setViewName("contents/work/index");
+      return mav;
+    } catch (Throwable e) {
+      System.err.println("作品一覧の取得に失敗しました.");
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      throw new HarootServerException("作品一覧の取得に失敗しました.", e);
+    }
   }
 }

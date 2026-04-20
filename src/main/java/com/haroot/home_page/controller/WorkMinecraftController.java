@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.dto.VideoDto;
 import com.haroot.home_page.dto.WorkDetailDto;
+import com.haroot.home_page.exception.HarootServerException;
 import com.haroot.home_page.service.WorkMinecraftService;
 import com.haroot.home_page.service.WorkService;
 
@@ -50,9 +51,10 @@ public class WorkMinecraftController {
       mav.setViewName("contents/work/music/minecraft-music");
       return mav;
     } catch (Throwable e) {
-      // TODO: エラーメッセージを渡す
+      System.err.println("マイクラ音楽の取得に失敗しました.");
+      System.err.println(e.getMessage());
       e.printStackTrace();
-      return mav;
+      throw new HarootServerException("マイクラ音楽の取得に失敗しました.", e);
     }
   }
 }

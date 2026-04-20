@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.dto.WorkDetailDto;
+import com.haroot.home_page.exception.HarootServerException;
 import com.haroot.home_page.service.WorkHunterService;
 import com.haroot.home_page.service.WorkService;
 
@@ -36,11 +37,18 @@ public class WorkHunterController {
    */
   @GetMapping
   public ModelAndView hunterScriptQuiz(ModelAndView mav) {
-    WorkDetailDto work = workService.getWithTags("hunter-script-quiz");
-    List<String> words = workHunterService.get();
-    mav.addObject("work", work);
-    mav.addObject("words", words);
-    mav.setViewName("contents/work/game/hunter-script-quiz");
-    return mav;
+    try {
+      WorkDetailDto work = workService.getWithTags("hunter-script-quiz");
+      List<String> words = workHunterService.get();
+      mav.addObject("work", work);
+      mav.addObject("words", words);
+      mav.setViewName("contents/work/game/hunter-script-quiz");
+      return mav;
+    } catch (Throwable e) {
+      System.err.println("ハンター文字クイズの取得に失敗しました.");
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      throw new HarootServerException("ハンター文字クイズの取得に失敗しました.", e);
+    }
   }
 }
