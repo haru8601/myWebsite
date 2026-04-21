@@ -3,9 +3,14 @@
   la="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{/layout/layout}"
+  th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).WORK}"
 >
   <body>
     <main id="hunterScriptQuiz" layout:fragment="content">
+      <a href="/work" class="d-inline-flex gap-3 align-items-center mb-4">
+        <i class="fa-solid fa-angle-left"></i>
+        <p th:text="${topic.title}" class="hr-dot h1 mb-0"></p>
+      </a>
       <div th:object="${work}">
         <p class="h2" th:text="*{title}"></p>
         <p class="hr-hunter-script" th:text="*{title}"></p>
