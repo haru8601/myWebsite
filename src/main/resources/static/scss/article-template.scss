@@ -1,0 +1,23 @@
+main#article-template {
+  // サイドバーなどでコンテンツが多いのでmarginを少なくする
+  margin: 1vw 1vh;
+
+  // 戻るボタンのmarginは他ページに合わせる
+  a#hr-back-btn {
+    margin: 5vh 10vw;
+  }
+
+  #hr-article-actions {
+    flex-basis: 10%;
+    order: 1;
+  }
+
+  #hr-article-detail {
+    order: 2;
+  }
+
+  #hr-article-toc {
+    flex-basis: 20%;
+    order: 3;
+  }
+}

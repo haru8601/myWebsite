@@ -40,9 +40,10 @@ replacedTagArr?.forEach((hTag) => {
   // idではなぜか小文字なのでリンクもそれに合わせる
   // スペースは-になるっぽい
   // (),",\,;,.は除外されてる
+  // TODO: 複数個変換されるか確認
   linkChild.href = `#${hTag.text
     .toLowerCase()
-    .replaceAll(/\(|\)|"|\\|;|\./g, "")
-    .replaceAll(/\s/g, "-")}`;
+    .replace(/\(|\)|"|\\|;|\./g, "")
+    .replace(/\s/g, "-")}`;
   parentElement?.appendChild(linkChild);
 });

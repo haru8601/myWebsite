@@ -12,3 +12,4 @@ import "../scss/hunter.scss";
 import "../scss/articles.scss";
 import "../scss/contact.scss";
 import "../scss/policy.scss";
+import "../scss/article-template.scss";

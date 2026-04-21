@@ -5,16 +5,12 @@
   layout:decorate="~{/layout/layout}"
   th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).ARTICLES}"
 >
-  <head
-    prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"
-    th:object="${article}"
-  >
-    <title th:text="|*{title} - ${site}|">haroot</title>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}" />
+  <!--/* OGP用の名前空間をprefixで定義 */-->
+  <head prefix="og: http://ogp.me/ns#" th:object="${article}">
     <meta name="description" th:content="|*{title}についての記事です。|" />
     <!--marked用-->
     <script src="https://cdn.jsdelivr.net/npm/marked@16.3.0/lib/marked.umd.min.js"></script>
-    <!-- ヘッダーにidを付与する -->
+    <!-- 記事の各見出しにidを付与する -->
     <script src="https://cdn.jsdelivr.net/npm/marked-gfm-heading-id@4.1.2/lib/index.umd.min.js"></script>
     <!--syntaxHighlight用-->
     <link
@@ -50,85 +46,102 @@
 
   <body>
     <main
-      class="articles flex"
-      id="template"
+      id="article-template"
       layout:fragment="content"
       th:object="${article}"
     >
-      <div id="articleMain">
-        <th:block th:if="${errStr!=''}">
-          <p class="errStr" th:text="${errStr}"></p>
-        </th:block>
-        <h2 class="title" th:text="*{title}"></h2>
-        <th:block th:if="*{wip==true}">
-          <p>※非公開</p>
-        </th:block>
-        <p th:if="*{createDate != null}">
-          作成日時:
-          <span
-            th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"
-          ></span>
-        </p>
-        <p th:if="*{updateDate != null}">
-          更新日時:
-          <span
-            th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
-          ></span>
-        </p>
-        <pre>
+      <a
+        href="/articles"
+        id="hr-back-btn"
+        class="d-inline-flex gap-3 align-items-center mb-4"
+      >
+        <i class="fa-solid fa-angle-left"></i>
+        <p th:text="${topic.title}" class="hr-dot h1 mb-0"></p>
+      </a>
+      <div class="d-flex">
+        <!-- リンクサイドバー -->
+        <div
+          id="hr-article-actions"
+          class="d-flex flex-column align-items-center gap-3"
+        >
+          <div>
+            <button type="button" onclick="updateCount()">
+              <img th:src="@{/images/noImage.png}" width="30px" />
+            </button>
+            <p id="likeCount" th:text="${likeCount}" class="hr-dot text-center">
+              0
+            </p>
+          </div>
+          <div>
+            <a
+              target="_blank"
+              href="https://twitter.com/share?url=https://haroot.net"
+              class="twitter-share-button"
+              data-show-count="false"
+            >
+              <i class="hr-icon fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+          <div class="d-flex flex-column">
+            <button onclick="copy()" class="mx-auto">
+              <img th:src="@{/images/noImage.png}" width="30px" />
+            </button>
+            <p
+              id="copyText"
+              class="hr-dot bg-white text-black text-center rounded-pill my-2 px-3"
+            >
+              LINK COPIED!
+            </p>
+          </div>
+        </div>
+        <!-- 記事詳細 -->
+        <div id="hr-article-detail">
+          <th:block th:if="${errStr!=''}">
+            <p th:text="${errStr}"></p>
+          </th:block>
+          <p th:text="*{title}" class="h2"></p>
+          <th:block th:if="*{wip==true}">
+            <p>※非公開</p>
+          </th:block>
+          <p th:if="*{createDate != null}">
+            作成日時:
+            <span
+              th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"
+            ></span>
+          </p>
+          <p th:if="*{updateDate != null}">
+            更新日時:
+            <span
+              th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
+            ></span>
+          </p>
+          <pre>
 				<div class="marked" id="content"></div>
 			</pre>
-        <script th:inline="javascript">
-          //コードブロックをハイライト
-          hljs.highlightAll();
-          //thymleafのインライン処理(デフォルトを""にした)
-          let text = /*[[*{content}]]*/ "";
-          //部分的なコードはmarkedが対応してないから自分でspanにして色付け
-          text = text.replaceAll(
-            /`(?!`)(.*?)`/gm,
-            "<span class='part-code'>$1</span>",
-          );
-          //リンクは別タブにしたいのでhtml化
-          //ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
-          text = text.replaceAll(
-            /([^!])\[(.*?)\]\((.*?)\)/gm,
-            `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`,
-          );
-          //テキストをマークダウン化して貼り付け
-          marked.use(window.markedGfmHeadingId.gfmHeadingId({ prefix: "" }));
-          document.getElementById("content").innerHTML = marked.parse(text);
-        </script>
-        <a class="back-btn" th:href="@{|/articles|}">一覧へ戻る</a>
-        <th:block th:if="${session.isLogin}">
-          <a class="btn1 right" th:href="@{|/articles/edit/*{id}|}">編集</a>
-        </th:block>
-        <div class="clear"></div>
-      </div>
-      <div id="tableOfContents">
-        <div id="contents-sticky"></div>
-      </div>
-      <!-- リンクサイドバー -->
-      <!-- Mobile用に一番下に配置 -->
-      <div id="links">
-        <div>
-          <button type="button" onclick="updateCount()">
-            <i class="fa-solid fa-thumbs-up"></i>
-          </button>
-          <p id="likeCount" th:text="${likeCount}">0</p>
+          <script th:inline="javascript">
+            //コードブロックをハイライト
+            hljs.highlightAll();
+            //thymleafのインライン処理(デフォルトを""にした)
+            let text = /*[[*{content}]]*/ "";
+            //部分的なコードはmarkedが対応してないから自分でspanにして色付け
+            text = text.replaceAll(/`(?!`)(.*?)`/gm, "<span>$1</span>");
+            //リンクは別タブにしたいのでhtml化
+            //ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
+            text = text.replaceAll(
+              /([^!])\[(.*?)\]\((.*?)\)/gm,
+              `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`,
+            );
+            //テキストをマークダウン化して貼り付け
+            marked.use(window.markedGfmHeadingId.gfmHeadingId({ prefix: "" }));
+            document.getElementById("content").innerHTML = marked.parse(text);
+          </script>
+          <th:block th:if="${session.isLogin}">
+            <a class="btn1 right" th:href="@{|/articles/edit/*{id}|}">編集</a>
+          </th:block>
         </div>
-        <div>
-          <a
-            target="_blank"
-            href="https://twitter.com/share?url=https://haroot.net"
-            class="twitter-share-button"
-            data-show-count="false"
-          >
-            <i class="fa-brands fa-twitter"> </i>
-          </a>
-        </div>
-        <div>
-          <button onclick="copy()"><i class="fa-solid fa-link"></i></button>
-          <p id="copyText">copied!</p>
+        <!-- 目次 -->
+        <div id="hr-article-toc">
+          <div id="contents-sticky"></div>
         </div>
       </div>
       <script th:src="@{/js/tableOfContents.js}"></script>
