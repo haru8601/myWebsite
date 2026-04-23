@@ -20,28 +20,40 @@ chooseItems.forEach((item) => {
 });
 
 const CHOOSE_ITEM_MIN_INDEX = 0;
-const CHOOSE_ITEM_MAX_INDEX = 999;
 
 window.addEventListener("keydown", (e) => {
+  console.log(e.key);
   if (e.key === "ArrowDown") {
-    const chooseIndex = parseInt(
-      chooseIcon.parentElement?.dataset.hrChooseIndex ??
-        CHOOSE_ITEM_MAX_INDEX.toString(),
-    );
+    const choosenIndex = _getChoosenIndex();
     // アイコンの親要素が最後のindexでなければ
-    if (chooseIndex < chooseItems.length - 1) {
-      _moveElement(chooseIcon, chooseItems[chooseIndex + 1]);
+    if (choosenIndex < chooseItems.length - 1) {
+      _moveElement(chooseIcon, chooseItems[choosenIndex + 1]);
     }
   } else if (e.key == "ArrowUp") {
-    const chooseIndex = parseInt(
-      chooseIcon.parentElement?.dataset.hrChooseIndex ??
-        CHOOSE_ITEM_MIN_INDEX.toString(),
-    );
+    const choosenIndex = _getChoosenIndex();
     // アイコンの親要素が最初のindexでなければ
-    if (chooseIndex > CHOOSE_ITEM_MIN_INDEX) {
-      _moveElement(chooseIcon, chooseItems[chooseIndex - 1]);
+    if (choosenIndex > CHOOSE_ITEM_MIN_INDEX) {
+      _moveElement(chooseIcon, chooseItems[choosenIndex - 1]);
+    }
+  } else if (e.key === "Enter") {
+    const choosenIndex = _getChoosenIndex();
+    const choosenItem = chooseItems[choosenIndex];
+    const choosenLink = choosenItem.closest("a");
+    console.log(choosenIndex, choosenItem, choosenLink);
+    if (choosenLink) {
+      choosenLink.click();
     }
   } else {
     // TODO: ヒントを表示
   }
 });
+
+/**
+ * 現在選択中のトピックのindexを取得
+ */
+const _getChoosenIndex = () => {
+  return parseInt(
+    chooseIcon.parentElement?.dataset.hrChooseIndex ??
+      CHOOSE_ITEM_MIN_INDEX.toString(),
+  );
+};

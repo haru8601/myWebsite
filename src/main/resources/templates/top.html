@@ -79,7 +79,7 @@
         </div>
       </th:block>
       <div class="hr-title d-flex justify-content-center">
-        <h1>haroot.net</h1>
+        <img th:src="@{/images/haroot-logo.svg}" width="400px" />
       </div>
       <div class="d-flex flex-column align-items-center gap-4">
         <a
@@ -89,14 +89,15 @@
         >
           <div>
             <p
-              class="h2 hr-choose-item"
+              class="hr-choose-item h1"
               th:data-hr-choose-index="${stat.index}"
             >
               <i
                 th:if="${stat.index == 0}"
                 class="fa-solid fa-caret-right hr-choose-icon"
               ></i>
-              <span class="hr-dot hr-size-1" th:text="${topic.title}"></span>
+              <!--/* NOTE: 上下中央に揃えるため、spanだがblockにしている */-->
+              <span class="hr-dot h2 d-block" th:text="${topic.title}"></span>
             </p>
           </div>
         </a>

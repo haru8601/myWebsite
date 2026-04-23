@@ -2,17 +2,18 @@
 
 @import "~@fontsource/jersey-10/index.css";
 @import "~@fontsource/noto-sans-jp/500.css";
+@import "~@fontsource/noto-sans-jp/700.css";
 
-// @font-face {
-// 使用する際のフォント名指定
-// font-family: "CustomFont";
+@font-face {
+  font-family: "FATPIXEL";
 
-// src:
-//   url("../Fonts/Parisienne/Parisienne-Regular.ttf") format("truetype"),
-//   url("../Fonts/Parisienne/Parisienne-Regular.woff") format("woff"),
-//   url("../Fonts/Parisienne/Parisienne-Regular.eot") format("embedded-opentype");
-// font-display: swap;
-// }
+  src:
+    url("../Fonts/FATPIXEL/FATPIXEL.ttf") format("truetype"),
+    url("../Fonts/FATPIXEL/FATPIXEL.woff") format("woff"),
+    url("../Fonts/FATPIXEL/FATPIXEL.otf") format("opentype");
+  // NOTE: 先に代替フォントを表示し、後からカスタムフォントに切り替える(FOIT対策)
+  font-display: swap;
+}
 
 * {
   margin: 0;
@@ -68,8 +69,9 @@ html {
     }
   }
 
+  // フォント設定
   .hr-dot {
-    font-family: "Jersey 10";
+    font-family: "FATPIXEL";
 
     &.hr-size-1 {
       font-size: 3rem;
@@ -95,6 +97,7 @@ html {
     object-position: 0 0;
   }
 
+  // ボタン設定
   .btn-danger.hr-inner-shadow-btn {
     border: none;
     box-shadow: inset -5px -8px 8px #743232;
