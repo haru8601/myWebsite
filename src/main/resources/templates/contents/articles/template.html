@@ -65,30 +65,33 @@
           class="d-flex flex-column align-items-center gap-3"
         >
           <div>
-            <button type="button" onclick="updateCount()">
-              <img th:src="@{/images/noImage.png}" width="30px" />
+            <button id="like-btn" type="button">
+              <img
+                id="like-icon"
+                th:src="@{/images/noImage.png}"
+                width="30px"
+              />
             </button>
-            <p id="likeCount" th:text="${likeCount}" class="hr-dot text-center">
+            <p
+              id="like-count"
+              th:text="${likeCount}"
+              class="hr-dot text-center"
+            >
               0
             </p>
           </div>
           <div>
-            <a
-              target="_blank"
-              href="https://twitter.com/share?url=https://haroot.net"
-              class="twitter-share-button"
-              data-show-count="false"
-            >
+            <a id="tweet-article-btn" role="button">
               <i class="hr-icon fa-brands fa-x-twitter"></i>
             </a>
           </div>
           <div class="d-flex flex-column">
-            <button onclick="copy()" class="mx-auto">
+            <button id="copy-link-btn" class="mx-auto">
               <img th:src="@{/images/noImage.png}" width="30px" />
             </button>
             <p
-              id="copyText"
-              class="hr-dot bg-white text-black text-center rounded-pill my-2 px-3"
+              id="copied-text"
+              class="d-none hr-dot bg-white text-black text-center rounded-pill my-2 px-3"
             >
               LINK COPIED!
             </p>
@@ -99,7 +102,7 @@
           <th:block th:if="${errStr!=''}">
             <p th:text="${errStr}"></p>
           </th:block>
-          <p th:text="*{title}" class="h2"></p>
+          <p id="title" th:text="*{title}" class="h2"></p>
           <th:block th:if="*{wip==true}">
             <p>※非公開</p>
           </th:block>
@@ -145,18 +148,9 @@
         </div>
       </div>
       <script th:src="@{/js/tableOfContents.js}"></script>
-      <script>
-        //ツイート内容カスタマイズ
-        const tweetBtn = document.getElementsByClassName(
-          "twitter-share-button",
-        )[0];
-        const title = document.getElementsByClassName("title")[0].textContent;
-        const articleUrl = location.href;
-        const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}`;
-        tweetBtn.setAttribute("href", tweetUrl);
-      </script>
-      <script th:src="@{/js/likeInfo.js}"></script>
-      <script th:src="@{/js/copy.js}"></script>
+      <script th:src="@{/js/tweet-article.js}"></script>
+      <script th:src="@{/js/like-article.js}"></script>
+      <script th:src="@{/js/copy-link.js}"></script>
     </main>
   </body>
 </html>

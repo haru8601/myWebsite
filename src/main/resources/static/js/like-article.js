@@ -1,54 +1,56 @@
 // 初期処理
 window.addEventListener("DOMContentLoaded", () => {
-  const articleId = getArticleId();
+  const articleId = _getArticleId();
   //セッション取得
   let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
-  //likeしてれば色変更
+  //likeしてればアイコン変更
   if (likeFlg == "1") {
-    /** @type {HTMLElement} */
-    // @ts-ignore
-    let icon = document.getElementsByClassName("fa-thumbs-up")[0];
-    icon.style.color = "rgb(220, 74, 71)";
+    /** @type {HTMLImageElement} */
+    let icon = document.querySelector("#like-icon");
+    // FIXME: 正しい画像パスに変更
+    icon.src = "/images/likedImage.png";
   }
 });
 
-const updateCount = () => {
-  const articleId = getArticleId();
+document.querySelector("#like-btn").addEventListener("click", () => {
+  const articleId = _getArticleId();
   //セッション取得
   let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
-  let likeCount = document.getElementById("likeCount");
+
+  // 既存のいいね数
+  /** @type {HTMLElement} */
+  let likeCount = document.querySelector("#like-count");
   let count = 0;
-  if (likeCount != null) {
-    count = Number(likeCount.innerText);
-  }
-  let color = "";
+  count = Number(likeCount.innerText);
+  let src = "";
   let type = "";
 
   //likeしてたら取り消し
   if (likeFlg == "1") {
     likeFlg = "0";
-    color = "rgb(61, 60, 63)";
+    // FIXME: 正しい画像パスに変更
+    src = "/images/noImage.png";
     count--;
     type = "down";
   } else {
     likeFlg = "1";
-    color = "rgb(220, 74, 71)";
+    // FIXME: 正しい画像パスに変更
+    src = "/images/likedImage.png";
     count++;
     type = "up";
   }
+  // NOTE: セッションの不具合で0未満になるのを防ぐ
+  count = Math.max(count, 0);
 
   //セッションにlikeを記録
   sessionStorage.setItem(`haroot-likeFlg_${articleId}`, likeFlg);
-  //アイコンの色変更
-  /** @type {HTMLElement} */
-  // @ts-ignore
-  let icon = document.getElementsByClassName("fa-thumbs-up")[0];
-  icon.style.color = color;
+  //アイコン変更
+  /** @type {HTMLImageElement} */
+  let icon = document.querySelector("#like-icon");
+  icon.src = src;
 
   //先に表示上で数値変更
-  if (likeCount != null) {
-    likeCount.innerText = count.toString();
-  }
+  likeCount.innerText = count.toString();
 
   //controllerに非同期通信
   const XHR = new XMLHttpRequest();
@@ -57,11 +59,9 @@ const updateCount = () => {
   const id = pathArr[pathArr.length - 1];
   XHR.open("GET", "/articles/updateCount/" + id + "/" + type);
   XHR.send();
+});
 
-  return;
-};
-
-const getArticleId = () => {
+const _getArticleId = () => {
   const path = location.pathname;
   const articleId = path.replace(/^.*?([0-9]+)$/, "$1");
   return articleId;
