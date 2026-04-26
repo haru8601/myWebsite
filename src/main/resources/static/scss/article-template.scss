@@ -3,21 +3,56 @@ main#article-template {
   margin: 1vw 1vh;
 
   // 戻るボタンのmarginは他ページに合わせる
-  a#hr-back-btn {
+  #back-list-section {
     margin: 5vh 10vw;
   }
 
-  #hr-article-actions {
+  #article-actions {
     flex-basis: 10%;
     order: 1;
+
+    #article-actions-section {
+      position: sticky;
+      top: 20%;
+
+      #copied-text {
+        font-size: 10px;
+      }
+    }
   }
 
-  #hr-article-detail {
+  #article-detail {
+    flex-basis: 60%;
     order: 2;
+    // NOTE: これがないとshrinkされない
+    min-width: 0;
+
+    #md-content-section {
+      text-wrap: auto;
+      overflow-x: hidden;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        // NOTE: ページ内リンクがヘッダーに隠れないように余白を持たせる
+        scroll-margin-top: 100px;
+      }
+    }
   }
 
-  #hr-article-toc {
-    flex-basis: 20%;
+  #article-toc {
+    flex-basis: 30%;
     order: 3;
+
+    #article-toc-section {
+      position: sticky;
+      top: 20%;
+      height: 70vh;
+      overflow-y: scroll;
+      overscroll-behavior: contain;
+    }
   }
 }

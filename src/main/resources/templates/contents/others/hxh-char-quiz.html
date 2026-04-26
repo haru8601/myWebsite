@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
   la="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -29,15 +29,27 @@
       </div>
       <div class="input-group">
         <input class="form-control m-0" id="hunter-input" />
-        <button class="btn btn-primary" type="btn" onclick="checkAnswer()">回答</button>
-        <button id="show-answer-btn" class="btn btn-warning" type="btn" onclick="showAnswerOrNext()">正解を見る</button>
+        <button class="btn btn-primary" type="btn" onclick="checkAnswer()">
+          回答
+        </button>
+        <button
+          id="show-answer-btn"
+          class="btn btn-warning"
+          type="btn"
+          onclick="showAnswerOrNext()"
+        >
+          正解を見る
+        </button>
       </div>
       <p id="hunter-a"></p>
       <script th:inline="javascript">
         // scriptファイルで変数を使えるように、inlineで定義しておく
-        const words = /*[[${words}]]*/[];
+        const words = /*[[${words}]]*/ [];
       </script>
-      <script th:inline="javascript" th:src="@{/js/checkAnswer.js}"></script>
+      <script
+        th:inline="javascript"
+        th:src="@{/dist/check-answer.bundle.js}"
+      ></script>
     </main>
   </body>
 </html>

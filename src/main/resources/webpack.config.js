@@ -12,6 +12,14 @@ export default {
   entry: {
     bundler: `${RESOURCE_DIR}/js/bundler.js`,
     top: `${RESOURCE_DIR}/js/top.js`,
+    "check-answer": `${RESOURCE_DIR}/js/check-answer.js`,
+    common: `${RESOURCE_DIR}/js/common.js`,
+    "copy-link": `${RESOURCE_DIR}/js/copy-link.js`,
+    "insert-toc": `${RESOURCE_DIR}/js/insert-toc.js`,
+    "like-article": `${RESOURCE_DIR}/js/like-article.js`,
+    "preview-markdown": `${RESOURCE_DIR}/js/preview-markdown.js`,
+    "tweet-article": `${RESOURCE_DIR}/js/tweet-article.js`,
+    "upload-image": `${RESOURCE_DIR}/js/upload-image.js`,
   },
   module: {
     rules: [

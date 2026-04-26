@@ -12,10 +12,9 @@
 
   <body>
     <main id="work-template" layout:fragment="content">
-      <a href="/work" class="d-inline-flex gap-3 align-items-center mb-4">
-        <i class="fa-solid fa-angle-left"></i>
-        <p th:text="${topic.title}" class="hr-dot h1 mb-0"></p>
-      </a>
+      <th:block
+        th:replace="~{layout/back-list :: backList(|/${topic.url}|, ${topic.title})}"
+      ></th:block>
       <p class="h2" th:text="${work.title}"></p>
       <p th:text="${work.titleEn}"></p>
       <div class="container-fluid mt-4 mb-5">
@@ -26,12 +25,12 @@
               th:if="${work.workUrl}"
               th:href="${work.workUrl}"
               target="_blank"
-              class="hr-inner-shadow-btn btn btn-danger"
+              class="hr-inner-shadow-btn btn btn-danger px-3 py-2"
             >
               <img th:src="@{/images/noImage.png}" width="20px" height="20px" />
               <span
-                th:text="${(work.genre.name == 'GAME' || work.genre.name == 'APPS') ? 'PLAY NOW!' : 'WATCH NOW!'}"
-                class="hr-dot h2 text-white"
+                th:text="${(work.genre.name == 'GAME' || work.genre.name == 'APPS') ? 'PLAY NOW !' : 'WATCH NOW !'}"
+                class="hr-dot text-white"
               ></span>
             </a>
           </div>
