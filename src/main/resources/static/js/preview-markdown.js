@@ -12,8 +12,12 @@ hljs.highlightAll();
  */
 const mdContentSection = document.querySelector("#md-content-section");
 
-// NOTE: innerHTMLだと特殊文字がエスケープされてしまうのでtextContentで取得
-const markdownString = mdContentSection?.textContent;
+// 一時的なテキストエリアを生成
+const temp = document.createElement("textarea");
+// textContentだと記事内のXMLタグなどが消えてしまうためinnerHTMLから取得する
+// 一度テキストエリアに入れているのは、<br>などがエスケープされた文字列になるのを防ぐため(復号化している)
+temp.innerHTML = mdContentSection?.innerHTML;
+const markdownString = temp.value;
 
 //テキストをマークダウン化して貼り付け
 marked.use(gfmHeadingId({ prefix: "" }));
