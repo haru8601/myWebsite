@@ -45,9 +45,8 @@ export default {
     ],
   },
   plugins: [
-    // NOTE: 2026/03/27現在、cssは全て1つのファイルに統合している
     new MiniCssExtractPlugin({
-      filename: "style.css",
+      filename: "[name].css",
     }),
   ],
   output: {

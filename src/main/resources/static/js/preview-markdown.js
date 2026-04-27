@@ -1,30 +1,41 @@
 import hljs from "highlight.js";
+import "highlight.js/styles/default.min.css";
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
+import DOMPurify from "dompurify";
+
+//コードブロックをハイライト
+hljs.highlightAll();
 
 /**
  * @type {HTMLElement}
  */
 const mdContentSection = document.querySelector("#md-content-section");
 
-//コードブロックをハイライト
-hljs.highlightAll();
-
-let text = mdContentSection?.innerHTML?.replace(/th:inline="(.*?)"/g, "") || "";
-
-//部分的なコードはmarkedが対応してないから自分でspanにして色付け
-text = text.replace(/`(?!`)(.*?)`/gm, "<span>$1</span>");
+// NOTE: innerHTMLだと特殊文字がエスケープされてしまうのでtextContentで取得
+const markdownString = mdContentSection?.textContent;
 
 //テキストをマークダウン化して貼り付け
 marked.use(gfmHeadingId({ prefix: "" }));
+Promise.resolve(marked.parse(markdownString)).then((html) => {
+  // DOMPurify でサニタイズ（XSS 対策）
+  const sanitizedHtml = DOMPurify.sanitize(html);
+  mdContentSection.innerHTML = sanitizedHtml;
+});
 
-Promise.resolve(marked.parse(text)).then((html) => {
-  mdContentSection.innerHTML = html
-    // 画像は独自のクラスを当てる
-    .replace(/<img /g, '<img class="hr-img"')
-    //リンクは別タブで開くようにする
-    .replace(
-      /<a .*?href="(.*?)".*?>(.*?)<\/a>/g,
-      '<a href="$1" target="_blank" class="text-decoration-underline"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>',
-    );
+document.addEventListener("DOMContentLoaded", () => {
+  // 画像には全て独自クラスを付与
+  const images = mdContentSection.querySelectorAll("img");
+  images.forEach((img) => {
+    img.classList.add("hr-img");
+  });
+  // リンクは全て外部リンクとし、アイコンを付与
+  const links = mdContentSection.querySelectorAll("a");
+  links.forEach((link) => {
+    link.setAttribute("target", "_blank");
+    link.classList.add("text-decoration-underline");
+    const icon = document.createElement("i");
+    icon.classList.add("fa-solid", "fa-arrow-up-right-from-square");
+    link.prepend(icon);
+  });
 });

@@ -31,6 +31,25 @@ main#article-template {
       text-wrap: auto;
       overflow-x: hidden;
 
+      // NOTE: markedの仕様として
+      // 親がpreの場合、```a```, 親がそれ以外の場合、`a`である
+      code:not(pre > code) {
+        display: inline-block;
+        padding: 3px 5px;
+        margin: 0 5px;
+        // NOTE: 下端を他のテキスト要素の下端と合わせる
+        vertical-align: text-bottom;
+        // デフォルトで余白が生まれるのを消すための設定
+        line-height: 1;
+        border-radius: 5px;
+      }
+
+      pre > code {
+        display: block;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
       h1,
       h2,
       h3,

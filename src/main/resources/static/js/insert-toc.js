@@ -37,11 +37,6 @@ replacedTagArr?.forEach((hTag) => {
   }
   text += hTag.text;
   tocTextTag.innerHTML = text;
-  if (hTag.size == 1) {
-    tocTextTag.classList.add("h3");
-  } else {
-    tocTextTag.classList.add("h4");
-  }
 
   tocAnchor.appendChild(tocTextTag);
   // marked-gfm-heading-idではidが小文字なのでリンクもそれに合わせる

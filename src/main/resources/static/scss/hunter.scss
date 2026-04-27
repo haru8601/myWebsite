@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 #hunterScriptQuiz {
   @font-face {
     font-family: "Hunter Script";
@@ -20,7 +22,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 2;
+    z-index: $front-z-index;
     font-size: 280px;
   }
 
