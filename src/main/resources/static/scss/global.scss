@@ -50,6 +50,8 @@ html {
 
     main {
       margin: 5vh 10vw;
+      // エラー画面などコンテンツが少ない場合の最小値
+      min-height: 300px;
     }
 
     a {
@@ -82,7 +84,7 @@ html {
     font-family: "FATPIXEL";
 
     &.hr-size-1 {
-      font-size: 3rem;
+      font-size: 4rem;
     }
   }
 
