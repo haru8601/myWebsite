@@ -25,9 +25,13 @@
               th:if="${work.workUrl}"
               th:href="${work.workUrl}"
               target="_blank"
-              class="hr-inner-shadow-btn btn btn-danger px-3 py-2"
+              class="hr-inner-shadow-btn btn btn-danger px-3 py-2 d-inline-flex align-items-center gap-2"
             >
-              <img th:src="@{/images/noImage.png}" width="20px" height="20px" />
+              <img
+                th:src="@{|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|}"
+                width="30px"
+                height="30px"
+              />
               <span
                 th:text="${(work.genre.name == 'GAME' || work.genre.name == 'APPS') ? 'PLAY NOW !' : 'WATCH NOW !'}"
                 class="hr-dot text-white"

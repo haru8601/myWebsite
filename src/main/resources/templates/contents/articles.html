@@ -34,8 +34,12 @@
               <p
                 th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
               ></p>
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fa-heart text-danger"></i>
+              <div class="d-flex align-items-center gap-1">
+                <img
+                  th:src="@{/images/icon/heart-red.svg}"
+                  width="20px"
+                  height="20px"
+                />
                 <p th:text="*{likeCount}"></p>
               </div>
             </div>

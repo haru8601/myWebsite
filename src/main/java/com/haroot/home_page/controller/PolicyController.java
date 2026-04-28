@@ -10,11 +10,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("policy/{name}")
+@RequestMapping("policy")
 @RequiredArgsConstructor
 @Slf4j
 public class PolicyController {
   @GetMapping
+  public ModelAndView index(ModelAndView mav) {
+    mav.setViewName("contents/policy/index");
+    return mav;
+  }
+
+  @GetMapping("/{name}")
   public ModelAndView template(
       @PathVariable String name,
       ModelAndView mav) {
