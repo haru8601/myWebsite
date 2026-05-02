@@ -21,6 +21,7 @@
           >
             <a
               class="d-flex gap-1 align-items-center"
+              th:classappend="${uri.startsWith('/' + topic.url) ? 'hr-active-topic' : ''}"
               th:href="@{|/${topic.url}|}"
               ><img
                 th:src="@{|/images/${topic.imagePath}|}"

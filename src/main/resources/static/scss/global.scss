@@ -46,6 +46,12 @@ html {
       position: sticky;
       top: 0;
       z-index: $top-z-index;
+
+      .hr-active-topic {
+        border-bottom: 2px solid white;
+        // NOTE: borderの差で他のトピックの文字列と上下中央の位置がズレるのを防いでいる
+        margin-bottom: -2px;
+      }
     }
 
     main {
