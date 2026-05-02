@@ -27,11 +27,21 @@
               target="_blank"
               class="hr-inner-shadow-btn btn btn-danger px-3 py-2 d-inline-flex align-items-center gap-2"
             >
-              <img
-                th:src="@{|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|}"
-                width="30px"
-                height="30px"
-              />
+              <!--/* NOTE: SNSの場合は背景に寄らず画像が見やすいのでデフォルトの画像を使用 */-->
+              <th:block th:if="${work.genre.name == 'SNS'}">
+                <img
+                  th:src="@{|/images/${work.genre.imagePath}|}"
+                  width="30px"
+                  height="30px"
+                />
+              </th:block>
+              <th:block th:unless="${work.genre.name == 'SNS'}">
+                <img
+                  th:src="@{|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|}"
+                  width="30px"
+                  height="30px"
+                />
+              </th:block>
               <span
                 th:text="${(work.genre.name == 'GAME' || work.genre.name == 'APPS') ? 'PLAY NOW !' : 'WATCH NOW !'}"
                 class="hr-dot text-white"

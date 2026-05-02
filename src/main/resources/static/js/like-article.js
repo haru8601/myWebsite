@@ -1,3 +1,6 @@
+const BEFORE_LIKE_SRC = "/images/icon/heart.svg";
+const AFTER_LIKE_SRC = "/images/icon/heart-red.svg";
+
 // 初期処理
 window.addEventListener("DOMContentLoaded", () => {
   const articleId = _getArticleId();
@@ -6,9 +9,8 @@ window.addEventListener("DOMContentLoaded", () => {
   //likeしてればアイコン変更
   if (likeFlg == "1") {
     /** @type {HTMLImageElement} */
-    let icon = document.querySelector("#like-icon");
-    // FIXME: 正しい画像パスに変更
-    icon.src = "/images/likedImage.png";
+    let likeImg = document.querySelector("img#like-icon");
+    likeImg.src = AFTER_LIKE_SRC;
   }
 });
 
@@ -28,14 +30,12 @@ document.querySelector("#like-btn").addEventListener("click", () => {
   //likeしてたら取り消し
   if (likeFlg == "1") {
     likeFlg = "0";
-    // FIXME: 正しい画像パスに変更
-    src = "/images/noImage.png";
+    src = BEFORE_LIKE_SRC;
     count--;
     type = "down";
   } else {
     likeFlg = "1";
-    // FIXME: 正しい画像パスに変更
-    src = "/images/likedImage.png";
+    src = AFTER_LIKE_SRC;
     count++;
     type = "up";
   }
@@ -46,8 +46,8 @@ document.querySelector("#like-btn").addEventListener("click", () => {
   sessionStorage.setItem(`haroot-likeFlg_${articleId}`, likeFlg);
   //アイコン変更
   /** @type {HTMLImageElement} */
-  let icon = document.querySelector("#like-icon");
-  icon.src = src;
+  let likeImg = document.querySelector("img#like-icon");
+  likeImg.src = src;
 
   //先に表示上で数値変更
   likeCount.innerText = count.toString();

@@ -55,16 +55,17 @@
         <div id="article-actions" class="position-relative">
           <div
             id="article-actions-section"
-            class="d-flex flex-column align-items-center gap-3"
+            class="d-flex flex-column align-items-center gap-4"
           >
             <div>
-              <button id="like-btn" type="button">
+              <a id="like-btn" role="button">
                 <img
                   id="like-icon"
-                  th:src="@{/images/noImage.png}"
+                  th:src="@{/images/icon/heart.svg}"
                   width="30px"
+                  height="30px"
                 />
-              </button>
+              </a>
               <p
                 id="like-count"
                 th:text="${likeCount}"
@@ -79,9 +80,9 @@
               </a>
             </div>
             <div class="d-flex flex-column">
-              <button id="copy-link-btn" class="mx-auto">
-                <img th:src="@{/images/noImage.png}" width="30px" />
-              </button>
+              <a id="copy-link-btn" class="mx-auto" role="button">
+                <i class="fa-solid fa-link text-white fs-4"></i>
+              </a>
               <p
                 id="copied-text"
                 class="d-none hr-dot bg-white text-black text-center rounded-pill my-2 px-2 py-1"
