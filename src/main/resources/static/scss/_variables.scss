@@ -6,8 +6,11 @@ $hr-red: #e84444;
 $hr-bg-color-default: black;
 
 // 他の要素より前面に表示したい場合のz-index
-$front-z-index: 2;
+$hr-front-z-index: 2;
 // 他の要素より背面に表示したい場合のz-index
-$back-z-index: -1;
+$hr-back-z-index: -1;
 // 一番前面に表示したい場合のz-index
-$top-z-index: 10;
+$hr-top-z-index: 10;
+
+$hr-input-width-default: 40vw;
+$hr-input-width-min: 300px;

@@ -9,7 +9,7 @@
 
     .nav-item {
       position: relative;
-      z-index: $front-z-index;
+      z-index: $hr-front-z-index;
     }
 
     .nav-link:not(.active) {
@@ -44,7 +44,7 @@
         left: 50%;
         height: calc(100% + 40px); // 上下にはみ出す設定
         border-left: 5px solid white;
-        z-index: $back-z-index;
+        z-index: $hr-back-z-index;
       }
 
       .hr-comment-right {

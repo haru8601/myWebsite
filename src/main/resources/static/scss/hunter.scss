@@ -22,8 +22,18 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: $front-z-index;
+    z-index: $hr-front-z-index;
     font-size: 280px;
+  }
+
+  #hunter-a {
+    // NOTE: 高さを確保しないと、表示の有無によって背景画像のサイズが変わってしまう
+    height: 30px;
+  }
+
+  input#hunter-input {
+    width: $hr-input-width-default;
+    min-width: $hr-input-width-min;
   }
 
   #quizOk {

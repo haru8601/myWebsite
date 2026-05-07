@@ -8,8 +8,8 @@
     }
     input:not([type="checkbox"]):not([type="submit"]),
     textarea {
-      width: 40vw;
-      min-width: 300px;
+      width: $hr-input-width-default;
+      min-width: $hr-input-width-min;
     }
   }
 }

@@ -45,7 +45,7 @@ html {
     header {
       position: sticky;
       top: 0;
-      z-index: $top-z-index;
+      z-index: $hr-top-z-index;
 
       .hr-active-topic {
         border-bottom: 2px solid white;
