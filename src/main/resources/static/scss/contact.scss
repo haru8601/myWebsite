@@ -6,5 +6,10 @@
       background-color: $hr-red;
       border-color: white;
     }
+    input:not([type="checkbox"]):not([type="submit"]),
+    textarea {
+      width: 40vw;
+      min-width: 300px;
+    }
   }
 }

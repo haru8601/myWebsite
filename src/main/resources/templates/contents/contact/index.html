@@ -12,8 +12,13 @@
 
   <body>
     <main id="contact" layout:fragment="content">
-      <!-- コンテンツ2(ヘッダーのリンク先) -->
-      <form th:object="${formDto}" action="/contact/send" method="post">
+      <!--/* NOTE: 左寄せだと余白が多すぎるので中央揃えにしている */-->
+      <form
+        th:object="${formDto}"
+        action="/contact/send"
+        method="post"
+        class="d-flex flex-column align-items-center"
+      >
         <div>
           <p>
             ご質問、ご相談につきましては下記フォームからお問い合わせください。
@@ -73,52 +78,49 @@
               th:errors="*{content}"
             ></p>
           </div>
-          <div class="mx-auto">
-            <!--/* NOTE: デフォルトではform-checkがpadding-leftをつけるが、flexにするなら不要 */-->
-            <div class="form-check d-flex gap-2 align-items-center ps-0">
-              <input
-                id="checkbox"
-                name="checkbox"
-                type="checkbox"
-                th:checked="*{checkbox}"
-                class="form-check-input"
-                role="button"
-                th:classappend="${#fields.hasErrors('checkbox')} ? 'is-invalid'"
-              />
-              <label for="checkbox" class="form-check-label" role="button">
-                はるーとの<a href="/policy" class="text-decoration-underline"
-                  >プライバシーポリシー</a
-                >に同意します。<br />
-                <span class="ms-2"
-                  >I agree to Haroot's
-                  <a href="/policy" class="text-decoration-underline"
-                    >Privacy Policy</a
-                  >.</span
-                >
-              </label>
-              <p
-                class="invalid-feedback"
-                th:if="${#fields.hasErrors('checkbox')}"
-                th:errors="*{checkbox}"
-              ></p>
-            </div>
+          <div>
+            <input
+              id="checkbox"
+              name="checkbox"
+              type="checkbox"
+              th:checked="*{checkbox}"
+              class="form-check-input rounded-1"
+              role="button"
+              th:classappend="${#fields.hasErrors('checkbox')} ? 'is-invalid'"
+            />
+            <!--/* NOTE: バリデーションエラーになっても赤文字にしない */-->
+            <label
+              for="checkbox"
+              class="form-check-label text-white"
+              role="button"
+            >
+              はるーとの<a href="/policy" class="text-decoration-underline"
+                >プライバシーポリシー</a
+              >に同意します。<br />
+              <span class="ms-2"
+                >I agree to Haroot's
+                <a href="/policy" class="text-decoration-underline"
+                  >Privacy Policy</a
+                >.</span
+              >
+            </label>
+            <p
+              class="invalid-feedback"
+              th:if="${#fields.hasErrors('checkbox')}"
+              th:errors="*{checkbox}"
+            ></p>
           </div>
         </div>
         <div class="text-center my-4">
           <!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
           <input
-            type="button"
-            class="btn btn-danger text-white w-50"
+            type="submit"
+            class="btn btn-danger text-white"
             value="送信 Send"
             onclick="submit()"
           />
         </div>
       </form>
-      <script th:inline="javascript">
-        //textareaのデータ表示
-        const textArea = document.getElementById("content");
-        textArea.innerHTML = /*[[${formDto.content}]]*/ "";
-      </script>
     </main>
   </body>
 </html>
