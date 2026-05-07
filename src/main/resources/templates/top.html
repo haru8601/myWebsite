@@ -85,7 +85,6 @@
         <a
           th:each="topic, stat: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           th:href="${topic.url}"
-          th:if="${topic.displayInTop}"
         >
           <div>
             <p
