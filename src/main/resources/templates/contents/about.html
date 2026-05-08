@@ -55,41 +55,13 @@
           <div class="d-flex gap-5">
             <div
               id="status-container"
-              class="d-flex flex-column justify-content-between"
+              class="d-flex align-items-center justify-content-center"
             >
-              <div class="text-center">
-                <img th:src="@{/images/noImage.png}" width="100px" />
-              </div>
-              <div class="container-fluid border rounded py-2">
-                <div class="row">
-                  <div class="col-4">高さ</div>
-                  <div class="col-8">0xA8 cm</div>
-                </div>
-                <div class="row">
-                  <div class="col-4">重さ</div>
-                  <div class="col-8">0x35 kg</div>
-                </div>
-                <div class="row mb-2">
-                  <div class="col-4">性格</div>
-                  <div class="col-8">INTP-A</div>
-                </div>
-                <!--/* NOTE: rowを使うとアイコンがcol-3などの幅より大きくなってしまうので使わない */-->
-                <div class="d-flex gap-2">
-                  <a
-                    class="hr-icon d-flex align-items-center"
-                    href="https://github.com/haru8601"
-                    target="_blank"
-                  >
-                    <i class="fa-brands fa-github"></i>
-                  </a>
-                  <a
-                    class="hr-icon d-flex align-items-center"
-                    href="https://twitter.com/haroot_net"
-                    target="_blank"
-                    ><i class="fa-brands fa-x-twitter"></i
-                  ></a>
-                </div>
-              </div>
+              <img
+                th:src="@{/images/about/profile.gif}"
+                height="300px"
+                class="object-fit-contain"
+              />
             </div>
             <div class="d-flex flex-column gap-2">
               <div>No. 086</div>
@@ -106,15 +78,29 @@
                   <i class="fa-solid fa-drum me-1 p-1"></i>音楽
                 </div>
               </div>
-              <!--/* <div class="row">
-                えんしゅうりつを　２０桁　暗記しているが　役に立ったことは　ないらしい。
-              </div> */-->
-              <!--/* <div class="row">
-                ２つの　大学院に　合格した後　どちらも辞退した　やっかいな　いきもの。
-              </div> */-->
               <div>
                 格闘ゲームを　始めるために　自作PCの中身を　全て入れ替えた。<br />
-                ストリートファイター６では　アルティメットマスターに　到達したらしい。
+                ストリートファイターの　大会に　姿を現すことも　あるらしい。
+              </div>
+              <div>
+                He swapped out everything in his custom PC to play fighting
+                games.<br />
+                He shows up in Street Fighter tournaments.
+              </div>
+              <div class="d-flex gap-2">
+                <a
+                  class="hr-icon d-flex align-items-center"
+                  href="https://github.com/haru8601"
+                  target="_blank"
+                >
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a
+                  class="hr-icon d-flex align-items-center"
+                  href="https://twitter.com/haroot_net"
+                  target="_blank"
+                  ><i class="fa-brands fa-x-twitter"></i
+                ></a>
               </div>
             </div>
           </div>
@@ -206,7 +192,7 @@
           tabindex="0"
         >
           <div id="background-container">
-            <div class="bg-black">
+            <div class="bg-black my-3">
               <p class="h4">
                 <span class="hr-dot h3">2021/03</span>
                 <br />
@@ -229,7 +215,7 @@
                 </div>
               </div>
             </div>
-            <div class="bg-black">
+            <div class="bg-black my-3">
               <p class="h4">
                 <span class="hr-dot h3">2021/06</span>
                 <br />
@@ -262,7 +248,7 @@
                 <div class="col"></div>
               </div>
             </div>
-            <div class="bg-black">
+            <div class="bg-black my-3">
               <p class="h4">
                 <span class="hr-dot h3">2022/11</span>
                 <br />
@@ -293,7 +279,7 @@
                 <div class="col"></div>
               </div>
             </div>
-            <div class="bg-black">
+            <div class="bg-black my-3">
               <p class="h4">
                 <span class="hr-dot h3">2026/02</span>
                 <br />
