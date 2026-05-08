@@ -5,7 +5,7 @@
   layout:decorate="~{/contents/work/template}"
 >
   <body>
-    <div layout:fragment="work-custom-content">
+    <div id="minecraft-music" layout:fragment="work-custom-content">
       <div class="container-fluid">
         <div
           th:if="${firstViewVideo}"
@@ -14,7 +14,7 @@
         >
           <a target="_blank" th:href="*{url}">
             <img
-              class="hr-thumbnail"
+              id="firstview-thumbnail"
               th:src="*{imagePath}"
               alt=""
               onerror="

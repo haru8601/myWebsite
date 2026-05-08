@@ -5,6 +5,28 @@
   layout:decorate="~{/contents/work/template}"
 >
   <body>
-    <div layout:fragment="work-custom-content"></div>
+    <div layout:fragment="work-custom-content">
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/apps/english-quiz/color.png',
+          '色のクイズ、',
+          'A color quiz is available.'
+        )}"
+      ></th:block>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/apps/english-quiz/number.png',
+          '数字のクイズ、',
+          'A number quiz is available.'
+        )}"
+      ></th:block>
+      <th:block
+        th:replace="~{layout/work/description-section :: description-section(
+          '/images/work/apps/english-quiz/month.png',
+          '月のクイズがあります。',
+          'A month quiz is also available.'
+        )}"
+      ></th:block>
+    </div>
   </body>
 </html>

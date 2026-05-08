@@ -9,4 +9,10 @@
     // NOTE: ページ内リンクがヘッダーに隠れないように余白を持たせる
     scroll-margin-top: 100px;
   }
+
+  .hr-work-thumbnail {
+    height: 300px;
+    width: 400px;
+    object-fit: cover;
+  }
 }
