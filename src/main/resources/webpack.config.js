@@ -20,6 +20,7 @@ export default {
     "preview-markdown": `${RESOURCE_DIR}/js/preview-markdown.js`,
     "tweet-article": `${RESOURCE_DIR}/js/tweet-article.js`,
     "upload-image": `${RESOURCE_DIR}/js/upload-image.js`,
+    "embed-svg": `${RESOURCE_DIR}/js/embed-svg.js`,
   },
   module: {
     rules: [

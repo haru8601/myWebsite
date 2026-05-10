@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //セッション取得
   let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
   //likeしてればアイコン変更
+  // FIXME: svg埋め込み用に修正
   if (likeFlg == "1") {
     /** @type {HTMLImageElement} */
     let likeImg = document.querySelector("img#like-icon");

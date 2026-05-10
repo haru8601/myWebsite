@@ -59,12 +59,9 @@
           >
             <div>
               <a id="like-btn" role="button">
-                <img
-                  id="like-icon"
-                  th:src="@{/images/icon/heart.svg}"
-                  width="30px"
-                  height="30px"
-                />
+                <th:block
+                  th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '30px')}"
+                ></th:block>
               </a>
               <p
                 id="like-count"

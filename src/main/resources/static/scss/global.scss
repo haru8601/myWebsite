@@ -83,6 +83,10 @@ html {
     pre {
       font-size: 16px;
     }
+
+    svg {
+      shape-rendering: crispEdges;
+    }
   }
 
   // フォント設定

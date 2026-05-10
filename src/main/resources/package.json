@@ -12,8 +12,11 @@
     "clean": "rm -rf ./static/dist/"
   },
   "devDependencies": {
+    "css-loader": "^7.1.4",
+    "mini-css-extract-plugin": "^2.10.2",
     "prettier": "^3.8.1",
     "sass": "^1.98.0",
+    "sass-loader": "^16.0.7",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2"
   },
@@ -22,12 +25,9 @@
     "@fontsource/noto-sans-jp": "^5.2.9",
     "@fortawesome/fontawesome-free": "^7.2.0",
     "bootstrap": "^5.3.8",
-    "css-loader": "^7.1.4",
     "dompurify": "^3.4.0",
     "highlight.js": "^11.11.1",
     "marked": "^18.0.2",
-    "marked-gfm-heading-id": "^4.1.4",
-    "mini-css-extract-plugin": "^2.10.2",
-    "sass-loader": "^16.0.7"
+    "marked-gfm-heading-id": "^4.1.4"
   }
 }

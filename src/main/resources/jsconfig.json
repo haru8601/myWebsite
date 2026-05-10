@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "checkJs": true
+    "allowJs": true,
+    "checkJs": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "typeRoots": ["static/types", "./node_modules/@types"]
   },
-  // vscodeが他のjsファイルを参照できるようにする
-  "include": ["static/js/**/*.js"]
+  // NOTE: vscodeが他のstaticファイルを参照できるようにする
+  "include": ["static/**/*"],
+  "exclude": ["node_modules"]
 }

@@ -36,11 +36,9 @@
                 />
               </th:block>
               <th:block th:unless="${work.genre.name == 'SNS'}">
-                <img
-                  th:src="@{|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|}"
-                  width="30px"
-                  height="30px"
-                />
+                <th:block
+                  th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|, '30px')}"
+                ></th:block>
               </th:block>
               <span
                 th:text="${(work.genre.name == 'GAME' || work.genre.name == 'APPS') ? 'PLAY NOW !' : 'WATCH NOW !'}"

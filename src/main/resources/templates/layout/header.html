@@ -12,7 +12,9 @@
       <div class="d-flex justify-content-between">
         <div>
           <a href="/" role="button">
-            <img th:src="@{/images/haroot-logo.svg}" width="150px" />
+            <th:block
+              th:replace="~{layout/embedded-svg :: embeddedSvg('/images/haroot-logo.svg', '150px')}"
+            ></th:block>
           </a>
         </div>
         <div class="d-flex gap-3">
@@ -20,13 +22,13 @@
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >
             <a
-              class="d-flex gap-1 align-items-center"
+              class="d-flex gap-1 align-items-baseline"
               th:classappend="${uri.startsWith('/' + topic.url) ? 'hr-active-topic' : ''}"
               th:href="@{|/${topic.url}|}"
-              ><img
-                th:src="@{|/images/${topic.imagePath}|}"
-                width="20px"
-                height="20px" />
+            >
+              <th:block
+                th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px')}"
+              ></th:block>
               <p class="hr-dot m-0" th:text="${topic.title}"></p
             ></a>
           </th:block>
