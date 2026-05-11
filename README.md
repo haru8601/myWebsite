@@ -109,15 +109,58 @@ npm run scss
 
 # デプロイ
 
-`pom.xml`を開き、Run As > Maven Build<br>
+## 注意
+
+mvnコマンドは**ローカルのjavaを使ってビルドする**ため、 \
+ローカルのjdkを本番のjdkに合わせる必要がある。
+
+## パッケージ
+
+### cliの場合
+
+```sh
+mvn clean package
+```
 
 `/target`に war ファイルが生成される
 
-## VSCodeの場合
+### VSCodeの場合
 
 `Maven: Execute Commands...` > `package`
 
 `/target`に war ファイルが生成される
+
+### STSの場合
+
+`pom.xml`を開き、Run As > Maven Build<br>
+
+`/target`に war ファイルが生成される
+
+### ローカル確認
+
+```sh
+mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=local"
+```
+
+
+## デプロイ
+
+1. warファイルを本番環境にコピー
+2. 下記コマンドでssh接続
+    ```sh
+    ssh -i 対象のpem [ユーザー名@パブリックIP]
+    ```
+3. 下記コマンドでフォルダ移動やBE再起動
+    ```sh
+    sudo su
+    cd /opt/tomcat/webapps
+    # 古いwarファイルのバックアップ
+    mv ROOT.war ../backup/ROOT_${今日の日付}.war
+    # 新しいwarファイルの配置
+    mv /home/ec2-user/作成したwar ./ROOT.war
+    systemctl status tomcat
+    systemctl restart tomcat
+    ```
 
 ## 画像ファイル
 
