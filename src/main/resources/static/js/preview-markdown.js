@@ -4,9 +4,6 @@ import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import DOMPurify from "dompurify";
 
-//コードブロックをハイライト
-hljs.highlightAll();
-
 /**
  * @type {HTMLElement}
  */
@@ -25,13 +22,24 @@ Promise.resolve(marked.parse(markdownString)).then((html) => {
   // DOMPurify でサニタイズ（XSS 対策）
   const sanitizedHtml = DOMPurify.sanitize(html);
   mdContentSection.innerHTML = sanitizedHtml;
+
+  // コードブロックをハイライト
+  // NOTE: インラインコードは対象外
+  mdContentSection.querySelectorAll("pre > code").forEach(
+    (
+      /** @type {HTMLElement} codeBlock */
+      codeBlock,
+    ) => {
+      hljs.highlightElement(codeBlock);
+    },
+  );
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   // 画像には全て独自クラスを付与
   const images = mdContentSection.querySelectorAll("img");
   images.forEach((img) => {
-    img.classList.add("hr-img");
+    img.classList.add("hr-img", "border", "border-2", "border-secondary");
   });
   // リンクは全て外部リンクとし、アイコンを付与
   const links = mdContentSection.querySelectorAll("a");
@@ -41,5 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const icon = document.createElement("i");
     icon.classList.add("fa-solid", "fa-arrow-up-right-from-square");
     link.prepend(icon);
+  });
+
+  // 見出しは全て太字に変更
+  const headings = mdContentSection.querySelectorAll("h1, h2, h3, h4, h5, h6");
+  headings.forEach((heading) => {
+    heading.classList.add("fw-bold");
   });
 });

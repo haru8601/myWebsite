@@ -94,7 +94,7 @@
           <th:block th:if="${errStr!=''}">
             <p th:text="${errStr}"></p>
           </th:block>
-          <p id="title" th:text="*{title}" class="h2"></p>
+          <p id="title" th:text="*{title}" class="h2 fw-bold"></p>
           <th:block th:if="*{wip==true}">
             <p>※非公開</p>
           </th:block>
