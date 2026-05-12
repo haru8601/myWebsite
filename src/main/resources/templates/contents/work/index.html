@@ -12,16 +12,17 @@
 
   <body>
     <main id="work" layout:fragment="content">
-      <div id="toc" class="d-flex gap-5 justify-content-center">
+      <div id="toc" class="d-flex gap-5 justify-content-center align-items-end">
         <a
           th:each="workGenre: ${workListMap}"
           th:href="|#${workGenre.key.name}|"
         >
           <div class="text-center">
+            <!--/* NOTE: アイコンが縦長になる可能性があるため高さの最大値を指定 */-->
             <th:block
-              th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${workGenre.key.imagePath}|, 'auto')}"
+              th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${workGenre.key.imagePath}|, '50px', '50px')}"
             ></th:block>
-            <p th:text="${workGenre.key.name}" class="hr-dot"></p>
+            <p th:text="${workGenre.key.name}" class="hr-dot mt-2"></p>
           </div>
         </a>
       </div>
@@ -36,11 +37,11 @@
             class="hr-dot h1 text-center mb-3"
           ></p>
           <div class="container-fluid">
-            <div class="row row row-cols-2 justify-content-around">
+            <div class="row row-cols-2 justify-content-around">
               <a
                 th:each="work: ${workGenre.value}"
                 th:href="@{|/work/${workGenre.key.url}/${work.name}|}"
-                class="col-5 text-center"
+                class="col-5 d-flex flex-column align-items-start"
               >
                 <img
                   th:src="@{|/images/work/${workGenre.key.url}/${work.name}/thumbnail.png|}"
@@ -50,7 +51,7 @@
                   "
                   class="hr-work-thumbnail"
                 />
-                <p th:text="${work.title}" class="mb-1"></p>
+                <p th:text="${work.title}" class="h4 fw-bold mt-2"></p>
                 <p th:text="${work.titleEn}"></p>
               </a>
             </div>

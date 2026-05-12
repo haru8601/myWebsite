@@ -55,7 +55,7 @@ html {
     }
 
     main {
-      margin: 5vh 10vw;
+      margin: 5vh 20vw;
       // エラー画面などコンテンツが少ない場合の最小値
       min-height: 300px;
     }
@@ -74,7 +74,6 @@ html {
 
     p {
       margin: 0;
-      line-height: 2;
     }
 
     // デフォルトのフォントサイズ設定
@@ -104,7 +103,7 @@ html {
 
   .hr-img {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 400px;
     object-fit: contain;
   }
 

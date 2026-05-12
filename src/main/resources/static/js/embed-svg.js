@@ -11,6 +11,7 @@ const embedSvg = async () => {
     const container = svgContainers[index];
     const svgPath = container.dataset.svgPath;
     const width = container.dataset.svgWidth;
+    const maxHeight = container.dataset.svgMaxHeight;
 
     if (!svgPath) {
       continue;
@@ -35,6 +36,9 @@ const embedSvg = async () => {
       const svg = container.querySelector("svg");
       if (width) {
         svg.style.width = width;
+      }
+      if (maxHeight) {
+        svg.style.maxHeight = maxHeight;
       }
     } catch (error) {
       console.error(`Failed to load SVG from ${svgPath}:`);

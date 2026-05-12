@@ -26,6 +26,7 @@ main#article-template {
     order: 2;
     // NOTE: これがないとshrinkされない
     min-width: 0;
+    line-height: 2;
 
     #md-content-section {
       text-wrap: auto;

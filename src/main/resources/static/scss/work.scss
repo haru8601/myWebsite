@@ -13,6 +13,7 @@
   .hr-work-thumbnail {
     height: 300px;
     width: 400px;
+    max-width: 100%;
     object-fit: cover;
   }
 }

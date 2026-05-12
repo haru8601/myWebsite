@@ -37,7 +37,7 @@
               </th:block>
               <th:block th:unless="${work.genre.name == 'SNS'}">
                 <th:block
-                  th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|, '30px')}"
+                  th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|, '30px', 'auto')}"
                 ></th:block>
               </th:block>
               <span

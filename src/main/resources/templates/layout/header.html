@@ -13,7 +13,7 @@
         <div>
           <a href="/" role="button">
             <th:block
-              th:replace="~{layout/embedded-svg :: embeddedSvg('/images/haroot-logo.svg', '150px')}"
+              th:replace="~{layout/embedded-svg :: embeddedSvg('/images/haroot-logo.svg', '150px', 'auto')}"
             ></th:block>
           </a>
         </div>
@@ -27,7 +27,7 @@
               th:href="@{|/${topic.url}|}"
             >
               <th:block
-                th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px')}"
+                th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px', 'auto')}"
               ></th:block>
               <p class="hr-dot m-0" th:text="${topic.title}"></p
             ></a>

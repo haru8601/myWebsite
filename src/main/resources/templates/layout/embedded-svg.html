@@ -3,9 +3,10 @@
   <body>
     <!--/* NOTE: svgの情報をdata属性でjsに渡す */-->
     <div
-      th:fragment="embeddedSvg(svgPath, width)"
+      th:fragment="embeddedSvg(svgPath, width, maxHeight)"
       th:data-svg-path="${svgPath}"
       th:data-svg-width="${width}"
+      th:data-svg-max-height="${maxHeight}"
       class="embedded-svg-container"
     ></div>
   </body>
