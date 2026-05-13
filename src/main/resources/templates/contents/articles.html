@@ -50,6 +50,14 @@
             </div>
           </div>
         </a>
+        <a
+          id="toTopBtn"
+          href="#"
+          class="hr-inner-shadow-btn btn btn-danger rounded-circle p-3 d-inline-flex flex-column align-items-center justify-content-center gap-2"
+        >
+          <i class="fa-solid fa-chevron-up"></i>
+          <p class="hr-dot">TOP</p>
+        </a>
       </div>
       <th:block th:if="${session.isLogin}">
         <a class="btn1 right" th:href="@{/articles/create}">新規作成</a>

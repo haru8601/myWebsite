@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 #articles {
   #hr-article-link {
     border-bottom: 1px solid white;
@@ -5,5 +7,13 @@
     &:last-child {
       border-bottom: none;
     }
+  }
+  #toTopBtn {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 20px;
+    right: 20vw;
+    z-index: $hr-front-z-index;
   }
 }
