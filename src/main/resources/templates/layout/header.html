@@ -22,7 +22,7 @@
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >
             <a
-              class="d-flex gap-1 align-items-baseline"
+              class="d-flex gap-1 align-items-baseline pb-2"
               th:classappend="${uri.startsWith('/' + topic.url) ? 'hr-active-topic' : ''}"
               th:href="@{|/${topic.url}|}"
             >

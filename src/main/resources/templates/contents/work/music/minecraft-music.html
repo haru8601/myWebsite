@@ -12,17 +12,19 @@
           th:object="${firstViewVideo}"
           class="row my-5"
         >
-          <a target="_blank" th:href="*{url}">
-            <img
-              id="firstview-thumbnail"
-              th:src="*{imagePath}"
-              alt=""
-              onerror="
-                this.onerror = null;
-                this.src = '/images/noImage.png';
-              "
-            />
-          </a>
+          <div class="col text-center">
+            <a target="_blank" th:href="*{url}">
+              <img
+                id="firstview-thumbnail"
+                th:src="*{imagePath}"
+                alt=""
+                onerror="
+                  this.onerror = null;
+                  this.src = '/images/noImage.png';
+                "
+              />
+            </a>
+          </div>
         </div>
         <div class="row row-cols-2 g-5">
           <div th:each="video: ${videoList}" th:object="${video}" class="col">
