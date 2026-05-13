@@ -5,7 +5,7 @@ const embedSvg = async () => {
   /**
    * @type {NodeListOf<HTMLElement>}
    */
-  const svgContainers = document.querySelectorAll(".embedded-svg-container");
+  const svgContainers = document.querySelectorAll(".hr-embedded-svg-container");
 
   for (let index = 0; index < svgContainers.length; index++) {
     const container = svgContainers[index];
@@ -47,6 +47,4 @@ const embedSvg = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  embedSvg();
-});
+embedSvg();

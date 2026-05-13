@@ -7,7 +7,7 @@
   <body>
     <header
       th:fragment="header"
-      class="p-3 border-bottom border-1 border-black bg-black"
+      class="py-3 border-bottom border-1 border-black bg-black"
     >
       <div class="d-flex justify-content-between">
         <div>
@@ -17,7 +17,7 @@
             ></th:block>
           </a>
         </div>
-        <div class="d-flex gap-3">
+        <div class="d-flex align-items-center gap-5">
           <th:block
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >

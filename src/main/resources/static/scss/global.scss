@@ -11,8 +11,9 @@
     url("../Fonts/FATPIXEL/FATPIXEL.ttf") format("truetype"),
     url("../Fonts/FATPIXEL/FATPIXEL.woff") format("woff"),
     url("../Fonts/FATPIXEL/FATPIXEL.otf") format("opentype");
-  // NOTE: 先に代替フォントを表示し、後からカスタムフォントに切り替える(FOIT対策)
-  font-display: swap;
+  // NOTE: FOITが発生してしまうが、NotoSansJPと独自フォントで差が大きく
+  // レイアウトシフトが気になるためblockにしている
+  font-display: block;
 }
 
 * {
@@ -39,7 +40,8 @@ html {
 
     header,
     footer {
-      margin: 0 10vw;
+      // NOTE: marginだとヘッダーに隠れるはずのコンテンツが表示されてしまう
+      padding: 0 5vw;
     }
 
     header {
@@ -108,7 +110,7 @@ html {
   }
 
   // ボタン設定
-  .btn-danger.hr-inner-shadow-btn {
+  .hr-inner-shadow-btn {
     border: none;
     box-shadow: inset -5px -8px 8px #743232;
   }

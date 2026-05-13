@@ -1,5 +1,5 @@
-const BEFORE_LIKE_SRC = "/images/icon/heart.svg";
-const AFTER_LIKE_SRC = "/images/icon/heart-red.svg";
+const notLikeIcon = document.querySelector("#not-like-icon");
+const likedIcon = document.querySelector("#liked-icon");
 
 // 初期処理
 window.addEventListener("DOMContentLoaded", () => {
@@ -7,11 +7,9 @@ window.addEventListener("DOMContentLoaded", () => {
   //セッション取得
   let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
   //likeしてればアイコン変更
-  // FIXME: svg埋め込み用に修正
   if (likeFlg == "1") {
-    /** @type {HTMLImageElement} */
-    let likeImg = document.querySelector("img#like-icon");
-    likeImg.src = AFTER_LIKE_SRC;
+    notLikeIcon.classList.add("d-none");
+    likedIcon.classList.remove("d-none");
   }
 });
 
@@ -31,24 +29,24 @@ document.querySelector("#like-btn").addEventListener("click", () => {
   //likeしてたら取り消し
   if (likeFlg == "1") {
     likeFlg = "0";
-    src = BEFORE_LIKE_SRC;
     count--;
     type = "down";
+    // アイコン変更
+    notLikeIcon.classList.remove("d-none");
+    likedIcon.classList.add("d-none");
   } else {
     likeFlg = "1";
-    src = AFTER_LIKE_SRC;
     count++;
     type = "up";
+    // アイコン変更
+    notLikeIcon.classList.add("d-none");
+    likedIcon.classList.remove("d-none");
   }
   // NOTE: セッションの不具合で0未満になるのを防ぐ
   count = Math.max(count, 0);
 
   //セッションにlikeを記録
   sessionStorage.setItem(`haroot-likeFlg_${articleId}`, likeFlg);
-  //アイコン変更
-  /** @type {HTMLImageElement} */
-  let likeImg = document.querySelector("img#like-icon");
-  likeImg.src = src;
 
   //先に表示上で数値変更
   likeCount.innerText = count.toString();

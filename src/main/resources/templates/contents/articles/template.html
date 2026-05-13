@@ -59,9 +59,16 @@
           >
             <div>
               <a id="like-btn" role="button">
-                <th:block
-                  th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '30px', 'auto')}"
-                ></th:block>
+                <div id="not-like-icon">
+                  <th:block
+                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '30px', 'auto')}"
+                  ></th:block>
+                </div>
+                <div id="liked-icon" class="d-none">
+                  <th:block
+                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart-red.svg', '30px', 'auto')}"
+                  ></th:block>
+                </div>
               </a>
               <p
                 id="like-count"
