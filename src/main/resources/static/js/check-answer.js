@@ -6,6 +6,7 @@ const hunterInput = /** @type {HTMLInputElement | null} */ (
   document.getElementById("hunter-input")
 );
 const answerBtn = document.getElementById("show-answer-btn");
+const nextQuestionBtn = document.getElementById("next-question-btn");
 const answerArea = document.getElementById("hunter-a");
 
 // キーボード操作時のリスナー
@@ -22,27 +23,26 @@ document.querySelector("#judge-btn").addEventListener("click", () => {
   _checkAnswer();
 });
 
-// 正解表示/次の問題ボタン押下時のリスナー
-document.querySelector("#show-answer-btn").addEventListener("click", () => {
-  if (answerArea?.innerText) {
-    // 正解が表示されている場合は次の問題へ
-    _switchQuestion();
-    _resetAnswer();
-  } else {
-    // 正解が表示されていない場合は正解を表示
-    answerArea &&
-      (answerArea.innerText =
-        (hunterQuestion && hunterQuestion.innerText) || "");
-    answerBtn && (answerBtn.innerText = "次の問題へ");
-  }
+// 正解表示ボタン押下時のリスナー
+answerBtn.addEventListener("click", () => {
+  answerArea.innerText = (hunterQuestion && hunterQuestion.innerText) || "";
+  answerBtn.classList.add("d-none");
+  nextQuestionBtn.classList.remove("d-none");
+});
+
+// 次の問題ボタン押下時のリスナー
+nextQuestionBtn.addEventListener("click", () => {
+  _switchQuestion();
+  _resetAnswer();
 });
 
 /**
  * 正解エリアの非表示とボタン文言のリセット
  */
 const _resetAnswer = () => {
-  answerArea && (answerArea.innerText = "");
-  answerBtn && (answerBtn.innerText = "正解を見る");
+  answerArea.innerText = "";
+  answerBtn.classList.remove("d-none");
+  nextQuestionBtn.classList.add("d-none");
 };
 
 /**
