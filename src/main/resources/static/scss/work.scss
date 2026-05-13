@@ -1,6 +1,9 @@
 @use "variables" as *;
 
 #work {
+  // NOTE: global.scssと同じ余白だとcol-5の幅が小さすぎるので独自で設定
+  margin: 5vh 10vw;
+
   #toc {
     margin-bottom: 10vh;
   }

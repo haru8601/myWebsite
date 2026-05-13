@@ -8,7 +8,9 @@
       th:data-svg-width="${width}"
       th:data-svg-max-height="${maxHeight}"
       class="hr-embedded-svg-container"
-      th:style="|width: ${width}; max-height: ${maxHeight}|"
-    ></div>
+    >
+      <!--/* NOTE: レイアウトシフトを防ぐため、ダミーのスペースを確保している */-->
+      <img th:style="|width: ${width}; max-height: ${maxHeight}|" />
+    </div>
   </body>
 </html>
