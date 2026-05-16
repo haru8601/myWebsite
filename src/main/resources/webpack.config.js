@@ -24,6 +24,7 @@ export default {
     "tweet-article": `${RESOURCE_DIR}/ts/tweet-article.ts`,
     "upload-image": `${RESOURCE_DIR}/ts/upload-image.ts`,
     "embed-svg": `${RESOURCE_DIR}/ts/embed-svg.ts`,
+    "submit-contact": `${RESOURCE_DIR}/ts/submit-contact.ts`,
   },
   module: {
     rules: [

@@ -6,7 +6,6 @@
 >
   <head>
     <title th:text="|記事作成 - ${site}|">haroot</title>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}" />
     <!--simpleMDE用-->
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <link
@@ -60,7 +59,7 @@
           ></textarea>
           <script>
             //マークダウンプレビュー用クラス
-            let simplemde = new SimpleMDE({
+            new SimpleMDE({
               element: document.getElementById("mde"),
               placeholder: "Please input the content here.",
               renderingConfig: {
@@ -80,8 +79,7 @@
       <input type="file" id="imageFile" />
       <!--/* HACK: 一度記事作成が完了しないと、idがないため画像を保存できない */-->
       <script th:src="@{/dist/upload-image.bundle.js}"></script>
-      <a class="btn1" href="/articles">記事一覧へ戻る</a>
+      <a href="/articles">記事一覧へ戻る</a>
     </main>
-    <script th:src="@{/dist/upload-image.bundle.js}"></script>
   </body>
 </html>

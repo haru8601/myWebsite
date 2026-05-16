@@ -5,9 +5,9 @@ const likedIcon = document.querySelector<HTMLElement>("#liked-icon");
 window.addEventListener("DOMContentLoaded", () => {
   const articleId = _getArticleId();
   //セッション取得
-  let likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
+  const likeFlg = sessionStorage.getItem(`haroot-likeFlg_${articleId}`);
   //likeしてればアイコン変更
-  if (likeFlg == "1") {
+  if (likeFlg === "1") {
     notLikeIcon?.classList.add("d-none");
     likedIcon?.classList.remove("d-none");
   }
@@ -27,7 +27,7 @@ document
     let type = "";
 
     //likeしてたら取り消し
-    if (likeFlg == "1") {
+    if (likeFlg === "1") {
       likeFlg = "0";
       count--;
       type = "down";

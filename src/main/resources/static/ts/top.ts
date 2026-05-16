@@ -25,7 +25,7 @@ window.addEventListener("keydown", (e) => {
     if (choosenIndex < chooseItems.length - 1) {
       _moveElement(chooseIcon, chooseItems[choosenIndex + 1]);
     }
-  } else if (e.key == "ArrowUp") {
+  } else if (e.key === "ArrowUp") {
     const choosenIndex = _getChoosenIndex();
     // アイコンの親要素が最初のindexでなければ
     if (choosenIndex > CHOOSE_ITEM_MIN_INDEX) {

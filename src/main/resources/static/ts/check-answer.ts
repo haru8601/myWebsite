@@ -14,7 +14,7 @@ const answerArea = document.getElementById("hunter-a");
 hunterInput?.addEventListener("keypress", (e) => {
   // IMEの入力中のEnterは弾きたい
   /* keyCodeは非推奨だが代替案があまりない(isComposing等は挙動が微妙)のでこのまま使用 */
-  if (e.keyCode == 13) {
+  if (e.keyCode === 13) {
     _checkAnswer();
   }
 });
@@ -96,7 +96,7 @@ const _checkAnswer = (): void => {
   // ひらがなの場合はカタカナにして比較
   if (_toKatakana(inputValue) === _toKatakana(answer)) {
     ok?.classList.remove("d-none");
-    setTimeout(function () {
+    setTimeout(() => {
       if (hunterInput) {
         hunterInput.value = "";
       }
@@ -105,7 +105,7 @@ const _checkAnswer = (): void => {
     }, 1000);
   } else {
     ng?.classList.remove("d-none");
-    setTimeout(function () {
+    setTimeout(() => {
       if (hunterInput) {
         hunterInput.value = "";
       }

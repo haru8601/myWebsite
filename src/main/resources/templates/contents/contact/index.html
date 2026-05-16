@@ -8,12 +8,14 @@
   <head>
     <title th:text="|${topic.titleJp} - ${site}|">haroot</title>
     <meta name="description" th:content="${topic.summary}" />
+     <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
   </head>
 
   <body>
     <main id="contact" layout:fragment="content">
       <!--/* NOTE: 左寄せだと余白が多すぎるので中央揃えにしている */-->
       <form
+        id="contactForm"
         th:object="${formDto}"
         action="/contact/send"
         method="post"
@@ -117,16 +119,16 @@
             ></p>
           </div>
         </div>
+        <input type="hidden" id="recaptchaToken" name="recaptchaToken" />
         <div class="text-center my-4">
-          <!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
           <input
             type="submit"
             class="btn btn-danger text-white"
             value="送信 Send"
-            onclick="submit()"
           />
         </div>
       </form>
     </main>
+    <script th:src="@{/dist/submit-contact.bundle.js}"></script>
   </body>
 </html>

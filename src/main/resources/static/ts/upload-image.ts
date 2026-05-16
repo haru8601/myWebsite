@@ -16,9 +16,9 @@ document.getElementById("imageFile")?.addEventListener("change", () => {
     formdata.append("imageFile", fileInput.files[0]);
     XHR.send(formdata);
     XHR.addEventListener("readystatechange", () => {
-      if (XHR.status != 200) {
-        console.log(XHR.status);
-        console.log(XHR.response);
+      if (XHR.status !== 200) {
+        console.error(XHR.status);
+        console.error(XHR.response);
       }
     });
   }

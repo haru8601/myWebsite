@@ -10,10 +10,13 @@
     "scss": "sass --pkg-importer=node src/main/resources/static/scss:src/main/resources/static/css",
     "bundle": "webpack",
     "clean": "rm -rf ./static/dist/",
-    "format": "biome format --write"
+    "format": "biome format --write",
+    "format:html": "prettier --write '**/*.html'",
+    "lint": "biome lint --write"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",
+    "@types/grecaptcha": "^3.0.9",
     "css-loader": "^7.1.4",
     "mini-css-extract-plugin": "^2.10.2",
     "sass": "^1.98.0",
@@ -31,6 +34,7 @@
     "dompurify": "^3.4.0",
     "highlight.js": "^11.11.1",
     "marked": "^18.0.2",
-    "marked-gfm-heading-id": "^4.1.4"
+    "marked-gfm-heading-id": "^4.1.4",
+    "prettier": "^3.8.3"
   }
 }
