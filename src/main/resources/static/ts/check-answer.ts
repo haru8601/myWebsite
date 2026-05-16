@@ -1,7 +1,6 @@
 const dataContainer = document.getElementById("data-container");
 const quizWords: string[] = dataContainer?.dataset.words?.split(",") ?? [];
 
-console.log("quizWords:", quizWords);
 const hunterQuestion = document.getElementById("hunter-q");
 const hunterInput = document.getElementById(
   "hunter-input",

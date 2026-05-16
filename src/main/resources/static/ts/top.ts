@@ -18,7 +18,6 @@ chooseItems.forEach((item) => {
 const CHOOSE_ITEM_MIN_INDEX = 0;
 
 window.addEventListener("keydown", (e) => {
-  console.log(e.key);
   if (e.key === "ArrowDown") {
     const choosenIndex = _getChoosenIndex();
     // アイコンの親要素が最後のindexでなければ
@@ -35,7 +34,6 @@ window.addEventListener("keydown", (e) => {
     const choosenIndex = _getChoosenIndex();
     const choosenItem = chooseItems[choosenIndex];
     const choosenLink = choosenItem.closest("a");
-    console.log(choosenIndex, choosenItem, choosenLink);
     if (choosenLink) {
       choosenLink.click();
     }
