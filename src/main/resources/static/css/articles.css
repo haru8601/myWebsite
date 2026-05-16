@@ -179,9 +179,9 @@ code {
 
 /*引用のスタイル*/
 blockquote > p {
-	border-left: 5px solid lightgray;
-	border-radius: 2px;
-	padding: 1vh 0 1vh 1vw;
+  border-left: 5px solid lightgray;
+  border-radius: 2px;
+  padding: 1vh 0 1vh 1vw;
 }
 
 .input-label,

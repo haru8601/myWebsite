@@ -4,10 +4,11 @@
   /* 使用する際のフォント名指定 */
   font-family: "CustomFont";
 
-  src: url("../Fonts/Parisienne/Parisienne-Regular.ttf") format("truetype"),
+  src:
+    url("../Fonts/Parisienne/Parisienne-Regular.ttf") format("truetype"),
     url("../Fonts/Parisienne/Parisienne-Regular.woff") format("woff"),
     url("../Fonts/Parisienne/Parisienne-Regular.eot")
-      format("embedded-opentype");
+    format("embedded-opentype");
   font-display: swap;
 }
 
@@ -45,7 +46,9 @@ a > .fa-arrow-up-right-from-square {
 }
 
 /* デフォルトのフォントサイズ設定 */
-p, ul > li , pre {
+p,
+ul > li,
+pre {
   font-size: 16px;
 }
 
