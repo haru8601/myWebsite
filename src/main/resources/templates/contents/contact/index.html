@@ -8,7 +8,9 @@
   <head>
     <title th:text="|${topic.titleJp} - ${site}|">haroot</title>
     <meta name="description" th:content="${topic.summary}" />
-    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+    <script
+      th:src="|https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}|"
+    ></script>
   </head>
 
   <body>
@@ -20,7 +22,11 @@
         action="/contact/send"
         method="post"
         class="d-flex flex-column align-items-center"
+        th:data-recaptcha-site-key="${recaptchaSiteKey}"
       >
+        <th:block th:if="${errStr!=''}">
+          <p class="text-danger" th:text="${errStr}"></p>
+        </th:block>
         <div>
           <p>
             ご質問、ご相談につきましては下記フォームからお問い合わせください。
@@ -127,8 +133,15 @@
             value="送信 Send"
           />
         </div>
+        <!--/* 参考) https://developers.google.com/recaptcha/docs/faq?hl=ja#id-like-to-hide-the-recaptcha-badge.-what-is-allowed */-->
+        <p class="small text-end w-75">
+          This site is protected by reCAPTCHA and the Google
+          <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+          <a href="https://policies.google.com/terms">Terms of Service</a>
+          apply.
+        </p>
       </form>
+      <script th:src="@{/dist/submit-contact.bundle.js}"></script>
     </main>
-    <script th:src="@{/dist/submit-contact.bundle.js}"></script>
   </body>
 </html>

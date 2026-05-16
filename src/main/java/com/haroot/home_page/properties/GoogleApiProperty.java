@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import lombok.Data;
 
 /**
- * youtubeプロパティ
+ * google-apiプロパティ
  *
  * @author haroot
  *

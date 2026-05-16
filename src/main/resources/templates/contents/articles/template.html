@@ -109,7 +109,7 @@
         <!-- 記事詳細 -->
         <div id="article-detail">
           <th:block th:if="${errStr!=''}">
-            <p th:text="${errStr}"></p>
+            <p class="text-danger" th:text="${errStr}"></p>
           </th:block>
           <p id="title" th:text="*{title}" class="h2 fw-bold"></p>
           <th:block th:if="*{wip==true}">

@@ -6,9 +6,9 @@ import org.springframework.web.service.annotation.HttpExchange;
 
 import com.haroot.home_page.entity.YoutubeListEntity;
 
-@HttpExchange("/youtube/v3/playlistItems")
+@HttpExchange
 public interface GoogleApiClient {
-  @GetExchange
+  @GetExchange("/youtube/v3/playlistItems")
   YoutubeListEntity getPlaylistItems(
       @RequestParam String part,
       @RequestParam String playlistId,

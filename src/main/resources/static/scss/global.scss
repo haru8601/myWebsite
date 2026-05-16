@@ -88,34 +88,39 @@ html {
     svg {
       shape-rendering: crispEdges;
     }
-  }
 
-  // フォント設定
-  .hr-dot {
-    font-family: "FATPIXEL";
-
-    &.hr-size-1 {
-      font-size: 4rem;
+    // reCAPTCHAのバッジを消す(代わりにテキストでの説明文が必要)
+    .grecaptcha-badge {
+      visibility: hidden;
     }
-  }
 
-  .hr-icon {
-    font-size: 24px;
-  }
+    // フォント設定
+    .hr-dot {
+      font-family: "FATPIXEL";
 
-  .hr-img {
-    max-width: 100%;
-    max-height: 400px;
-    object-fit: contain;
-  }
+      &.hr-size-1 {
+        font-size: 4rem;
+      }
+    }
 
-  // ボタン設定
-  .hr-inner-shadow-btn {
-    border: none;
-    box-shadow: inset -5px -8px 8px #743232;
-  }
+    .hr-icon {
+      font-size: 24px;
+    }
 
-  .hr-outer-shadow-btn {
-    box-shadow: 3px 3px 3px #0c0c0c5e;
+    .hr-img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    // ボタン設定
+    .hr-inner-shadow-btn {
+      border: none;
+      box-shadow: inset -5px -8px 8px #743232;
+    }
+
+    .hr-outer-shadow-btn {
+      box-shadow: 3px 3px 3px #0c0c0c5e;
+    }
   }
 }

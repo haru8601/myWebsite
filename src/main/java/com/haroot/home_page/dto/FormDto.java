@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * 問い合わせデータ
- * 
+ *
  * @author haroot
  *
  */
@@ -26,4 +26,7 @@ public class FormDto {
 
   @AssertTrue(message = "プライバシーポリシーに同意する場合はチェックしてください")
   private boolean checkbox;
+
+  @NotBlank
+  private String recaptchaToken;
 }

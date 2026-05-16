@@ -4,58 +4,9 @@ haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
 # 技術要素
 
-Java, SpringBoot, Thymeleaf, maven, Spring Data JPA, scss, webpack, Prettier, npm
-
-<br>
-
-# 環境構築
-
-## application.yaml
-
-下記のプロパティを含む必要があります。
-
-```sh
-.
-├── spring
-│   ├── profiles
-│   │   └── active # local
-│   ├── jpa
-│   │   ├── open-in-view # false(optional)
-│   │   └── properties
-│   │       └── jakarta
-│   │           └── persistence
-│   │              └── sharedCache
-│   │                  └── mode # ENABLE_SELECTIVE(optional)
-│   ├── datasource
-│   │   ├── url # jdbc:mysql://AAAAA:3306/BBB
-│   │   ├── username # admin
-│   │   ├── password # password
-│   │   └── driver-class-name # com.mysql.cj.jdbc.Driver
-│   └── mail
-│       ├── host # 略
-│       ├── port # 587
-│       ├── username # 略
-│       ├── password # 略
-│       └── properties
-│           └── mail
-│               └── smtp
-│                   ├── auth # true
-│                   └── starttls
-│                       └── enable # true
-├── youtube
-│   ├── key # 略
-│   └── playlistId # UUXXXXXaaaaa44444RRRRRzz
-├── qiita
-│   ├── token # 略
-│   └── user # haru8601
-├── user
-│   ├── username # root
-│   └── password # password
-└── path
-    ├── log # /hoge/log/app.log
-    ├── site # haroot.net
-    └── resource # /hoge/aaa
-```
+- BE: Java, SpringBoot, Spring Data JPA, Thymeleaf, maven
+- FE: TypeScript, scss, webpack, Prettier, biome, npm
+- インフラ: EC2, MySQL, GCP(YouTube API, reCAPTCHA)
 
 # 開発
 
@@ -77,6 +28,7 @@ VSCodeで`cmd`+`shift`+`P` > `Java: Reload Projects`
 ### ORM
 
 Spring Data JPAを使用。
+
 - DB規模が小さい前提
 - JOINも基本用いず、ロジック側で結合、マッピングを行う
 - パフォーマンスが落ちる場合、別のORMを検討する
@@ -87,7 +39,7 @@ Spring Data JPAを使用。
 
 - `thymeleaf`のfragmentを用いて、ヘッダーやフッターをコンポーネント化している
 - `thymeleaf-layout-dialect`のdecorateを用いて、\
-各ページをlayout.htmlの一部として逆importさせている
+  各ページをlayout.htmlの一部として逆importさせている
 
 ### css
 
@@ -142,25 +94,24 @@ mvn clean package
 mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=local"
 ```
 
-
 ## デプロイ
 
 1. warファイルを本番環境にコピー
 2. 下記コマンドでssh接続
-    ```sh
-    ssh -i 対象のpem [ユーザー名@パブリックIP]
-    ```
+   ```sh
+   ssh -i 対象のpem [ユーザー名@パブリックIP]
+   ```
 3. 下記コマンドでフォルダ移動やBE再起動
-    ```sh
-    sudo su
-    cd /opt/tomcat/webapps
-    # 古いwarファイルのバックアップ
-    mv ROOT.war ../backup/ROOT_${今日の日付}.war
-    # 新しいwarファイルの配置
-    mv /home/ec2-user/作成したwar ./ROOT.war
-    systemctl status tomcat
-    systemctl restart tomcat
-    ```
+   ```sh
+   sudo su
+   cd /opt/tomcat/webapps
+   # 古いwarファイルのバックアップ
+   mv ROOT.war ../backup/ROOT_${今日の日付}.war
+   # 新しいwarファイルの配置
+   mv /home/ec2-user/作成したwar ./ROOT.war
+   systemctl status tomcat
+   systemctl restart tomcat
+   ```
 
 ## 画像ファイル
 

@@ -51,8 +51,7 @@ public class ArticleService {
     try {
       article = (ArticleDto) redisRepository.get(prefix + id);
     } catch (Exception e) {
-      log.error("redis get error");
-      log.error(e.getMessage());
+      log.error("redis get error", e);
     }
     if (article != null) {
       log.debug("cache hit, id:" + id);
@@ -64,8 +63,7 @@ public class ArticleService {
     try {
       redisRepository.set(prefix + id, article);
     } catch (Exception e) {
-      log.error("redis set error");
-      log.error(e.getMessage());
+      log.error("redis set error", e);
     }
     return article;
   }
@@ -113,8 +111,7 @@ public class ArticleService {
       try {
         redisRepository.set(prefix + article.getId(), article);
       } catch (Exception e) {
-        log.error("redis set error");
-        log.error(e.getMessage());
+        log.error("redis set error", e);
       }
     }
     return articleRepository.save(ArticleEntity.of(article));

@@ -13,7 +13,7 @@
   <body>
     <main id="articles" layout:fragment="content">
       <th:block th:if="${errStr!=''}">
-        <p class="errStr" th:text="${errStr}"></p>
+        <p class="text-danger" th:text="${errStr}"></p>
       </th:block>
       <div class="d-flex flex-column">
         <a

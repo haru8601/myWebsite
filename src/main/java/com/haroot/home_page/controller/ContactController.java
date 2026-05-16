@@ -2,8 +2,6 @@ package com.haroot.home_page.controller;
 
 import java.util.regex.Pattern;
 
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -15,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.haroot.home_page.dto.FormDto;
+import com.haroot.home_page.exception.HarootFraudeException;
+import com.haroot.home_page.properties.GoogleProperty;
 import com.haroot.home_page.service.ContactService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 問い合わせコントローラー
@@ -28,10 +29,11 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("contact")
 @RequiredArgsConstructor
+@Slf4j
 public class ContactController {
 
-  private final MailSender sender;
   private final ContactService contactService;
+  private final GoogleProperty googleProperty;
 
   /**
    * 問い合わせ画面表示
@@ -43,7 +45,7 @@ public class ContactController {
   public ModelAndView contactLink(ModelAndView mav) {
     FormDto formDto = new FormDto();
     mav.addObject("formDto", formDto);
-
+    mav.addObject("recaptchaSiteKey", googleProperty.getRecaptcha().getSiteKey());
     mav.setViewName("contents/contact/index");
     return mav;
   }
@@ -60,13 +62,7 @@ public class ContactController {
   @PostMapping("send")
   public ModelAndView postContact(@ModelAttribute @Validated FormDto formDto, BindingResult bindingResult,
       ModelAndView mav) {
-    Pattern mailP = Pattern.compile("[a-zA-Z0-9]+@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}");
-    Pattern urlP = Pattern.compile("https?://.*\\.");
-    // その他のエラー
-    Pattern elseP = Pattern.compile("@Cryptaxbot");
-    // お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
-    if (mailP.matcher(formDto.getContent()).find() || urlP.matcher(formDto.getContent()).find()
-        || elseP.matcher(formDto.getContent()).find()) {
+    if (!isValidContent(formDto.getContent())) {
       FieldError fieldError = new FieldError(
           "formData",
           "content",
@@ -77,25 +73,48 @@ public class ContactController {
     // エラーがあれば戻る
     if (bindingResult.hasErrors()) {
       mav.addObject("formDto", formDto);
+      mav.addObject("recaptchaSiteKey", googleProperty.getRecaptcha().getSiteKey());
       mav.setViewName("contents/contact/index");
       return mav;
     }
 
-    // メール送信
-    SimpleMailMessage msg = new SimpleMailMessage();
-    msg.setFrom("noreply@haroot.net");
-    msg.setTo("haroot.net@gmail.com");
-    msg.setSubject("【通知】お問い合わせがありました");
-    String br = System.getProperty("line.separator");
-    String message = formDto.getName() + "さんからお問い合わせがありました。" + br + br + "メールアドレス: " + formDto.getEmail() + br + br
-        + "お問い合わせ内容: " + br + formDto.getContent();
-    msg.setText(message);
-    this.sender.send(msg);
-
-    // DBに保存
-    contactService.register(formDto);
+    try {
+      contactService.register(formDto);
+    } catch (HarootFraudeException e) {
+      log.warn("お問い合わせ送信時に不正検知", e);
+      mav.addObject("errStr", "お問い合わせの送信に失敗しました。時間をおいて再度お試しください。");
+      mav.addObject("formDto", formDto);
+      mav.addObject("recaptchaSiteKey", googleProperty.getRecaptcha().getSiteKey());
+      mav.setViewName("contents/contact/index");
+      return mav;
+    } catch (Exception e) {
+      log.error("お問い合わせ送信時に予期せぬエラー: {}", e);
+      mav.addObject("errStr", "お問い合わせの送信に失敗しました。時間をおいて再度お試しください。");
+      mav.addObject("formDto", formDto);
+      mav.addObject("recaptchaSiteKey", googleProperty.getRecaptcha().getSiteKey());
+      mav.setViewName("contents/contact/index");
+      return mav;
+    }
 
     mav.setViewName("contents/contact/sent");
     return mav;
+  }
+
+  /**
+   * true: 問い合わせ内容が適切 false: 不適切
+   */
+  private boolean isValidContent(String content) {
+    Pattern mailAddressPattern = Pattern.compile("[a-zA-Z0-9]+@([a-zA-Z0-9]*[a-zA-Z0-9]*\\.)+[a-zA-Z]{2,}");
+    Pattern urlPattern = Pattern.compile("https?://.*\\.");
+    // その他のエラー
+    Pattern invalidPattern = Pattern.compile("@Cryptaxbot");
+
+    // お問い合わせ内容にメールアドレスやリンクが含まれていたらエラーを追加
+    if (mailAddressPattern.matcher(content).find() ||
+        urlPattern.matcher(content).find() ||
+        invalidPattern.matcher(content).find()) {
+      return false;
+    }
+    return true;
   }
 }
