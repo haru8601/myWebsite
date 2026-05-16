@@ -1,0 +1,8 @@
+{
+  "biome.configurationPath": "src/main/resources/biome.json",
+  "biome.lsp.bin": "src/main/resources/node_modules/.bin/biome",
+  "[html]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}

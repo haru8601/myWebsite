@@ -1,13 +1,13 @@
 <!doctype html>
 <html
-  la="ja"
+  lang="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{/layout/layout}"
   th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).WORK}"
 >
   <head>
-    <title th:text="|${topic.titleJp} - ${site}|">haroot</title>
-    <meta name="description" th:content="${topic.summary}" />
+    <title th:text="|${work.title} - ${site}|">haroot</title>
+    <meta name="description" th:content="${work.summary}" />
   </head>
 
   <body>

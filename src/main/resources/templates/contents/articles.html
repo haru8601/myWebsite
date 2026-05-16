@@ -1,6 +1,6 @@
 <!doctype html>
 <html
-  la="ja"
+  lang="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{/layout/layout}"
   th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).ARTICLES}"
@@ -49,14 +49,6 @@
               </th:block>
             </div>
           </div>
-        </a>
-        <a
-          id="top-btn"
-          href="#"
-          class="hr-inner-shadow-btn btn btn-danger rounded-circle p-3 d-inline-flex flex-column align-items-center justify-content-center"
-        >
-          <i class="fa-solid fa-chevron-up"></i>
-          <p class="hr-dot">TOP</p>
         </a>
       </div>
       <th:block th:if="${session.isLogin}">

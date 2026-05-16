@@ -10,8 +10,7 @@
     "scss": "sass --pkg-importer=node src/main/resources/static/scss:src/main/resources/static/css",
     "bundle": "webpack",
     "clean": "rm -rf ./static/dist/",
-    "format": "biome format --write",
-    "lint": "biome lint"
+    "format": "biome format --write"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.14",
