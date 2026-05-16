@@ -61,7 +61,7 @@ public class ArticleController {
     List<ArticleDetailDto> articlesList = articleService.getAll();
     mav.addObject("articleList", articlesList);
     mav.addObject("errStr", "");
-    mav.setViewName("contents/articles");
+    mav.setViewName("contents/articles/index");
     return mav;
   }
 
