@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
   <body>
     <div th:fragment="description-section(imgSrc, textJp, textEn)" class="mb-5">
-      <img class="hr-img pb-3" th:src="@{${imgSrc}}" />
+      <img class="hr-img pb-3" th:src="@{${imgSrc}}" alt="説明用の画像" />
       <p th:text="${textJp}"></p>
       <p th:if="${textEn != null}" th:text="${textEn}"></p>
     </div>

@@ -58,7 +58,7 @@
             class="d-flex flex-column align-items-center gap-4"
           >
             <div>
-              <a id="like-btn" role="button">
+              <a id="like-btn" role="button" aria-label="記事をいいねする">
                 <div id="not-like-icon">
                   <th:block
                     th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '30px', 'auto')}"
@@ -79,12 +79,12 @@
               </p>
             </div>
             <div>
-              <a id="tweet-article-btn" role="button">
+              <a id="tweet-article-btn" role="button" aria-label="記事をツイートする">
                 <i class="hr-icon fa-brands fa-x-twitter"></i>
               </a>
             </div>
             <div class="d-flex flex-column">
-              <a id="copy-link-btn" class="mx-auto" role="button">
+              <a id="copy-link-btn" class="mx-auto" role="button" aria-label="リンクをコピーする">
                 <i class="fa-solid fa-link text-white fs-4"></i>
               </a>
               <p

@@ -45,6 +45,7 @@
               >
                 <img
                   th:src="@{|/images/work/${workGenre.key.url}/${work.name}/thumbnail.png|}"
+                  aria-label="サムネ画像"
                   onerror="
                     this.onerror = null;
                     this.src = '/images/noImage.png';
