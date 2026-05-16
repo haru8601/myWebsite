@@ -5,13 +5,10 @@
   layout:decorate="~{/layout/layout}"
   th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).WORK}"
 >
-<head>
-  <title th:text="|${work.title} - ${site}|">haroot</title>
-    <meta
-      name="description"
-      th:content="${work.summary}"
-    />
-</head>
+  <head>
+    <title th:text="|${work.title} - ${site}|">haroot</title>
+    <meta name="description" th:content="${work.summary}" />
+  </head>
   <body>
     <main id="hunterScriptQuiz" layout:fragment="content">
       <th:block
