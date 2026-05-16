@@ -1,11 +1,12 @@
-/**
- * @type {HTMLInputElement}
- */
-// @ts-ignore
-const fileInput = document.getElementById("imageFile");
+const fileInput = document.getElementById(
+  "imageFile",
+) as HTMLInputElement | null;
 
-const uploadImage = () => {
-  if (fileInput.files?.length) {
+/**
+ * 画像ファイルアップロード
+ */
+document.getElementById("imageFile")?.addEventListener("change", () => {
+  if (fileInput?.files?.length) {
     const articleId = location.pathname.replace(/.*\/([0-9]+)$/, "$1");
 
     // controllerに非同期通信
@@ -21,4 +22,4 @@ const uploadImage = () => {
       }
     });
   }
-};
+});

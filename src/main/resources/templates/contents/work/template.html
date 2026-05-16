@@ -25,19 +25,17 @@
               th:if="${work.workUrl}"
               th:href="${work.workUrl}"
               target="_blank"
-              class="hr-inner-shadow-btn btn btn-danger px-3 py-2 d-inline-flex align-items-baseline gap-2"
+              class="hr-inner-shadow-btn btn btn-danger px-3 py-2 d-inline-flex align-items-stretch gap-2"
             >
               <!--/* NOTE: SNSの場合は背景に寄らず画像が見やすいのでデフォルトの画像を使用 */-->
               <th:block th:if="${work.genre.name == 'SNS'}">
-                <img
-                  th:src="@{|/images/${work.genre.imagePath}|}"
-                  width="30px"
-                  height="30px"
-                />
+                <th:block
+                  th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${work.genre.imagePath}|, '30px', '30px')}"
+                ></th:block>
               </th:block>
               <th:block th:unless="${work.genre.name == 'SNS'}">
                 <th:block
-                  th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|, '30px', 'auto')}"
+                  th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${#strings.replace(work.genre.imagePath, '.svg', '-dark.svg')}|, '30px', '30px')}"
                 ></th:block>
               </th:block>
               <span

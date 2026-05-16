@@ -17,8 +17,7 @@ public class LoggingConfig {
         String uri = request.getRequestURI();
         return !uri.startsWith("/images") &&
             !uri.startsWith("/dist") &&
-            !uri.startsWith("/.well-known") &&
-            !uri.startsWith("/js");
+            !uri.startsWith("/.well-known");
       }
 
       @Override

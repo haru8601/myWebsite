@@ -77,9 +77,11 @@
         <!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
         <input class="submit" type="button" value="送信" onclick="submit()" />
       </form>
-      <input type="file" id="imageFile" onchange="uploadImage()" />
+      <input type="file" id="imageFile" />
+      <!--/* HACK: 一度記事作成が完了しないと、idがないため画像を保存できない */-->
       <script th:src="@{/dist/upload-image.bundle.js}"></script>
       <a class="btn1" href="/articles">記事一覧へ戻る</a>
     </main>
+    <script th:src="@{/dist/upload-image.bundle.js}"></script>
   </body>
 </html>

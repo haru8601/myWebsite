@@ -1,13 +1,12 @@
 // コード要素
-const mdContentSection = document.querySelector("#md-content-section");
+const mdContentSection = document.querySelector<HTMLElement>(
+  "#md-content-section",
+);
 
 // コード要素からhタグ(目次となるもの)を抽出
 const hTagArr = mdContentSection?.innerHTML.match(/<h[0-9].*?<\/h/g);
 
-/**
- * @type {{size:number, text:string}[]}
- */
-const replacedTagArr = [];
+const replacedTagArr: { size: number; text: string }[] = [];
 
 // 抽出したhタグからタグの大きさ、テキストを抽出
 hTagArr?.forEach((hTagText) => {
@@ -17,8 +16,10 @@ hTagArr?.forEach((hTagText) => {
   replacedTagArr.push(tagInfoObj);
 });
 
-// 目次の表示場所
-const tocListSection = document.querySelector("#article-toc-section");
+// 抽出したhタグ
+const tocListSection = document.querySelector<HTMLElement>(
+  "#article-toc-section",
+);
 
 // 抽出した各テキストを目次の表示場所に追加
 replacedTagArr?.forEach((hTag) => {

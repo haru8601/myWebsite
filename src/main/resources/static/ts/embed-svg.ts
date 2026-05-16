@@ -1,11 +1,10 @@
 /**
  * SVGをインライン表示で埋め込む
  */
-const embedSvg = async () => {
-  /**
-   * @type {NodeListOf<HTMLElement>}
-   */
-  const svgContainers = document.querySelectorAll(".hr-embedded-svg-container");
+const embedSvg = async (): Promise<void> => {
+  const svgContainers = document.querySelectorAll<HTMLElement>(
+    ".hr-embedded-svg-container",
+  );
 
   for (let index = 0; index < svgContainers.length; index++) {
     const container = svgContainers[index];
@@ -34,11 +33,13 @@ const embedSvg = async () => {
 
       container.innerHTML = svgText;
       const svg = container.querySelector("svg");
-      if (width) {
-        svg.style.width = width;
-      }
-      if (maxHeight) {
-        svg.style.maxHeight = maxHeight;
+      if (svg) {
+        if (width) {
+          svg.style.width = width;
+        }
+        if (maxHeight) {
+          svg.style.maxHeight = maxHeight;
+        }
       }
     } catch (error) {
       console.error(`Failed to load SVG from ${svgPath}:`);

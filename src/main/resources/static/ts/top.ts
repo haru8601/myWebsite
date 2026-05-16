@@ -1,14 +1,10 @@
-import { _notNullWrapper, _moveElement } from "./common.js";
+import { _notNullWrapper, _moveElement } from "./common";
 
-/**
- * @type {NodeListOf<HTMLElement>}
- */
-const chooseItems = document.querySelectorAll(".hr-choose-item");
+const chooseItems = document.querySelectorAll<HTMLElement>(".hr-choose-item");
 
-/**
- * @type {HTMLElement}
- */
-const chooseIcon = _notNullWrapper(document.querySelector(".hr-choose-icon"));
+const chooseIcon = _notNullWrapper(
+  document.querySelector(".hr-choose-icon") as Element | null,
+) as HTMLElement;
 
 /**
  * 選択セクションホバー時の処理
@@ -51,7 +47,7 @@ window.addEventListener("keydown", (e) => {
 /**
  * 現在選択中のトピックのindexを取得
  */
-const _getChoosenIndex = () => {
+const _getChoosenIndex = (): number => {
   return parseInt(
     chooseIcon.parentElement?.dataset.hrChooseIndex ??
       CHOOSE_ITEM_MIN_INDEX.toString(),

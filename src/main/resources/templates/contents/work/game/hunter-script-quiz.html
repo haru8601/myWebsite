@@ -53,14 +53,9 @@
             </a>
           </div>
         </div>
-        <script th:inline="javascript">
-          // scriptファイルで変数を使えるように、inlineで定義しておく
-          const words = /*[[${words}]]*/ [];
-        </script>
-        <script
-          th:inline="javascript"
-          th:src="@{/dist/check-answer.bundle.js}"
-        ></script>
+        <div id="data-container" th:data-words="${words}">
+          <script th:src="@{/dist/check-answer.bundle.js}"></script>
+        </div>
       </div>
     </main>
   </body>

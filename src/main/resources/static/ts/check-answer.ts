@@ -1,10 +1,11 @@
-/** @type {string[]} */
-// @ts-ignore
-const quizWords = words || [];
+const dataContainer = document.getElementById("data-container");
+const quizWords: string[] = dataContainer?.dataset.words?.split(",") ?? [];
+
+console.log("quizWords:", quizWords);
 const hunterQuestion = document.getElementById("hunter-q");
-const hunterInput = /** @type {HTMLInputElement | null} */ (
-  document.getElementById("hunter-input")
-);
+const hunterInput = document.getElementById(
+  "hunter-input",
+) as HTMLInputElement | null;
 const answerBtn = document.getElementById("show-answer-btn");
 const nextQuestionBtn = document.getElementById("next-question-btn");
 const answerArea = document.getElementById("hunter-a");
@@ -19,19 +20,23 @@ hunterInput?.addEventListener("keypress", (e) => {
 });
 
 // 回答ボタン押下時のリスナー
-document.querySelector("#judge-btn").addEventListener("click", () => {
-  _checkAnswer();
-});
+document
+  .querySelector<HTMLElement>("#judge-btn")
+  ?.addEventListener("click", () => {
+    _checkAnswer();
+  });
 
 // 正解表示ボタン押下時のリスナー
-answerBtn.addEventListener("click", () => {
-  answerArea.innerText = (hunterQuestion && hunterQuestion.innerText) || "";
-  answerBtn.classList.add("d-none");
-  nextQuestionBtn.classList.remove("d-none");
+answerBtn?.addEventListener("click", () => {
+  if (answerArea) {
+    answerArea.innerText = hunterQuestion?.innerText ?? "";
+  }
+  answerBtn?.classList.add("d-none");
+  nextQuestionBtn?.classList.remove("d-none");
 });
 
 // 次の問題ボタン押下時のリスナー
-nextQuestionBtn.addEventListener("click", () => {
+nextQuestionBtn?.addEventListener("click", () => {
   _switchQuestion();
   _resetAnswer();
 });
@@ -39,19 +44,18 @@ nextQuestionBtn.addEventListener("click", () => {
 /**
  * 正解エリアの非表示とボタン文言のリセット
  */
-const _resetAnswer = () => {
-  answerArea.innerText = "";
-  answerBtn.classList.remove("d-none");
-  nextQuestionBtn.classList.add("d-none");
+const _resetAnswer = (): void => {
+  if (answerArea) {
+    answerArea.innerText = "";
+  }
+  answerBtn?.classList.remove("d-none");
+  nextQuestionBtn?.classList.add("d-none");
 };
 
 /**
- * @param {string[]} words
- * @returns {string}
- *
  * 単語をランダムに抽出
  */
-const _selectWord = (words) => {
+const _selectWord = (words: string[]): string => {
   const i = Math.random() * words.length;
   return words[Math.floor(i)];
 };
@@ -59,9 +63,11 @@ const _selectWord = (words) => {
 /**
  * 問題の単語を変更する
  */
-const _switchQuestion = () => {
-  // 問題の切り替え
-  hunterQuestion && (hunterQuestion.innerText = _selectWord(quizWords));
+const _switchQuestion = (): void => {
+  if (hunterQuestion) {
+    // 問題の切り替え
+    hunterQuestion.innerText = _selectWord(quizWords);
+  }
   // 正解を非表示にする
   _resetAnswer();
 };
@@ -71,11 +77,9 @@ _switchQuestion();
 
 /**
  * ひらがなをカタカナに変換
- * @param {string} str 変換する文字列
- * @returns {string} カタカナに変換された文字列
  */
-const _toKatakana = (str) => {
-  return str.replace(/[\u3041-\u3096]/g, (match) => {
+const _toKatakana = (str: string): string => {
+  return str.replace(/[ぁ-ゖ]/g, (match) => {
     return String.fromCharCode(match.charCodeAt(0) + 0x60);
   });
 };
@@ -83,24 +87,28 @@ const _toKatakana = (str) => {
 /**
  * 正誤判定をし、ox記号を表示
  */
-const _checkAnswer = () => {
+const _checkAnswer = (): void => {
   const ok = document.getElementById("quizOk");
   const ng = document.getElementById("quizNg");
-  const inputValue = hunterInput?.value || "";
-  const answer = hunterQuestion?.innerText || "";
+  const inputValue = hunterInput?.value ?? "";
+  const answer = hunterQuestion?.innerText ?? "";
 
   // ひらがなの場合はカタカナにして比較
   if (_toKatakana(inputValue) === _toKatakana(answer)) {
     ok?.classList.remove("d-none");
     setTimeout(function () {
-      hunterInput && (hunterInput.value = "");
+      if (hunterInput) {
+        hunterInput.value = "";
+      }
       ok?.classList.add("d-none");
       _switchQuestion();
     }, 1000);
   } else {
     ng?.classList.remove("d-none");
     setTimeout(function () {
-      hunterInput && (hunterInput.value = "");
+      if (hunterInput) {
+        hunterInput.value = "";
+      }
       ng?.classList.add("d-none");
     }, 1000);
   }

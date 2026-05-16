@@ -132,7 +132,7 @@
 					<exclude>node_modules/**</exclude>
 					<exclude>package.json</exclude>
 					<exclude>package-lock.json</exclude>
-					<exclude>jsconfig.json</exclude>
+					<exclude>tsconfig.json</exclude>
 					<exclude>webpack.config.js</exclude>
 				</excludes>
 			</resource>

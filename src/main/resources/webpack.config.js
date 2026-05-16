@@ -9,21 +9,34 @@ const RESOURCE_DIR = "./static";
 
 export default {
   mode: "none", // NOTE:環境ごとに処理を分けない設定
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
   entry: {
-    bundler: `${RESOURCE_DIR}/js/bundler.js`,
-    top: `${RESOURCE_DIR}/js/top.js`,
-    "check-answer": `${RESOURCE_DIR}/js/check-answer.js`,
-    common: `${RESOURCE_DIR}/js/common.js`,
-    "copy-link": `${RESOURCE_DIR}/js/copy-link.js`,
-    "insert-toc": `${RESOURCE_DIR}/js/insert-toc.js`,
-    "like-article": `${RESOURCE_DIR}/js/like-article.js`,
-    "preview-markdown": `${RESOURCE_DIR}/js/preview-markdown.js`,
-    "tweet-article": `${RESOURCE_DIR}/js/tweet-article.js`,
-    "upload-image": `${RESOURCE_DIR}/js/upload-image.js`,
-    "embed-svg": `${RESOURCE_DIR}/js/embed-svg.js`,
+    bundler: `${RESOURCE_DIR}/ts/bundler.ts`,
+    top: `${RESOURCE_DIR}/ts/top.ts`,
+    "check-answer": `${RESOURCE_DIR}/ts/check-answer.ts`,
+    common: `${RESOURCE_DIR}/ts/common.ts`,
+    "copy-link": `${RESOURCE_DIR}/ts/copy-link.ts`,
+    "insert-toc": `${RESOURCE_DIR}/ts/insert-toc.ts`,
+    "like-article": `${RESOURCE_DIR}/ts/like-article.ts`,
+    "preview-markdown": `${RESOURCE_DIR}/ts/preview-markdown.ts`,
+    "tweet-article": `${RESOURCE_DIR}/ts/tweet-article.ts`,
+    "upload-image": `${RESOURCE_DIR}/ts/upload-image.ts`,
+    "embed-svg": `${RESOURCE_DIR}/ts/embed-svg.ts`,
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: {
+          loader: "ts-loader",
+          options: {
+            transpileOnly: true,
+          },
+        },
+        exclude: /node_modules/,
+      },
       {
         test: /\.(scss|sass|css)$/i,
         use: [

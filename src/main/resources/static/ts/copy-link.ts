@@ -1,14 +1,13 @@
-/**
- * 記事URLをコピー
- */
-document.querySelector("#copy-link-btn").addEventListener("click", () => {
+const btnCopyLink = document.querySelector<HTMLElement>("#copy-link-btn");
+
+btnCopyLink?.addEventListener("click", () => {
   if (!navigator.clipboard) {
-    //コピー失敗
+    // コピー失敗
     console.warn("this browser does not support copying.");
     return;
   }
 
-  //コピー成功
+  // コピー成功
   navigator.clipboard.writeText(location.href.replace(/#.+/, "")).then(() => {
     const pTag = document.getElementById("copied-text");
     if (pTag != null) {
@@ -18,5 +17,4 @@ document.querySelector("#copy-link-btn").addEventListener("click", () => {
       }, 2000);
     }
   });
-  return;
 });
