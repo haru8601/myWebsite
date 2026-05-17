@@ -6,8 +6,8 @@
 >
   <head>
     <title th:text="|管理画面 - ${site}|">haroot</title>
-    <meta name="description" content="管理画面です。" />
-    <link type="text/css" rel="stylesheet" th:href="@{css/admin.css}" />
+    <meta name="description" content="管理画面です。">
+    <link type="text/css" rel="stylesheet" th:href="@{css/admin.css}">
   </head>
 
   <body>
@@ -20,7 +20,7 @@
           th:errors="*{username}"
         ></p>
         <label for="username-input">ユーザー名</label>
-        <input id="username-input" th:field="*{username}" />
+        <input id="username-input" th:field="*{username}">
         <p
           class="check-failed"
           th:if="${#fields.hasErrors('password')}"
@@ -32,8 +32,8 @@
           id="password-input"
           th:field="*{password}"
           value="*{password}"
-        />
-        <input type="submit" value="送信" />
+        >
+        <input type="submit" value="送信">
       </form>
     </main>
   </body>

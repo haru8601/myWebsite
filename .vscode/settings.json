@@ -3,7 +3,7 @@
   "biome.lsp.bin": "src/main/resources/node_modules/.bin/biome",
   "[html]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[css]": {
     "editor.formatOnSave": true,

@@ -29,8 +29,8 @@
               <th:block
                 th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px', 'auto')}"
               ></th:block>
-              <p class="hr-dot m-0" th:text="${topic.title}"></p
-            ></a>
+              <p class="hr-dot m-0" th:text="${topic.title}"></p></a
+            >
           </th:block>
         </div>
         <div id="header-menu-icon">
@@ -53,8 +53,9 @@
               ></th:block>
             </div>
             <div class="col-10">
-              <p class="hr-dot h1 m-0" th:text="${topic.title}"></p></div
-          ></a>
+              <p class="hr-dot h1 m-0" th:text="${topic.title}"></p>
+            </div></a
+          >
         </th:block>
       </div>
     </header>

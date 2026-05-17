@@ -12,32 +12,32 @@
       type="text/css"
       media="all"
       th:href="@{/dist/preview-markdown.css}"
-    />
+    >
 
     <title th:text="|*{title} - ${site}|">haroot</title>
-    <meta name="description" th:content="|*{title}についての記事です。|" />
+    <meta name="description" th:content="|*{title}についての記事です。|">
     <!--Twitterカード用-->
     <!--twitter以外でも使えるやつ-->
-    <meta property="og:type" content="article" />
-    <meta id="share-title" property="og:title" th:content="*{title}" />
+    <meta property="og:type" content="article">
+    <meta id="share-title" property="og:title" th:content="*{title}">
     <meta
       id="share-detail"
       property="og:description"
       th:content="|*{title}についての記事です。|"
-    />
+    >
     <meta
       id="share-url"
       property="og:url"
       th:content="@{|/${topic.url}/*{id}|}"
-    />
-    <meta property="og:site_name" content="${site}" />
+    >
+    <meta property="og:site_name" content="${site}">
     <meta
       property="og:image"
       th:content="|https://haroot.net/images/${topic.url}/*{id}/thumbnail.png|"
-    />
+    >
     <!--twitter特有の設定-->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@haroot_net" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@haroot_net">
   </head>
 
   <body>
@@ -112,9 +112,7 @@
             <p class="text-danger" th:text="${errStr}"></p>
           </th:block>
           <p id="title" th:text="*{title}" class="h2 fw-bold"></p>
-          <th:block th:if="*{wip==true}">
-            <p>※非公開</p>
-          </th:block>
+          <th:block th:if="*{wip==true}"> <p>※非公開</p> </th:block>
           <p th:if="*{createDate != null}">
             作成日時:
             <span
