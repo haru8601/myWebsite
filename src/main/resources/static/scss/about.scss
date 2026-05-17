@@ -3,13 +3,12 @@
 #about {
   // bootstrapクラスの修正
   .nav-tabs {
-    margin-right: 5vw;
-    // NOTE: 次の.tab-contentと重ね、手前に表示することで重なり部分の.tab-contentのborderを見えなくしている
-    margin-bottom: -1px;
+    margin-right: 2vw;
+    justify-content: flex-end;
+    gap: 0.5rem;
 
     .nav-item {
       position: relative;
-      z-index: $hr-front-z-index;
     }
 
     .nav-link:not(.active) {
@@ -19,11 +18,65 @@
     .nav-link.active {
       color: white;
       background-color: $hr-bg-color-default;
+
+      // NOTE: 次の.tab-contentと重ね、
+      // 重なり部分の.tab-contentのborderを見えなくしている
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        // NOTE: borderと同じサイズだと、
+        // アンチエイリアシングの問題等で薄く線が残ってしまう
+        // NOTE: ネガティブマージンによるborderの重複削除をしても同様の問題が起こる
+        bottom: -3px;
+        height: 3px;
+        width: 100%;
+        background-color: $hr-bg-color-default;
+      }
+    }
+
+    @include sp() {
+      margin-right: 0;
+      justify-content: space-around;
+      gap: 0;
+
+      .nav-link .hr-dot {
+        font-size: 0.8rem;
+      }
     }
   }
 
-  #status-container {
-    width: 40%;
+  #tab-profile {
+    #image-container {
+      width: 40%;
+    }
+
+    #description-container {
+      gap: 0.5rem;
+      #name-container {
+        gap: 1rem;
+      }
+    }
+
+    @include sp() {
+      & > .d-flex {
+        flex-direction: column;
+      }
+
+      #image-container {
+        width: 100%;
+      }
+
+      #description-container {
+        align-items: center;
+        gap: 1rem;
+
+        #name-container {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+    }
   }
 
   #tab-background {

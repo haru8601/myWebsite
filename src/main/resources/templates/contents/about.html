@@ -12,10 +12,12 @@
 
   <body>
     <main id="about" layout:fragment="content">
-      <ul class="nav nav-tabs gap-2 justify-content-end">
-        <li class="nav-item border-top border-start border-end rounded-top">
+      <ul id="tabs" class="nav nav-tabs">
+        <li
+          class="nav-item border-top border-start border-end border-2 rounded-top"
+        >
           <a
-            class="nav-link active"
+            class="nav-link active p-2"
             data-bs-toggle="tab"
             data-bs-target="#tab-profile"
             type="button"
@@ -23,9 +25,11 @@
             ><span class="hr-dot">PROFILE</span></a
           >
         </li>
-        <li class="nav-item border-top border-start border-end rounded-top">
+        <li
+          class="nav-item border-top border-start border-end border-2 rounded-top"
+        >
           <a
-            class="nav-link"
+            class="nav-link p-2"
             data-bs-toggle="tab"
             data-bs-target="#tab-skills"
             type="button"
@@ -33,19 +37,21 @@
             ><span class="hr-dot">SKILLS</span></a
           >
         </li>
-        <li class="nav-item border-top border-start border-end rounded-top">
+        <li
+          class="nav-item border-top border-start border-end border-2 rounded-top"
+        >
           <a
-            class="nav-link"
+            class="nav-link p-2"
             data-bs-toggle="tab"
             data-bs-target="#tab-background"
             type="button"
             role="tab"
-            ><span class="hr-dot">BACKGROUND</span></a
+            ><span class="hr-dot  ">BACKGROUND</span></a
           >
         </li>
       </ul>
 
-      <div class="tab-content border rounded p-5">
+      <div class="tab-content border border-2 rounded p-5">
         <div
           id="tab-profile"
           class="tab-pane fade show active"
@@ -54,7 +60,7 @@
         >
           <div class="d-flex gap-3">
             <div
-              id="status-container"
+              id="image-container"
               class="d-flex align-items-center justify-content-center"
             >
               <img
@@ -64,9 +70,9 @@
                 class="object-fit-contain"
               >
             </div>
-            <div class="d-flex flex-column gap-2">
+            <div id="description-container" class="d-flex flex-column">
               <div>No. 086</div>
-              <div class="d-flex gap-3 align-items-center">
+              <div id="name-container" class="d-flex align-items-center">
                 <p class="hr-dot h2 m-0">HAROOT</p>
                 <h4 class="m-0">はるーと</h4>
               </div>

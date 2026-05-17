@@ -55,16 +55,16 @@ html {
         margin-bottom: -2px;
       }
 
-      @media screen {
-        #header-links {
-          display: flex;
-        }
-        #header-menu-icon {
-          display: none;
-        }
+      // NOTE: bootstrapのクラスにしてしまうと、
+      // レスポンシブ時もクラスが優先されるためscssで指定している
+      #header-links {
+        display: flex;
+      }
+      #header-menu-icon {
+        display: none;
       }
 
-      @media screen and (max-width: 1024px) {
+      @include sp() {
         #header-links {
           display: none;
         }
@@ -89,6 +89,10 @@ html {
       margin: 5vh 20vw;
       // エラー画面などコンテンツが少ない場合の最小値
       min-height: 300px;
+
+      @include sp() {
+        margin: 5vh 5vw;
+      }
     }
 
     a {
