@@ -54,6 +54,35 @@ html {
         // NOTE: borderの差で他のトピックの文字列と上下中央の位置がズレるのを防いでいる
         margin-bottom: -2px;
       }
+
+      @media screen {
+        #header-links {
+          display: flex;
+        }
+        #header-menu-icon {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 1024px) {
+        #header-links {
+          display: none;
+        }
+        #header-menu-icon {
+          display: block;
+        }
+        #header-menu-section {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          // NOTE: mainより手前に置いて重ねている
+          z-index: $hr-front-z-index;
+          width: 100%;
+          height: 100vh;
+          padding: 0 20vw;
+          background-color: $hr-bg-color-default;
+        }
+      }
     }
 
     main {

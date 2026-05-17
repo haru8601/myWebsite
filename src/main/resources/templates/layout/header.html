@@ -9,7 +9,7 @@
       th:fragment="header"
       class="py-3 border-bottom border-1 border-black bg-black"
     >
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items-center">
         <div>
           <a href="/" role="button">
             <th:block
@@ -17,7 +17,7 @@
             ></th:block>
           </a>
         </div>
-        <div class="d-flex align-items-center gap-5">
+        <div id="header-links" class="align-items-center gap-5">
           <th:block
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >
@@ -33,6 +33,29 @@
             ></a>
           </th:block>
         </div>
+        <div id="header-menu-icon">
+          <i class="fa-solid fa-bars fa-2x"></i>
+          <i class="d-none fa-solid fa-xmark fa-2x"></i>
+        </div>
+      </div>
+      <div
+        id="header-menu-section"
+        class="d-none container-fluid pt-5"
+        tabindex="-1"
+      >
+        <th:block
+          th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+        >
+          <a class="hr-active-topic row pb-3 mb-4" th:href="@{|/${topic.url}|}">
+            <div class="col-2">
+              <th:block
+                th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px', 'auto')}"
+              ></th:block>
+            </div>
+            <div class="col-10">
+              <p class="hr-dot h1 m-0" th:text="${topic.title}"></p></div
+          ></a>
+        </th:block>
       </div>
     </header>
   </body>

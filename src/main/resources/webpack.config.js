@@ -25,6 +25,7 @@ export default {
     "upload-image": `${RESOURCE_DIR}/ts/upload-image.ts`,
     "embed-svg": `${RESOURCE_DIR}/ts/embed-svg.ts`,
     "submit-contact": `${RESOURCE_DIR}/ts/submit-contact.ts`,
+    "toggle-menu": `${RESOURCE_DIR}/ts/toggle-menu.ts`,
   },
   module: {
     rules: [

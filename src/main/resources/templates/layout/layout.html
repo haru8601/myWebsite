@@ -33,13 +33,6 @@
       media="all"
       th:href="@{/dist/bundler.css}"
     />
-    <!-- FIXME: デザインリニューアル時に対応 -->
-    <!-- <link
-      rel="stylesheet"
-      th:href="@{/css/responsive.css}"
-      media="print"
-      onload="this.media='all'"
-    /> -->
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
     <title>layout page</title>
   </head>
@@ -58,5 +51,6 @@
     </div>
     <script th:src="@{/dist/bundler.bundle.js}"></script>
     <script th:src="@{/dist/embed-svg.bundle.js}"></script>
+    <script th:src="@{/dist/toggle-menu.bundle.js}"></script>
   </body>
 </html>
