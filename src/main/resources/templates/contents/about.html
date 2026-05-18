@@ -51,7 +51,7 @@
         </li>
       </ul>
 
-      <div class="tab-content border border-2 rounded p-5">
+      <div id="tab-container" class="tab-content border border-2 rounded py-5">
         <div
           id="tab-profile"
           class="tab-pane fade show active"
@@ -117,8 +117,14 @@
         <div id="tab-skills" class="tab-pane fade" role="tabpanel" tabindex="0">
           <div class="container-fluid">
             <div class="row">
-              <div class="hr-dot h5 col-5 align-content-center">BACKEND</div>
-              <div class="col-7 d-flex flex-wrap gap-2 align-content-center">
+              <div
+                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+              >
+                BACKEND
+              </div>
+              <div
+                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+              >
                 <th:block
                   th:replace="~{layout/tag :: tag(Java, Language)}"
                 ></th:block>
@@ -140,8 +146,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="hr-dot h5 col-5 align-content-center">FRONTEND</div>
-              <div class="col-7 d-flex flex-wrap gap-2 align-content-center">
+              <div
+                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+              >
+                FRONTEND
+              </div>
+              <div
+                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+              >
                 <th:block
                   th:replace="~{layout/tag :: tag(Typescript, Language)}"
                 ></th:block>
@@ -154,10 +166,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="hr-dot h5 col-5 align-content-center">
+              <div
+                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+              >
                 INFRASTRUCTURE
               </div>
-              <div class="col-7 d-flex flex-wrap gap-2 align-content-center">
+              <div
+                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+              >
                 <th:block
                   th:replace="~{layout/tag :: tag(Athena, Infrastructure)}"
                 ></th:block>
@@ -182,8 +198,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="hr-dot h5 col-5 align-content-center">OTHERS</div>
-              <div class="col-7 d-flex flex-wrap gap-2 align-content-center">
+              <div
+                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+              >
+                OTHERS
+              </div>
+              <div
+                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+              >
                 <th:block
                   th:replace="~{layout/tag :: tag(JUnit, Tools)}"
                 ></th:block>

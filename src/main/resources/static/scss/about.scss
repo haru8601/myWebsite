@@ -46,112 +46,133 @@
     }
   }
 
-  #tab-profile {
-    #image-container {
-      width: 40%;
+  #tab-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    #tab-profile {
+      #image-container {
+        width: 40%;
+      }
+
+      #description-container {
+        gap: 0.5rem;
+        #name-container {
+          gap: 1rem;
+        }
+      }
+
+      @include sp() {
+        & > .d-flex {
+          flex-direction: column;
+        }
+
+        #image-container {
+          width: 100%;
+        }
+
+        #description-container {
+          align-items: center;
+          gap: 1rem;
+
+          #name-container {
+            flex-direction: column;
+            gap: 0;
+          }
+        }
+      }
     }
 
-    #description-container {
-      gap: 0.5rem;
-      #name-container {
-        gap: 1rem;
+    #tab-skills {
+      .row {
+        margin-bottom: 4vh;
+      }
+
+      @include sp() {
+        .hr-skill-category {
+          width: 100%;
+          text-align: center;
+        }
+        .hr-skill-tags {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+
+    #tab-background {
+      #background-container {
+        position: relative;
+        text-align: center;
+        padding: 0 1rem;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: -20px; // 上下にはみ出す設定
+          left: 50%;
+          height: calc(100% + 40px); // 上下にはみ出す設定
+          border-left: 5px solid white;
+          z-index: $hr-back-z-index;
+        }
+
+        .hr-comment-right {
+          position: relative;
+          margin-left: 50px;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -40px;
+            width: 40px;
+            border-top: 2px solid $hr-red;
+            transform: translateY(-50%);
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -40px;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: $hr-red;
+          }
+        }
+
+        .hr-comment-left {
+          position: relative;
+          margin-right: 50px;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 40px;
+            border-top: 2px solid $hr-blue;
+            transform: translateY(-50%);
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 40px);
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: $hr-blue;
+          }
+        }
       }
     }
 
     @include sp() {
-      & > .d-flex {
-        flex-direction: column;
-      }
-
-      #image-container {
-        width: 100%;
-      }
-
-      #description-container {
-        align-items: center;
-        gap: 1rem;
-
-        #name-container {
-          flex-direction: column;
-          gap: 0;
-        }
-      }
-    }
-  }
-
-  #tab-background {
-    #background-container {
-      position: relative;
-      text-align: center;
-      padding: 0 1rem;
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: -20px; // 上下にはみ出す設定
-        left: 50%;
-        height: calc(100% + 40px); // 上下にはみ出す設定
-        border-left: 5px solid white;
-        z-index: $hr-back-z-index;
-      }
-
-      .hr-comment-right {
-        position: relative;
-        margin-left: 50px;
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: -40px;
-          width: 40px;
-          border-top: 2px solid $hr-red;
-          transform: translateY(-50%);
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: -40px;
-          transform: translate(-50%, -50%);
-          width: 10px;
-          height: 10px;
-          background-color: $hr-red;
-        }
-      }
-
-      .hr-comment-left {
-        position: relative;
-        margin-right: 50px;
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          width: 40px;
-          border-top: 2px solid $hr-blue;
-          transform: translateY(-50%);
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: calc(100% + 40px);
-          transform: translate(-50%, -50%);
-          width: 10px;
-          height: 10px;
-          background-color: $hr-blue;
-        }
-      }
-    }
-  }
-
-  #tab-skills {
-    .row {
-      margin-bottom: 4vh;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 }
