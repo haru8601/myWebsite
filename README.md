@@ -48,11 +48,11 @@ Spring Data JPAを使用。
 - 基本はbootstrapのクラスを使用
 - 独自のクラス名を使う場合、`hr-`のprefixを付ける
 
-#### コンパイル
+#### レスポンシブ
 
-```sh
-npm run scss
-```
+- レスポンシブの境界は`768px`とする
+  - iPadなどはPCサイズ, iPhoneはSPサイズとなる
+- 可能な限りbootstrapのBreakpointsである`md`を使用する
 
 ## ライブラリ管理
 
