@@ -17,7 +17,7 @@
             ></th:block>
           </a>
         </div>
-        <div id="header-links" class="align-items-center gap-5">
+        <div class="d-md-flex d-none align-items-center gap-5">
           <th:block
             th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
           >
@@ -33,14 +33,14 @@
             >
           </th:block>
         </div>
-        <div id="header-menu-icon">
+        <div id="header-menu-icon" class="d-md-none d-block">
           <i class="fa-solid fa-bars fa-2x"></i>
           <i class="d-none fa-solid fa-xmark fa-2x"></i>
         </div>
       </div>
       <div
         id="header-menu-section"
-        class="d-none container-fluid pt-5"
+        class="d-none bg-black container-fluid pt-5"
         tabindex="-1"
       >
         <th:block

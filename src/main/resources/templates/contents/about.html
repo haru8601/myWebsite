@@ -12,12 +12,15 @@
 
   <body>
     <main id="about" layout:fragment="content">
-      <ul id="tabs" class="nav nav-tabs">
+      <ul
+        id="tabs"
+        class="nav nav-tabs justify-content-md-end justify-content-around gap-md-2 me-md-3 mx-2"
+      >
         <li
           class="nav-item border-top border-start border-end border-2 rounded-top"
         >
           <a
-            class="nav-link active p-2"
+            class="nav-link active py-2 px-md-3 px-2"
             data-bs-toggle="tab"
             data-bs-target="#tab-profile"
             type="button"
@@ -51,14 +54,17 @@
         </li>
       </ul>
 
-      <div id="tab-container" class="tab-content border border-2 rounded py-5">
+      <div
+        id="tab-container"
+        class="tab-content border border-2 rounded py-5 px-md-5 px-3"
+      >
         <div
           id="tab-profile"
           class="tab-pane fade show active"
           role="tabpanel"
           tabindex="0"
         >
-          <div class="d-flex gap-3">
+          <div class="d-flex gap-3 flex-md-row flex-column">
             <div
               id="image-container"
               class="d-flex align-items-center justify-content-center"
@@ -70,9 +76,13 @@
                 class="object-fit-contain"
               >
             </div>
-            <div id="description-container" class="d-flex flex-column">
+            <div
+              class="d-flex flex-column gap-md-2 gap-3 align-items-md-start align-items-center"
+            >
               <div>No. 086</div>
-              <div id="name-container" class="d-flex align-items-center">
+              <div
+                class="d-flex flex-md-row flex-column align-items-center gap-md-3 gap-0"
+              >
                 <p class="hr-dot h2 m-0">HAROOT</p>
                 <h4 class="m-0">はるーと</h4>
               </div>
@@ -118,12 +128,12 @@
           <div class="container-fluid">
             <div class="row">
               <div
-                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+                class="hr-skill-category hr-dot h5 col-md-5 align-content-center text-md-start text-center mb-md-0 mb-3"
               >
                 BACKEND
               </div>
               <div
-                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+                class="hr-skill-tags col-md-7 d-flex flex-wrap gap-2 align-content-center justify-content-md-start justify-content-center"
               >
                 <th:block
                   th:replace="~{layout/tag :: tag(Java, Language)}"
@@ -147,12 +157,12 @@
             </div>
             <div class="row">
               <div
-                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+                class="hr-skill-category hr-dot h5 col-md-5 align-content-center text-md-start text-center mb-md-0 mb-3"
               >
                 FRONTEND
               </div>
               <div
-                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+                class="hr-skill-tags col-md-7 d-flex flex-wrap gap-2 align-content-center justify-content-md-start justify-content-center"
               >
                 <th:block
                   th:replace="~{layout/tag :: tag(Typescript, Language)}"
@@ -167,12 +177,12 @@
             </div>
             <div class="row">
               <div
-                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+                class="hr-skill-category hr-dot h5 col-md-5 align-content-center text-md-start text-center mb-md-0 mb-3"
               >
                 INFRASTRUCTURE
               </div>
               <div
-                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+                class="hr-skill-tags col-md-7 d-flex flex-wrap gap-2 align-content-center justify-content-md-start justify-content-center"
               >
                 <th:block
                   th:replace="~{layout/tag :: tag(Athena, Infrastructure)}"
@@ -199,12 +209,12 @@
             </div>
             <div class="row">
               <div
-                class="hr-skill-category hr-dot h5 col-5 align-content-center"
+                class="hr-skill-category hr-dot h5 col-md-5 align-content-center text-md-start text-center mb-md-0 mb-3"
               >
                 OTHERS
               </div>
               <div
-                class="hr-skill-tags col-7 d-flex flex-wrap gap-2 align-content-center"
+                class="hr-skill-tags col-md-7 d-flex flex-wrap gap-2 align-content-center justify-content-md-start justify-content-center"
               >
                 <th:block
                   th:replace="~{layout/tag :: tag(JUnit, Tools)}"
@@ -222,20 +232,20 @@
           role="tabpanel"
           tabindex="0"
         >
-          <div id="background-container">
-            <div class="bg-black my-3">
+          <div id="background-container" class="text-md-center text-start px-3">
+            <div class="hr-career-title my-3">
               <p class="h4">
                 <span class="hr-dot h3">2021/03</span>
                 <br>
                 <span>東京工業大学 地球惑星科学系 卒業</span>
               </p>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid pb-3">
               <div class="row">
-                <div class="col"></div>
+                <div class="col-md-7 col-3"></div>
                 <div class="col">
                   <div
-                    class="hr-comment-right border border-danger d-flex flex-column text-start p-2"
+                    class="hr-comment-right d-flex flex-column text-start p-2"
                   >
                     <div>ニートになる</div>
                     <div>Qiita記事投稿開始</div>
@@ -246,71 +256,71 @@
                 </div>
               </div>
             </div>
-            <div class="bg-black my-3">
+            <div class="hr-career-title my-3">
               <p class="h4">
                 <span class="hr-dot h3">2021/06</span>
                 <br>
                 <span>SES 就職</span>
               </p>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid pb-3">
               <div class="row">
-                <div class="col"></div>
+                <div class="col-md-7 col-3"></div>
                 <div class="col">
                   <div
-                    class="hr-comment-right border border-danger d-flex flex-column text-start p-2"
+                    class="hr-comment-right d-flex flex-column text-start p-2"
                   >
                     <div>Twitterのbot作成</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid pb-3">
               <div class="row">
-                <div class="col">
+                <div class="col order-md-0 order-1">
                   <div
-                    class="hr-comment-left border border-primary d-flex flex-column text-end p-2"
+                    class="hr-comment-left d-flex flex-column text-md-end text-start p-2"
                   >
                     <div>Java Silver 取得</div>
                     <div>Oracle Bronze DBA 取得</div>
                     <div>基本情報 取得</div>
                   </div>
                 </div>
-                <div class="col"></div>
+                <div class="col-md-7 col-3"></div>
               </div>
             </div>
-            <div class="bg-black my-3">
+            <div class="hr-career-title my-3">
               <p class="h4">
                 <span class="hr-dot h3">2022/11</span>
                 <br>
                 <span>チーム⚪︎ボ 就職</span>
               </p>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid pb-3">
               <div class="row">
-                <div class="col"></div>
+                <div class="col-md-7 col-3"></div>
                 <div class="col">
                   <div
-                    class="hr-comment-right border border-danger d-flex flex-column text-start p-2"
+                    class="hr-comment-right d-flex flex-column text-start p-2"
                   >
                     <div>ポケモンしりとりサイト作成</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid pb-3">
               <div class="row">
-                <div class="col">
+                <div class="col order-md-0 order-1">
                   <div
-                    class="hr-comment-left border border-primary d-flex flex-column text-end p-2"
+                    class="hr-comment-left d-flex flex-column text-md-end text-start p-2"
                   >
                     <div>AWS SAA 取得</div>
                   </div>
                 </div>
-                <div class="col"></div>
+                <div class="col-md-7 col-3"></div>
               </div>
             </div>
-            <div class="bg-black my-3">
+            <div class="hr-career-title my-3">
               <p class="h4">
                 <span class="hr-dot h3">2026/02</span>
                 <br>

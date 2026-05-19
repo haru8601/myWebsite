@@ -1,18 +1,14 @@
 @use "variables" as *;
-
-// カラーテーマ変更
-$primary: $hr-blue;
-$success: $hr-green;
-$warning: $hr-purple;
-$danger: $hr-red;
-// NOTE: text-bg-${theme}クラスが背景色からテキストの色を自動判別する際に使われる値.
-// デフォルトだと全て黒文字になってしまうので、割合を変更している
-$min-contrast-ratio: 2;
-
-// aboutで使用するタブのカスタマイズ
-$nav-tabs-link-active-color: white;
-$nav-tabs-link-active-bg: $hr-bg-color-default;
-$nav-tabs-border-width: 0;
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+  $primary: $hr-blue,
+  $success: $hr-green,
+  $warning: $hr-purple,
+  $danger: $hr-red,
+  $min-contrast-ratio: 2,
+  $nav-tabs-link-active-color: white,
+  $nav-tabs-link-active-bg: $hr-bg-color-default,
+  $nav-tabs-border-width: 0
+);
 
 // カラーテーマを背景色に使った時のテキストカラー
 .text-bg-primary,
@@ -23,6 +19,3 @@ $nav-tabs-border-width: 0;
 .text-bg-success {
   color: white;
 }
-
-// NOTE: @useに移行すべきだが、bootstrap5が未対応なため@importを使用
-@import "~bootstrap/scss/bootstrap";

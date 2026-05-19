@@ -55,23 +55,8 @@ html {
         margin-bottom: -2px;
       }
 
-      // NOTE: bootstrapのクラスにしてしまうと、
-      // レスポンシブ時もクラスが優先されるためscssで指定している
-      #header-links {
-        display: flex;
-      }
-      #header-menu-icon {
-        display: none;
-      }
-
-      @include sp() {
-        #header-links {
-          display: none;
-        }
-        #header-menu-icon {
-          display: block;
-        }
-        #header-menu-section {
+      #header-menu-section {
+        @include sp() {
           position: fixed;
           left: 50%;
           transform: translateX(-50%);
@@ -80,7 +65,6 @@ html {
           width: 100%;
           height: 100vh;
           padding: 0 20vw;
-          background-color: $hr-bg-color-default;
         }
       }
     }

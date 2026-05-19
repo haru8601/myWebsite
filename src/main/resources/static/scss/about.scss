@@ -3,10 +3,6 @@
 #about {
   // bootstrapクラスの修正
   .nav-tabs {
-    margin-right: 2vw;
-    justify-content: flex-end;
-    gap: 0.5rem;
-
     .nav-item {
       position: relative;
     }
@@ -35,50 +31,20 @@
       }
     }
 
-    @include sp() {
-      margin-right: 0;
-      justify-content: space-around;
-      gap: 0;
-
-      .nav-link .hr-dot {
+    .nav-link .hr-dot {
+      @include sp() {
         font-size: 0.8rem;
       }
     }
   }
 
   #tab-container {
-    padding-left: 3rem;
-    padding-right: 3rem;
-
     #tab-profile {
       #image-container {
         width: 40%;
-      }
 
-      #description-container {
-        gap: 0.5rem;
-        #name-container {
-          gap: 1rem;
-        }
-      }
-
-      @include sp() {
-        & > .d-flex {
-          flex-direction: column;
-        }
-
-        #image-container {
+        @include sp() {
           width: 100%;
-        }
-
-        #description-container {
-          align-items: center;
-          gap: 1rem;
-
-          #name-container {
-            flex-direction: column;
-            gap: 0;
-          }
         }
       }
     }
@@ -87,38 +53,34 @@
       .row {
         margin-bottom: 4vh;
       }
-
-      @include sp() {
-        .hr-skill-category {
-          width: 100%;
-          text-align: center;
-        }
-        .hr-skill-tags {
-          width: 100%;
-          justify-content: center;
-        }
-      }
     }
 
     #tab-background {
       #background-container {
         position: relative;
-        text-align: center;
-        padding: 0 1rem;
 
         &::before {
           content: "";
           position: absolute;
           top: -20px; // 上下にはみ出す設定
           left: 50%;
+          transform: translateX(-50%);
           height: calc(100% + 40px); // 上下にはみ出す設定
           border-left: 5px solid white;
           z-index: $hr-back-z-index;
+
+          @include sp() {
+            left: 10%;
+          }
         }
 
-        .hr-comment-right {
+        .hr-career-title {
+          background-color: $hr-bg-color-default;
+        }
+
+        @mixin hr-comment-right-style {
           position: relative;
-          margin-left: 50px;
+          border: 1px solid $hr-red;
 
           &::before {
             content: "";
@@ -142,9 +104,13 @@
           }
         }
 
+        .hr-comment-right {
+          @include hr-comment-right-style;
+        }
+
         .hr-comment-left {
           position: relative;
-          margin-right: 50px;
+          border: 1px solid $hr-blue;
 
           &::before {
             content: "";
@@ -166,13 +132,13 @@
             height: 10px;
             background-color: $hr-blue;
           }
+
+          @include sp() {
+            // NOTE: sp時は右側のコメントとスタイルを合わせる
+            @include hr-comment-right-style;
+          }
         }
       }
-    }
-
-    @include sp() {
-      padding-left: 1rem;
-      padding-right: 1rem;
     }
   }
 }
