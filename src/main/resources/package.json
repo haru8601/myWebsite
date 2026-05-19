@@ -1,0 +1,39 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "haroot のホームページ。リンクは[こちら](https://haroot.net)。",
+  "license": "ISC",
+  "author": "haroot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bundle": "webpack",
+    "clean": "rm -rf ./static/dist/",
+    "format": "biome format --write",
+    "format:html": "prettier --write '**/*.html'",
+    "lint": "biome lint --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.14",
+    "@types/grecaptcha": "^3.0.9",
+    "css-loader": "^7.1.4",
+    "mini-css-extract-plugin": "^2.10.2",
+    "sass": "^1.99.0",
+    "sass-loader": "^16.0.7",
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.2"
+  },
+  "dependencies": {
+    "@fontsource/jersey-10": "^5.2.8",
+    "@fontsource/noto-sans-jp": "^5.2.9",
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "bootstrap": "^5.3.8",
+    "dompurify": "^3.4.0",
+    "highlight.js": "^11.11.1",
+    "marked": "^18.0.2",
+    "marked-gfm-heading-id": "^4.1.4",
+    "prettier": "^3.8.3"
+  }
+}

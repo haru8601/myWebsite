@@ -1,29 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <head>
     <title>header page</title>
   </head>
 
   <body>
-    <header layout:fragment="header">
-      <div class="container header-content flex">
-        <div class="header-logo">
-          <a href="/">haroot.net</a>
-          <th:block th:if="${isTop != null && isTop}">
-            <span class="header-info">ビンゴやる？</span>
+    <header
+      th:fragment="header"
+      class="py-3 border-bottom border-1 border-black bg-black"
+    >
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <a href="/" role="button">
+            <th:block
+              th:replace="~{layout/embedded-svg :: embeddedSvg('/images/haroot-logo.svg', '150px', 'auto')}"
+            ></th:block>
+          </a>
+        </div>
+        <div class="d-md-flex d-none align-items-center gap-5">
+          <th:block
+            th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+          >
+            <a
+              class="d-flex gap-1 align-items-baseline pb-2"
+              th:classappend="${uri.startsWith('/' + topic.url) ? 'hr-active-topic' : ''}"
+              th:href="@{|/${topic.url}|}"
+            >
+              <th:block
+                th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px', 'auto')}"
+              ></th:block>
+              <p class="hr-dot m-0" th:text="${topic.title}"></p></a
+            >
           </th:block>
         </div>
-        <div class="flex">
-          <button id="sound-play" onclick="soundPlay()">
-            <i class="fa-solid fa-play"></i>
-          </button>
-          <button class="down-btn" onclick="soundStop()">
-            <i class="fa-solid fa-stop"></i>
-          </button>
-          <button class="down-btn" onclick="menu()">
-            <i class="fa-solid fa-bars"></i>
-          </button>
+        <div id="header-menu-icon" class="d-md-none d-block">
+          <i class="fa-solid fa-bars fa-2x"></i>
+          <i class="d-none fa-solid fa-xmark fa-2x"></i>
         </div>
+      </div>
+      <div
+        id="header-menu-section"
+        class="d-none bg-black container-fluid pt-5"
+        tabindex="-1"
+      >
+        <th:block
+          th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+        >
+          <a class="hr-active-topic row pb-3 mb-4" th:href="@{|/${topic.url}|}">
+            <div class="col-2">
+              <th:block
+                th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px', 'auto')}"
+              ></th:block>
+            </div>
+            <div class="col-10">
+              <p class="hr-dot h1 m-0" th:text="${topic.title}"></p>
+            </div></a
+          >
+        </th:block>
       </div>
     </header>
   </body>

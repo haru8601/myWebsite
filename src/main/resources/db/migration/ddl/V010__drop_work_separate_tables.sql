@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS `ios_app`;
+
+DROP TABLE IF EXISTS `music`;
+
+DROP TABLE IF EXISTS `poke`;

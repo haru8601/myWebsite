@@ -1,0 +1,15 @@
+@use "variables" as *;
+
+#contact {
+  form {
+    input[type="checkbox"]:checked {
+      background-color: $hr-red;
+      border-color: white;
+    }
+    input:not([type="checkbox"]):not([type="submit"]),
+    textarea {
+      width: $hr-input-width-default;
+      min-width: $hr-input-width-min;
+    }
+  }
+}

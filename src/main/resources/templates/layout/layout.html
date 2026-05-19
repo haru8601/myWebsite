@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
+  lang="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   xmlns:th="http://www.thymeleaf.org"
-  th:with="site=${@environment.getProperty('path.site')}"
+  th:with="site=${@environment.getProperty('path.site')},profile=${@environment.getProperty('spring.profiles.active')}"
 >
   <head>
     <!-- gtag読み込み -->
@@ -11,58 +12,45 @@
       src="https://www.googletagmanager.com/gtag/js?id=G-KG2Q0JRLTH"
     ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-KG2Q0JRLTH");
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      // biome-ignore lint/complexity/noArguments: gtag公式の記述方法
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-KG2Q0JRLTH");
     </script>
 
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
-    />
-    <!--bootstrap用-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" th:href="@{/css/stylesheet.css}" />
+    >
     <link
       rel="stylesheet"
-      th:href="@{/css/responsive.css}"
-      media="print"
-      onload="this.media='all'"
-    />
-    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" />
-    <!--FontAwesome用-->
-    <script
-      src="https://kit.fontawesome.com/cee3ec41f4.js"
-      crossorigin="anonymous"
-    ></script>
+      type="text/css"
+      media="all"
+      th:href="@{/dist/bundler.css}"
+    >
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
     <title>layout page</title>
   </head>
 
   <body>
-    <header layout:replace="~{/layout/header::header}"></header>
-    <div class="except-header">
-      <div class="except-aside">
-        <div class="container">
-          <main layout:fragment="content"></main>
-        </div>
-        <th:block th:if="${isTop == null || !isTop}">
-          <!-- adsense設置場所 -->
-          <div layout:replace="~{/layout/ads::ads}"></div>
+    <header th:replace="~{/layout/header::header}"></header>
+    <div>
+      <main layout:fragment="content"></main>
+      <th:block th:if="${isTop == null || !isTop}">
+        <!-- adsense設置場所 -->
+        <th:block th:if="${profile != 'local'}">
+          <div th:replace="~{/layout/ads::ads}"></div>
         </th:block>
-        <div layout:replace="~{/layout/footer::footer}"></div>
-      </div>
-      <div layout:replace="~{/layout/menuBar::menuBar}"></div>
-      <script th:src="@{/js/menu.js}"></script>
+      </th:block>
+      <div th:replace="~{/layout/footer::footer}"></div>
     </div>
+    <script th:src="@{/dist/bundler.bundle.js}"></script>
+    <script th:src="@{/dist/embed-svg.bundle.js}"></script>
+    <script th:src="@{/dist/toggle-menu.bundle.js}"></script>
   </body>
 </html>

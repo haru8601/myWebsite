@@ -1,149 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
-  la="ja"
+  lang="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{/layout/layout}"
   th:with="topic=${T(com.haroot.home_page.enums.TopicEnum).ARTICLES}"
 >
-  <head
-    prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"
-    th:object="${article}"
-  >
-    <title th:text="|*{title} - ${site}|">haroot</title>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}" />
-    <meta name="description" th:content="|*{title}についての記事です。|" />
-    <!--marked用-->
-    <script src="https://cdn.jsdelivr.net/npm/marked@16.3.0/lib/marked.umd.min.js"></script>
-    <!-- ヘッダーにidを付与する -->
-    <script src="https://cdn.jsdelivr.net/npm/marked-gfm-heading-id@4.1.2/lib/index.umd.min.js"></script>
-    <!--syntaxHighlight用-->
+  <!--/* OGP用の名前空間をprefixで定義 */-->
+  <head prefix="og: http://ogp.me/ns#" th:object="${article}">
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-    <!--jquery用-->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      type="text/css"
+      media="all"
+      th:href="@{/dist/preview-markdown.css}"
+    >
+
+    <title th:text="|*{title} - ${site}|">haroot</title>
+    <meta name="description" th:content="|*{title}についての記事です。|">
     <!--Twitterカード用-->
     <!--twitter以外でも使えるやつ-->
-    <meta property="og:type" content="article" />
-    <meta id="share-title" property="og:title" th:content="*{title}" />
+    <meta property="og:type" content="article">
+    <meta id="share-title" property="og:title" th:content="*{title}">
     <meta
       id="share-detail"
       property="og:description"
       th:content="|*{title}についての記事です。|"
-    />
+    >
     <meta
       id="share-url"
       property="og:url"
-      th:content="@{|/${topic.getUrl()}/*{id}|}"
-    />
-    <meta property="og:site_name" content="${site}" />
+      th:content="@{|/${topic.url}/*{id}|}"
+    >
+    <meta property="og:site_name" content="${site}">
     <meta
       property="og:image"
-      th:content="|https://haroot.net/images/${topic.getUrl()}/*{id}/thumbnail.png|"
-    />
+      th:content="|https://haroot.net/images/${topic.url}/*{id}/thumbnail.png|"
+    >
     <!--twitter特有の設定-->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@haroot_net" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@haroot_net">
   </head>
 
   <body>
     <main
-      class="articles flex"
-      id="template"
+      id="article-template"
       layout:fragment="content"
       th:object="${article}"
     >
-      <div id="articleMain">
-        <th:block th:if="${errStr!=''}">
-          <p class="errStr" th:text="${errStr}"></p>
-        </th:block>
-        <h2 class="title" th:text="*{title}"></h2>
-        <th:block th:if="*{wip==true}">
-          <p>※非公開</p>
-        </th:block>
-        <p th:if="*{createDate != null}">
-          作成日時:
-          <span
-            th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"
-          ></span>
-        </p>
-        <p th:if="*{updateDate != null}">
-          更新日時:
-          <span
-            th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
-          ></span>
-        </p>
-        <pre>
-				<div class="marked" id="content"></div>
-			</pre>
-        <script th:inline="javascript">
-          //コードブロックをハイライト
-          hljs.highlightAll();
-          //thymleafのインライン処理(デフォルトを""にした)
-          let text = /*[[*{content}]]*/ "";
-          //部分的なコードはmarkedが対応してないから自分でspanにして色付け
-          text = text.replaceAll(
-            /`(?!`)(.*?)`/gm,
-            "<span class='part-code'>$1</span>"
-          );
-          //リンクは別タブにしたいのでhtml化
-          //ただし画像のリンクは対象外に(safariが後読み非対応らしいので[^!]で)
-          text = text.replaceAll(
-            /([^!])\[(.*?)\]\((.*?)\)/gm,
-            `$1<a href="$3" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i>$2</a>`
-          );
-          //テキストをマークダウン化して貼り付け
-          marked.use(window.markedGfmHeadingId.gfmHeadingId({ prefix: "" }));
-          document.getElementById("content").innerHTML = marked.parse(text);
-        </script>
-        <a class="back-btn" th:href="@{|/articles|}">一覧へ戻る</a>
-        <th:block th:if="${session.isLogin}">
-          <a class="btn1 right" th:href="@{|/articles/edit/*{id}|}">編集</a>
-        </th:block>
-        <div class="clear"></div>
+      <div id="back-list-section">
+        <th:block
+          th:replace="~{layout/back-list :: backList(|/${topic.url}|, ${topic.title})}"
+        ></th:block>
       </div>
-      <div id="tableOfContents">
-        <div id="contents-sticky"></div>
-      </div>
-      <!-- リンクサイドバー -->
-      <!-- Mobile用に一番下に配置 -->
-      <div id="links">
-        <div>
-          <button type="button" onclick="updateCount()">
-            <i class="fa-solid fa-thumbs-up"></i>
-          </button>
-          <p id="likeCount" th:text="${likeCount}">0</p>
-        </div>
-        <div>
-          <a
-            target="_blank"
-            href="https://twitter.com/share?url=https://haroot.net"
-            class="twitter-share-button"
-            data-show-count="false"
+      <div class="d-flex">
+        <!-- リンクや共有などの操作セクション -->
+        <div id="article-actions" class="position-relative">
+          <div
+            id="article-actions-section"
+            class="d-flex flex-column align-items-center gap-4"
           >
-            <i class="fa-brands fa-twitter"> </i>
-          </a>
+            <div>
+              <a id="like-btn" role="button" aria-label="記事をいいねする">
+                <div id="not-like-icon">
+                  <th:block
+                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '30px', 'auto')}"
+                  ></th:block>
+                </div>
+                <div id="liked-icon" class="d-none">
+                  <th:block
+                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart-red.svg', '30px', 'auto')}"
+                  ></th:block>
+                </div>
+              </a>
+              <p
+                id="like-count"
+                th:text="${likeCount}"
+                class="hr-dot text-center"
+              >
+                0
+              </p>
+            </div>
+            <div>
+              <a
+                id="tweet-article-btn"
+                role="button"
+                aria-label="記事をツイートする"
+              >
+                <i class="hr-icon fa-brands fa-x-twitter"></i>
+              </a>
+            </div>
+            <div class="d-flex flex-column">
+              <a
+                id="copy-link-btn"
+                class="mx-auto"
+                role="button"
+                aria-label="リンクをコピーする"
+              >
+                <i class="fa-solid fa-link text-white fs-4"></i>
+              </a>
+              <p
+                id="copied-text"
+                class="d-none hr-dot bg-white text-black text-center rounded-pill my-2 px-2 py-1"
+              >
+                LINK COPIED!
+              </p>
+            </div>
+          </div>
         </div>
-        <div>
-          <button onclick="copy()"><i class="fa-solid fa-link"></i></button>
-          <p id="copyText">copied!</p>
+        <!-- 記事詳細 -->
+        <div id="article-detail">
+          <th:block th:if="${errStr!=''}">
+            <p class="text-danger" th:text="${errStr}"></p>
+          </th:block>
+          <p id="title" th:text="*{title}" class="h2 fw-bold"></p>
+          <th:block th:if="*{wip==true}"> <p>※非公開</p> </th:block>
+          <p th:if="*{createDate != null}">
+            作成日時:
+            <span
+              th:text="${#temporals.format(article.createDate, 'yyyy/MM/dd')}"
+            ></span>
+          </p>
+          <p th:if="*{updateDate != null}">
+            更新日時:
+            <span
+              th:text="${#temporals.format(article.updateDate, 'yyyy/MM/dd')}"
+            ></span>
+          </p>
+          <pre>
+            <!--/* NOTE: utextで例えば<br>を"&lt;br&gt;"のようにエスケープさせず直接渡している */-->
+            <div id="md-content-section" th:utext="*{content}"></div>
+          </pre>
+          <th:block th:if="${session.isLogin}">
+            <a class="btn btn-primary" th:href="@{|/articles/edit/*{id}|}"
+              >編集</a
+            >
+          </th:block>
+        </div>
+        <!-- 目次 -->
+        <div id="article-toc" class="position-relative">
+          <div id="article-toc-section" class="border mx-3 p-3"></div>
         </div>
       </div>
-      <script th:src="@{/js/tableOfContents.js}"></script>
-      <script>
-        //ツイート内容カスタマイズ
-        const tweetBtn = document.getElementsByClassName(
-          "twitter-share-button"
-        )[0];
-        const title = document.getElementsByClassName("title")[0].textContent;
-        const articleUrl = location.href;
-        const tweetUrl = `https://twitter.com/share?text=${title}&url=${articleUrl}`;
-        tweetBtn.setAttribute("href", tweetUrl);
-      </script>
-      <script th:src="@{/js/likeInfo.js}"></script>
-      <script th:src="@{/js/copy.js}"></script>
+      <script th:src="@{/dist/preview-markdown.bundle.js}"></script>
+      <script th:src="@{/dist/insert-toc.bundle.js}"></script>
+      <script th:src="@{/dist/tweet-article.bundle.js}"></script>
+      <script th:src="@{/dist/like-article.bundle.js}"></script>
+      <script th:src="@{/dist/copy-link.bundle.js}"></script>
     </main>
   </body>
 </html>

@@ -1,28 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html
-  la="ja"
+  lang="ja"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{/layout/layout}"
 >
   <head>
     <title th:text="|記事作成 - ${site}|">haroot</title>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/articles.css}" />
     <!--simpleMDE用-->
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
-    />
+    >
     <!--syntaxHighlight用-->
-    <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css"
-    />
+    >
     <meta
       name="description"
       content="harootが技術記事作成するためのページです。現状他の方はご利用いただけません。"
-    />
+    >
   </head>
 
   <body>
@@ -39,7 +42,7 @@
           class="check-failed"
         ></p>
         <label for="title">タイトル</label>
-        <input th:field="*{title}" class="name" name="title" />
+        <input th:field="*{title}" class="name" name="title">
 
         <p
           th:if="${#fields.hasErrors('content')}"
@@ -59,27 +62,28 @@
             cols="40"
           ></textarea>
           <script>
-            //マークダウンプレビュー用クラス
-            let simplemde = new SimpleMDE({
-              element: document.getElementById("mde"),
-              placeholder: "Please input the content here.",
-              renderingConfig: {
-                codeSyntaxHighlighting: true,
-              },
-            });
+          //マークダウンプレビュー用クラス
+          new SimpleMDE({
+            element: document.getElementById("mde"),
+            placeholder: "Please input the content here.",
+            renderingConfig: {
+              codeSyntaxHighlighting: true,
+            },
+          });
           </script>
         </div>
 
         <label for="wip1" class="input-label">非公開</label>
-        <input th:field="*{wip}" type="checkbox" th:checked="*{wip}" />
-        <input th:field="*{id}" type="hidden" />
+        <input th:field="*{wip}" type="checkbox" th:checked="*{wip}">
+        <input th:field="*{id}" type="hidden">
 
         <!--Enterによる誤送信を防ぐためonclickでsubmitを実施する-->
-        <input class="submit" type="button" value="送信" onclick="submit()" />
+        <input class="submit" type="button" value="送信" onclick="submit()">
       </form>
-      <input type="file" id="imageFile" onchange="uploadImage()" />
-      <script th:src="@{/js/uploadImage.js}"></script>
-      <a class="btn1" href="/articles">記事一覧へ戻る</a>
+      <input type="file" id="imageFile">
+      <!--/* HACK: 一度記事作成が完了しないと、idがないため画像を保存できない */-->
+      <script th:src="@{/dist/upload-image.bundle.js}"></script>
+      <a href="/articles">記事一覧へ戻る</a>
     </main>
   </body>
 </html>

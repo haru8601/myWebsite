@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+  <!--/* NOTE: フッターやヘッダーがないため、layout.htmlを使用しない */-->
+  <!--/* OGP用の名前空間をprefixで定義 */-->
+  <head prefix="og: http://ogp.me/ns#">
+    <!--/* layout.htmlと同じ設定 */-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    >
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      th:href="@{/dist/bundler.css}"
+    >
+    <!-- FIXME: デザインリニューアル時に対応 -->
+    <!-- <link
+      rel="stylesheet"
+      th:href="@{/css/responsive.css}"
+      media="print"
+      onload="this.media='all'"
+    /> -->
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+    <!--/* layout.htmlと同じ設定ここまで */-->
+
+    <title>はるーとのホームページ - haroot.net</title>
+    <meta
+      name="description"
+      content="はるーとのホームページです。自作iosアプリの概要ページ、awsやspringbootについての技術記事、自分のyoutubeの紹介ページ等で構成されています。"
+    >
+    <!--Twitterカード用-->
+    <!--twitter以外でも使えるやつ-->
+    <meta property="og:type" content="website">
+    <meta id="share-title" property="og:title" content="はるーとのホームページ">
+    <meta
+      id="share-detail"
+      property="og:description"
+      content="haroot.netのホームページです。"
+    >
+    <meta id="share-url" property="og:url" content="https://haroot.net">
+    <meta property="og:site_name" th:content="${site}">
+    <meta property="og:image" content="https://haroot.net/images/homePage.png">
+    <!--twitter特有の設定-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@haroot_net">
+  </head>
+
+  <body>
+    <main id="top" layout:fragment="content">
+      <div class="hr-title d-flex justify-content-center">
+        <th:block
+          th:replace="~{layout/embedded-svg :: embeddedSvg('/images/haroot-logo.svg', '300px', 'auto')}"
+        ></th:block>
+      </div>
+      <div class="d-flex flex-column align-items-center gap-4">
+        <a
+          th:each="topic, stat: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
+          th:href="${topic.url}"
+        >
+          <div>
+            <p
+              class="hr-choose-item h1"
+              th:data-hr-choose-index="${stat.index}"
+            >
+              <i
+                th:if="${stat.index == 0}"
+                class="fa-solid fa-caret-right hr-choose-icon"
+              ></i>
+              <!--/* NOTE: 上下中央に揃えるため、spanだがblockにしている */-->
+              <span class="hr-dot h2 d-block" th:text="${topic.title}"></span>
+            </p>
+          </div>
+        </a>
+      </div>
+    </main>
+    <script th:src="@{/dist/bundler.bundle.js}"></script>
+    <script th:src="@{/dist/top.bundle.js}"></script>
+    <script th:src="@{/dist/embed-svg.bundle.js}"></script>
+  </body>
+</html>

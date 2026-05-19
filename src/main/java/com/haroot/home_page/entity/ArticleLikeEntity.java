@@ -11,20 +11,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "article_like")
+@Table(name = "article_likes")
 @Data
 @NoArgsConstructor
 public class ArticleLikeEntity {
   @Id
-  private int id;
+  private int articleId;
 
   private int likeCount;
 
   @UpdateTimestamp
   private LocalDateTime lastUpdate;
 
-  public ArticleLikeEntity(int id, int likeCount) {
-    this.id = id;
+  public ArticleLikeEntity(int articleId, int likeCount) {
+    this.articleId = articleId;
     this.likeCount = likeCount;
   }
 

@@ -1,0 +1,77 @@
+main#article-template {
+  // サイドバーなどでコンテンツが多いのでmarginを少なくする
+  margin: 1vw 1vh;
+
+  // 戻るボタンのmarginは他ページに合わせる
+  #back-list-section {
+    margin: 5vh 10vw;
+  }
+
+  #article-actions {
+    flex-basis: 10%;
+    order: 1;
+
+    #article-actions-section {
+      position: sticky;
+      top: 20%;
+
+      #copied-text {
+        font-size: 10px;
+      }
+    }
+  }
+
+  #article-detail {
+    flex-basis: 70%;
+    order: 2;
+    // NOTE: これがないとshrinkされない
+    min-width: 0;
+    line-height: 2;
+
+    #md-content-section {
+      text-wrap: auto;
+      overflow-x: hidden;
+
+      // NOTE: markedの仕様として
+      // 親がpreの場合、```a```, 親がそれ以外の場合、`a`である
+      code:not(pre > code) {
+        padding: 3px 5px;
+        margin: 0 5px;
+        vertical-align: baseline;
+        // デフォルトで余白が生まれるのを消すための設定
+        line-height: 1;
+        border-radius: 5px;
+        background-color: gray;
+      }
+
+      pre > code {
+        display: block;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        // NOTE: ページ内リンクがヘッダーに隠れないように余白を持たせる
+        scroll-margin-top: 100px;
+      }
+    }
+  }
+
+  #article-toc {
+    flex-basis: 20%;
+    order: 3;
+
+    #article-toc-section {
+      position: sticky;
+      top: 20%;
+      height: 70vh;
+      overflow-y: scroll;
+      overscroll-behavior: contain;
+    }
+  }
+}

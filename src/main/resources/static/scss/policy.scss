@@ -1,0 +1,23 @@
+#policy,
+#policy-english-quiz {
+  & > * {
+    padding: 3vh 0;
+  }
+
+  li {
+    list-style-type: disc;
+  }
+
+  h3 {
+    padding: 2vh 0;
+  }
+
+  @media (max-width: 670px) {
+    h1,
+    h2,
+    h3,
+    p {
+      text-align: start;
+    }
+  }
+}

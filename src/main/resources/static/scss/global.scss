@@ -1,0 +1,143 @@
+@use "variables" as *;
+
+@import "~@fontsource/jersey-10/index.css";
+@import "~@fontsource/noto-sans-jp/500.css";
+@import "~@fontsource/noto-sans-jp/700.css";
+
+@font-face {
+  font-family: "FATPIXEL";
+
+  src:
+    url("../Fonts/FATPIXEL/FATPIXEL.ttf") format("truetype"),
+    url("../Fonts/FATPIXEL/FATPIXEL.woff") format("woff"),
+    url("../Fonts/FATPIXEL/FATPIXEL.otf") format("opentype");
+  // NOTE: FOITが発生してしまうが、NotoSansJPと独自フォントで差が大きく
+  // レイアウトシフトが気になるためblockにしている
+  font-display: block;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  // デフォルトフォント
+  font-family: "Noto Sans JP";
+  // NOTE: mediumのfont-weightを指定
+  font-weight: 500;
+}
+
+html {
+  max-width: 100%;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  body {
+    max-width: 100%;
+    width: 100%;
+    background-color: $hr-bg-color-default;
+    color: white;
+
+    header,
+    footer {
+      // NOTE: marginだとヘッダーに隠れるはずのコンテンツが表示されてしまう
+      padding: 0 5vw;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: $hr-top-z-index;
+
+      .hr-active-topic {
+        border-bottom: 2px solid white;
+        // NOTE: borderの差で他のトピックの文字列と上下中央の位置がズレるのを防いでいる
+        margin-bottom: -2px;
+      }
+
+      #header-menu-section {
+        @include sp() {
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          // NOTE: mainより手前に置いて重ねている
+          z-index: $hr-front-z-index;
+          width: 100%;
+          height: 100vh;
+          padding: 0 20vw;
+        }
+      }
+    }
+
+    main {
+      margin: 5vh 20vw;
+      // エラー画面などコンテンツが少ない場合の最小値
+      min-height: 300px;
+
+      @include sp() {
+        margin: 5vh 5vw;
+      }
+    }
+
+    a {
+      text-decoration: none;
+
+      &:link {
+        color: inherit;
+      }
+
+      &:visited {
+        color: inherit;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+
+    // デフォルトのフォントサイズ設定
+    p,
+    ul > li,
+    pre {
+      font-size: 16px;
+    }
+
+    svg {
+      shape-rendering: crispEdges;
+    }
+
+    // reCAPTCHAのバッジを消す(代わりにテキストでの説明文が必要)
+    .grecaptcha-badge {
+      visibility: hidden;
+    }
+
+    // フォント設定
+    .hr-dot {
+      font-family: "FATPIXEL";
+
+      &.hr-size-1 {
+        font-size: 4rem;
+      }
+    }
+
+    .hr-icon {
+      font-size: 24px;
+    }
+
+    .hr-img {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+    }
+
+    // ボタン設定
+    .hr-inner-shadow-btn {
+      border: none;
+      box-shadow: inset -5px -8px 8px #743232;
+    }
+
+    .hr-outer-shadow-btn {
+      box-shadow: 3px 3px 3px #0c0c0c5e;
+    }
+  }
+}

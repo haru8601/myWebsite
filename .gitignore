@@ -1,4 +1,4 @@
-#root directory
+# root directory
 .apt_generated*
 .history
 .mvn
@@ -6,30 +6,30 @@ target
 mvnw*
 !logback-spring.xml
 
-#hidden
+# hidden
 .DS_Store
 .project
 .classpath
 org.eclipse.*
 org.springframework.*
 
-#other
+# other
 audio
-Fonts
-images
 application*.yml
 test
 .metadata
 Servers
 
-#font
-*.ttf
-*.woff2
-
-#google
+# google
 ads.html
 
 .rewrite-cache
 
 # intellij
 .idea
+
+# frontend
+node_modules/
+Fonts
+images
+dist/

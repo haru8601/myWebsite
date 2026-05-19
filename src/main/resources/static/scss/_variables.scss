@@ -1,0 +1,31 @@
+// カラーテーマ定義
+$hr-blue: #5d94e8;
+$hr-green: #5de894;
+$hr-purple: #cc5de8;
+$hr-red: #e85d5d;
+$hr-bg-color-default: black;
+
+// 他の要素より前面に表示したい場合のz-index
+$hr-front-z-index: 2;
+// 他の要素より背面に表示したい場合のz-index
+$hr-back-z-index: -1;
+// 一番前面に表示したい場合のz-index
+$hr-top-z-index: 10;
+
+$hr-input-width-default: 40vw;
+$hr-input-width-min: 300px;
+
+// レスポンシブ
+$hr-breakpoint-mobile: 768px;
+
+@mixin pc() {
+  @media screen {
+    @content;
+  }
+}
+
+@mixin sp() {
+  @media screen and (max-width: $hr-breakpoint-mobile) {
+    @content;
+  }
+}

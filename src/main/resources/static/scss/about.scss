@@ -1,0 +1,144 @@
+@use "variables" as *;
+
+#about {
+  // bootstrapクラスの修正
+  .nav-tabs {
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link:not(.active) {
+      color: gray;
+    }
+
+    .nav-link.active {
+      color: white;
+      background-color: $hr-bg-color-default;
+
+      // NOTE: 次の.tab-contentと重ね、
+      // 重なり部分の.tab-contentのborderを見えなくしている
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        // NOTE: borderと同じサイズだと、
+        // アンチエイリアシングの問題等で薄く線が残ってしまう
+        // NOTE: ネガティブマージンによるborderの重複削除をしても同様の問題が起こる
+        bottom: -3px;
+        height: 3px;
+        width: 100%;
+        background-color: $hr-bg-color-default;
+      }
+    }
+
+    .nav-link .hr-dot {
+      @include sp() {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  #tab-container {
+    #tab-profile {
+      #image-container {
+        width: 40%;
+
+        @include sp() {
+          width: 100%;
+        }
+      }
+    }
+
+    #tab-skills {
+      .row {
+        margin-bottom: 4vh;
+      }
+    }
+
+    #tab-background {
+      #background-container {
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: -20px; // 上下にはみ出す設定
+          left: 50%;
+          transform: translateX(-50%);
+          height: calc(100% + 40px); // 上下にはみ出す設定
+          border-left: 5px solid white;
+          z-index: $hr-back-z-index;
+
+          @include sp() {
+            left: 10%;
+          }
+        }
+
+        .hr-career-title {
+          background-color: $hr-bg-color-default;
+        }
+
+        @mixin hr-comment-right-style {
+          position: relative;
+          border: 1px solid $hr-red;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -40px;
+            width: 40px;
+            border-top: 2px solid $hr-red;
+            transform: translateY(-50%);
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -40px;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: $hr-red;
+          }
+        }
+
+        .hr-comment-right {
+          @include hr-comment-right-style;
+        }
+
+        .hr-comment-left {
+          position: relative;
+          border: 1px solid $hr-blue;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 40px;
+            border-top: 2px solid $hr-blue;
+            transform: translateY(-50%);
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 40px);
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: $hr-blue;
+          }
+
+          @include sp() {
+            // NOTE: sp時は右側のコメントとスタイルを合わせる
+            @include hr-comment-right-style;
+          }
+        }
+      }
+    }
+  }
+}
