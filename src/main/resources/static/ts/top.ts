@@ -49,5 +49,6 @@ const _getChoosenIndex = (): number => {
   return parseInt(
     chooseIcon.parentElement?.dataset.hrChooseIndex ??
       CHOOSE_ITEM_MIN_INDEX.toString(),
+    10,
   );
 };

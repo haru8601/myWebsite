@@ -10,7 +10,6 @@
     "bundle": "webpack",
     "clean": "rm -rf ./static/dist/",
     "format": "biome format --write",
-    "format:html": "prettier --write '**/*.html'",
     "lint": "biome lint --write"
   },
   "devDependencies": {

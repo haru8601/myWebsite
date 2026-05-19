@@ -11,7 +11,7 @@ const replacedTagArr: { size: number; text: string }[] = [];
 // 抽出したhタグからタグの大きさ、テキストを抽出
 hTagArr?.forEach((hTagText) => {
   const tagInfoObj = { size: 0, text: "" };
-  tagInfoObj.size = parseInt(hTagText.replace(/<h([0-9])/, "$1"));
+  tagInfoObj.size = parseInt(hTagText.replace(/<h([0-9])/, "$1"), 10);
   tagInfoObj.text = hTagText.replace(/<h[0-9].*?>(.*?)<\/h/, "$1");
   replacedTagArr.push(tagInfoObj);
 });
