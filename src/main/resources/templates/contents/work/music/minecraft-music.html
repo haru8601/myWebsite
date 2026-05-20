@@ -26,7 +26,7 @@
             </a>
           </div>
         </div>
-        <div class="row row-cols-2 g-5">
+        <div class="row row-cols-md-2 row-cols-1 g-5">
           <div th:each="video: ${videoList}" th:object="${video}" class="col">
             <a target="_blank" th:href="*{url}">
               <!--/* NOTE: 例外的に横幅をcolの幅に合わせる */-->

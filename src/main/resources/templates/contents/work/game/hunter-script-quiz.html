@@ -19,13 +19,13 @@
         <p class="hr-hunter-script" th:text="*{title}"></p>
 
         <div
-          class="hr-bg-vintage-paper d-flex flex-column align-items-center py-5 my-4 gap-4 position-relative"
+          class="hr-bg-vintage-paper d-flex flex-column align-items-center py-md-5 py-0 my-4 gap-md-4 gap-2 position-relative"
         >
           <!--/* NOTE: 正誤判定のマークはクイズが表示されてるエリアの中心に表示する */-->
           <i id="quizOk" class="hr-quiz-judge fa-regular fa-circle d-none"></i>
           <i id="quizNg" class="hr-quiz-judge fa-solid fa-xmark d-none"></i>
 
-          <div class="d-flex flex-column align-items-center">
+          <div class="d-flex flex-column align-items-center pt-3">
             <label
               id="hunter-q"
               for="hunter-input"
@@ -37,7 +37,7 @@
           <div class="w-75 text-center">
             <input class="form-control d-inline-block" id="hunter-input">
           </div>
-          <div class="d-flex flex-column align-items-center gap-2">
+          <div class="d-flex flex-column align-items-center gap-2 pb-3">
             <button
               type="button"
               id="judge-btn"

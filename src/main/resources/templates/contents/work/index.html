@@ -12,7 +12,10 @@
 
   <body>
     <main id="work" layout:fragment="content">
-      <div id="toc" class="d-flex gap-5 justify-content-center align-items-end">
+      <div
+        id="toc"
+        class="d-flex gap-md-5 gap-4 justify-content-center align-items-end"
+      >
         <a
           th:each="workGenre: ${workListMap}"
           th:href="|#${workGenre.key.name}|"
@@ -37,11 +40,11 @@
             class="hr-dot h1 text-center mb-3"
           ></p>
           <div class="container-fluid">
-            <div class="row row-cols-2 justify-content-around">
+            <div class="row justify-content-around gap-md-0 gap-5">
               <a
                 th:each="work: ${workGenre.value}"
                 th:href="@{|/work/${workGenre.key.url}/${work.name}|}"
-                class="col-5 d-flex flex-column align-items-start"
+                class="col-md-5 col-12 d-flex flex-column align-items-start"
               >
                 <img
                   th:src="@{|/images/work/${workGenre.key.url}/${work.name}/thumbnail.png|}"

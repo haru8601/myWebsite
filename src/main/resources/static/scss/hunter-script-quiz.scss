@@ -15,6 +15,12 @@
     background-image: url("../images/work/game/hunter-script-quiz/vintage_paper.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    background-position: center;
+
+    @include sp() {
+      // HACK: 上手くアスペクト比を無視した拡大ができなかったので上下だけ画像の端が見えるようにしている
+      background-size: auto 100%;
+    }
   }
 
   .hr-quiz-judge {
@@ -34,6 +40,11 @@
   input#hunter-input {
     width: $hr-input-width-default;
     min-width: $hr-input-width-min;
+
+    @include sp() {
+      width: 100%;
+      min-width: unset;
+    }
   }
 
   #quizOk {

@@ -6,7 +6,7 @@ import "../scss/global.scss";
 import "../scss/top.scss";
 import "../scss/about.scss";
 import "../scss/work.scss";
-import "../scss/hunter.scss";
+import "../scss/hunter-script-quiz.scss";
 import "../scss/minecraft-music.scss";
 import "../scss/articles.scss";
 import "../scss/article-template.scss";

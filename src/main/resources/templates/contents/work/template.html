@@ -15,17 +15,17 @@
       <th:block
         th:replace="~{layout/back-list :: backList(|/${topic.url}|, ${topic.title})}"
       ></th:block>
-      <p class="h2" th:text="${work.title}"></p>
+      <p class="h2 fw-bold" th:text="${work.title}"></p>
       <p th:text="${work.titleEn}"></p>
       <div class="container-fluid mt-4 mb-5">
-        <div class="row">
+        <div class="row flex-md-row flex-column gap-md-0 gap-3">
           <!--/* NOTE: 左端をタイトルと合わせるためpaddingを削除 */-->
-          <div class="col-4 p-0">
+          <div class="col-md-4 col-8 p-0">
             <a
               th:if="${work.workUrl}"
               th:href="${work.workUrl}"
               target="_blank"
-              class="hr-inner-shadow-btn btn btn-danger px-3 py-2 d-inline-flex align-items-stretch gap-2"
+              class="hr-inner-shadow-btn btn btn-danger px-3 py-2 d-inline-flex align-items-baseline gap-2"
             >
               <!--/* NOTE: SNSの場合は背景に寄らず画像が見やすいのでデフォルトの画像を使用 */-->
               <th:block th:if="${work.genre.name == 'SNS'}">
@@ -44,7 +44,7 @@
               ></span>
             </a>
           </div>
-          <div class="col-8">
+          <div class="col-md-8 col-12 p-0">
             <p th:text="${work.summary}"></p>
             <p th:text="${work.summaryEn}"></p>
             <a

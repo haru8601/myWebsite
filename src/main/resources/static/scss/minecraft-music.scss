@@ -1,8 +1,14 @@
+@use "variables" as *;
+
 #minecraft-music {
   #firstview-thumbnail {
     width: 70%;
     max-height: 400px;
     object-fit: cover;
     object-position: 0 0;
+
+    @include sp() {
+      width: 100%;
+    }
   }
 }
