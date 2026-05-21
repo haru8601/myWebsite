@@ -1,10 +1,19 @@
+@use "variables" as *;
+
 main#article-template {
   // サイドバーなどでコンテンツが多いのでmarginを少なくする
   margin: 1vw 1vh;
 
-  // 戻るボタンのmarginは他ページに合わせる
+  @include sp() {
+    margin: 1vw 5vh;
+  }
+
   #back-list-section {
     margin: 5vh 10vw;
+
+    @include sp() {
+      margin: 0;
+    }
   }
 
   #article-actions {
@@ -15,8 +24,35 @@ main#article-template {
       position: sticky;
       top: 20%;
 
+      @include sp() {
+        width: 80vw;
+        position: fixed;
+        // NOTE: フッターとなるべく被らない位置
+        top: 75vh;
+        left: 50vw;
+        transform: translateX(-50%);
+
+        border: 5px solid white;
+        border-radius: 50rem;
+        background-color: $hr-bg-color-default;
+      }
+
       #copied-text {
         font-size: 10px;
+        text-wrap: nowrap;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $hr-bg-color-default;
+        background-color: white;
+        border-radius: 50rem;
+
+        @include sp() {
+          color: white;
+          background-color: unset;
+          border-radius: unset;
+        }
       }
     }
   }

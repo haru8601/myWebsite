@@ -51,12 +51,12 @@
           th:replace="~{layout/back-list :: backList(|/${topic.url}|, ${topic.title})}"
         ></th:block>
       </div>
-      <div class="d-flex">
+      <div class="d-md-flex">
         <!-- リンクや共有などの操作セクション -->
         <div id="article-actions" class="position-relative">
           <div
             id="article-actions-section"
-            class="d-flex flex-column align-items-center gap-4"
+            class="d-flex flex-md-column flex-row align-items-md-center align-items-start justify-content-center gap-md-4 gap-5 p-md-0 p-3"
           >
             <div>
               <a id="like-btn" role="button" aria-label="記事をいいねする">
@@ -85,22 +85,20 @@
                 role="button"
                 aria-label="記事をツイートする"
               >
-                <i class="hr-icon fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-x-twitter fa-2x"></i>
               </a>
             </div>
-            <div class="d-flex flex-column">
+            <div
+              class="d-md-flex flex-md-column align-items-md-center position-relative"
+            >
               <a
                 id="copy-link-btn"
-                class="mx-auto"
                 role="button"
                 aria-label="リンクをコピーする"
               >
-                <i class="fa-solid fa-link text-white fs-4"></i>
+                <i class="fa-solid fa-link text-white fa-2x"></i>
               </a>
-              <p
-                id="copied-text"
-                class="d-none hr-dot bg-white text-black text-center rounded-pill my-2 px-2 py-1"
-              >
+              <p id="copied-text" class="d-none hr-dot my-md-2 px-md-2 py-md-1">
                 LINK COPIED!
               </p>
             </div>
@@ -136,7 +134,7 @@
           </th:block>
         </div>
         <!-- 目次 -->
-        <div id="article-toc" class="position-relative">
+        <div id="article-toc" class="position-relative d-md-block d-none">
           <div id="article-toc-section" class="border mx-3 p-3"></div>
         </div>
       </div>

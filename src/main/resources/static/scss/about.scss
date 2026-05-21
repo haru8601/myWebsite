@@ -80,7 +80,6 @@
 
         @mixin hr-comment-right-style {
           position: relative;
-          border: 1px solid $hr-red;
 
           &::before {
             content: "";
@@ -88,7 +87,6 @@
             top: 50%;
             left: -40px;
             width: 40px;
-            border-top: 2px solid $hr-red;
             transform: translateY(-50%);
           }
 
@@ -100,12 +98,20 @@
             transform: translate(-50%, -50%);
             width: 10px;
             height: 10px;
-            background-color: $hr-red;
           }
         }
 
         .hr-comment-right {
           @include hr-comment-right-style;
+          border: 1px solid $hr-red;
+
+          &::before {
+            border-top: 2px solid $hr-red;
+          }
+
+          &::after {
+            background-color: $hr-red;
+          }
         }
 
         .hr-comment-left {
