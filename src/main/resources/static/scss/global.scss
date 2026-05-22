@@ -122,6 +122,10 @@ html {
 
       &.hr-size-1 {
         font-size: 4rem;
+
+        @include sp() {
+          font-size: 2.5rem;
+        }
       }
     }
 

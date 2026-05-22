@@ -2,6 +2,9 @@
 
 #contact {
   form {
+    input[type="checkbox"] {
+      background-color: transparent;
+    }
     input[type="checkbox"]:checked {
       background-color: $hr-red;
       border-color: white;
@@ -10,6 +13,11 @@
     textarea {
       width: $hr-input-width-default;
       min-width: $hr-input-width-min;
+
+      @include sp() {
+        width: 100%;
+        min-width: unset;
+      }
     }
   }
 }
