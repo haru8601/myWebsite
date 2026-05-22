@@ -29,7 +29,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: $hr-front-z-index;
-    font-size: 280px;
   }
 
   #hunter-a {
@@ -49,9 +48,11 @@
 
   #quizOk {
     color: #d01946;
+    font-size: 240px;
   }
 
   #quizNg {
     color: #00693e;
+    font-size: 280px;
   }
 }

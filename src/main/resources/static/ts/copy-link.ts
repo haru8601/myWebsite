@@ -1,6 +1,6 @@
-const btnCopyLink = document.querySelector<HTMLElement>("#copy-link-btn");
+const copyLinkBtn = document.querySelector<HTMLElement>("#copy-link-btn");
 
-btnCopyLink?.addEventListener("click", () => {
+copyLinkBtn?.addEventListener("click", () => {
   if (!navigator.clipboard) {
     // コピー失敗
     console.warn("this browser does not support copying.");
@@ -9,12 +9,14 @@ btnCopyLink?.addEventListener("click", () => {
 
   // コピー成功
   navigator.clipboard.writeText(location.href.replace(/#.+/, "")).then(() => {
-    const pTag = document.getElementById("copied-text");
-    if (pTag != null) {
-      pTag.classList.remove("d-none");
+    const copyLinkIcon = copyLinkBtn.querySelector("i.fa-link");
+    if (copyLinkIcon != null) {
+      copyLinkIcon.classList.add("text-success");
+      copyLinkIcon.classList.remove("text-white");
       setTimeout(() => {
-        pTag.classList.add("d-none");
-      }, 2000);
+        copyLinkIcon.classList.add("text-white");
+        copyLinkIcon.classList.remove("text-success");
+      }, 1000);
     }
   });
 });

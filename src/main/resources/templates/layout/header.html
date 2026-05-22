@@ -46,7 +46,11 @@
         <th:block
           th:each="topic: ${T(com.haroot.home_page.enums.TopicEnum).values()}"
         >
-          <a class="hr-active-topic row pb-3 mb-4" th:href="@{|/${topic.url}|}">
+          <a
+            class="row pb-3 mb-4"
+            th:classappend="${uri.startsWith('/' + topic.url) ? 'hr-active-topic' : ''}"
+            th:href="@{|/${topic.url}|}"
+          >
             <div class="col-2">
               <th:block
                 th:replace="~{layout/embedded-svg :: embeddedSvg(|/images/${topic.imagePath}|, '25px', 'auto')}"

@@ -56,25 +56,25 @@
         <div id="article-actions" class="position-relative">
           <div
             id="article-actions-section"
-            class="d-flex flex-md-column flex-row align-items-md-center align-items-start justify-content-center gap-md-4 gap-5 p-md-0 p-3"
+            class="d-flex flex-md-column flex-row align-items-md-center align-items-start justify-content-center gap-4 p-md-0 p-3"
           >
-            <div>
+            <div class="d-md-block d-flex gap-2">
               <a id="like-btn" role="button" aria-label="記事をいいねする">
                 <div id="not-like-icon">
                   <th:block
-                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '30px', 'auto')}"
+                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart.svg', '24px', 'auto')}"
                   ></th:block>
                 </div>
                 <div id="liked-icon" class="d-none">
                   <th:block
-                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart-red.svg', '30px', 'auto')}"
+                    th:replace="~{layout/embedded-svg :: embeddedSvg('/images/icon/heart-red.svg', '24px', 'auto')}"
                   ></th:block>
                 </div>
               </a>
               <p
                 id="like-count"
                 th:text="${likeCount}"
-                class="hr-dot text-center"
+                class="hr-dot text-center mt-md-2"
               >
                 0
               </p>
@@ -85,7 +85,7 @@
                 role="button"
                 aria-label="記事をツイートする"
               >
-                <i class="fa-brands fa-x-twitter fa-2x"></i>
+                <i class="fa-brands fa-x-twitter fa-lg"></i>
               </a>
             </div>
             <div
@@ -96,11 +96,8 @@
                 role="button"
                 aria-label="リンクをコピーする"
               >
-                <i class="fa-solid fa-link text-white fa-2x"></i>
+                <i class="fa-solid fa-link text-white fa-lg"></i>
               </a>
-              <p id="copied-text" class="d-none hr-dot my-md-2 px-md-2 py-md-1">
-                LINK COPIED!
-              </p>
             </div>
           </div>
         </div>

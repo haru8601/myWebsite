@@ -106,6 +106,11 @@ html {
       shape-rendering: crispEdges;
     }
 
+    img {
+      // 画像が読み込めない時のaltの文字サイズ
+      font-size: 8px;
+    }
+
     // reCAPTCHAのバッジを消す(代わりにテキストでの説明文が必要)
     .grecaptcha-badge {
       visibility: hidden;

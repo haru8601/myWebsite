@@ -2,7 +2,10 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
   <body>
     <th:block th:fragment="backList(link, name)">
-      <a th:href="${link}" class="d-inline-flex gap-3 align-items-center mb-4">
+      <a
+        th:href="${link}"
+        class="d-inline-flex gap-md-3 gap-0 align-items-center mb-4"
+      >
         <!--/* NOTE: flexにして高さを子要素に合わせている */-->
         <div class="d-flex m-0">
           <i class="fa-solid fa-angle-left fa-2x"></i>
