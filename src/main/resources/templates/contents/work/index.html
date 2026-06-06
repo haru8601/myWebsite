@@ -44,7 +44,7 @@
               <a
                 th:each="work: ${workGenre.value}"
                 th:href="@{|/work/${workGenre.key.url}/${work.name}|}"
-                class="col-md-5 col-12 d-flex flex-column align-items-start"
+                class="col-md-5 col-12 d-flex flex-column align-items-md-start align-items-center"
               >
                 <img
                   th:src="@{|/images/work/${workGenre.key.url}/${work.name}/thumbnail.png|}"
