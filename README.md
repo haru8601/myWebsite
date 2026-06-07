@@ -121,6 +121,21 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=local"
 
 - Apacheの設定(`/etc/httpd/conf/httpd.conf`)で、`/var/www/html`配下の静的リソースを公開しています。
 
+# 運用
+
+## スケジューラー
+
+1日1回サーバーを再起動する(systemd-timer経由)。
+
+```sh
+# 登録されているタイマー一覧を確認
+systemctl list-timers
+# タイマーの編集
+vi /etc/systemd/system/tomcat-lifecycle.timer
+# 実行コマンドの編集
+vi /etc/systemd/system/tomcat-lifecycle.service
+```
+
 # ドメイン
 
 ## WORK
