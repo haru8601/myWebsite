@@ -2,12 +2,6 @@
 
 haroot のホームページ。リンクは[こちら](https://haroot.net)。
 
-# 技術要素
-
-- BE: Java, SpringBoot, Spring Data JPA, Thymeleaf, maven
-- FE: TypeScript, scss, webpack, Prettier, biome, npm
-- インフラ: EC2, MySQL, GCP(YouTube API, reCAPTCHA)
-
 # 開発
 
 ## BE
@@ -59,6 +53,12 @@ Spring Data JPAを使用。
 - `npm`で管理
 - インストール時に`Takumi Guard`で悪意のあるパッケージをブロック
 
+## Datadog APM
+
+同じサーバーにdatadog-agentを入れることで \
+Datadogにデータを転送している。
+`/etc/systemd/system/tomcat.service`にDatadog用の環境変数を渡している。
+
 # デプロイ
 
 ## 注意
@@ -66,7 +66,7 @@ Spring Data JPAを使用。
 mvnコマンドは**ローカルのjavaを使ってビルドする**ため、 \
 ローカルのjdkを本番のjdkに合わせる必要がある。
 
-## パッケージ
+## 1. パッケージ化
 
 ### cliの場合
 
@@ -82,19 +82,13 @@ mvn clean package
 
 `/target`に war ファイルが生成される
 
-### STSの場合
-
-`pom.xml`を開き、Run As > Maven Build<br>
-
-`/target`に war ファイルが生成される
-
 ### ローカル確認
 
 ```sh
 mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=local"
 ```
 
-## デプロイ
+## 2. デプロイ手順
 
 1. warファイルを本番環境にコピー
 2. 下記コマンドでssh接続
@@ -115,7 +109,10 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=local"
 
 ## 画像ファイル
 
-記事のサムネイル画像は直接、`/var/www/html/images/articles/{id}/thumbnail.png`に配置します。
+記事のサムネイル画像は、
+直接`/var/www/html/images`に配置します。
+
+- Apacheの設定(`/etc/httpd/conf/httpd.conf`)で、`/var/www/html`配下を誰でもアクセスできるよう公開しています。
 
 # ドメイン
 

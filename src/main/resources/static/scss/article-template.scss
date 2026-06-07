@@ -29,6 +29,7 @@ main#article-template {
         // NOTE: フッターとなるべく被らない位置
         top: 80vh;
         left: 50vw;
+        min-width: 70vw;
         transform: translateX(-50%);
 
         border: 5px solid white;
