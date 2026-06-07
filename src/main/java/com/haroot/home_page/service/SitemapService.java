@@ -33,12 +33,11 @@ public class SitemapService {
   public SitemapUrlset generate() {
     String baseUrl = "https://" + pathProperty.getSite();
 
-    Stream<SitemapUrl> topUrl = Arrays.stream(STATIC_PATHS)
-        .map(path -> new SitemapUrl(
-            baseUrl,
-            null,
-            "1.0",
-            CHANGE_FREQUENCY));
+    Stream<SitemapUrl> topUrl = Stream.of(new SitemapUrl(
+        baseUrl,
+        null,
+        "1.0",
+        CHANGE_FREQUENCY));
 
     Stream<SitemapUrl> staticUrls = Arrays.stream(STATIC_PATHS)
         .map(path -> new SitemapUrl(
@@ -59,7 +58,8 @@ public class SitemapService {
         // キーを無視して作品一覧のリストにする
         .flatMap(entry -> entry.getValue().stream()
             .map(work -> new SitemapUrl(
-                baseUrl + "/work/" + entry.getKey().getUrl() + "/" + work.getName(),
+                baseUrl + "/work/" + entry.getKey().getUrl() + "/"
+                    + work.getName(),
                 null,
                 "0.7",
                 CHANGE_FREQUENCY)));
