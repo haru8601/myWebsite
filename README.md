@@ -136,6 +136,10 @@ vi /etc/systemd/system/tomcat-lifecycle.timer
 vi /etc/systemd/system/tomcat-lifecycle.service
 ```
 
+## ログ確認
+
+[application-production.yml](application-production.yml)で指定された`path.log`にアプリケーションのログを格納している。
+
 # ドメイン
 
 ## WORK
