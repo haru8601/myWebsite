@@ -104,21 +104,22 @@ mvn spring-boot:run -Dspring-boot.run.arguments="--spring.profiles.active=local"
 3. 下記コマンドでフォルダ移動やBE再起動
    ```sh
    sudo su
-   cd /opt/tomcat/webapps
+   cd /var/lib/tomcat10/webapps
    # 古いwarファイルのバックアップ
    mv ROOT.war ../backup/ROOT_${今日の日付}.war
    # 新しいwarファイルの配置
    mv /home/ec2-user/作成したwar ./ROOT.war
-   systemctl status tomcat
-   systemctl restart tomcat
+   systemctl status tomcat10
+   systemctl restart tomcat10
    ```
 
-## 画像ファイル
+## 記事画像
 
 記事のサムネイル画像は、
+本番アプリケーションから保存するため
 直接`/var/www/html/images`に配置します。
 
-- Apacheの設定(`/etc/httpd/conf/httpd.conf`)で、`/var/www/html`配下を誰でもアクセスできるよう公開しています。
+- Apacheの設定(`/etc/httpd/conf/httpd.conf`)で、`/var/www/html`配下の静的リソースを公開しています。
 
 # ドメイン
 
