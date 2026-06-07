@@ -19,6 +19,12 @@ sdk list java
 `pom.xml`を変更したら \
 VSCodeで`cmd`+`shift`+`P` > `Java: Reload Projects`
 
+#### 依存関係の確認
+
+```sh
+mvn dependency:tree 2>/dev/null | grep "spring-boot:"
+```
+
 ### ORM
 
 Spring Data JPAを使用。
