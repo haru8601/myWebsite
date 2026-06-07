@@ -8,9 +8,6 @@ mvnw*
 
 # hidden
 .DS_Store
-.project
-.classpath
-org.eclipse.*
 org.springframework.*
 
 # other
@@ -24,9 +21,6 @@ Servers
 ads.html
 
 .rewrite-cache
-
-# intellij
-.idea
 
 # frontend
 node_modules/
