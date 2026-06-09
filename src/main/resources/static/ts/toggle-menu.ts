@@ -14,7 +14,7 @@ menu?.addEventListener("click", () => {
     icon.classList.toggle("d-none");
   });
 
-  // メインを非表示にすることでスクロールを禁止する
-  const main = document.querySelector("main");
-  main?.classList.toggle("d-none");
+  // NOTE: ヘッダーが一瞬スクロールできてしまうのを防ぐ対応
+  const html = document.querySelector("html");
+  html?.classList.toggle("overflow-hidden");
 });
