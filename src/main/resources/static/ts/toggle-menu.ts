@@ -17,4 +17,6 @@ menu?.addEventListener("click", () => {
   // NOTE: ヘッダーが一瞬スクロールできてしまうのを防ぐ対応
   const html = document.querySelector("html");
   html?.classList.toggle("overflow-hidden");
+  const main = document.querySelector("main");
+  main?.classList.toggle("d-none");
 });
