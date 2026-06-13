@@ -32,7 +32,7 @@
     }
 
     .nav-link .hr-dot {
-      @include sp() {
+      @include mobile() {
         font-size: 0.8rem;
       }
     }
@@ -43,7 +43,7 @@
       #image-container {
         width: 40%;
 
-        @include sp() {
+        @include mobile() {
           width: 100%;
         }
       }
@@ -69,7 +69,7 @@
           border-left: 5px solid white;
           z-index: $hr-back-z-index;
 
-          @include sp() {
+          @include mobile() {
             left: 10%;
           }
         }
@@ -139,7 +139,7 @@
             background-color: $hr-blue;
           }
 
-          @include sp() {
+          @include mobile() {
             // NOTE: sp時は右側のコメントとスタイルを合わせる
             @include hr-comment-right-style;
           }

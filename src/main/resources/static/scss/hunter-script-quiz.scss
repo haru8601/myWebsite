@@ -17,7 +17,7 @@
     background-size: 100% 100%;
     background-position: center;
 
-    @include sp() {
+    @include mobile() {
       // HACK: 上手くアスペクト比を無視した拡大ができなかったので上下だけ画像の端が見えるようにしている
       background-size: auto 100%;
     }
@@ -40,7 +40,7 @@
     width: $hr-input-width-default;
     min-width: $hr-input-width-min;
 
-    @include sp() {
+    @include mobile() {
       width: 100%;
       min-width: unset;
     }

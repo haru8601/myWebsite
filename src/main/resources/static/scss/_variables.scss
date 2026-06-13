@@ -16,7 +16,8 @@ $hr-input-width-default: 40vw;
 $hr-input-width-min: 300px;
 
 // レスポンシブ
-$hr-breakpoint-mobile: 768px;
+$hr-breakpoint-tablet: 992px; // NOTE: bootstrapのlgと同じ
+$hr-breakpoint-mobile: 768px; // NOTE: bootstrapのmdと同じ
 
 @mixin pc() {
   @media screen {
@@ -24,7 +25,13 @@ $hr-breakpoint-mobile: 768px;
   }
 }
 
-@mixin sp() {
+@mixin tablet() {
+  @media screen and (max-width: $hr-breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile() {
   @media screen and (max-width: $hr-breakpoint-mobile) {
     @content;
   }

@@ -56,14 +56,13 @@ html {
       }
 
       #header-menu-section {
-        @include sp() {
+        @include mobile() {
           position: fixed;
-          left: 50%;
-          transform: translateX(-50%);
+          left: 0;
+          bottom: 0;
           // NOTE: mainより手前に置いて重ねている
           z-index: $hr-front-z-index;
-          width: 100%;
-          height: 100vh;
+          width: 100vw;
           padding: 0 20vw;
         }
       }
@@ -74,7 +73,11 @@ html {
       // エラー画面などコンテンツが少ない場合の最小値
       min-height: 300px;
 
-      @include sp() {
+      @include tablet() {
+        margin: 5vh 10vw;
+      }
+
+      @include mobile() {
         margin: 5vh 5vw;
       }
     }
@@ -123,7 +126,7 @@ html {
       &.hr-size-1 {
         font-size: 4rem;
 
-        @include sp() {
+        @include mobile() {
           font-size: 2.5rem;
         }
       }
