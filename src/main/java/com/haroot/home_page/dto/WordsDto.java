@@ -6,8 +6,8 @@ import lombok.Data;
 
 /**
  * 単語一覧データ
- * 
- * @author sekiharuhito
+ *
+ * @author haroot
  *
  */
 @Data

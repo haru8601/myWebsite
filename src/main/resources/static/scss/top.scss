@@ -1,0 +1,18 @@
+main {
+  .hr-title {
+    margin: 20vh 0 10vh 0;
+  }
+
+  .hr-choose-item {
+    position: relative;
+
+    .hr-choose-icon {
+      position: absolute;
+      // 上下の中央揃え
+      top: 50%;
+      // セクションより左側に配置
+      right: 100%;
+      transform: translateY(-50%);
+    }
+  }
+}

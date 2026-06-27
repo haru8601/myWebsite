@@ -2,7 +2,6 @@ package com.haroot.home_page.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.haroot.home_page.entity.ArticleEntity;
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 記事データ
- * 
+ *
  * @author haroot
  *
  */
@@ -42,17 +41,18 @@ public class ArticleDto implements Serializable {
 
   public static ArticleDto of(ArticleEntity entity) {
     return new ArticleDto(
-      entity.getId(),
-      entity.getTitle(),
-      entity.getContent(),
-      entity.isWip(),
-      entity.getCreateDate(),
-      entity.getUpdateDate());
+        entity.getId(),
+        entity.getTitle(),
+        entity.getContent(),
+        entity.isWip(),
+        entity.getCreateDate(),
+        entity.getUpdateDate());
   }
 
   public static List<ArticleDto> listOf(List<ArticleEntity> entityList) {
-    List<ArticleDto> dtoList = new ArrayList<>();
-    entityList.forEach((entity) -> dtoList.add(of(entity)));
-    return dtoList;
+    return entityList
+        .stream()
+        .map(entity -> of(entity))
+        .toList();
   }
 }

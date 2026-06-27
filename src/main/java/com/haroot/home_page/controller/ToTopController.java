@@ -46,8 +46,8 @@ public class ToTopController {
     // 初訪問なら
     if (visitedFlg == null || !visitedFlg.equals("true")) {
       Cookie visitedCookie = new Cookie(
-        "visited",
-        "true");
+          "visited",
+          "true");
       visitedCookie.setMaxAge(60 * 60 * 24 * 365); // 1年間
       response.addCookie(visitedCookie);
       // slot表示
@@ -57,16 +57,7 @@ public class ToTopController {
 
     mav.addObject("isTop", true);
 
-    mav.setViewName("index");
-    return mav;
-  }
-
-  /**
-   * ポリシー画面表示
-   */
-  @GetMapping("policy")
-  public ModelAndView policy(ModelAndView mav, HttpServletRequest request) {
-    mav.setViewName("policy");
+    mav.setViewName("top");
     return mav;
   }
 

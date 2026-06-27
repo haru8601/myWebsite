@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.haroot.home_page.entity.MusicEntity;
 
+/**
+ * @deprecated デザインリニューアルでworkに移行
+ */
 @Repository
 public interface MusicRepository extends JpaRepository<MusicEntity, Integer> {
 

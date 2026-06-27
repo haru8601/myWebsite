@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.haroot.home_page.entity.PokeEntity;
 
+/**
+ * @deprecated デザインリニューアルでworkに移行
+ */
 @Repository
 public interface PokeRepository extends JpaRepository<PokeEntity, Integer> {
 

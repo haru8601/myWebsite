@@ -1,13 +1,14 @@
 package com.haroot.home_page.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.haroot.home_page.dto.ArticleDetailDto;
 import com.haroot.home_page.dto.ArticleDto;
 import com.haroot.home_page.entity.ArticleEntity;
 import com.haroot.home_page.exception.HarootNotFoundException;
+import com.haroot.home_page.quereyService.ArticleQueryService;
 import com.haroot.home_page.repository.ArticleRepository;
 import com.haroot.home_page.repository.RedisRepository;
 
@@ -16,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * MAVクラス
  *
  * @author haroot
  *
@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ArticleService {
 
   private final ArticleRepository articleRepository;
+  private final ArticleQueryService articleQueryService;
   private final HttpSession session;
   private final RedisRepository redisRepository;
   private final String prefix = "articles-";
@@ -43,15 +44,14 @@ public class ArticleService {
       idNum = Integer.parseInt(id);
     } catch (NumberFormatException ex) {
       throw new HarootNotFoundException(
-        ex.getMessage(),
-        ex);
+          ex.getMessage(),
+          ex);
     }
     ArticleDto article = null;
     try {
       article = (ArticleDto) redisRepository.get(prefix + id);
     } catch (Exception e) {
-      log.error("redis get error");
-      log.error(e.getMessage());
+      log.error("redis get error", e);
     }
     if (article != null) {
       log.debug("cache hit, id:" + id);
@@ -59,12 +59,11 @@ public class ArticleService {
     }
     log.debug("cache not found, id:" + id);
     article = ArticleDto.of(articleRepository.findById(idNum).orElseThrow(() -> new HarootNotFoundException(
-      "記事が見つかりませんでした")));
+        "記事が見つかりませんでした")));
     try {
       redisRepository.set(prefix + id, article);
     } catch (Exception e) {
-      log.error("redis set error");
-      log.error(e.getMessage());
+      log.error("redis set error", e);
     }
     return article;
   }
@@ -90,15 +89,14 @@ public class ArticleService {
    *
    * @return
    */
-  public List<ArticleDto> getAll() {
-    List<ArticleEntity> articleList = new ArrayList<>();
+  public List<ArticleDetailDto> getAll() {
+    // FIXME: Service層でセッションを使わない
     // ログインユーザーでなければ公開記事のみ表示
     if (session.getAttribute("isLogin") == null) {
-      articleList = articleRepository.findAllByWipFalseOrderByUpdateDateDesc();
-    } else {
-      articleList = articleRepository.findAllByOrderByUpdateDateDesc();
+      return articleQueryService.findAllWithoutPrivate();
     }
-    return ArticleDto.listOf(articleList);
+
+    return articleQueryService.findAll();
   }
 
   /**
@@ -113,8 +111,7 @@ public class ArticleService {
       try {
         redisRepository.set(prefix + article.getId(), article);
       } catch (Exception e) {
-        log.error("redis set error");
-        log.error(e.getMessage());
+        log.error("redis set error", e);
       }
     }
     return articleRepository.save(ArticleEntity.of(article));

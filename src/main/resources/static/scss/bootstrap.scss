@@ -1,0 +1,21 @@
+@use "variables" as *;
+@use "../../node_modules/bootstrap/scss/bootstrap" with (
+  $primary: $hr-blue,
+  $success: $hr-green,
+  $warning: $hr-purple,
+  $danger: $hr-red,
+  $min-contrast-ratio: 2,
+  $nav-tabs-link-active-color: white,
+  $nav-tabs-link-active-bg: $hr-bg-color-default,
+  $nav-tabs-border-width: 0
+);
+
+// カラーテーマを背景色に使った時のテキストカラー
+.text-bg-primary,
+.text-bg-warning,
+.text-bg-danger {
+  color: black;
+}
+.text-bg-success {
+  color: white;
+}

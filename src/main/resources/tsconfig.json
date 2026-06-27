@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    // 2022年版のjavascriptにコンパイル
+    "target": "es2022",
+    // 2022年版のモジュール形式(import,export)で出力
+    "module": "es2022",
+    // モジュールの探し方をwebpackに合わせる
+    "moduleResolution": "bundler",
+    // ES2022のECMAScriptの仕様とブラウザのAPI定義を含める
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "allowJs": false,
+    // webpackでバンドルするため、typescriptはjavascriptを出力しない
+    "noEmit": true,
+    // 各ファイルを別モジュールとして扱う
+    "isolatedModules": true,
+    "typeRoots": ["static/types", "./node_modules/@types"]
+  },
+  "include": ["static/**/*.ts"],
+  "exclude": ["node_modules"]
+}

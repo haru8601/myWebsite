@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.haroot.home_page.dto.ArticleDetailDto;
 import com.haroot.home_page.dto.ArticleDto;
 import com.haroot.home_page.dto.ArticleLikeDto;
 import com.haroot.home_page.dto.ArticleRegisterDto;
@@ -57,10 +58,10 @@ public class ArticleController {
    */
   @GetMapping
   public ModelAndView articleAll(ModelAndView mav) {
-    List<ArticleDto> articlesList = articleService.getAll();
-    mav.addObject("articlesList", articlesList);
+    List<ArticleDetailDto> articlesList = articleService.getAll();
+    mav.addObject("articleList", articlesList);
     mav.addObject("errStr", "");
-    mav.setViewName("contents/articles");
+    mav.setViewName("contents/articles/index");
     return mav;
   }
 
@@ -119,14 +120,14 @@ public class ArticleController {
       final String CONTENT = "";
       final boolean WIP = false;
       mav.addObject("articleRegisterDto", new ArticleRegisterDto(
-        ID,
-        TITLE,
-        CONTENT,
-        WIP));
+          ID,
+          TITLE,
+          CONTENT,
+          WIP));
       mav.setViewName("contents/articles/create");
     } else {
       // 他は戻す
-      List<ArticleDto> articlesList = articleService.getAll();
+      List<ArticleDetailDto> articlesList = articleService.getAll();
       mav.addObject("articlesList", articlesList);
       mav.addObject("errStr", "Sorry, you can't create articles....");
       mav.setViewName("contents/articles");
@@ -221,7 +222,7 @@ public class ArticleController {
 
     // 画像出力
     try (OutputStream os = Files.newOutputStream(Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
-      StandardOpenOption.CREATE_NEW)) {
+        StandardOpenOption.CREATE_NEW)) {
       os.write(file.getBytes());
     } catch (IOException ex) {
       log.error(ex.getMessage(), ex);
@@ -229,7 +230,7 @@ public class ArticleController {
     // 権限変更
     try {
       Files.setPosixFilePermissions(Paths.get(articleImagePathStr + "/" + file.getOriginalFilename()),
-        PosixFilePermissions.fromString("rw-rw-r--"));
+          PosixFilePermissions.fromString("rw-rw-r--"));
     } catch (IOException ex) {
       log.error(ex.getMessage(), ex);
     }
