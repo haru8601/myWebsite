@@ -65,6 +65,8 @@ Spring Data JPAを使用。
 Datadogにデータを転送している。
 `/etc/systemd/system/tomcat.service`にDatadog用の環境変数を渡している。
 
+datadog自体の設定ファイルは`/etc/datadog-agent`配下。
+
 # デプロイ
 
 ## 注意
